@@ -81,6 +81,12 @@
     <Compile Include="Principal\MenuPrincipal.Designer.cs">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Productos\frmProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\frmProducto.Designer.cs">
+      <DependentUpon>frmProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SistemaGestionPymeBDDataSet.Designer.cs">
@@ -96,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Principal\MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Productos\frmProducto.resx">
+      <DependentUpon>frmProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

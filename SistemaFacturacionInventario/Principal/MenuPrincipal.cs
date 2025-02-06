@@ -1,4 +1,5 @@
 ﻿using SistemaFacturacionInventario.Facturacion;
+using SistemaFacturacionInventario.Productos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -99,6 +100,7 @@ namespace SistemaFacturacionInventario
 
         private void btnNuevoProducto_Click(object sender, EventArgs e)
         {
+            AbrirFormularioHijo(new frmProducto());
             OcultarPanelesSubMenu();
         }
 
