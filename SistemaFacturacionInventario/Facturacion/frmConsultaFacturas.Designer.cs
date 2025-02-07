@@ -48,9 +48,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewConsulta.Location = new System.Drawing.Point(92, 148);
+            this.dataGridViewConsulta.Location = new System.Drawing.Point(63, 65);
             this.dataGridViewConsulta.Name = "dataGridViewConsulta";
-            this.dataGridViewConsulta.Size = new System.Drawing.Size(991, 333);
+            this.dataGridViewConsulta.Size = new System.Drawing.Size(594, 226);
             this.dataGridViewConsulta.TabIndex = 0;
             // 
             // clientesBindingSource
@@ -65,7 +65,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(290, 503);
+            this.button1.Location = new System.Drawing.Point(92, 339);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(127, 29);
             this.button1.TabIndex = 1;
@@ -75,7 +75,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(462, 503);
+            this.button2.Location = new System.Drawing.Point(264, 339);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(127, 29);
             this.button2.TabIndex = 2;
@@ -84,7 +84,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(595, 503);
+            this.button3.Location = new System.Drawing.Point(397, 339);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(127, 29);
             this.button3.TabIndex = 3;
@@ -93,7 +93,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(728, 503);
+            this.button4.Location = new System.Drawing.Point(530, 339);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(127, 29);
             this.button4.TabIndex = 4;
@@ -108,7 +108,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1153, 703);
+            this.ClientSize = new System.Drawing.Size(811, 477);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);

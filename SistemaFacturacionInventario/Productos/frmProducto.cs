@@ -10,11 +10,22 @@ using System.Windows.Forms;
 
 namespace SistemaFacturacionInventario.Productos
 {
-    public partial class frmProducto : Form
+    public partial class frmProducto : FormBase
     {
+
+        private void frmProducto_Load(object sender, EventArgs e)
+        {
+
+        }
         public frmProducto()
         {
             InitializeComponent();
         }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

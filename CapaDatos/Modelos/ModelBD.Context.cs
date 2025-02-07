@@ -27,5 +27,8 @@ namespace CapaDatos.Modelos
     
         public virtual DbSet<Clientes> Clientes { get; set; }
         public virtual DbSet<RegimenesImpositivos> RegimenesImpositivos { get; set; }
+        public virtual DbSet<Productos> Productos { get; set; }
+        public virtual DbSet<Rubros> Rubros { get; set; }
+        public virtual DbSet<UnidadesMedida> UnidadesMedida { get; set; }
     }
 }

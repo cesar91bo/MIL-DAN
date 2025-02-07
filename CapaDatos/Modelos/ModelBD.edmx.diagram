@@ -8,6 +8,11 @@
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Clientes" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.RegimenesImpositivos" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <AssociationConnector Association="SistemaGestionPymeBDModel.FK_Clientes_RegimenesImpositivos" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Productos" Width="1.5" PointX="7.625" PointY="2.5" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Rubros" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.UnidadesMedida" Width="1.5" PointX="5.375" PointY="3.75" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_Productos_Rubros" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_Productos_UnidadesMedida" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

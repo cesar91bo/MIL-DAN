@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SistemaGestionPymeBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SistemaGestionPymeBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clientes">
           <Key>
             <PropertyRef Name="IdCliente" />
@@ -27,12 +27,45 @@
           <Property Name="IdRegimenImpositivo" Type="int" />
           <Property Name="Observaciones" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NroProducto" Type="int" Nullable="false" />
+          <Property Name="CodigoBarra" Type="nvarchar" MaxLength="50" />
+          <Property Name="DescCorta" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DescLarga" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="IdRubro" Type="int" Nullable="false" />
+          <Property Name="LlevarStock" Type="bit" Nullable="false" />
+          <Property Name="StockActual" Type="float" />
+          <Property Name="UltimaActStock" Type="datetime" />
+          <Property Name="CantidadMinima" Type="float" />
+          <Property Name="IdUnidadMedida" Type="int" Nullable="false" />
+          <Property Name="FechaBaja" Type="datetime" />
+          <Property Name="CodigoProducto" Type="nvarchar" MaxLength="50" />
+          <Property Name="Embalaje" Type="int" />
+        </EntityType>
         <EntityType Name="RegimenesImpositivos">
           <Key>
             <PropertyRef Name="IdRegimenImpositivo" />
           </Key>
           <Property Name="IdRegimenImpositivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rubros">
+          <Key>
+            <PropertyRef Name="IdRubro" />
+          </Key>
+          <Property Name="IdRubro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnidadesMedida">
+          <Key>
+            <PropertyRef Name="IdUnidadMedida" />
+          </Key>
+          <Property Name="IdUnidadMedida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <Association Name="FK_Clientes_RegimenesImpositivos">
           <End Role="RegimenesImpositivos" Type="Self.RegimenesImpositivos" Multiplicity="0..1" />
@@ -46,16 +79,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Productos_Rubros">
+          <End Role="Rubros" Type="Self.Rubros" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rubros">
+              <PropertyRef Name="IdRubro" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="IdRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_UnidadesMedida">
+          <End Role="UnidadesMedida" Type="Self.UnidadesMedida" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadesMedida">
+              <PropertyRef Name="IdUnidadMedida" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="IdUnidadMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SistemaGestionPymeBDModelStoreContainer">
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegimenesImpositivos" EntityType="Self.RegimenesImpositivos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rubros" EntityType="Self.Rubros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnidadesMedida" EntityType="Self.UnidadesMedida" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Clientes_RegimenesImpositivos" Association="Self.FK_Clientes_RegimenesImpositivos">
             <End Role="RegimenesImpositivos" EntitySet="RegimenesImpositivos" />
             <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Productos_Rubros" Association="Self.FK_Productos_Rubros">
+            <End Role="Rubros" EntitySet="Rubros" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_UnidadesMedida" Association="Self.FK_Productos_UnidadesMedida">
+            <End Role="UnidadesMedida" EntitySet="UnidadesMedida" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SistemaGestionPymeBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -109,7 +176,79 @@
             <End Role="RegimenesImpositivos" EntitySet="RegimenesImpositivos" />
             <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
+          <EntitySet Name="Productos" EntityType="SistemaGestionPymeBDModel.Productos" />
+          <EntitySet Name="Rubros" EntityType="SistemaGestionPymeBDModel.Rubros" />
+          <EntitySet Name="UnidadesMedida" EntityType="SistemaGestionPymeBDModel.UnidadesMedida" />
+          <AssociationSet Name="FK_Productos_Rubros" Association="SistemaGestionPymeBDModel.FK_Productos_Rubros">
+            <End Role="Rubros" EntitySet="Rubros" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_UnidadesMedida" Association="SistemaGestionPymeBDModel.FK_Productos_UnidadesMedida">
+            <End Role="UnidadesMedida" EntitySet="UnidadesMedida" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NroProducto" Type="Int32" Nullable="false" />
+          <Property Name="CodigoBarra" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DescCorta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DescLarga" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IdRubro" Type="Int32" Nullable="false" />
+          <Property Name="LlevarStock" Type="Boolean" Nullable="false" />
+          <Property Name="StockActual" Type="Double" />
+          <Property Name="UltimaActStock" Type="DateTime" Precision="3" />
+          <Property Name="CantidadMinima" Type="Double" />
+          <Property Name="IdUnidadMedida" Type="Int32" Nullable="false" />
+          <Property Name="FechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="CodigoProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Embalaje" Type="Int32" />
+          <NavigationProperty Name="Rubros" Relationship="SistemaGestionPymeBDModel.FK_Productos_Rubros" FromRole="Productos" ToRole="Rubros" />
+          <NavigationProperty Name="UnidadesMedida" Relationship="SistemaGestionPymeBDModel.FK_Productos_UnidadesMedida" FromRole="Productos" ToRole="UnidadesMedida" />
+        </EntityType>
+        <EntityType Name="Rubros">
+          <Key>
+            <PropertyRef Name="IdRubro" />
+          </Key>
+          <Property Name="IdRubro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Productos" Relationship="SistemaGestionPymeBDModel.FK_Productos_Rubros" FromRole="Rubros" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="UnidadesMedida">
+          <Key>
+            <PropertyRef Name="IdUnidadMedida" />
+          </Key>
+          <Property Name="IdUnidadMedida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Productos" Relationship="SistemaGestionPymeBDModel.FK_Productos_UnidadesMedida" FromRole="UnidadesMedida" ToRole="Productos" />
+        </EntityType>
+        <Association Name="FK_Productos_Rubros">
+          <End Type="SistemaGestionPymeBDModel.Rubros" Role="Rubros" Multiplicity="1" />
+          <End Type="SistemaGestionPymeBDModel.Productos" Role="Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rubros">
+              <PropertyRef Name="IdRubro" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="IdRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_UnidadesMedida">
+          <End Type="SistemaGestionPymeBDModel.UnidadesMedida" Role="UnidadesMedida" Multiplicity="1" />
+          <End Type="SistemaGestionPymeBDModel.Productos" Role="Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadesMedida">
+              <PropertyRef Name="IdUnidadMedida" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="IdUnidadMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -144,6 +283,42 @@
               <MappingFragment StoreEntitySet="RegimenesImpositivos">
                 <ScalarProperty Name="IdRegimenImpositivo" ColumnName="IdRegimenImpositivo" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="Embalaje" ColumnName="Embalaje" />
+                <ScalarProperty Name="CodigoProducto" ColumnName="CodigoProducto" />
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="IdUnidadMedida" ColumnName="IdUnidadMedida" />
+                <ScalarProperty Name="CantidadMinima" ColumnName="CantidadMinima" />
+                <ScalarProperty Name="UltimaActStock" ColumnName="UltimaActStock" />
+                <ScalarProperty Name="StockActual" ColumnName="StockActual" />
+                <ScalarProperty Name="LlevarStock" ColumnName="LlevarStock" />
+                <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
+                <ScalarProperty Name="DescLarga" ColumnName="DescLarga" />
+                <ScalarProperty Name="DescCorta" ColumnName="DescCorta" />
+                <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
+                <ScalarProperty Name="NroProducto" ColumnName="NroProducto" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rubros">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.Rubros">
+              <MappingFragment StoreEntitySet="Rubros">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnidadesMedida">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.UnidadesMedida">
+              <MappingFragment StoreEntitySet="UnidadesMedida">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdUnidadMedida" ColumnName="IdUnidadMedida" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
