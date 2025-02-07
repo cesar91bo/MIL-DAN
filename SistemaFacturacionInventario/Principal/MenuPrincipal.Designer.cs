@@ -30,33 +30,33 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuPrincipal));
             this.pnlLogo = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlMenuLateral = new System.Windows.Forms.Panel();
-            this.btnReportes = new System.Windows.Forms.Button();
             this.pnlSubMenuClientes = new System.Windows.Forms.Panel();
             this.btnHistorialCompra = new System.Windows.Forms.Button();
             this.btnNuevoCliente = new System.Windows.Forms.Button();
             this.btnListadoClientes = new System.Windows.Forms.Button();
-            this.btnGestionClientes = new System.Windows.Forms.Button();
             this.pnlSubmenuProductos = new System.Windows.Forms.Panel();
             this.btnInventario = new System.Windows.Forms.Button();
             this.btnNuevoProducto = new System.Windows.Forms.Button();
             this.btnListadoProductos = new System.Windows.Forms.Button();
-            this.btnProductos = new System.Windows.Forms.Button();
             this.pnlSubmenuFacturacion = new System.Windows.Forms.Panel();
             this.btnAnulacionFactura = new System.Windows.Forms.Button();
             this.btnListadoFacturas = new System.Windows.Forms.Button();
             this.btnNuevaFactura = new System.Windows.Forms.Button();
+            this.pnlContenedorPrincipal = new System.Windows.Forms.Panel();
+            this.btnReportes = new System.Windows.Forms.Button();
+            this.btnGestionClientes = new System.Windows.Forms.Button();
+            this.btnProductos = new System.Windows.Forms.Button();
             this.btnFacturacion = new System.Windows.Forms.Button();
             this.btnInicio = new System.Windows.Forms.Button();
             this.btnConfiguracion = new System.Windows.Forms.Button();
-            this.pnlContenedorPrincipal = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlLogo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlMenuLateral.SuspendLayout();
             this.pnlSubMenuClientes.SuspendLayout();
             this.pnlSubmenuProductos.SuspendLayout();
             this.pnlSubmenuFacturacion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlLogo
@@ -65,19 +65,8 @@
             this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLogo.Location = new System.Drawing.Point(0, 0);
             this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(250, 147);
+            this.pnlLogo.Size = new System.Drawing.Size(233, 147);
             this.pnlLogo.TabIndex = 1;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::SistemaFacturacionInventario.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(250, 147);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // pnlMenuLateral
             // 
@@ -96,26 +85,8 @@
             this.pnlMenuLateral.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenuLateral.Location = new System.Drawing.Point(0, 0);
             this.pnlMenuLateral.Name = "pnlMenuLateral";
-            this.pnlMenuLateral.Size = new System.Drawing.Size(250, 792);
+            this.pnlMenuLateral.Size = new System.Drawing.Size(250, 584);
             this.pnlMenuLateral.TabIndex = 0;
-            // 
-            // btnReportes
-            // 
-            this.btnReportes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnReportes.FlatAppearance.BorderSize = 0;
-            this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportes.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnReportes.Image = ((System.Drawing.Image)(resources.GetObject("btnReportes.Image")));
-            this.btnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReportes.Location = new System.Drawing.Point(0, 699);
-            this.btnReportes.Name = "btnReportes";
-            this.btnReportes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnReportes.Size = new System.Drawing.Size(250, 45);
-            this.btnReportes.TabIndex = 9;
-            this.btnReportes.Text = "Reportes";
-            this.btnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportes.UseVisualStyleBackColor = true;
-            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             // 
             // pnlSubMenuClientes
             // 
@@ -126,7 +97,7 @@
             this.pnlSubMenuClientes.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlSubMenuClientes.Location = new System.Drawing.Point(0, 575);
             this.pnlSubMenuClientes.Name = "pnlSubMenuClientes";
-            this.pnlSubMenuClientes.Size = new System.Drawing.Size(250, 124);
+            this.pnlSubMenuClientes.Size = new System.Drawing.Size(233, 124);
             this.pnlSubMenuClientes.TabIndex = 8;
             // 
             // btnHistorialCompra
@@ -138,7 +109,7 @@
             this.btnHistorialCompra.Location = new System.Drawing.Point(0, 80);
             this.btnHistorialCompra.Name = "btnHistorialCompra";
             this.btnHistorialCompra.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnHistorialCompra.Size = new System.Drawing.Size(250, 40);
+            this.btnHistorialCompra.Size = new System.Drawing.Size(233, 40);
             this.btnHistorialCompra.TabIndex = 2;
             this.btnHistorialCompra.Text = "Historial de Compras";
             this.btnHistorialCompra.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -154,7 +125,7 @@
             this.btnNuevoCliente.Location = new System.Drawing.Point(0, 40);
             this.btnNuevoCliente.Name = "btnNuevoCliente";
             this.btnNuevoCliente.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnNuevoCliente.Size = new System.Drawing.Size(250, 40);
+            this.btnNuevoCliente.Size = new System.Drawing.Size(233, 40);
             this.btnNuevoCliente.TabIndex = 1;
             this.btnNuevoCliente.Text = "Agregar Cliente";
             this.btnNuevoCliente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -170,30 +141,12 @@
             this.btnListadoClientes.Location = new System.Drawing.Point(0, 0);
             this.btnListadoClientes.Name = "btnListadoClientes";
             this.btnListadoClientes.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnListadoClientes.Size = new System.Drawing.Size(250, 40);
+            this.btnListadoClientes.Size = new System.Drawing.Size(233, 40);
             this.btnListadoClientes.TabIndex = 0;
             this.btnListadoClientes.Text = "Listado de Clientes";
             this.btnListadoClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnListadoClientes.UseVisualStyleBackColor = true;
             this.btnListadoClientes.Click += new System.EventHandler(this.btnListadoClientes_Click);
-            // 
-            // btnGestionClientes
-            // 
-            this.btnGestionClientes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnGestionClientes.FlatAppearance.BorderSize = 0;
-            this.btnGestionClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGestionClientes.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnGestionClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnGestionClientes.Image")));
-            this.btnGestionClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGestionClientes.Location = new System.Drawing.Point(0, 530);
-            this.btnGestionClientes.Name = "btnGestionClientes";
-            this.btnGestionClientes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnGestionClientes.Size = new System.Drawing.Size(250, 45);
-            this.btnGestionClientes.TabIndex = 9;
-            this.btnGestionClientes.Text = "Gestión de Clientes";
-            this.btnGestionClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGestionClientes.UseVisualStyleBackColor = true;
-            this.btnGestionClientes.Click += new System.EventHandler(this.btnGestionClientes_Click);
             // 
             // pnlSubmenuProductos
             // 
@@ -204,7 +157,7 @@
             this.pnlSubmenuProductos.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlSubmenuProductos.Location = new System.Drawing.Point(0, 406);
             this.pnlSubmenuProductos.Name = "pnlSubmenuProductos";
-            this.pnlSubmenuProductos.Size = new System.Drawing.Size(250, 124);
+            this.pnlSubmenuProductos.Size = new System.Drawing.Size(233, 124);
             this.pnlSubmenuProductos.TabIndex = 6;
             // 
             // btnInventario
@@ -216,7 +169,7 @@
             this.btnInventario.Location = new System.Drawing.Point(0, 80);
             this.btnInventario.Name = "btnInventario";
             this.btnInventario.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnInventario.Size = new System.Drawing.Size(250, 40);
+            this.btnInventario.Size = new System.Drawing.Size(233, 40);
             this.btnInventario.TabIndex = 2;
             this.btnInventario.Text = "Inventario";
             this.btnInventario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -232,7 +185,7 @@
             this.btnNuevoProducto.Location = new System.Drawing.Point(0, 40);
             this.btnNuevoProducto.Name = "btnNuevoProducto";
             this.btnNuevoProducto.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnNuevoProducto.Size = new System.Drawing.Size(250, 40);
+            this.btnNuevoProducto.Size = new System.Drawing.Size(233, 40);
             this.btnNuevoProducto.TabIndex = 1;
             this.btnNuevoProducto.Text = "Nuevo Producto";
             this.btnNuevoProducto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -248,30 +201,12 @@
             this.btnListadoProductos.Location = new System.Drawing.Point(0, 0);
             this.btnListadoProductos.Name = "btnListadoProductos";
             this.btnListadoProductos.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnListadoProductos.Size = new System.Drawing.Size(250, 40);
+            this.btnListadoProductos.Size = new System.Drawing.Size(233, 40);
             this.btnListadoProductos.TabIndex = 0;
             this.btnListadoProductos.Text = "Listado de Productos";
             this.btnListadoProductos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnListadoProductos.UseVisualStyleBackColor = true;
             this.btnListadoProductos.Click += new System.EventHandler(this.btnListadoProductos_Click);
-            // 
-            // btnProductos
-            // 
-            this.btnProductos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnProductos.FlatAppearance.BorderSize = 0;
-            this.btnProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProductos.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnProductos.Image")));
-            this.btnProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnProductos.Location = new System.Drawing.Point(0, 361);
-            this.btnProductos.Name = "btnProductos";
-            this.btnProductos.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnProductos.Size = new System.Drawing.Size(250, 45);
-            this.btnProductos.TabIndex = 9;
-            this.btnProductos.Text = "Productos";
-            this.btnProductos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProductos.UseVisualStyleBackColor = true;
-            this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
             // 
             // pnlSubmenuFacturacion
             // 
@@ -282,7 +217,7 @@
             this.pnlSubmenuFacturacion.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlSubmenuFacturacion.Location = new System.Drawing.Point(0, 237);
             this.pnlSubmenuFacturacion.Name = "pnlSubmenuFacturacion";
-            this.pnlSubmenuFacturacion.Size = new System.Drawing.Size(250, 124);
+            this.pnlSubmenuFacturacion.Size = new System.Drawing.Size(233, 124);
             this.pnlSubmenuFacturacion.TabIndex = 4;
             // 
             // btnAnulacionFactura
@@ -294,7 +229,7 @@
             this.btnAnulacionFactura.Location = new System.Drawing.Point(0, 80);
             this.btnAnulacionFactura.Name = "btnAnulacionFactura";
             this.btnAnulacionFactura.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnAnulacionFactura.Size = new System.Drawing.Size(250, 40);
+            this.btnAnulacionFactura.Size = new System.Drawing.Size(233, 40);
             this.btnAnulacionFactura.TabIndex = 2;
             this.btnAnulacionFactura.Text = "Anulación de Facturas";
             this.btnAnulacionFactura.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -310,7 +245,7 @@
             this.btnListadoFacturas.Location = new System.Drawing.Point(0, 40);
             this.btnListadoFacturas.Name = "btnListadoFacturas";
             this.btnListadoFacturas.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnListadoFacturas.Size = new System.Drawing.Size(250, 40);
+            this.btnListadoFacturas.Size = new System.Drawing.Size(233, 40);
             this.btnListadoFacturas.TabIndex = 1;
             this.btnListadoFacturas.Text = "Listado de Facturas";
             this.btnListadoFacturas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -326,12 +261,75 @@
             this.btnNuevaFactura.Location = new System.Drawing.Point(0, 0);
             this.btnNuevaFactura.Name = "btnNuevaFactura";
             this.btnNuevaFactura.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnNuevaFactura.Size = new System.Drawing.Size(250, 40);
+            this.btnNuevaFactura.Size = new System.Drawing.Size(233, 40);
             this.btnNuevaFactura.TabIndex = 0;
             this.btnNuevaFactura.Text = "Nueva factura";
             this.btnNuevaFactura.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNuevaFactura.UseVisualStyleBackColor = true;
             this.btnNuevaFactura.Click += new System.EventHandler(this.btnNuevaFactura_Click_1);
+            // 
+            // pnlContenedorPrincipal
+            // 
+            this.pnlContenedorPrincipal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+            this.pnlContenedorPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContenedorPrincipal.Location = new System.Drawing.Point(250, 0);
+            this.pnlContenedorPrincipal.Name = "pnlContenedorPrincipal";
+            this.pnlContenedorPrincipal.Size = new System.Drawing.Size(1047, 584);
+            this.pnlContenedorPrincipal.TabIndex = 1;
+            // 
+            // btnReportes
+            // 
+            this.btnReportes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnReportes.FlatAppearance.BorderSize = 0;
+            this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportes.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnReportes.Image = ((System.Drawing.Image)(resources.GetObject("btnReportes.Image")));
+            this.btnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReportes.Location = new System.Drawing.Point(0, 699);
+            this.btnReportes.Name = "btnReportes";
+            this.btnReportes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnReportes.Size = new System.Drawing.Size(233, 45);
+            this.btnReportes.TabIndex = 9;
+            this.btnReportes.Text = "Reportes";
+            this.btnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReportes.UseVisualStyleBackColor = true;
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
+            // 
+            // btnGestionClientes
+            // 
+            this.btnGestionClientes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnGestionClientes.FlatAppearance.BorderSize = 0;
+            this.btnGestionClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGestionClientes.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnGestionClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnGestionClientes.Image")));
+            this.btnGestionClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGestionClientes.Location = new System.Drawing.Point(0, 530);
+            this.btnGestionClientes.Name = "btnGestionClientes";
+            this.btnGestionClientes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnGestionClientes.Size = new System.Drawing.Size(233, 45);
+            this.btnGestionClientes.TabIndex = 9;
+            this.btnGestionClientes.Text = "Gestión de Clientes";
+            this.btnGestionClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGestionClientes.UseVisualStyleBackColor = true;
+            this.btnGestionClientes.Click += new System.EventHandler(this.btnGestionClientes_Click);
+            // 
+            // btnProductos
+            // 
+            this.btnProductos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnProductos.FlatAppearance.BorderSize = 0;
+            this.btnProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProductos.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnProductos.Image")));
+            this.btnProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnProductos.Location = new System.Drawing.Point(0, 361);
+            this.btnProductos.Name = "btnProductos";
+            this.btnProductos.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnProductos.Size = new System.Drawing.Size(233, 45);
+            this.btnProductos.TabIndex = 9;
+            this.btnProductos.Text = "Productos";
+            this.btnProductos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProductos.UseVisualStyleBackColor = true;
+            this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
             // 
             // btnFacturacion
             // 
@@ -344,7 +342,7 @@
             this.btnFacturacion.Location = new System.Drawing.Point(0, 192);
             this.btnFacturacion.Name = "btnFacturacion";
             this.btnFacturacion.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnFacturacion.Size = new System.Drawing.Size(250, 45);
+            this.btnFacturacion.Size = new System.Drawing.Size(233, 45);
             this.btnFacturacion.TabIndex = 9;
             this.btnFacturacion.Text = "Facturación";
             this.btnFacturacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -362,7 +360,7 @@
             this.btnInicio.Location = new System.Drawing.Point(0, 147);
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnInicio.Size = new System.Drawing.Size(250, 45);
+            this.btnInicio.Size = new System.Drawing.Size(233, 45);
             this.btnInicio.TabIndex = 10;
             this.btnInicio.Text = "Inicio";
             this.btnInicio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -377,45 +375,47 @@
             this.btnConfiguracion.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnConfiguracion.Image = ((System.Drawing.Image)(resources.GetObject("btnConfiguracion.Image")));
             this.btnConfiguracion.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnConfiguracion.Location = new System.Drawing.Point(0, 747);
+            this.btnConfiguracion.Location = new System.Drawing.Point(0, 744);
             this.btnConfiguracion.Name = "btnConfiguracion";
             this.btnConfiguracion.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnConfiguracion.Size = new System.Drawing.Size(250, 45);
+            this.btnConfiguracion.Size = new System.Drawing.Size(233, 45);
             this.btnConfiguracion.TabIndex = 9;
             this.btnConfiguracion.Text = "Configuración";
             this.btnConfiguracion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfiguracion.UseVisualStyleBackColor = true;
             this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
             // 
-            // pnlContenedorPrincipal
+            // pictureBox1
             // 
-            this.pnlContenedorPrincipal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-            this.pnlContenedorPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContenedorPrincipal.Location = new System.Drawing.Point(250, 0);
-            this.pnlContenedorPrincipal.Name = "pnlContenedorPrincipal";
-            this.pnlContenedorPrincipal.Size = new System.Drawing.Size(1153, 792);
-            this.pnlContenedorPrincipal.TabIndex = 1;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = global::SistemaFacturacionInventario.Properties.Resources.logo;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(233, 147);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1403, 792);
+            this.ClientSize = new System.Drawing.Size(1297, 584);
             this.Controls.Add(this.pnlContenedorPrincipal);
             this.Controls.Add(this.pnlMenuLateral);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(1419, 742);
+            this.MinimumSize = new System.Drawing.Size(1313, 623);
             this.Name = "MenuPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Sistema de Inventario y Facturación";
             this.Load += new System.EventHandler(this.MenuPrincipal_Load);
             this.pnlLogo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlMenuLateral.ResumeLayout(false);
             this.pnlSubMenuClientes.ResumeLayout(false);
             this.pnlSubmenuProductos.ResumeLayout(false);
             this.pnlSubmenuFacturacion.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
