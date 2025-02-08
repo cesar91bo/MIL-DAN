@@ -14,6 +14,12 @@ namespace CapaDatos.Modelos
     
     public partial class Productos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Productos()
+        {
+            this.AjustesStock = new HashSet<AjustesStock>();
+        }
+    
         public int IdProducto { get; set; }
         public int NroProducto { get; set; }
         public string CodigoBarra { get; set; }
@@ -28,8 +34,11 @@ namespace CapaDatos.Modelos
         public Nullable<System.DateTime> FechaBaja { get; set; }
         public string CodigoProducto { get; set; }
         public Nullable<int> Embalaje { get; set; }
+        public Nullable<System.DateTime> FechaAcceso { get; set; }
     
         public virtual Rubros Rubros { get; set; }
         public virtual UnidadesMedida UnidadesMedida { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AjustesStock> AjustesStock { get; set; }
     }
 }

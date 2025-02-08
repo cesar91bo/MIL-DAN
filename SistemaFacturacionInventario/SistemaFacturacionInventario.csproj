@@ -96,6 +96,18 @@
     <Compile Include="Principal\MenuPrincipal.Designer.cs">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Productos\frmListaClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\frmListaClientes.Designer.cs">
+      <DependentUpon>frmListaClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Productos\frmPrecios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\frmPrecios.Designer.cs">
+      <DependentUpon>frmPrecios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Productos\frmProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Principal\MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Productos\frmListaClientes.resx">
+      <DependentUpon>frmListaClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Productos\frmProducto.resx">
       <DependentUpon>frmProducto.cs</DependentUpon>

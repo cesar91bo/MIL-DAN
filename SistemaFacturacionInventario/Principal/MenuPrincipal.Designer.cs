@@ -425,7 +425,7 @@
         private System.Windows.Forms.Panel pnlLogo;
         private System.Windows.Forms.Panel pnlMenuLateral;
         private System.Windows.Forms.Button btnConfiguracion;
-        private System.Windows.Forms.Panel pnlContenedorPrincipal;
+        public System.Windows.Forms.Panel pnlContenedorPrincipal;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnInicio;
         private System.Windows.Forms.Button btnReportes;

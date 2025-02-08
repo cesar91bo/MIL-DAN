@@ -104,7 +104,7 @@ namespace SistemaFacturacionInventario
 
         private void btnNuevoProducto_Click(object sender, EventArgs e)
         {
-            AbrirFormularioHijo(new frmProducto());
+            AbrirFormularioHijo(new frmProducto { Accion = "ALTA" });
             OcultarPanelesSubMenu();
         }
 

@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SistemaGestionPymeBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AjustesStock">
+          <Key>
+            <PropertyRef Name="IdAjuste" />
+          </Key>
+          <Property Name="IdAjuste" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="FechaAjuste" Type="datetime" Nullable="false" />
+          <Property Name="Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Motivo" Type="nvarchar" MaxLength="250" />
+          <Property Name="FechaAcceso" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Clientes">
           <Key>
             <PropertyRef Name="IdCliente" />
@@ -45,6 +56,7 @@
           <Property Name="FechaBaja" Type="datetime" />
           <Property Name="CodigoProducto" Type="nvarchar" MaxLength="50" />
           <Property Name="Embalaje" Type="int" />
+          <Property Name="FechaAcceso" Type="datetime" />
         </EntityType>
         <EntityType Name="RegimenesImpositivos">
           <Key>
@@ -67,6 +79,18 @@
           <Property Name="IdUnidadMedida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <Association Name="FK_AjustesStock_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="AjustesStock" Type="Self.AjustesStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="AjustesStock">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Clientes_RegimenesImpositivos">
           <End Role="RegimenesImpositivos" Type="Self.RegimenesImpositivos" Multiplicity="0..1" />
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
@@ -104,11 +128,16 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SistemaGestionPymeBDModelStoreContainer">
+          <EntitySet Name="AjustesStock" EntityType="Self.AjustesStock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegimenesImpositivos" EntityType="Self.RegimenesImpositivos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubros" EntityType="Self.Rubros" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnidadesMedida" EntityType="Self.UnidadesMedida" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AjustesStock_Productos" Association="Self.FK_AjustesStock_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="AjustesStock" EntitySet="AjustesStock" />
+          </AssociationSet>
           <AssociationSet Name="FK_Clientes_RegimenesImpositivos" Association="Self.FK_Clientes_RegimenesImpositivos">
             <End Role="RegimenesImpositivos" EntitySet="RegimenesImpositivos" />
             <End Role="Clientes" EntitySet="Clientes" />
@@ -187,6 +216,11 @@
             <End Role="UnidadesMedida" EntitySet="UnidadesMedida" />
             <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
+          <EntitySet Name="AjustesStock" EntityType="SistemaGestionPymeBDModel.AjustesStock" />
+          <AssociationSet Name="FK_AjustesStock_Productos" Association="SistemaGestionPymeBDModel.FK_AjustesStock_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="AjustesStock" EntitySet="AjustesStock" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Productos">
           <Key>
@@ -208,6 +242,8 @@
           <Property Name="Embalaje" Type="Int32" />
           <NavigationProperty Name="Rubros" Relationship="SistemaGestionPymeBDModel.FK_Productos_Rubros" FromRole="Productos" ToRole="Rubros" />
           <NavigationProperty Name="UnidadesMedida" Relationship="SistemaGestionPymeBDModel.FK_Productos_UnidadesMedida" FromRole="Productos" ToRole="UnidadesMedida" />
+          <Property Name="FechaAcceso" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AjustesStock" Relationship="SistemaGestionPymeBDModel.FK_AjustesStock_Productos" FromRole="Productos" ToRole="AjustesStock" />
         </EntityType>
         <EntityType Name="Rubros">
           <Key>
@@ -246,6 +282,30 @@
             </Principal>
             <Dependent Role="Productos">
               <PropertyRef Name="IdUnidadMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AjustesStock">
+          <Key>
+            <PropertyRef Name="IdAjuste" />
+          </Key>
+          <Property Name="IdAjuste" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="FechaAjuste" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Motivo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="FechaAcceso" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Productos" Relationship="SistemaGestionPymeBDModel.FK_AjustesStock_Productos" FromRole="AjustesStock" ToRole="Productos" />
+        </EntityType>
+        <Association Name="FK_AjustesStock_Productos">
+          <End Type="SistemaGestionPymeBDModel.Productos" Role="Productos" Multiplicity="1" />
+          <End Type="SistemaGestionPymeBDModel.AjustesStock" Role="AjustesStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="AjustesStock">
+              <PropertyRef Name="IdProducto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -289,6 +349,7 @@
           <EntitySetMapping Name="Productos">
             <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.Productos">
               <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="FechaAcceso" ColumnName="FechaAcceso" />
                 <ScalarProperty Name="Embalaje" ColumnName="Embalaje" />
                 <ScalarProperty Name="CodigoProducto" ColumnName="CodigoProducto" />
                 <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
@@ -319,6 +380,18 @@
               <MappingFragment StoreEntitySet="UnidadesMedida">
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="IdUnidadMedida" ColumnName="IdUnidadMedida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AjustesStock">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.AjustesStock">
+              <MappingFragment StoreEntitySet="AjustesStock">
+                <ScalarProperty Name="FechaAcceso" ColumnName="FechaAcceso" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="FechaAjuste" ColumnName="FechaAjuste" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdAjuste" ColumnName="IdAjuste" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
