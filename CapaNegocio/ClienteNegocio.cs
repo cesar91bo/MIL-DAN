@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace CapaNegocio
 {
-    public class CN_Cliente
+    public class ClienteNegocio
     {
         public static SistemaGestionPymeBDEntities db = new SistemaGestionPymeBDEntities();
         public List<Clientes> ListaClientes()

@@ -29,25 +29,26 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProducto));
-            this.txtDescrCorta = new System.Windows.Forms.TextBox();
+            this.txtDescCorta = new System.Windows.Forms.TextBox();
             this.txtNroProducto = new System.Windows.Forms.TextBox();
             this.lblNroArticulo = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbUMedida = new System.Windows.Forms.ComboBox();
             this.lblStockMinimo = new System.Windows.Forms.Label();
             this.lblUMedida = new System.Windows.Forms.Label();
             this.txtStockMin = new System.Windows.Forms.TextBox();
             this.lblStockActual = new System.Windows.Forms.Label();
             this.txtStockActual = new System.Windows.Forms.TextBox();
             this.chkStock = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lblLlevarStock = new System.Windows.Forms.Label();
+            this.cmbRubro = new System.Windows.Forms.ComboBox();
             this.lblRubro = new System.Windows.Forms.Label();
             this.lblDescLarga = new System.Windows.Forms.Label();
-            this.tctDescLarga = new System.Windows.Forms.TextBox();
+            this.txtDescLarga = new System.Windows.Forms.TextBox();
             this.lblDescCorta = new System.Windows.Forms.Label();
             this.lblProducto = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblBaja = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnBaja = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -58,22 +59,23 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtDescrCorta
+            // txtDescCorta
             // 
-            this.txtDescrCorta.Location = new System.Drawing.Point(152, 77);
-            this.txtDescrCorta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtDescrCorta.Name = "txtDescrCorta";
-            this.txtDescrCorta.Size = new System.Drawing.Size(310, 22);
-            this.txtDescrCorta.TabIndex = 0;
+            this.txtDescCorta.Location = new System.Drawing.Point(152, 77);
+            this.txtDescCorta.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescCorta.Name = "txtDescCorta";
+            this.txtDescCorta.Size = new System.Drawing.Size(310, 22);
+            this.txtDescCorta.TabIndex = 0;
             // 
             // txtNroProducto
             // 
             this.txtNroProducto.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.txtNroProducto.Location = new System.Drawing.Point(152, 26);
-            this.txtNroProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNroProducto.Margin = new System.Windows.Forms.Padding(4);
             this.txtNroProducto.Name = "txtNroProducto";
             this.txtNroProducto.Size = new System.Drawing.Size(82, 22);
             this.txtNroProducto.TabIndex = 1;
+            this.txtNroProducto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNroProducto_KeyDown);
             // 
             // lblNroArticulo
             // 
@@ -89,42 +91,42 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnUMedida);
-            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.cmbUMedida);
             this.groupBox1.Controls.Add(this.lblStockMinimo);
             this.groupBox1.Controls.Add(this.lblUMedida);
             this.groupBox1.Controls.Add(this.txtStockMin);
             this.groupBox1.Controls.Add(this.lblStockActual);
             this.groupBox1.Controls.Add(this.txtStockActual);
             this.groupBox1.Controls.Add(this.chkStock);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblLlevarStock);
             this.groupBox1.Controls.Add(this.btnRubro);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cmbRubro);
             this.groupBox1.Controls.Add(this.lblRubro);
             this.groupBox1.Controls.Add(this.lblDescLarga);
-            this.groupBox1.Controls.Add(this.tctDescLarga);
+            this.groupBox1.Controls.Add(this.txtDescLarga);
             this.groupBox1.Controls.Add(this.lblDescCorta);
             this.groupBox1.Controls.Add(this.btnVolver);
             this.groupBox1.Controls.Add(this.btnBuscar);
             this.groupBox1.Controls.Add(this.lblNroArticulo);
             this.groupBox1.Controls.Add(this.txtNroProducto);
-            this.groupBox1.Controls.Add(this.txtDescrCorta);
+            this.groupBox1.Controls.Add(this.txtDescCorta);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(49, 96);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(895, 264);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
-            // comboBox2
+            // cmbUMedida
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(615, 69);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(227, 21);
-            this.comboBox2.TabIndex = 18;
+            this.cmbUMedida.FormattingEnabled = true;
+            this.cmbUMedida.Location = new System.Drawing.Point(612, 76);
+            this.cmbUMedida.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbUMedida.Name = "cmbUMedida";
+            this.cmbUMedida.Size = new System.Drawing.Size(227, 21);
+            this.cmbUMedida.TabIndex = 18;
             // 
             // lblStockMinimo
             // 
@@ -152,7 +154,7 @@
             // 
             this.txtStockMin.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.txtStockMin.Location = new System.Drawing.Point(615, 167);
-            this.txtStockMin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtStockMin.Margin = new System.Windows.Forms.Padding(4);
             this.txtStockMin.Name = "txtStockMin";
             this.txtStockMin.Size = new System.Drawing.Size(82, 22);
             this.txtStockMin.TabIndex = 15;
@@ -172,7 +174,7 @@
             // 
             this.txtStockActual.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.txtStockActual.Location = new System.Drawing.Point(615, 131);
-            this.txtStockActual.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtStockActual.Margin = new System.Windows.Forms.Padding(4);
             this.txtStockActual.Name = "txtStockActual";
             this.txtStockActual.Size = new System.Drawing.Size(82, 22);
             this.txtStockActual.TabIndex = 13;
@@ -181,31 +183,31 @@
             // 
             this.chkStock.AutoSize = true;
             this.chkStock.Location = new System.Drawing.Point(615, 105);
-            this.chkStock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkStock.Margin = new System.Windows.Forms.Padding(4);
             this.chkStock.Name = "chkStock";
-            this.chkStock.Size = new System.Drawing.Size(18, 18);
+            this.chkStock.Size = new System.Drawing.Size(15, 14);
             this.chkStock.TabIndex = 12;
             this.chkStock.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // lblLlevarStock
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.label1.Location = new System.Drawing.Point(490, 107);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Llevar Stock:";
+            this.lblLlevarStock.AutoSize = true;
+            this.lblLlevarStock.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.lblLlevarStock.Location = new System.Drawing.Point(490, 107);
+            this.lblLlevarStock.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLlevarStock.Name = "lblLlevarStock";
+            this.lblLlevarStock.Size = new System.Drawing.Size(70, 13);
+            this.lblLlevarStock.TabIndex = 11;
+            this.lblLlevarStock.Text = "Llevar Stock:";
             // 
-            // comboBox1
+            // cmbRubro
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(615, 34);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(227, 21);
-            this.comboBox1.TabIndex = 9;
+            this.cmbRubro.FormattingEnabled = true;
+            this.cmbRubro.Location = new System.Drawing.Point(612, 40);
+            this.cmbRubro.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbRubro.Name = "cmbRubro";
+            this.cmbRubro.Size = new System.Drawing.Size(227, 21);
+            this.cmbRubro.TabIndex = 9;
             // 
             // lblRubro
             // 
@@ -229,14 +231,14 @@
             this.lblDescLarga.TabIndex = 7;
             this.lblDescLarga.Text = "Descripción Larga:";
             // 
-            // tctDescLarga
+            // txtDescLarga
             // 
-            this.tctDescLarga.Location = new System.Drawing.Point(152, 116);
-            this.tctDescLarga.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tctDescLarga.Multiline = true;
-            this.tctDescLarga.Name = "tctDescLarga";
-            this.tctDescLarga.Size = new System.Drawing.Size(310, 105);
-            this.tctDescLarga.TabIndex = 6;
+            this.txtDescLarga.Location = new System.Drawing.Point(152, 116);
+            this.txtDescLarga.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescLarga.Multiline = true;
+            this.txtDescLarga.Name = "txtDescLarga";
+            this.txtDescLarga.Size = new System.Drawing.Size(310, 105);
+            this.txtDescLarga.TabIndex = 6;
             // 
             // lblDescCorta
             // 
@@ -263,19 +265,29 @@
             // groupBox2
             // 
             this.groupBox2.Location = new System.Drawing.Point(60, 406);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(882, 3);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
+            // 
+            // lblBaja
+            // 
+            this.lblBaja.AutoSize = true;
+            this.lblBaja.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.lblBaja.Location = new System.Drawing.Point(58, 364);
+            this.lblBaja.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBaja.Name = "lblBaja";
+            this.lblBaja.Size = new System.Drawing.Size(0, 13);
+            this.lblBaja.TabIndex = 20;
             // 
             // btnCancelar
             // 
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(851, 479);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Location = new System.Drawing.Point(855, 517);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(91, 43);
             this.btnCancelar.TabIndex = 8;
@@ -287,8 +299,8 @@
             // 
             this.btnBaja.Image = ((System.Drawing.Image)(resources.GetObject("btnBaja.Image")));
             this.btnBaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBaja.Location = new System.Drawing.Point(657, 479);
-            this.btnBaja.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBaja.Location = new System.Drawing.Point(661, 517);
+            this.btnBaja.Margin = new System.Windows.Forms.Padding(4);
             this.btnBaja.Name = "btnBaja";
             this.btnBaja.Size = new System.Drawing.Size(91, 43);
             this.btnBaja.TabIndex = 7;
@@ -300,8 +312,8 @@
             // 
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(753, 479);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGuardar.Location = new System.Drawing.Point(757, 517);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(91, 43);
             this.btnGuardar.TabIndex = 6;
@@ -313,30 +325,32 @@
             // btnUMedida
             // 
             this.btnUMedida.Image = ((System.Drawing.Image)(resources.GetObject("btnUMedida.Image")));
-            this.btnUMedida.Location = new System.Drawing.Point(852, 63);
-            this.btnUMedida.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUMedida.Location = new System.Drawing.Point(852, 68);
+            this.btnUMedida.Margin = new System.Windows.Forms.Padding(4);
             this.btnUMedida.Name = "btnUMedida";
-            this.btnUMedida.Size = new System.Drawing.Size(41, 37);
+            this.btnUMedida.Size = new System.Drawing.Size(35, 35);
             this.btnUMedida.TabIndex = 19;
             this.btnUMedida.UseVisualStyleBackColor = true;
+            this.btnUMedida.Click += new System.EventHandler(this.btnUMedida_Click);
             // 
             // btnRubro
             // 
             this.btnRubro.Image = ((System.Drawing.Image)(resources.GetObject("btnRubro.Image")));
-            this.btnRubro.Location = new System.Drawing.Point(852, 27);
-            this.btnRubro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRubro.Location = new System.Drawing.Point(852, 32);
+            this.btnRubro.Margin = new System.Windows.Forms.Padding(4);
             this.btnRubro.Name = "btnRubro";
-            this.btnRubro.Size = new System.Drawing.Size(41, 37);
+            this.btnRubro.Size = new System.Drawing.Size(35, 35);
             this.btnRubro.TabIndex = 10;
             this.btnRubro.UseVisualStyleBackColor = true;
+            this.btnRubro.Click += new System.EventHandler(this.btnRubro_Click);
             // 
             // btnVolver
             // 
             this.btnVolver.Image = ((System.Drawing.Image)(resources.GetObject("btnVolver.Image")));
-            this.btnVolver.Location = new System.Drawing.Point(289, 22);
-            this.btnVolver.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVolver.Location = new System.Drawing.Point(284, 22);
+            this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(41, 37);
+            this.btnVolver.Size = new System.Drawing.Size(35, 35);
             this.btnVolver.TabIndex = 4;
             this.btnVolver.UseVisualStyleBackColor = true;
             // 
@@ -344,9 +358,9 @@
             // 
             this.btnBuscar.Image = global::SistemaFacturacionInventario.Properties.Resources.icons8_buscar_20;
             this.btnBuscar.Location = new System.Drawing.Point(241, 22);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(41, 37);
+            this.btnBuscar.Size = new System.Drawing.Size(35, 35);
             this.btnBuscar.TabIndex = 3;
             this.btnBuscar.UseVisualStyleBackColor = true;
             // 
@@ -356,6 +370,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.ClientSize = new System.Drawing.Size(975, 573);
+            this.Controls.Add(this.lblBaja);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnBaja);
@@ -363,7 +378,6 @@
             this.Controls.Add(this.lblProducto);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmProducto";
             this.Text = "frmProducto";
             this.Load += new System.EventHandler(this.frmProducto_Load);
@@ -376,7 +390,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtDescrCorta;
+        private System.Windows.Forms.TextBox txtDescCorta;
         private System.Windows.Forms.TextBox txtNroProducto;
         private System.Windows.Forms.Label lblNroArticulo;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -385,15 +399,15 @@
         private System.Windows.Forms.Label lblProducto;
         private System.Windows.Forms.Label lblDescCorta;
         private System.Windows.Forms.Label lblDescLarga;
-        private System.Windows.Forms.TextBox tctDescLarga;
+        private System.Windows.Forms.TextBox txtDescLarga;
         private System.Windows.Forms.Label lblRubro;
         private System.Windows.Forms.Button btnRubro;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbRubro;
         private System.Windows.Forms.Label lblStockActual;
         private System.Windows.Forms.TextBox txtStockActual;
         private System.Windows.Forms.CheckBox chkStock;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label lblLlevarStock;
+        private System.Windows.Forms.ComboBox cmbUMedida;
         private System.Windows.Forms.Label lblUMedida;
         private System.Windows.Forms.Label lblStockMinimo;
         private System.Windows.Forms.TextBox txtStockMin;
@@ -402,5 +416,6 @@
         private System.Windows.Forms.Button btnUMedida;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lblBaja;
     }
 }

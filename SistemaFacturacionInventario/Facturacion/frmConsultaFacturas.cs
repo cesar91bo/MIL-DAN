@@ -28,7 +28,7 @@ namespace SistemaFacturacionInventario.Facturacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<Clientes> clientes = new CN_Cliente().ListaClientes();
+            List<Clientes> clientes = new ClienteNegocio().ListaClientes();
             dataGridViewConsulta.DataSource = clientes;
         }
     }
