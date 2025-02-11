@@ -79,6 +79,36 @@
           <Property Name="IdUnidadMedida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VistaProducto">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+            <PropertyRef Name="DescCorta" />
+            <PropertyRef Name="DescLarga" />
+            <PropertyRef Name="LlevarStock" />
+            <PropertyRef Name="FechaBaja" />
+            <PropertyRef Name="Rubro" />
+            <PropertyRef Name="UnidadMedida" />
+            <PropertyRef Name="IdRubro" />
+          </Key>
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="DescCorta" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DescLarga" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="LlevarStock" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Stock" Type="nvarchar" MaxLength="34" />
+          <Property Name="UltimaActStock" Type="datetime" />
+          <Property Name="CantidadMinima" Type="float" />
+          <Property Name="FechaBaja" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Rubro" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="UnidadMedida" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="StockActual" Type="float" />
+          <Property Name="CodigoBarra" Type="nvarchar" MaxLength="50" />
+          <Property Name="Maxfecha" Type="datetime" />
+          <Property Name="FechaCarga" Type="datetime" />
+          <Property Name="IdRubro" Type="int" Nullable="false" />
+          <Property Name="CodigoProducto" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <Association Name="FK_AjustesStock_Productos">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="AjustesStock" Type="Self.AjustesStock" Multiplicity="*" />
@@ -134,6 +164,26 @@
           <EntitySet Name="RegimenesImpositivos" EntityType="Self.RegimenesImpositivos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubros" EntityType="Self.Rubros" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnidadesMedida" EntityType="Self.UnidadesMedida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VistaProducto" EntityType="Self.VistaProducto" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VistaProducto].[IdProducto] AS [IdProducto], 
+    [VistaProducto].[DescCorta] AS [DescCorta], 
+    [VistaProducto].[DescLarga] AS [DescLarga], 
+    [VistaProducto].[LlevarStock] AS [LlevarStock], 
+    [VistaProducto].[Stock] AS [Stock], 
+    [VistaProducto].[UltimaActStock] AS [UltimaActStock], 
+    [VistaProducto].[CantidadMinima] AS [CantidadMinima], 
+    [VistaProducto].[FechaBaja] AS [FechaBaja], 
+    [VistaProducto].[Rubro] AS [Rubro], 
+    [VistaProducto].[UnidadMedida] AS [UnidadMedida], 
+    [VistaProducto].[StockActual] AS [StockActual], 
+    [VistaProducto].[CodigoBarra] AS [CodigoBarra], 
+    [VistaProducto].[Maxfecha] AS [Maxfecha], 
+    [VistaProducto].[FechaCarga] AS [FechaCarga], 
+    [VistaProducto].[IdRubro] AS [IdRubro], 
+    [VistaProducto].[CodigoProducto] AS [CodigoProducto]
+    FROM [dbo].[VistaProducto] AS [VistaProducto]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_AjustesStock_Productos" Association="Self.FK_AjustesStock_Productos">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="AjustesStock" EntitySet="AjustesStock" />
@@ -221,6 +271,7 @@
             <End Role="Productos" EntitySet="Productos" />
             <End Role="AjustesStock" EntitySet="AjustesStock" />
           </AssociationSet>
+          <EntitySet Name="VistaProducto" EntityType="SistemaGestionPymeBDModel.VistaProducto" />
         </EntityContainer>
         <EntityType Name="Productos">
           <Key>
@@ -309,6 +360,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="VistaProducto">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+            <PropertyRef Name="DescCorta" />
+            <PropertyRef Name="DescLarga" />
+            <PropertyRef Name="LlevarStock" />
+            <PropertyRef Name="FechaBaja" />
+            <PropertyRef Name="Rubro" />
+            <PropertyRef Name="UnidadMedida" />
+            <PropertyRef Name="IdRubro" />
+          </Key>
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="DescCorta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DescLarga" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="LlevarStock" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Stock" Type="String" MaxLength="34" FixedLength="false" Unicode="true" />
+          <Property Name="UltimaActStock" Type="DateTime" Precision="3" />
+          <Property Name="CantidadMinima" Type="Double" />
+          <Property Name="FechaBaja" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Rubro" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="UnidadMedida" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StockActual" Type="Double" />
+          <Property Name="CodigoBarra" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Maxfecha" Type="DateTime" Precision="3" />
+          <Property Name="FechaCarga" Type="DateTime" Precision="3" />
+          <Property Name="IdRubro" Type="Int32" Nullable="false" />
+          <Property Name="CodigoProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -392,6 +471,28 @@
                 <ScalarProperty Name="FechaAjuste" ColumnName="FechaAjuste" />
                 <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
                 <ScalarProperty Name="IdAjuste" ColumnName="IdAjuste" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaProducto">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.VistaProducto">
+              <MappingFragment StoreEntitySet="VistaProducto">
+                <ScalarProperty Name="CodigoProducto" ColumnName="CodigoProducto" />
+                <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
+                <ScalarProperty Name="FechaCarga" ColumnName="FechaCarga" />
+                <ScalarProperty Name="Maxfecha" ColumnName="Maxfecha" />
+                <ScalarProperty Name="CodigoBarra" ColumnName="CodigoBarra" />
+                <ScalarProperty Name="StockActual" ColumnName="StockActual" />
+                <ScalarProperty Name="UnidadMedida" ColumnName="UnidadMedida" />
+                <ScalarProperty Name="Rubro" ColumnName="Rubro" />
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="CantidadMinima" ColumnName="CantidadMinima" />
+                <ScalarProperty Name="UltimaActStock" ColumnName="UltimaActStock" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="LlevarStock" ColumnName="LlevarStock" />
+                <ScalarProperty Name="DescLarga" ColumnName="DescLarga" />
+                <ScalarProperty Name="DescCorta" ColumnName="DescCorta" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

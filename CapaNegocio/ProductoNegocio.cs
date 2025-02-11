@@ -151,5 +151,25 @@ namespace CapaNegocio
             }
             catch (Exception ex) { throw ex; }
         }
+
+        public bool BajaProducto(int idProducto)
+        {
+            try
+            {
+                var art = ObtenerProductoPorId(idProducto);
+                art.FechaBaja = DateTime.Now;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public List<VistaProducto> ObtenerTodo()
+        {
+            var productos = from prod in db.VistaProducto
+                            select prod;
+            return productos.OrderBy(c => c.DescCorta).ToList();
+
+        }
     }
 }

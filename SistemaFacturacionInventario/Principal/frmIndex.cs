@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,10 @@ namespace SistemaFacturacionInventario.Principal
     {
         private const string API_KEY = "78b4da1978ee4caa972231323250702"; 
         private const string BASE_URL = "https://api.weatherapi.com/v1/current.json?key={0}&q={1}&lang=es";
+
+        private static readonly string API_KEY_CAMBIO = "6d99e68a101d4236ae7822be682e78a8"; // Reemplaza con tu API Key
+        private static readonly string URL = $"https://openexchangerates.org/api/latest.json?app_id={API_KEY_CAMBIO}";
+        private decimal tasaCambio = 0;
         public frmIndex()
         {
             InitializeComponent();
@@ -31,7 +36,51 @@ namespace SistemaFacturacionInventario.Principal
         private void frmIndex_Load(object sender, EventArgs e)
         {
             CargarClima();
+            CargarTasaCambio();
         }
+
+        private async void CargarTasaCambio()
+        {
+            try
+            {
+                tasaCambio = await ObtenerTasaCambioUSD_ARS();
+                lblDolar.Text = $"Precio de 1 USD = {tasaCambio} ARS";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al obtener la tasa de cambio: {ex.Message}");
+            }
+        }
+
+        private async Task<decimal> ObtenerTasaCambioUSD_ARS()
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    HttpResponseMessage response = await client.GetAsync(URL).ConfigureAwait(false);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                        JObject data = JObject.Parse(json);
+
+                        Invoke(new Action(() => lblDolar.Visible = true));
+
+                        return Math.Round(data["rates"]["ARS"].Value<decimal>(), 2);
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al obtener la tasa de cambio: {ex.Message}");
+            }
+
+            Invoke(new Action(() => lblDolar.Visible = false));
+            return 0;
+        }
+
 
         private async void CargarClima()
         {
@@ -66,13 +115,13 @@ namespace SistemaFacturacionInventario.Principal
 
                         lblTemperatura.Visible = true;
                         lblDescripcion.Visible = true;
-                        pictureBoxClima.Visible = true;
+                        pictureBoxClima.Visible = true;                       
                     }
                     else
                     {
                         lblTemperatura.Visible = false;
                         lblDescripcion.Visible = false; 
-                        pictureBoxClima.Visible = false;
+                        pictureBoxClima.Visible = false;   
                     }
                 }
                 catch (Exception ex)

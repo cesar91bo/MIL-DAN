@@ -99,6 +99,7 @@ namespace SistemaFacturacionInventario
 
         private void btnListadoProductos_Click(object sender, EventArgs e)
         {
+            AbrirFormularioHijo(new frmListaProductos());
             OcultarPanelesSubMenu();
         }
 

@@ -96,11 +96,17 @@
     <Compile Include="Principal\MenuPrincipal.Designer.cs">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Productos\frmListaClientes.cs">
+    <Compile Include="Clientes\frmListaClientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Productos\frmListaClientes.Designer.cs">
+    <Compile Include="Clientes\frmListaClientes.Designer.cs">
       <DependentUpon>frmListaClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Productos\frmListaProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\frmListaProductos.Designer.cs">
+      <DependentUpon>frmListaProductos.cs</DependentUpon>
     </Compile>
     <Compile Include="Productos\frmPrecios.cs">
       <SubType>Form</SubType>
@@ -142,8 +148,11 @@
     <EmbeddedResource Include="Principal\MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Productos\frmListaClientes.resx">
+    <EmbeddedResource Include="Clientes\frmListaClientes.resx">
       <DependentUpon>frmListaClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Productos\frmListaProductos.resx">
+      <DependentUpon>frmListaProductos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Productos\frmProducto.resx">
       <DependentUpon>frmProducto.cs</DependentUpon>

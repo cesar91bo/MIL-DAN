@@ -1,5 +1,6 @@
 ﻿using CapaDatos.Modelos;
 using CapaNegocio;
+using SistemaFacturacionInventario.Principal;
 using SistemaFacturacionInventario.Rubros;
 using System;
 using System.Collections.Generic;
@@ -192,7 +193,7 @@ namespace SistemaFacturacionInventario.Productos
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmListaClientes(), sender);
+            OpenChildForm(new frmListaProductos(), sender);
         }
 
         public void OpenChildForm(Form childForm, object btnSender)
@@ -255,6 +256,27 @@ namespace SistemaFacturacionInventario.Productos
             {
                 txtStockMin.Enabled = chkStock.Checked;
                 txtStockActual.Enabled = chkStock.Checked && Accion == "ALTA";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+            OpenChildForm(new frmIndex(), sender);
+        }
+
+        private void btnBaja_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Desea dar de baja el producto '" + txtDescCorta.Text + "' ?", "CONFIRMAR BAJA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+                var productoNegocio = new ProductoNegocio();
+                if (productoNegocio.BajaProducto(IdProducto)) { MessageBox.Show("El producto fue dado de baja correctamente", "BAJA CORRECTA", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+                BuscarProducto(IdProducto);
             }
             catch (Exception ex)
             {

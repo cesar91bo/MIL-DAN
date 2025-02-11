@@ -33,6 +33,8 @@
             this.txtNroProducto = new System.Windows.Forms.TextBox();
             this.lblNroArticulo = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblErrores = new System.Windows.Forms.Label();
+            this.btnUMedida = new System.Windows.Forms.Button();
             this.cmbUMedida = new System.Windows.Forms.ComboBox();
             this.lblStockMinimo = new System.Windows.Forms.Label();
             this.lblUMedida = new System.Windows.Forms.Label();
@@ -41,22 +43,20 @@
             this.txtStockActual = new System.Windows.Forms.TextBox();
             this.chkStock = new System.Windows.Forms.CheckBox();
             this.lblLlevarStock = new System.Windows.Forms.Label();
+            this.btnRubro = new System.Windows.Forms.Button();
             this.cmbRubro = new System.Windows.Forms.ComboBox();
             this.lblRubro = new System.Windows.Forms.Label();
             this.lblDescLarga = new System.Windows.Forms.Label();
             this.txtDescLarga = new System.Windows.Forms.TextBox();
             this.lblDescCorta = new System.Windows.Forms.Label();
+            this.btnVolver = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.lblProducto = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblBaja = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnBaja = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnUMedida = new System.Windows.Forms.Button();
-            this.btnRubro = new System.Windows.Forms.Button();
-            this.btnVolver = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.lblErrores = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,6 +124,30 @@
             this.groupBox1.Size = new System.Drawing.Size(895, 264);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
+            // 
+            // lblErrores
+            // 
+            this.lblErrores.AutoSize = true;
+            this.lblErrores.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.lblErrores.ForeColor = System.Drawing.Color.Red;
+            this.lblErrores.Location = new System.Drawing.Point(20, 214);
+            this.lblErrores.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblErrores.Name = "lblErrores";
+            this.lblErrores.Size = new System.Drawing.Size(43, 13);
+            this.lblErrores.TabIndex = 20;
+            this.lblErrores.Text = "errores";
+            this.lblErrores.Visible = false;
+            // 
+            // btnUMedida
+            // 
+            this.btnUMedida.Image = ((System.Drawing.Image)(resources.GetObject("btnUMedida.Image")));
+            this.btnUMedida.Location = new System.Drawing.Point(852, 56);
+            this.btnUMedida.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUMedida.Name = "btnUMedida";
+            this.btnUMedida.Size = new System.Drawing.Size(35, 35);
+            this.btnUMedida.TabIndex = 14;
+            this.btnUMedida.UseVisualStyleBackColor = true;
+            this.btnUMedida.Click += new System.EventHandler(this.btnUMedida_Click);
             // 
             // cmbUMedida
             // 
@@ -215,6 +239,17 @@
             this.lblLlevarStock.TabIndex = 11;
             this.lblLlevarStock.Text = "Llevar Stock:";
             // 
+            // btnRubro
+            // 
+            this.btnRubro.Image = ((System.Drawing.Image)(resources.GetObject("btnRubro.Image")));
+            this.btnRubro.Location = new System.Drawing.Point(852, 20);
+            this.btnRubro.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRubro.Name = "btnRubro";
+            this.btnRubro.Size = new System.Drawing.Size(35, 35);
+            this.btnRubro.TabIndex = 13;
+            this.btnRubro.UseVisualStyleBackColor = true;
+            this.btnRubro.Click += new System.EventHandler(this.btnRubro_Click);
+            // 
             // cmbRubro
             // 
             this.cmbRubro.FormattingEnabled = true;
@@ -266,11 +301,35 @@
             this.lblDescCorta.TabIndex = 5;
             this.lblDescCorta.Text = "Descripción Corta:";
             // 
+            // btnVolver
+            // 
+            this.btnVolver.Enabled = false;
+            this.btnVolver.Image = ((System.Drawing.Image)(resources.GetObject("btnVolver.Image")));
+            this.btnVolver.Location = new System.Drawing.Point(284, 28);
+            this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(35, 35);
+            this.btnVolver.TabIndex = 12;
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Enabled = false;
+            this.btnBuscar.Image = global::SistemaFacturacionInventario.Properties.Resources.icons8_buscar_20;
+            this.btnBuscar.Location = new System.Drawing.Point(241, 28);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(35, 35);
+            this.btnBuscar.TabIndex = 11;
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
             // lblProducto
             // 
             this.lblProducto.AutoSize = true;
             this.lblProducto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblProducto.Location = new System.Drawing.Point(481, 28);
+            this.lblProducto.Location = new System.Drawing.Point(455, 34);
             this.lblProducto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProducto.Name = "lblProducto";
             this.lblProducto.Size = new System.Drawing.Size(80, 21);
@@ -309,9 +368,11 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnBaja
             // 
+            this.btnBaja.Enabled = false;
             this.btnBaja.Image = ((System.Drawing.Image)(resources.GetObject("btnBaja.Image")));
             this.btnBaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBaja.Location = new System.Drawing.Point(661, 517);
@@ -322,6 +383,7 @@
             this.btnBaja.Text = "Eliminar";
             this.btnBaja.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBaja.UseVisualStyleBackColor = true;
+            this.btnBaja.Click += new System.EventHandler(this.btnBaja_Click);
             // 
             // btnGuardar
             // 
@@ -336,65 +398,6 @@
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // btnUMedida
-            // 
-            this.btnUMedida.Image = ((System.Drawing.Image)(resources.GetObject("btnUMedida.Image")));
-            this.btnUMedida.Location = new System.Drawing.Point(852, 56);
-            this.btnUMedida.Margin = new System.Windows.Forms.Padding(4);
-            this.btnUMedida.Name = "btnUMedida";
-            this.btnUMedida.Size = new System.Drawing.Size(35, 35);
-            this.btnUMedida.TabIndex = 14;
-            this.btnUMedida.UseVisualStyleBackColor = true;
-            this.btnUMedida.Click += new System.EventHandler(this.btnUMedida_Click);
-            // 
-            // btnRubro
-            // 
-            this.btnRubro.Image = ((System.Drawing.Image)(resources.GetObject("btnRubro.Image")));
-            this.btnRubro.Location = new System.Drawing.Point(852, 20);
-            this.btnRubro.Margin = new System.Windows.Forms.Padding(4);
-            this.btnRubro.Name = "btnRubro";
-            this.btnRubro.Size = new System.Drawing.Size(35, 35);
-            this.btnRubro.TabIndex = 13;
-            this.btnRubro.UseVisualStyleBackColor = true;
-            this.btnRubro.Click += new System.EventHandler(this.btnRubro_Click);
-            // 
-            // btnVolver
-            // 
-            this.btnVolver.Enabled = false;
-            this.btnVolver.Image = ((System.Drawing.Image)(resources.GetObject("btnVolver.Image")));
-            this.btnVolver.Location = new System.Drawing.Point(284, 28);
-            this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
-            this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(35, 35);
-            this.btnVolver.TabIndex = 12;
-            this.btnVolver.UseVisualStyleBackColor = true;
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Enabled = false;
-            this.btnBuscar.Image = global::SistemaFacturacionInventario.Properties.Resources.icons8_buscar_20;
-            this.btnBuscar.Location = new System.Drawing.Point(241, 28);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(35, 35);
-            this.btnBuscar.TabIndex = 11;
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
-            // lblErrores
-            // 
-            this.lblErrores.AutoSize = true;
-            this.lblErrores.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblErrores.ForeColor = System.Drawing.Color.Red;
-            this.lblErrores.Location = new System.Drawing.Point(20, 214);
-            this.lblErrores.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblErrores.Name = "lblErrores";
-            this.lblErrores.Size = new System.Drawing.Size(43, 13);
-            this.lblErrores.TabIndex = 20;
-            this.lblErrores.Text = "errores";
-            this.lblErrores.Visible = false;
             // 
             // frmProducto
             // 
@@ -411,7 +414,7 @@
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmProducto";
-            this.Text = "frmProducto";
+            this.Text = "Producto";
             this.Load += new System.EventHandler(this.frmProducto_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -31,5 +31,6 @@ namespace CapaDatos.Modelos
         public virtual DbSet<Rubros> Rubros { get; set; }
         public virtual DbSet<UnidadesMedida> UnidadesMedida { get; set; }
         public virtual DbSet<AjustesStock> AjustesStock { get; set; }
+        public virtual DbSet<VistaProducto> VistaProducto { get; set; }
     }
 }
