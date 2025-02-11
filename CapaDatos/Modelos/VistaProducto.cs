@@ -30,5 +30,6 @@ namespace CapaDatos.Modelos
         public Nullable<System.DateTime> FechaCarga { get; set; }
         public int IdRubro { get; set; }
         public string CodigoProducto { get; set; }
+        public int IdUnidadMedida { get; set; }
     }
 }

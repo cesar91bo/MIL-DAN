@@ -44,7 +44,7 @@ namespace SistemaFacturacionInventario.Productos
             var rep = new AuxiliaresNegocio();
             cmbUMedida.DisplayMember = "Descripcion";
             cmbUMedida.ValueMember = "IdUnidadMedida";
-            cmbUMedida.DataSource = rep.ObtenerUMedida(); ;
+            cmbUMedida.DataSource = rep.ObtenerUMedida() ;
         }
 
         private void LlenarComboRubro()
@@ -145,9 +145,9 @@ namespace SistemaFacturacionInventario.Productos
             {
                 var frm = new frmUMedida();
                 frm.ShowDialog();
-                if (frm.DialogResult != DialogResult.OK) return;
-                LlenarComboRubro();
-                cmbRubro.SelectedIndex = cmbRubro.Items.Count - 1;
+                if (frm.DialogResult != DialogResult.Cancel) return;
+                LlenarComboUMedida();
+                //cmbUMedida.SelectedIndex = cmbUMedida.Items.Count - 1;
             }
             catch (Exception ex)
             {

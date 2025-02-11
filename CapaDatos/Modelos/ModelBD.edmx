@@ -91,6 +91,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             <PropertyRef Name="Rubro" />
             <PropertyRef Name="UnidadMedida" />
             <PropertyRef Name="IdRubro" />
+            <PropertyRef Name="IdUnidadMedida" />
           </Key>
           <Property Name="IdProducto" Type="int" Nullable="false" />
           <Property Name="DescCorta" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -107,6 +108,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <Property Name="Maxfecha" Type="datetime" />
           <Property Name="FechaCarga" Type="datetime" />
           <Property Name="IdRubro" Type="int" Nullable="false" />
+          <Property Name="IdUnidadMedida" Type="int" Nullable="false" />
           <Property Name="CodigoProducto" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_AjustesStock_Productos">
@@ -181,6 +183,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
     [VistaProducto].[Maxfecha] AS [Maxfecha], 
     [VistaProducto].[FechaCarga] AS [FechaCarga], 
     [VistaProducto].[IdRubro] AS [IdRubro], 
+    [VistaProducto].[IdUnidadMedida] AS [IdUnidadMedida], 
     [VistaProducto].[CodigoProducto] AS [CodigoProducto]
     FROM [dbo].[VistaProducto] AS [VistaProducto]</DefiningQuery>
           </EntitySet>
@@ -370,6 +373,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             <PropertyRef Name="Rubro" />
             <PropertyRef Name="UnidadMedida" />
             <PropertyRef Name="IdRubro" />
+            <PropertyRef Name="IdUnidadMedida" />
           </Key>
           <Property Name="IdProducto" Type="Int32" Nullable="false" />
           <Property Name="DescCorta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -387,6 +391,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <Property Name="FechaCarga" Type="DateTime" Precision="3" />
           <Property Name="IdRubro" Type="Int32" Nullable="false" />
           <Property Name="CodigoProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdUnidadMedida" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -477,6 +482,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <EntitySetMapping Name="VistaProducto">
             <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.VistaProducto">
               <MappingFragment StoreEntitySet="VistaProducto">
+                <ScalarProperty Name="IdUnidadMedida" ColumnName="IdUnidadMedida" />
                 <ScalarProperty Name="CodigoProducto" ColumnName="CodigoProducto" />
                 <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
                 <ScalarProperty Name="FechaCarga" ColumnName="FechaCarga" />
