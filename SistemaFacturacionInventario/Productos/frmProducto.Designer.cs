@@ -84,9 +84,8 @@
             // lblNroArticulo
             // 
             this.lblNroArticulo.AutoSize = true;
-            this.lblNroArticulo.Enabled = false;
             this.lblNroArticulo.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblNroArticulo.Location = new System.Drawing.Point(20, 38);
+            this.lblNroArticulo.Location = new System.Drawing.Point(28, 42);
             this.lblNroArticulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNroArticulo.Name = "lblNroArticulo";
             this.lblNroArticulo.Size = new System.Drawing.Size(82, 13);
@@ -162,7 +161,7 @@
             // 
             this.lblStockMinimo.AutoSize = true;
             this.lblStockMinimo.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblStockMinimo.Location = new System.Drawing.Point(484, 155);
+            this.lblStockMinimo.Location = new System.Drawing.Point(496, 158);
             this.lblStockMinimo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStockMinimo.Name = "lblStockMinimo";
             this.lblStockMinimo.Size = new System.Drawing.Size(80, 13);
@@ -173,7 +172,7 @@
             // 
             this.lblUMedida.AutoSize = true;
             this.lblUMedida.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblUMedida.Location = new System.Drawing.Point(469, 65);
+            this.lblUMedida.Location = new System.Drawing.Point(470, 69);
             this.lblUMedida.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUMedida.Name = "lblUMedida";
             this.lblUMedida.Size = new System.Drawing.Size(106, 13);
@@ -197,7 +196,7 @@
             // 
             this.lblStockActual.AutoSize = true;
             this.lblStockActual.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblStockActual.Location = new System.Drawing.Point(489, 125);
+            this.lblStockActual.Location = new System.Drawing.Point(503, 128);
             this.lblStockActual.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStockActual.Name = "lblStockActual";
             this.lblStockActual.Size = new System.Drawing.Size(73, 13);
@@ -232,7 +231,7 @@
             // 
             this.lblLlevarStock.AutoSize = true;
             this.lblLlevarStock.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblLlevarStock.Location = new System.Drawing.Point(490, 95);
+            this.lblLlevarStock.Location = new System.Drawing.Point(506, 95);
             this.lblLlevarStock.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLlevarStock.Name = "lblLlevarStock";
             this.lblLlevarStock.Size = new System.Drawing.Size(70, 13);
@@ -253,7 +252,7 @@
             // cmbRubro
             // 
             this.cmbRubro.FormattingEnabled = true;
-            this.cmbRubro.Location = new System.Drawing.Point(612, 28);
+            this.cmbRubro.Location = new System.Drawing.Point(612, 34);
             this.cmbRubro.Margin = new System.Windows.Forms.Padding(4);
             this.cmbRubro.Name = "cmbRubro";
             this.cmbRubro.Size = new System.Drawing.Size(227, 21);
@@ -263,7 +262,7 @@
             // 
             this.lblRubro.AutoSize = true;
             this.lblRubro.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblRubro.Location = new System.Drawing.Point(506, 35);
+            this.lblRubro.Location = new System.Drawing.Point(534, 42);
             this.lblRubro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRubro.Name = "lblRubro";
             this.lblRubro.Size = new System.Drawing.Size(42, 13);
@@ -403,7 +402,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(242)))));
             this.ClientSize = new System.Drawing.Size(975, 573);
             this.Controls.Add(this.lblBaja);
             this.Controls.Add(this.groupBox2);

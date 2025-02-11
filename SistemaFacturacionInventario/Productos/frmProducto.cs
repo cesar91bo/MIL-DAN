@@ -2,6 +2,7 @@
 using CapaNegocio;
 using SistemaFacturacionInventario.Principal;
 using SistemaFacturacionInventario.Rubros;
+using SistemaFacturacionInventario.Unidad_Medida;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -140,7 +141,18 @@ namespace SistemaFacturacionInventario.Productos
 
         private void btnUMedida_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                var frm = new frmUMedida();
+                frm.ShowDialog();
+                if (frm.DialogResult != DialogResult.OK) return;
+                LlenarComboRubro();
+                cmbRubro.SelectedIndex = cmbRubro.Items.Count - 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void txtNroProducto_KeyDown(object sender, KeyEventArgs e)

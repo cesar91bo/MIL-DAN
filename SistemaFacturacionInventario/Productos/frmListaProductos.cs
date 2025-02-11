@@ -19,6 +19,7 @@ namespace SistemaFacturacionInventario.Productos
         List<CapaDatos.Modelos.VistaProducto> productos;
         private int sortColumn = -1;
         public bool Seleccion;
+        private Form activeForm;
         public frmListaProductos()
         {
             InitializeComponent();
@@ -78,11 +79,11 @@ namespace SistemaFacturacionInventario.Productos
         private void CrearColListView()
         {
             listViewProductos.Columns.Add("Nro.Producto", 70, HorizontalAlignment.Left);
-            listViewProductos.Columns.Add("Nombre", 300, HorizontalAlignment.Left);
+            listViewProductos.Columns.Add("Nombre", 350, HorizontalAlignment.Left);
             listViewProductos.Columns.Add("Lleva Stock", 85, HorizontalAlignment.Left);
             listViewProductos.Columns.Add("Stock", 85, HorizontalAlignment.Left);
             listViewProductos.Columns.Add("U.Medida", 100, HorizontalAlignment.Left);
-            listViewProductos.Columns.Add("Rubro", 125, HorizontalAlignment.Left);
+            listViewProductos.Columns.Add("Rubro", 150, HorizontalAlignment.Left);
             listViewProductos.Columns.Add("Fecha Baja", 90, HorizontalAlignment.Left);
         }
 
@@ -277,6 +278,34 @@ namespace SistemaFacturacionInventario.Productos
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmProducto { Accion = "MOD", IdProducto = IdProducto }, sender);
+        }
+
+        public void OpenChildForm(Form childForm, object btnSender)
+        {
+            MenuPrincipal principal = Application.OpenForms["MenuPrincipal"] as MenuPrincipal;
+            if (principal != null)
+            {
+                if (activeForm != null)
+                {
+                    activeForm.Close();
+                }
+
+                activeForm = childForm;
+                childForm.TopLevel = false;
+                childForm.FormBorderStyle = FormBorderStyle.None;
+                childForm.Dock = DockStyle.Fill;
+                principal.pnlContenedorPrincipal.Controls.Add(childForm);
+                principal.pnlContenedorPrincipal.Tag = childForm;
+                childForm.BringToFront();
+                childForm.Show();
+            }
+
+
         }
     }
 }

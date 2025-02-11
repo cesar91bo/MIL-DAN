@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListaProductos));
             this.listViewProductos = new System.Windows.Forms.ListView();
             this.lblListaProductos = new System.Windows.Forms.Label();
             this.lblFiltrar = new System.Windows.Forms.Label();
@@ -37,6 +38,9 @@
             this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarPrecioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.darDeBajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.menuContextual.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,11 +48,10 @@
             // 
             this.listViewProductos.FullRowSelect = true;
             this.listViewProductos.GridLines = true;
-            this.listViewProductos.HoverSelection = true;
             this.listViewProductos.Location = new System.Drawing.Point(38, 88);
             this.listViewProductos.MultiSelect = false;
             this.listViewProductos.Name = "listViewProductos";
-            this.listViewProductos.Size = new System.Drawing.Size(859, 369);
+            this.listViewProductos.Size = new System.Drawing.Size(946, 348);
             this.listViewProductos.TabIndex = 0;
             this.listViewProductos.UseCompatibleStateImageBehavior = false;
             this.listViewProductos.View = System.Windows.Forms.View.Details;
@@ -61,7 +64,7 @@
             // 
             this.lblListaProductos.AutoSize = true;
             this.lblListaProductos.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblListaProductos.Location = new System.Drawing.Point(346, 25);
+            this.lblListaProductos.Location = new System.Drawing.Point(405, 21);
             this.lblListaProductos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblListaProductos.Name = "lblListaProductos";
             this.lblListaProductos.Size = new System.Drawing.Size(149, 21);
@@ -86,7 +89,7 @@
             this.cmbFiltro.Location = new System.Drawing.Point(161, 58);
             this.cmbFiltro.Margin = new System.Windows.Forms.Padding(4);
             this.cmbFiltro.Name = "cmbFiltro";
-            this.cmbFiltro.Size = new System.Drawing.Size(227, 23);
+            this.cmbFiltro.Size = new System.Drawing.Size(409, 23);
             this.cmbFiltro.TabIndex = 8;
             // 
             // menuContextual
@@ -116,11 +119,61 @@
             this.darDeBajaToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.darDeBajaToolStripMenuItem.Text = "Dar de Baja";
             // 
+            // btnEditar
+            // 
+            this.btnEditar.Enabled = false;
+            this.btnEditar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
+            this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEditar.Location = new System.Drawing.Point(357, 463);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(96, 43);
+            this.btnEditar.TabIndex = 14;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Enabled = false;
+            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
+            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminar.Location = new System.Drawing.Point(559, 463);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(91, 43);
+            this.btnEliminar.TabIndex = 13;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Enabled = false;
+            this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
+            this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGuardar.Location = new System.Drawing.Point(461, 463);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(90, 43);
+            this.btnGuardar.TabIndex = 12;
+            this.btnGuardar.Text = "Precio";
+            this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            // 
             // frmListaProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(933, 519);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(242)))));
+            this.ClientSize = new System.Drawing.Size(1011, 519);
+            this.Controls.Add(this.btnEditar);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.cmbFiltro);
             this.Controls.Add(this.lblFiltrar);
             this.Controls.Add(this.lblListaProductos);
@@ -145,5 +198,8 @@
         private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cargarPrecioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem darDeBajaToolStripMenuItem;
+        private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnGuardar;
     }
 }
