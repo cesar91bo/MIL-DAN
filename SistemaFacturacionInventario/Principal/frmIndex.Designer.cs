@@ -102,7 +102,7 @@
             // 
             this.pictureBoxClima.Location = new System.Drawing.Point(62, 88);
             this.pictureBoxClima.Name = "pictureBoxClima";
-            this.pictureBoxClima.Size = new System.Drawing.Size(55, 41);
+            this.pictureBoxClima.Size = new System.Drawing.Size(127, 59);
             this.pictureBoxClima.TabIndex = 7;
             this.pictureBoxClima.TabStop = false;
             this.pictureBoxClima.Visible = false;

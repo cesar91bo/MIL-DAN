@@ -1,4 +1,6 @@
-﻿using CapaNegocio;
+﻿using CapaDatos.Modelos;
+using CapaNegocio;
+using SistemaFacturacionInventario.Auxiliares;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -98,9 +100,9 @@ namespace SistemaFacturacionInventario.Productos
             {
                 var productoNegocio = new ProductoNegocio();
                 if (chkProdBaja.Checked)
-                {                  
+                {
                     productos = productoNegocio.ObtenerTodo();
-                } 
+                }
                 else
                 {
                     productos = productoNegocio.ObtenerProductosActivos();
@@ -132,9 +134,38 @@ namespace SistemaFacturacionInventario.Productos
             }
         }
 
-        private List<CapaDatos.Modelos.VistaProducto> BuscarProducto()
+        private List<VistaProducto> BuscarProducto()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var productoNegocio = new ProductoNegocio();
+                switch (cmbFiltro.SelectedValue.ToString().ToUpper())
+                {
+                    case "IDPRODUCTO":
+                        if (!FuncionesForms.NroEneteroInt32(txtFiltro.Text))
+                        {
+                            MessageBox.Show("Ingrese texto de búsqueda válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return null;
+                        }
+                        return productoNegocio.ObtenerListProductosPorNro(Convert.ToInt32(txtFiltro.Text), chkProdBaja.Checked);
+                    //TituloEx = "Listado de Artículos filtrado por Nro.Artículo";
+
+                    case "DESCCORTA":
+                        //TituloEx = "Listado de Artículos filtrado por Desc.Corta";
+                        return productoNegocio.ObtenerListProductosPorDesc(txtFiltro.Text, chkProdBaja.Checked);
+
+                    case "RUBRO":
+                        //TituloEx = "Listado de Artículos filtrado por Rubro";
+                        return productoNegocio.ObtenerListProductosPorRubro(txtFiltro.Text, chkProdBaja.Checked);
+
+                    default:
+                        return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void listViewProductos_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -267,7 +298,7 @@ namespace SistemaFacturacionInventario.Productos
                 if (IdProducto > 0)
                 {
                     btnEditar.Enabled = true;
-                    btnEliminar.Enabled = true;
+                    btnEliminar.Enabled = listViewProductos.SelectedItems[0].SubItems[6].Text == ""?  true :  false;
                     btnPrecio.Enabled = true;
                 }
 
@@ -300,7 +331,12 @@ namespace SistemaFacturacionInventario.Productos
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmProducto { Accion = "MOD", IdProducto = IdProducto }, sender);
+            var frm = new frmProducto { Accion = "MOD", IdProducto = IdProducto };
+
+            // Suscribirse al evento FormClosed
+            frm.FormClosed += (s, args) => Llenarlistview(true);
+
+            OpenChildForm(frm, sender);
         }
 
         public void OpenChildForm(Form childForm, object btnSender)
@@ -338,6 +374,8 @@ namespace SistemaFacturacionInventario.Productos
             {
                 IdProducto = 0;
                 btnEditar.Enabled = false;
+                btnEliminar.Enabled = false;
+                btnPrecio.Enabled = false;
             }
         }
 
@@ -349,7 +387,21 @@ namespace SistemaFacturacionInventario.Productos
 
         private void btnPrecio_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (listViewProductos.SelectedItems[0].SubItems[6].Text != "")
+                {
+                    MessageBox.Show("No se pueden cargar precios al producto porque fue dado de baja", "Error de Selección", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                var frm = new frmPrecios(Convert.ToInt32(listViewProductos.SelectedItems[0].Tag));
+                frm.ShowDialog();
+                Llenarlistview(false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void chkProdBaja_CheckedChanged(object sender, EventArgs e)
@@ -367,6 +419,31 @@ namespace SistemaFacturacionInventario.Productos
             }
 
             Llenarlistview(true);
+        }
+
+        private void txtFiltro_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter) { Llenarlistview(false); }
+                txtFiltro.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Llenarlistview(false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

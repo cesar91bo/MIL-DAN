@@ -45,6 +45,7 @@
             this.listViewProductos = new System.Windows.Forms.ListView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnActivar = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.menuContextual.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -93,8 +94,9 @@
             this.txtFiltro.Location = new System.Drawing.Point(52, 73);
             this.txtFiltro.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtFiltro.Name = "txtFiltro";
-            this.txtFiltro.Size = new System.Drawing.Size(810, 22);
+            this.txtFiltro.Size = new System.Drawing.Size(587, 22);
             this.txtFiltro.TabIndex = 22;
+            this.txtFiltro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFiltro_KeyDown);
             // 
             // btnEditar
             // 
@@ -222,12 +224,28 @@
             this.btnActivar.Visible = false;
             this.btnActivar.Click += new System.EventHandler(this.btnActivar_Click);
             // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
+            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscar.Location = new System.Drawing.Point(699, 80);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(91, 35);
+            this.btnBuscar.TabIndex = 25;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
             // frmListaProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(242)))));
             this.ClientSize = new System.Drawing.Size(1011, 562);
+            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnActivar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnEditar);
@@ -262,5 +280,6 @@
         private System.Windows.Forms.TextBox txtFiltro;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnActivar;
+        private System.Windows.Forms.Button btnBuscar;
     }
 }

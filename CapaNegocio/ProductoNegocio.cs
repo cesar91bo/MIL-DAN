@@ -9,6 +9,7 @@ using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Security.Cryptography;
 
 namespace CapaNegocio
 {
@@ -190,6 +191,68 @@ namespace CapaNegocio
                 return true;
             }
             catch (Exception ex) { throw ex; }
+        }
+
+        public List<VistaProducto> ObtenerListProductosPorNro(int idProducto, bool prodBaja)
+        {
+            if (prodBaja)
+            {
+                if (idProducto.ToString() == "")
+                {
+                    return db.VistaProducto.OrderBy(c => c.DescCorta).ToList();
+                }
+                else
+                {
+                    var productos = from producto in db.VistaProducto
+                                    where producto.IdProducto == idProducto
+                                    select producto;
+                    return productos.OrderBy(c => c.DescCorta).ToList();
+                }
+
+            }
+            else
+            {
+                var productos = from producto in db.VistaProducto
+                                where producto.IdProducto == idProducto && producto.FechaBaja == ""
+                                select producto;
+                return productos.OrderBy(c => c.DescCorta).ToList();
+            }
+        }
+
+        public List<VistaProducto> ObtenerListProductosPorDesc(string descr, bool prodBaja)
+        {
+            if (prodBaja)
+            {
+                var productos = from prod in db.VistaProducto
+                                where prod.DescCorta.Contains(descr)
+                                select prod;
+                return productos.OrderBy(c => c.DescCorta).ToList();
+            }
+            else
+            {
+                var productos = from prod in db.VistaProducto
+                                where prod.DescCorta.Contains(descr) && prod.FechaBaja == ""
+                                select prod;
+                return productos.OrderBy(c => c.DescCorta).ToList();
+            }
+        }
+
+        public List<VistaProducto> ObtenerListProductosPorRubro(string rubro, bool prodBaja)
+        {
+            if (prodBaja)
+            {
+                var productos = from prod in db.VistaProducto
+                                where prod.Rubro.Contains(rubro)
+                                select prod;
+                return productos.OrderBy(c => c.DescCorta).ToList();
+            }
+            else
+            {
+                var productos = from prod in db.VistaProducto
+                                where prod.Rubro.Contains(rubro) && prod.FechaBaja == ""
+                                select prod;
+                return productos.OrderBy(c => c.DescCorta).ToList();
+            }
         }
     }
 }
