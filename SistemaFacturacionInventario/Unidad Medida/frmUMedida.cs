@@ -15,7 +15,6 @@ namespace SistemaFacturacionInventario.Unidad_Medida
 {
     public partial class frmUMedida : FormBase
     {
-        private string Accion;
         private string idUnidadMedidaSeleccionada = null;
         private AuxiliaresNegocio auxN = new AuxiliaresNegocio();
         public frmUMedida()
@@ -27,7 +26,6 @@ namespace SistemaFacturacionInventario.Unidad_Medida
         {
             try
             {
-                Accion = "NUEVO";
                 listViewUMedida.View = View.Details;
                 listViewUMedida.FullRowSelect = true;
 

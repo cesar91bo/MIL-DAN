@@ -97,7 +97,7 @@ namespace CapaNegocio
                         catch (Exception ex)
                         {
                             trans.Rollback();
-                            throw;
+                            throw ex;
                         }
                     }
                 }
@@ -170,6 +170,26 @@ namespace CapaNegocio
                             select prod;
             return productos.OrderBy(c => c.DescCorta).ToList();
 
+        }
+
+        public List<VistaProducto> ObtenerProductosActivos()
+        {
+            var productos = from prod in db.VistaProducto
+                            where prod.FechaBaja == ""
+                            select prod;
+            return productos.OrderBy(c => c.DescCorta).ToList();
+        }
+
+        public bool ActivarProducto(int idProducto)
+        {
+            try
+            {
+                var art = ObtenerProductoPorId(idProducto);
+                art.FechaBaja = null;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex) { throw ex; }
         }
     }
 }

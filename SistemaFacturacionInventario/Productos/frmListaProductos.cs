@@ -47,13 +47,16 @@ namespace SistemaFacturacionInventario.Productos
         {
             if (listViewProductos.FocusedItem != null)
             {
-                DialogResult result = MessageBox.Show($"¿Está seguro de dar de baja el producto {listViewProductos.FocusedItem.Text}?",
+                var item = listViewProductos.SelectedItems[0];
+                DialogResult result = MessageBox.Show($"¿Está seguro de dar de baja el producto {item.SubItems[1].Text}?",
                                                       "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
-                    listViewProductos.Items.Remove(listViewProductos.FocusedItem);
-                    MessageBox.Show("Producto dado de baja.");
-                    // Aquí podrías actualizar la base de datos o cambiar el estado del producto
+                    var productoNegocio = new ProductoNegocio();
+                    if (productoNegocio.BajaProducto(IdProducto))
+                    {
+                        MessageBox.Show("El producto fue dado de baja correctamente", "BAJA CORRECTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
         }
@@ -94,7 +97,14 @@ namespace SistemaFacturacionInventario.Productos
             if (siload)
             {
                 var productoNegocio = new ProductoNegocio();
-                productos = productoNegocio.ObtenerTodo();
+                if (chkProdBaja.Checked)
+                {                  
+                    productos = productoNegocio.ObtenerTodo();
+                } 
+                else
+                {
+                    productos = productoNegocio.ObtenerProductosActivos();
+                }
             }
             else
             {
@@ -252,8 +262,16 @@ namespace SistemaFacturacionInventario.Productos
         {
             try
             {
-                    IdProducto = Convert.ToInt32(listViewProductos.SelectedItems[0].Tag);
-                    DialogResult = DialogResult.OK;
+                IdProducto = Convert.ToInt32(listViewProductos.SelectedItems[0].Tag);
+
+                if (IdProducto > 0)
+                {
+                    btnEditar.Enabled = true;
+                    btnEliminar.Enabled = true;
+                    btnPrecio.Enabled = true;
+                }
+
+                DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
             {
@@ -306,6 +324,49 @@ namespace SistemaFacturacionInventario.Productos
             }
 
 
+        }
+
+        private void listViewProductos_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            if (listViewProductos.SelectedItems.Count > 0)
+            {
+                SeleccionProducto();
+
+                if (e.Item.SubItems[6].Text != "") btnActivar.Visible = true; else btnActivar.Visible = false;
+            }
+            else
+            {
+                IdProducto = 0;
+                btnEditar.Enabled = false;
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            DarDeBaja(sender, e);
+            Llenarlistview(true);
+        }
+
+        private void btnPrecio_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkProdBaja_CheckedChanged(object sender, EventArgs e)
+        {
+            Llenarlistview(true);
+        }
+
+        private void btnActivar_Click(object sender, EventArgs e)
+        {
+            var productoNegocio = new ProductoNegocio();
+
+            if (productoNegocio.ActivarProducto(IdProducto))
+            {
+                MessageBox.Show("El producto fue dado de baja correctamente", "BAJA CORRECTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            Llenarlistview(true);
         }
     }
 }

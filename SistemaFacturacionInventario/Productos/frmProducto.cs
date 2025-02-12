@@ -32,6 +32,21 @@ namespace SistemaFacturacionInventario.Productos
             {
                 LlenarComboRubro();
                 LlenarComboUMedida();
+
+                if(Accion.ToUpper() == "MOD")
+                {
+                    btnBaja.Visible = true;
+                    txtStockActual.Enabled = false;
+                    if (IdProducto > 0) 
+                    { 
+                        BuscarProducto(IdProducto); 
+                        btnBuscar.Enabled = true;
+                        btnVolver.Enabled = true;
+                        btnBaja.Visible = true;
+                        btnBaja.Enabled = true;
+                    }
+
+                }
             }
             catch (Exception ex)
             {
@@ -168,6 +183,7 @@ namespace SistemaFacturacionInventario.Productos
                 CapaDatos.Modelos.Productos producto = productoNegocio.ObtenerProductoPorId(idProducto);
                 if (producto != null)
                 {
+                    txtNroProducto.Text = producto.IdProducto.ToString();
                     txtDescCorta.Text = producto.DescCorta;
                     txtDescLarga.Text = producto.DescLarga;
                     txtStockActual.Text = producto.StockActual.ToString();
@@ -278,7 +294,7 @@ namespace SistemaFacturacionInventario.Productos
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
-            OpenChildForm(new frmIndex(), sender);
+            OpenChildForm(new frmListaProductos(), sender);
         }
 
         private void btnBaja_Click(object sender, EventArgs e)
@@ -287,8 +303,11 @@ namespace SistemaFacturacionInventario.Productos
             {
                 if (MessageBox.Show("Desea dar de baja el producto '" + txtDescCorta.Text + "' ?", "CONFIRMAR BAJA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
                 var productoNegocio = new ProductoNegocio();
-                if (productoNegocio.BajaProducto(IdProducto)) { MessageBox.Show("El producto fue dado de baja correctamente", "BAJA CORRECTA", MessageBoxButtons.OK, MessageBoxIcon.Information); }
-                BuscarProducto(IdProducto);
+                if (productoNegocio.BajaProducto(IdProducto)) 
+                { 
+                    MessageBox.Show("El producto fue dado de baja correctamente", "BAJA CORRECTA", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+                }
+                OpenChildForm(new frmListaProductos(), sender);
             }
             catch (Exception ex)
             {
