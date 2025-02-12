@@ -28,12 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.listViewUMedida = new System.Windows.Forms.ListView();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.lblDesc = new System.Windows.Forms.Label();
             this.txtUMedida = new System.Windows.Forms.TextBox();
-            this.btnEliminar = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Location = new System.Drawing.Point(460, 377);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(83, 29);
+            this.btnEliminar.TabIndex = 25;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Visible = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // listViewUMedida
             // 
@@ -81,19 +94,6 @@
             this.txtUMedida.Size = new System.Drawing.Size(256, 22);
             this.txtUMedida.TabIndex = 21;
             // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(460, 377);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(83, 29);
-            this.btnEliminar.TabIndex = 25;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Visible = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
             // frmUMedida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -105,7 +105,7 @@
             this.Controls.Add(this.lblDesc);
             this.Controls.Add(this.txtUMedida);
             this.Name = "frmUMedida";
-            this.Text = "frmUMedida";
+            this.Text = "Unidad de Medida";
             this.Load += new System.EventHandler(this.frmUMedida_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -35,6 +35,8 @@ namespace CapaNegocio
         {
             try
             {
+                var rubroBase = db.Rubros.SingleOrDefault(c => c.IdRubro == rubro.IdRubro);
+                rubroBase.Descripcion = rubro.Descripcion;
                 db.SaveChanges();
                 return true;
             }
@@ -58,6 +60,12 @@ namespace CapaNegocio
         {
             db.UnidadesMedida.Add(um);
             db.SaveChanges(); 
+        }
+
+        public void AgregarRubro(Rubros rubro)
+        {
+            db.Rubros.Add(rubro);
+            db.SaveChanges();
         }
 
         #region Consultas
@@ -96,6 +104,40 @@ namespace CapaNegocio
                     }
                     return false;
                 }
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public bool BorrarRubro(int idRubro)
+        {
+            try
+            {
+                var productoNegocio = new ProductoNegocio();
+                if (productoNegocio.ObtenerTodo().Any(c => c.IdRubro == idRubro))
+                {
+                    return false;
+                }
+                else
+                {
+                    var rubro = db.Rubros.SingleOrDefault(u => u.IdRubro == idRubro);
+                    if (rubro != null)
+                    {
+                        db.Rubros.Remove(rubro);
+                        db.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public bool NuevoRubro(Rubros rubro)
+        {
+            try
+            {
+                AgregarRubro(rubro);
+                return true;
             }
             catch (Exception ex) { throw ex; }
         }

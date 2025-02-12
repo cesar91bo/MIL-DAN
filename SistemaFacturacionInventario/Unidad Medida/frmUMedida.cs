@@ -99,11 +99,15 @@ namespace SistemaFacturacionInventario.Unidad_Medida
             {
                 if (auxN.BorrarUMedida(Convert.ToInt32(idUnidadMedidaSeleccionada)))
                 {
+                    txtUMedida.Text = "";
+                    idUnidadMedidaSeleccionada = null;
+                    btnEliminar.Visible = false;
+                    btnNuevo.Text = "Nuevo";
                     CargarGrilla();
                 }
                 else
                 {
-                    MessageBox.Show("No se puede borrar la unidad de medida porque hay artículos que forman parte de dicha unidad de medida",
+                    MessageBox.Show("No se puede borrar la unidad de medida porque hay productos que forman parte de dicha unidad de medida",
                         "NO SE PUEDE BORRAR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
