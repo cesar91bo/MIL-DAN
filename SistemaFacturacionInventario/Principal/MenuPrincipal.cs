@@ -111,6 +111,7 @@ namespace SistemaFacturacionInventario
 
         private void btnInventario_Click(object sender, EventArgs e)
         {
+            AbrirFormularioHijo(new frmListaPrecio());
             OcultarPanelesSubMenu();
         }
 

@@ -254,5 +254,28 @@ namespace CapaNegocio
                 return productos.OrderBy(c => c.DescCorta).ToList();
             }
         }
+
+        public bool ExistePrecio(int idProducto)
+        {
+            return db.PreciosVenta.Any(c => c.IdProducto == idProducto);
+        }
+
+        public VistaPreciosVenta ObtenerVistaUltVPV(int idProducto)
+        {
+            return ExistePrecio(idProducto) ? db.VistaPreciosVenta.SingleOrDefault(c => c.IdProducto == idProducto && c.FechaPrecio == ObtenerMaxFecha(idProducto)) : null;
+        }
+
+        private DateTime ObtenerMaxFecha(long idArt) { return (from p in db.PreciosVenta where p.IdProducto == idArt select p.FechaPrecios).Max(); }
+
+        public bool NuevoPrecioVenta(PreciosVenta pv)
+        {
+            try
+            {
+                db.PreciosVenta.Add(pv);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex) { throw ex; }
+        }
     }
 }

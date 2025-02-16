@@ -16,6 +16,10 @@
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.AjustesStock" Width="1.5" PointX="9.875" PointY="3.5" />
         <AssociationConnector Association="SistemaGestionPymeBDModel.FK_AjustesStock_Productos" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.VistaProducto" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.VistaPreciosVenta" Width="1.5" PointX="5.375" PointY="8.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.PreciosVenta" Width="1.5" PointX="9.875" PointY="6.875" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_PreciosVenta_Productos" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Seteos" Width="1.5" PointX="10.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

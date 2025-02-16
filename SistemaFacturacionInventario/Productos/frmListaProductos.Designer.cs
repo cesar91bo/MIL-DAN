@@ -80,9 +80,9 @@
             // chkProdBaja
             // 
             this.chkProdBaja.AutoSize = true;
-            this.chkProdBaja.Location = new System.Drawing.Point(655, 43);
+            this.chkProdBaja.Location = new System.Drawing.Point(561, 37);
             this.chkProdBaja.Name = "chkProdBaja";
-            this.chkProdBaja.Size = new System.Drawing.Size(207, 19);
+            this.chkProdBaja.Size = new System.Drawing.Size(204, 17);
             this.chkProdBaja.TabIndex = 15;
             this.chkProdBaja.Text = " Mostrar Productos Dados de  Baja";
             this.chkProdBaja.UseVisualStyleBackColor = true;
@@ -91,10 +91,10 @@
             // txtFiltro
             // 
             this.txtFiltro.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFiltro.Location = new System.Drawing.Point(52, 73);
-            this.txtFiltro.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtFiltro.Location = new System.Drawing.Point(45, 63);
+            this.txtFiltro.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtFiltro.Name = "txtFiltro";
-            this.txtFiltro.Size = new System.Drawing.Size(587, 22);
+            this.txtFiltro.Size = new System.Drawing.Size(504, 22);
             this.txtFiltro.TabIndex = 22;
             this.txtFiltro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFiltro_KeyDown);
             // 
@@ -104,10 +104,9 @@
             this.btnEditar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(357, 506);
-            this.btnEditar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEditar.Location = new System.Drawing.Point(306, 439);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(96, 43);
+            this.btnEditar.Size = new System.Drawing.Size(82, 37);
             this.btnEditar.TabIndex = 14;
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -120,10 +119,9 @@
             this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(559, 506);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEliminar.Location = new System.Drawing.Point(479, 439);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(91, 43);
+            this.btnEliminar.Size = new System.Drawing.Size(78, 37);
             this.btnEliminar.TabIndex = 13;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -136,10 +134,9 @@
             this.btnPrecio.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrecio.Image = ((System.Drawing.Image)(resources.GetObject("btnPrecio.Image")));
             this.btnPrecio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrecio.Location = new System.Drawing.Point(461, 506);
-            this.btnPrecio.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPrecio.Location = new System.Drawing.Point(395, 439);
             this.btnPrecio.Name = "btnPrecio";
-            this.btnPrecio.Size = new System.Drawing.Size(90, 43);
+            this.btnPrecio.Size = new System.Drawing.Size(77, 37);
             this.btnPrecio.TabIndex = 12;
             this.btnPrecio.Text = "Precio";
             this.btnPrecio.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -149,10 +146,9 @@
             // cmbFiltro
             // 
             this.cmbFiltro.FormattingEnabled = true;
-            this.cmbFiltro.Location = new System.Drawing.Point(117, 42);
-            this.cmbFiltro.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbFiltro.Location = new System.Drawing.Point(100, 36);
             this.cmbFiltro.Name = "cmbFiltro";
-            this.cmbFiltro.Size = new System.Drawing.Size(292, 23);
+            this.cmbFiltro.Size = new System.Drawing.Size(251, 21);
             this.cmbFiltro.TabIndex = 8;
             // 
             // lblFiltrar
@@ -160,8 +156,7 @@
             this.lblFiltrar.AutoSize = true;
             this.lblFiltrar.Enabled = false;
             this.lblFiltrar.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblFiltrar.Location = new System.Drawing.Point(49, 46);
-            this.lblFiltrar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFiltrar.Location = new System.Drawing.Point(42, 40);
             this.lblFiltrar.Name = "lblFiltrar";
             this.lblFiltrar.Size = new System.Drawing.Size(60, 13);
             this.lblFiltrar.TabIndex = 7;
@@ -171,8 +166,7 @@
             // 
             this.lblListaProductos.AutoSize = true;
             this.lblListaProductos.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblListaProductos.Location = new System.Drawing.Point(361, 5);
-            this.lblListaProductos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblListaProductos.Location = new System.Drawing.Point(309, 4);
             this.lblListaProductos.Name = "lblListaProductos";
             this.lblListaProductos.Size = new System.Drawing.Size(149, 21);
             this.lblListaProductos.TabIndex = 6;
@@ -183,10 +177,10 @@
             this.listViewProductos.FullRowSelect = true;
             this.listViewProductos.GridLines = true;
             this.listViewProductos.HideSelection = false;
-            this.listViewProductos.Location = new System.Drawing.Point(38, 131);
+            this.listViewProductos.Location = new System.Drawing.Point(38, 114);
             this.listViewProductos.MultiSelect = false;
             this.listViewProductos.Name = "listViewProductos";
-            this.listViewProductos.Size = new System.Drawing.Size(946, 348);
+            this.listViewProductos.Size = new System.Drawing.Size(806, 302);
             this.listViewProductos.TabIndex = 0;
             this.listViewProductos.UseCompatibleStateImageBehavior = false;
             this.listViewProductos.View = System.Windows.Forms.View.Details;
@@ -203,9 +197,9 @@
             this.panel1.Controls.Add(this.cmbFiltro);
             this.panel1.Controls.Add(this.lblFiltrar);
             this.panel1.Controls.Add(this.lblListaProductos);
-            this.panel1.Location = new System.Drawing.Point(44, 16);
+            this.panel1.Location = new System.Drawing.Point(38, 14);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(940, 115);
+            this.panel1.Size = new System.Drawing.Size(806, 100);
             this.panel1.TabIndex = 23;
             // 
             // btnActivar
@@ -213,10 +207,9 @@
             this.btnActivar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActivar.Image = ((System.Drawing.Image)(resources.GetObject("btnActivar.Image")));
             this.btnActivar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActivar.Location = new System.Drawing.Point(893, 506);
-            this.btnActivar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnActivar.Location = new System.Drawing.Point(765, 439);
             this.btnActivar.Name = "btnActivar";
-            this.btnActivar.Size = new System.Drawing.Size(91, 43);
+            this.btnActivar.Size = new System.Drawing.Size(78, 37);
             this.btnActivar.TabIndex = 24;
             this.btnActivar.Text = "Activar";
             this.btnActivar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -229,10 +222,9 @@
             this.btnBuscar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(699, 80);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscar.Location = new System.Drawing.Point(599, 69);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(91, 35);
+            this.btnBuscar.Size = new System.Drawing.Size(78, 30);
             this.btnBuscar.TabIndex = 25;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -241,10 +233,10 @@
             // 
             // frmListaProductos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(242)))));
-            this.ClientSize = new System.Drawing.Size(1011, 562);
+            this.ClientSize = new System.Drawing.Size(867, 487);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnActivar);
             this.Controls.Add(this.panel1);
@@ -252,7 +244,7 @@
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnPrecio);
             this.Controls.Add(this.listViewProductos);
-            this.Margin = new System.Windows.Forms.Padding(5);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmListaProductos";
             this.Text = "Lista de Productos";
             this.Load += new System.EventHandler(this.frmListaProductos_Load);

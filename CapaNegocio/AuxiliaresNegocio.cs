@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -72,6 +73,12 @@ namespace CapaNegocio
         public List<Rubros> ObtenerRubros()
         {
             return db.Rubros.OrderBy(c => c.IdRubro).ToList();
+        }
+
+        public Seteos ObtenerSeteo()
+        {
+            var ultimoSeteo = db.Seteos.OrderByDescending(s => s.IdSeteo).FirstOrDefault() ?? new Seteos();
+            return ultimoSeteo;
         }
 
         public List<UnidadesMedida> ObtenerUMedida()

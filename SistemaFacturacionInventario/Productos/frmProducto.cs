@@ -44,6 +44,7 @@ namespace SistemaFacturacionInventario.Productos
                         btnVolver.Enabled = true;
                         btnBaja.Visible = true;
                         btnBaja.Enabled = true;
+                        txtNroProducto.Enabled = true;
                     }
 
                 }
@@ -70,6 +71,7 @@ namespace SistemaFacturacionInventario.Productos
                 cmbRubro.DisplayMember = "Descripcion";
                 cmbRubro.ValueMember = "IdRubro";
                 cmbRubro.DataSource = rep.ObtenerRubros();
+
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
@@ -138,6 +140,7 @@ namespace SistemaFacturacionInventario.Productos
                                 "ALTA CORRECTA", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                         {
                             var frm = new frmPrecios(idProducto);
+                            frm.DeAfuera = true;
                             frm.ShowDialog();
                         }
                     }
@@ -162,7 +165,7 @@ namespace SistemaFacturacionInventario.Productos
                 frm.ShowDialog();
                 if (frm.DialogResult != DialogResult.Cancel) return;
                 LlenarComboUMedida();
-                //cmbUMedida.SelectedIndex = cmbUMedida.Items.Count - 1;
+                cmbUMedida.SelectedIndex = cmbUMedida.Items.Count - 1;
             }
             catch (Exception ex)
             {
@@ -209,7 +212,7 @@ namespace SistemaFacturacionInventario.Productos
             {
                 var frm = new frmRubro();
                 frm.ShowDialog();
-                if (frm.DialogResult != DialogResult.OK) return;
+                if (frm.DialogResult != DialogResult.Cancel) return;
                 LlenarComboRubro();
                 cmbRubro.SelectedIndex = cmbRubro.Items.Count - 1;
             }
@@ -314,5 +317,6 @@ namespace SistemaFacturacionInventario.Productos
                 MessageBox.Show(ex.Message);
             }
         }
+
     }
 }

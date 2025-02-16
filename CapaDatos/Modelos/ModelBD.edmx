@@ -38,6 +38,37 @@
           <Property Name="IdRegimenImpositivo" Type="int" />
           <Property Name="Observaciones" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <EntityType Name="PreciosVenta">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+            <PropertyRef Name="FechaPrecios" />
+          </Key>
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="FechaPrecios" Type="datetime" Nullable="false" />
+          <Property Name="PrecioContado" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PrecioFiado" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PrecioEspecial" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="PrecioContadoIva" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PrecioFiadoIva" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PrecioEspecialIva" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="PrecioBase" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Bonificacion1" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="Bonificacion2" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="Bonificacion3" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="Bonificacion4" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="Iva" Type="numeric" Precision="2" Scale="2" Nullable="false" />
+          <Property Name="CostoBruto" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="PorcentajeFlete" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="CostoFlete" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="PorcentajeDescarga" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="CostoDescarga" Type="numeric" Precision="9" Scale="4" />
+          <Property Name="CostoTotal" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="PorcentajeGcia" Type="numeric" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="PorcentajeFiado" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="UsrAcceso" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="FechaAcceso" Type="datetime" Nullable="false" />
+          <Property Name="Impuesto" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
         <EntityType Name="Productos">
           <Key>
             <PropertyRef Name="IdProducto" />
@@ -72,12 +103,58 @@
           <Property Name="IdRubro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
+        <EntityType Name="Seteos">
+          <Key>
+            <PropertyRef Name="IdSeteo" />
+          </Key>
+          <Property Name="IdSeteo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiasVtoFact" Type="int" Nullable="false" />
+          <Property Name="PorcentajeGanancia" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="PorcentajeInteres" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="PorcentajeFlete" Type="decimal" Precision="4" Scale="2" />
+        </EntityType>
         <EntityType Name="UnidadesMedida">
           <Key>
             <PropertyRef Name="IdUnidadMedida" />
           </Key>
           <Property Name="IdUnidadMedida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaPreciosVenta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VistaPreciosVenta">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+            <PropertyRef Name="DescCorta" />
+            <PropertyRef Name="FechaPrecio" />
+            <PropertyRef Name="Iva" />
+            <PropertyRef Name="PrecioContado" />
+            <PropertyRef Name="PrecioFiado" />
+            <PropertyRef Name="PrecioContadoIva" />
+            <PropertyRef Name="PrecioFiadoIva" />
+            <PropertyRef Name="PrecioBase" />
+            <PropertyRef Name="PorcentajeGcia" />
+          </Key>
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="DescCorta" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FechaPrecio" Type="datetime" Nullable="false" />
+          <Property Name="Iva" Type="numeric" Precision="2" Scale="2" Nullable="false" />
+          <Property Name="PrecioContado" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PrecioFiado" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PrecioEspecial" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="PrecioContadoIva" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PrecioFiadoIva" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="PrecioEspecialIva" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="PrecioBase" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Bonificacion1" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="Bonificacion2" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="Bonificacion3" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="Bonificacion4" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="PorcentajeFlete" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="PorcentajeDescarga" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="PorcentajeGcia" Type="numeric" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="PorcentajeFiado" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="Impuesto" Type="decimal" Precision="5" Scale="2" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -135,6 +212,18 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PreciosVenta_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="PreciosVenta" Type="Self.PreciosVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="PreciosVenta">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Productos_Rubros">
           <End Role="Rubros" Type="Self.Rubros" Multiplicity="1" />
           <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
@@ -162,10 +251,36 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
         <EntityContainer Name="SistemaGestionPymeBDModelStoreContainer">
           <EntitySet Name="AjustesStock" EntityType="Self.AjustesStock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PreciosVenta" EntityType="Self.PreciosVenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegimenesImpositivos" EntityType="Self.RegimenesImpositivos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubros" EntityType="Self.Rubros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seteos" EntityType="Self.Seteos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnidadesMedida" EntityType="Self.UnidadesMedida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VistaPreciosVenta" EntityType="Self.VistaPreciosVenta" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VistaPreciosVenta].[IdProducto] AS [IdProducto], 
+    [VistaPreciosVenta].[DescCorta] AS [DescCorta], 
+    [VistaPreciosVenta].[FechaPrecio] AS [FechaPrecio], 
+    [VistaPreciosVenta].[Iva] AS [Iva], 
+    [VistaPreciosVenta].[PrecioContado] AS [PrecioContado], 
+    [VistaPreciosVenta].[PrecioFiado] AS [PrecioFiado], 
+    [VistaPreciosVenta].[PrecioEspecial] AS [PrecioEspecial], 
+    [VistaPreciosVenta].[PrecioContadoIva] AS [PrecioContadoIva], 
+    [VistaPreciosVenta].[PrecioFiadoIva] AS [PrecioFiadoIva], 
+    [VistaPreciosVenta].[PrecioEspecialIva] AS [PrecioEspecialIva], 
+    [VistaPreciosVenta].[PrecioBase] AS [PrecioBase], 
+    [VistaPreciosVenta].[Bonificacion1] AS [Bonificacion1], 
+    [VistaPreciosVenta].[Bonificacion2] AS [Bonificacion2], 
+    [VistaPreciosVenta].[Bonificacion3] AS [Bonificacion3], 
+    [VistaPreciosVenta].[Bonificacion4] AS [Bonificacion4], 
+    [VistaPreciosVenta].[PorcentajeFlete] AS [PorcentajeFlete], 
+    [VistaPreciosVenta].[PorcentajeDescarga] AS [PorcentajeDescarga], 
+    [VistaPreciosVenta].[PorcentajeGcia] AS [PorcentajeGcia], 
+    [VistaPreciosVenta].[PorcentajeFiado] AS [PorcentajeFiado], 
+    [VistaPreciosVenta].[Impuesto] AS [Impuesto]
+    FROM [dbo].[VistaPreciosVenta] AS [VistaPreciosVenta]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="VistaProducto" EntityType="Self.VistaProducto" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VistaProducto].[IdProducto] AS [IdProducto], 
@@ -194,6 +309,10 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <AssociationSet Name="FK_Clientes_RegimenesImpositivos" Association="Self.FK_Clientes_RegimenesImpositivos">
             <End Role="RegimenesImpositivos" EntitySet="RegimenesImpositivos" />
             <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreciosVenta_Productos" Association="Self.FK_PreciosVenta_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="PreciosVenta" EntitySet="PreciosVenta" />
           </AssociationSet>
           <AssociationSet Name="FK_Productos_Rubros" Association="Self.FK_Productos_Rubros">
             <End Role="Rubros" EntitySet="Rubros" />
@@ -275,6 +394,13 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             <End Role="AjustesStock" EntitySet="AjustesStock" />
           </AssociationSet>
           <EntitySet Name="VistaProducto" EntityType="SistemaGestionPymeBDModel.VistaProducto" />
+          <EntitySet Name="VistaPreciosVenta" EntityType="SistemaGestionPymeBDModel.VistaPreciosVenta" />
+          <EntitySet Name="PreciosVenta" EntityType="SistemaGestionPymeBDModel.PreciosVenta" />
+          <AssociationSet Name="FK_PreciosVenta_Productos" Association="SistemaGestionPymeBDModel.FK_PreciosVenta_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="PreciosVenta" EntitySet="PreciosVenta" />
+          </AssociationSet>
+          <EntitySet Name="Seteos" EntityType="SistemaGestionPymeBDModel.Seteos" />
         </EntityContainer>
         <EntityType Name="Productos">
           <Key>
@@ -298,6 +424,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <NavigationProperty Name="UnidadesMedida" Relationship="SistemaGestionPymeBDModel.FK_Productos_UnidadesMedida" FromRole="Productos" ToRole="UnidadesMedida" />
           <Property Name="FechaAcceso" Type="DateTime" Precision="3" />
           <NavigationProperty Name="AjustesStock" Relationship="SistemaGestionPymeBDModel.FK_AjustesStock_Productos" FromRole="Productos" ToRole="AjustesStock" />
+          <NavigationProperty Name="PreciosVenta" Relationship="SistemaGestionPymeBDModel.FK_PreciosVenta_Productos" FromRole="Productos" ToRole="PreciosVenta" />
         </EntityType>
         <EntityType Name="Rubros">
           <Key>
@@ -392,6 +519,94 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <Property Name="IdRubro" Type="Int32" Nullable="false" />
           <Property Name="CodigoProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdUnidadMedida" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VistaPreciosVenta">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+            <PropertyRef Name="DescCorta" />
+            <PropertyRef Name="FechaPrecio" />
+            <PropertyRef Name="Iva" />
+            <PropertyRef Name="PrecioContado" />
+            <PropertyRef Name="PrecioFiado" />
+            <PropertyRef Name="PrecioContadoIva" />
+            <PropertyRef Name="PrecioFiadoIva" />
+            <PropertyRef Name="PrecioBase" />
+            <PropertyRef Name="PorcentajeGcia" />
+          </Key>
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="DescCorta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FechaPrecio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Iva" Type="Decimal" Nullable="false" Precision="2" Scale="2" />
+          <Property Name="PrecioContado" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="PrecioFiado" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="PrecioEspecial" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioContadoIva" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="PrecioFiadoIva" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="PrecioEspecialIva" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioBase" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="Bonificacion1" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Bonificacion2" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Bonificacion3" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Bonificacion4" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="PorcentajeFlete" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="PorcentajeDescarga" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="PorcentajeGcia" Type="Decimal" Nullable="false" Precision="6" Scale="2" />
+          <Property Name="PorcentajeFiado" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Impuesto" Type="Decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="PreciosVenta">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+            <PropertyRef Name="FechaPrecios" />
+          </Key>
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="FechaPrecios" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PrecioContado" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="PrecioFiado" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="PrecioEspecial" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioContadoIva" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="PrecioFiadoIva" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="PrecioEspecialIva" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PrecioBase" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="Bonificacion1" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Bonificacion2" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Bonificacion3" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Bonificacion4" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Iva" Type="Decimal" Nullable="false" Precision="2" Scale="2" />
+          <Property Name="CostoBruto" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PorcentajeFlete" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="CostoFlete" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PorcentajeDescarga" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="CostoDescarga" Type="Decimal" Precision="9" Scale="4" />
+          <Property Name="CostoTotal" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PorcentajeGcia" Type="Decimal" Nullable="false" Precision="6" Scale="2" />
+          <Property Name="PorcentajeFiado" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="UsrAcceso" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FechaAcceso" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Impuesto" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="Productos" Relationship="SistemaGestionPymeBDModel.FK_PreciosVenta_Productos" FromRole="PreciosVenta" ToRole="Productos" />
+        </EntityType>
+        <Association Name="FK_PreciosVenta_Productos">
+          <End Type="SistemaGestionPymeBDModel.Productos" Role="Productos" Multiplicity="1" />
+          <End Type="SistemaGestionPymeBDModel.PreciosVenta" Role="PreciosVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="PreciosVenta">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Seteos">
+          <Key>
+            <PropertyRef Name="IdSeteo" />
+          </Key>
+          <Property Name="IdSeteo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiasVtoFact" Type="Int32" Nullable="false" />
+          <Property Name="PorcentajeGanancia" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="PorcentajeInteres" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="PorcentajeFlete" Type="Decimal" Precision="4" Scale="2" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -499,6 +714,74 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
                 <ScalarProperty Name="DescLarga" ColumnName="DescLarga" />
                 <ScalarProperty Name="DescCorta" ColumnName="DescCorta" />
                 <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaPreciosVenta">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.VistaPreciosVenta">
+              <MappingFragment StoreEntitySet="VistaPreciosVenta">
+                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+                <ScalarProperty Name="PorcentajeFiado" ColumnName="PorcentajeFiado" />
+                <ScalarProperty Name="PorcentajeGcia" ColumnName="PorcentajeGcia" />
+                <ScalarProperty Name="PorcentajeDescarga" ColumnName="PorcentajeDescarga" />
+                <ScalarProperty Name="PorcentajeFlete" ColumnName="PorcentajeFlete" />
+                <ScalarProperty Name="Bonificacion4" ColumnName="Bonificacion4" />
+                <ScalarProperty Name="Bonificacion3" ColumnName="Bonificacion3" />
+                <ScalarProperty Name="Bonificacion2" ColumnName="Bonificacion2" />
+                <ScalarProperty Name="Bonificacion1" ColumnName="Bonificacion1" />
+                <ScalarProperty Name="PrecioBase" ColumnName="PrecioBase" />
+                <ScalarProperty Name="PrecioEspecialIva" ColumnName="PrecioEspecialIva" />
+                <ScalarProperty Name="PrecioFiadoIva" ColumnName="PrecioFiadoIva" />
+                <ScalarProperty Name="PrecioContadoIva" ColumnName="PrecioContadoIva" />
+                <ScalarProperty Name="PrecioEspecial" ColumnName="PrecioEspecial" />
+                <ScalarProperty Name="PrecioFiado" ColumnName="PrecioFiado" />
+                <ScalarProperty Name="PrecioContado" ColumnName="PrecioContado" />
+                <ScalarProperty Name="Iva" ColumnName="Iva" />
+                <ScalarProperty Name="FechaPrecio" ColumnName="FechaPrecio" />
+                <ScalarProperty Name="DescCorta" ColumnName="DescCorta" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PreciosVenta">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.PreciosVenta">
+              <MappingFragment StoreEntitySet="PreciosVenta">
+                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+                <ScalarProperty Name="FechaAcceso" ColumnName="FechaAcceso" />
+                <ScalarProperty Name="UsrAcceso" ColumnName="UsrAcceso" />
+                <ScalarProperty Name="PorcentajeFiado" ColumnName="PorcentajeFiado" />
+                <ScalarProperty Name="PorcentajeGcia" ColumnName="PorcentajeGcia" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="CostoDescarga" ColumnName="CostoDescarga" />
+                <ScalarProperty Name="PorcentajeDescarga" ColumnName="PorcentajeDescarga" />
+                <ScalarProperty Name="CostoFlete" ColumnName="CostoFlete" />
+                <ScalarProperty Name="PorcentajeFlete" ColumnName="PorcentajeFlete" />
+                <ScalarProperty Name="CostoBruto" ColumnName="CostoBruto" />
+                <ScalarProperty Name="Iva" ColumnName="Iva" />
+                <ScalarProperty Name="Bonificacion4" ColumnName="Bonificacion4" />
+                <ScalarProperty Name="Bonificacion3" ColumnName="Bonificacion3" />
+                <ScalarProperty Name="Bonificacion2" ColumnName="Bonificacion2" />
+                <ScalarProperty Name="Bonificacion1" ColumnName="Bonificacion1" />
+                <ScalarProperty Name="PrecioBase" ColumnName="PrecioBase" />
+                <ScalarProperty Name="PrecioEspecialIva" ColumnName="PrecioEspecialIva" />
+                <ScalarProperty Name="PrecioFiadoIva" ColumnName="PrecioFiadoIva" />
+                <ScalarProperty Name="PrecioContadoIva" ColumnName="PrecioContadoIva" />
+                <ScalarProperty Name="PrecioEspecial" ColumnName="PrecioEspecial" />
+                <ScalarProperty Name="PrecioFiado" ColumnName="PrecioFiado" />
+                <ScalarProperty Name="PrecioContado" ColumnName="PrecioContado" />
+                <ScalarProperty Name="FechaPrecios" ColumnName="FechaPrecios" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seteos">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.Seteos">
+              <MappingFragment StoreEntitySet="Seteos">
+                <ScalarProperty Name="PorcentajeFlete" ColumnName="PorcentajeFlete" />
+                <ScalarProperty Name="PorcentajeInteres" ColumnName="PorcentajeInteres" />
+                <ScalarProperty Name="PorcentajeGanancia" ColumnName="PorcentajeGanancia" />
+                <ScalarProperty Name="DiasVtoFact" ColumnName="DiasVtoFact" />
+                <ScalarProperty Name="IdSeteo" ColumnName="IdSeteo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
