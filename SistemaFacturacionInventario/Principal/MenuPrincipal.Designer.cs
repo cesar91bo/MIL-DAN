@@ -156,7 +156,7 @@
             this.btnNuevoCliente.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.btnNuevoCliente.Size = new System.Drawing.Size(233, 40);
             this.btnNuevoCliente.TabIndex = 1;
-            this.btnNuevoCliente.Text = "Agregar Cliente";
+            this.btnNuevoCliente.Text = "Nuevo Cliente";
             this.btnNuevoCliente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNuevoCliente.UseVisualStyleBackColor = true;
             this.btnNuevoCliente.Click += new System.EventHandler(this.btnNuevoCliente_Click);
@@ -190,7 +190,7 @@
             this.btnGestionClientes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnGestionClientes.Size = new System.Drawing.Size(233, 45);
             this.btnGestionClientes.TabIndex = 9;
-            this.btnGestionClientes.Text = "Gestión de Clientes";
+            this.btnGestionClientes.Text = "Clientes";
             this.btnGestionClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGestionClientes.UseVisualStyleBackColor = true;
             this.btnGestionClientes.Click += new System.EventHandler(this.btnGestionClientes_Click);

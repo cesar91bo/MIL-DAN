@@ -1,4 +1,5 @@
-﻿using SistemaFacturacionInventario.Facturacion;
+﻿using SistemaFacturacionInventario.Clientes;
+using SistemaFacturacionInventario.Facturacion;
 using SistemaFacturacionInventario.Principal;
 using SistemaFacturacionInventario.Productos;
 using System;
@@ -132,6 +133,7 @@ namespace SistemaFacturacionInventario
 
         private void btnNuevoCliente_Click(object sender, EventArgs e)
         {
+            AbrirFormularioHijo(new frmCliente());
             OcultarPanelesSubMenu();
         }
 
