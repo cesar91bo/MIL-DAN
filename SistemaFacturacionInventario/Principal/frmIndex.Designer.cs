@@ -47,8 +47,7 @@
             this.lblFecha.AutoSize = true;
             this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFecha.ForeColor = System.Drawing.Color.SlateGray;
-            this.lblFecha.Location = new System.Drawing.Point(262, 288);
-            this.lblFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFecha.Location = new System.Drawing.Point(197, 250);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(131, 46);
             this.lblFecha.TabIndex = 4;
@@ -62,8 +61,7 @@
             this.lblHora.AutoSize = true;
             this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHora.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblHora.Location = new System.Drawing.Point(332, 169);
-            this.lblHora.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHora.Location = new System.Drawing.Point(285, 146);
             this.lblHora.Name = "lblHora";
             this.lblHora.Size = new System.Drawing.Size(212, 91);
             this.lblHora.TabIndex = 3;
@@ -79,7 +77,7 @@
             this.lblTemperatura.AutoSize = true;
             this.lblTemperatura.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTemperatura.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblTemperatura.Location = new System.Drawing.Point(74, 31);
+            this.lblTemperatura.Location = new System.Drawing.Point(63, 27);
             this.lblTemperatura.Name = "lblTemperatura";
             this.lblTemperatura.Size = new System.Drawing.Size(86, 17);
             this.lblTemperatura.TabIndex = 5;
@@ -91,7 +89,7 @@
             this.lblDescripcion.AutoSize = true;
             this.lblDescripcion.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDescripcion.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblDescripcion.Location = new System.Drawing.Point(74, 60);
+            this.lblDescripcion.Location = new System.Drawing.Point(63, 52);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(115, 17);
             this.lblDescripcion.TabIndex = 6;
@@ -100,9 +98,9 @@
             // 
             // pictureBoxClima
             // 
-            this.pictureBoxClima.Location = new System.Drawing.Point(62, 88);
+            this.pictureBoxClima.Location = new System.Drawing.Point(53, 76);
             this.pictureBoxClima.Name = "pictureBoxClima";
-            this.pictureBoxClima.Size = new System.Drawing.Size(127, 59);
+            this.pictureBoxClima.Size = new System.Drawing.Size(109, 51);
             this.pictureBoxClima.TabIndex = 7;
             this.pictureBoxClima.TabStop = false;
             this.pictureBoxClima.Visible = false;
@@ -112,7 +110,7 @@
             this.lblDolar.AutoSize = true;
             this.lblDolar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDolar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblDolar.Location = new System.Drawing.Point(628, 31);
+            this.lblDolar.Location = new System.Drawing.Point(538, 27);
             this.lblDolar.Name = "lblDolar";
             this.lblDolar.Size = new System.Drawing.Size(73, 17);
             this.lblDolar.TabIndex = 8;
@@ -121,16 +119,16 @@
             // 
             // frmIndex
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(838, 576);
+            this.ClientSize = new System.Drawing.Size(718, 499);
             this.Controls.Add(this.lblDolar);
             this.Controls.Add(this.pictureBoxClima);
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblTemperatura);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.lblHora);
-            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmIndex";
             this.Text = "frmIndex";
             this.Load += new System.EventHandler(this.frmIndex_Load);

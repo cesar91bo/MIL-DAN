@@ -262,10 +262,30 @@ namespace CapaNegocio
 
         public VistaPreciosVenta ObtenerVistaUltVPV(int idProducto)
         {
-            return ExistePrecio(idProducto) ? db.VistaPreciosVenta.SingleOrDefault(c => c.IdProducto == idProducto && c.FechaPrecio == ObtenerMaxFecha(idProducto)) : null;
+            // Primero obtenemos la fecha máxima
+            var maxFecha = ObtenerMaxFecha(idProducto);
+
+            // Luego usamos esa fecha en la consulta LINQ
+            return ExistePrecio(idProducto)
+            ? db.VistaPreciosVenta
+            .Where(c => c.IdProducto == idProducto &&
+                              c.FechaPrecio.Year == maxFecha.Year &&
+                              c.FechaPrecio.Month == maxFecha.Month &&
+                              c.FechaPrecio.Day == maxFecha.Day)
+            .OrderByDescending(c => c.FechaPrecio)
+            .FirstOrDefault()
+            : null;
+
         }
 
-        private DateTime ObtenerMaxFecha(long idArt) { return (from p in db.PreciosVenta where p.IdProducto == idArt select p.FechaPrecios).Max(); }
+        private DateTime ObtenerMaxFecha(int idProd)
+        {
+            // Obtener la fecha máxima fuera de la consulta LINQ to Entities
+            return db.PreciosVenta
+                .Where(p => p.IdProducto == idProd)
+                .Max(p => p.FechaPrecios);
+        }
+
 
         public bool NuevoPrecioVenta(PreciosVenta pv)
         {

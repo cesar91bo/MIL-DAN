@@ -59,10 +59,20 @@ namespace SistemaFacturacionInventario
             }
         }
 
-        private void btnInicio_Click(object sender, EventArgs e)
+        private async void btnInicio_Click(object sender, EventArgs e)
         {
+            // Deshabilitar el botón para evitar múltiples clics
+            btnInicio.Enabled = false;
+
+            // Ejecutar los métodos después del retraso
             AbrirFormularioHijo(new frmIndex());
             OcultarPanelesSubMenu();
+
+            // Esperar 2 segundos (2000 milisegundos)
+            await Task.Delay(2000);
+
+            // Volver a habilitar el botón
+            btnInicio.Enabled = true;
         }
 
         private void btnFacturacion_Click(object sender, EventArgs e)

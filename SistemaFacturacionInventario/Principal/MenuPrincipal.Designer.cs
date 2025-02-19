@@ -218,7 +218,7 @@
             this.btnInventario.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.btnInventario.Size = new System.Drawing.Size(233, 40);
             this.btnInventario.TabIndex = 2;
-            this.btnInventario.Text = "Consultar Precios";
+            this.btnInventario.Text = "Lista de Precios";
             this.btnInventario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInventario.UseVisualStyleBackColor = true;
             this.btnInventario.Click += new System.EventHandler(this.btnInventario_Click);

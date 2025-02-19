@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace SistemaFacturacionInventario.Productos
         private bool cargaDatos = true;
         private decimal precioBase, bonif1, precioBruto, ganancia, iva, precioContado, flete;
         public bool DeAfuera;
+        private Form activeForm;
 
         private void cmbIVA_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -37,13 +39,13 @@ namespace SistemaFacturacionInventario.Productos
                 UsrAcceso = "",
                 FechaAcceso = DateTime.Now,
                 FechaPrecios = DateTime.Now,
-                PrecioBase = Convert.ToDecimal(txtPrecioBase.Text.Replace(".", ",")),
-                Bonificacion1 = txtBonif.Text != "" && Convert.ToDecimal(txtBonif.Text) != 0 ? Convert.ToDecimal(txtBonif.Text.Replace(".", ",")) : (decimal?)null,
-                PorcentajeGcia = Convert.ToDecimal(txtGanancia.Text.Replace(".", ",")),
-                PorcentajeFlete = Convert.ToDecimal(txtFlete.Text.Replace(".", ",")),
-                Iva = Convert.ToByte(cmbIVA.SelectedValue),
-                PrecioContado = Convert.ToDecimal(txtContadoSIVA.Text.Replace(".", ",").Substring(1)),
-                PrecioContadoIva = Convert.ToDecimal(txtContadoConIVA.Text.Replace(".", ",").Substring(1))
+                PrecioBase = Convert.ToDecimal(txtPrecioBase.Text),
+                Bonificacion1 = txtBonif.Text != "" && Convert.ToDecimal(txtBonif.Text) != 0 ? Convert.ToDecimal(txtBonif.Text) : (decimal?)null,
+                PorcentajeGcia = Convert.ToDecimal(txtGanancia.Text),
+                PorcentajeFlete = Convert.ToDecimal(txtFlete.Text),
+                Iva = Convert.ToDecimal(cmbIVA.SelectedItem),
+                PrecioContado = Convert.ToDecimal(txtContadoSIVA.Text.Substring(1), CultureInfo.InvariantCulture),
+                PrecioContadoIva = Convert.ToDecimal(txtContadoConIVA.Text.Substring(1), CultureInfo.InvariantCulture)
             };
             var productoNegocio = new ProductoNegocio();
             if (!productoNegocio.NuevoPrecioVenta(pv)) return;
@@ -79,7 +81,7 @@ namespace SistemaFacturacionInventario.Productos
 
         private void txtBonif_TextChanged(object sender, EventArgs e)
         {
-            if (decimal.TryParse(txtBonif.Text.Replace(',', '.'), out decimal value))
+            if (decimal.TryParse(txtBonif.Text, out decimal value))
             {
                 if (value < 0 || value > 100)
                 {
@@ -105,7 +107,8 @@ namespace SistemaFacturacionInventario.Productos
 
         private void txtGanancia_TextChanged(object sender, EventArgs e)
         {
-            if (decimal.TryParse(txtGanancia.Text.Replace(',', '.'), out decimal value))
+
+            if (decimal.TryParse(txtGanancia.Text, out decimal value))
             {
                 if (value < 0 || value > 100)
                 {
@@ -130,7 +133,7 @@ namespace SistemaFacturacionInventario.Productos
 
         private void txtFlete_TextChanged(object sender, EventArgs e)
         {
-            if (decimal.TryParse(txtFlete.Text.Replace(',', '.'), out decimal value))
+            if (decimal.TryParse(txtFlete.Text, out decimal value))
             {
                 if (value < 0 || value > 100)
                 {
@@ -142,10 +145,31 @@ namespace SistemaFacturacionInventario.Productos
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            var frm = new frmListaPrecio();
-            frm.ShowDialog();
-            if (frm.DialogResult != DialogResult.OK || frm.IdProducto <= 0) return;
-            BuscarProducto(frm.IdProducto);
+            //var frm = new frmListaPrecio();
+            //frm.ShowDialog();
+            //if (frm.DialogResult != DialogResult.OK || frm.IdProducto <= 0) return;
+            //BuscarProducto(frm.IdProducto);
+            OpenChildForm(new frmListaPrecio(), sender);
+        }
+
+        public void OpenChildForm(Form childForm, object btnSender)
+        {
+            MenuPrincipal principal = Application.OpenForms["MenuPrincipal"] as MenuPrincipal;
+            if (principal != null)
+            {
+                this.Close();
+
+                activeForm = childForm;
+                childForm.TopLevel = false;
+                childForm.FormBorderStyle = FormBorderStyle.None;
+                childForm.Dock = DockStyle.Fill;
+                principal.pnlContenedorPrincipal.Controls.Add(childForm);
+                principal.pnlContenedorPrincipal.Tag = childForm;
+                childForm.BringToFront();
+                childForm.Show();
+            }
+
+
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -201,9 +225,54 @@ namespace SistemaFacturacionInventario.Productos
 
         private void txtPrecioBase_Leave(object sender, EventArgs e)
         {
-            precioBase = Convert.ToDecimal(txtPrecioBase.Text);
+            if (string.IsNullOrWhiteSpace(txtPrecioBase.Text))
+            {
+                txtPrecioBase.Text = "0";
+            }
+
+            precioBase = Math.Round(Convert.ToDecimal(txtPrecioBase.Text), 2);
 
             Calculos();
+        }
+
+        private void frmPrecios_Shown(object sender, EventArgs e)
+        {
+            txtPrecioBase.Focus();
+        }
+
+        private void txtGanancia_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtGanancia.Text))
+            {
+                txtGanancia.Text = "0";
+            }
+            ganancia = Math.Round(Convert.ToDecimal(txtGanancia.Text),2);
+            Calculos();
+        }
+
+        private void txtBonif_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtBonif.Text))
+            {
+                txtBonif.Text = "0";
+            }
+            bonif1 = Math.Round(Convert.ToDecimal(txtBonif.Text), 2);
+            Calculos();
+        }
+
+        private void txtFlete_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtFlete.Text))
+            {
+                txtFlete.Text = "0";
+            }
+            flete = Math.Round(Convert.ToDecimal(txtFlete.Text),2);
+            Calculos();
+        }
+
+        private void txtPrecioBase_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void frmPrecios_Load(object sender, EventArgs e)
@@ -214,6 +283,7 @@ namespace SistemaFacturacionInventario.Productos
             }
             txtPrecioBase.Focus();
             rdbConIVA.TabStop = false;
+            activeForm = new frmPrecios(); 
         }
 
         private void BuscarProducto(int idProducto)
@@ -246,11 +316,11 @@ namespace SistemaFacturacionInventario.Productos
             {
                 VistaPreciosVenta vpv = productoNegocio.ObtenerVistaUltVPV(idProducto);
                 lblFechaPrecio.Text = vpv.FechaPrecio.ToString();
-                precioBase = vpv.PrecioBase;
+                precioBase = Math.Round(Convert.ToDecimal(vpv.PrecioBase), 2);
                 if (vpv.Bonificacion1 != null) txtBonif.Text = vpv.Bonificacion1.ToString();
                 txtGanancia.Text = vpv.PorcentajeGcia.ToString();
                 txtFlete.Text = vpv.PorcentajeFlete.ToString();
-                cmbIVA.SelectedItem = Convert.ToDouble(vpv.Iva);
+                cmbIVA.SelectedText = vpv.Iva.ToString("0.##");
             }
 
             cargaDatos = false;
@@ -261,7 +331,7 @@ namespace SistemaFacturacionInventario.Productos
         {
             if (cargaDatos) return;
 
-            bonif1 = txtBonif.Text != "" ? precioBase * Convert.ToDecimal(txtBonif.Text.Replace(".", ",")) / 100 : 0;
+            bonif1 = txtBonif.Text != "" ? precioBase * Convert.ToDecimal(txtBonif.Text) / 100 : 0;
             precioBruto = precioBase - bonif1;
             CalcularVariables();
             LlenarLabels();
@@ -269,8 +339,8 @@ namespace SistemaFacturacionInventario.Productos
 
         private void CalcularVariables()
         {
-            flete = txtFlete.Text != "" ? precioBruto * (Convert.ToDecimal(txtFlete.Text.Replace(".", ",")) / 100) : 0;
-            ganancia = txtGanancia.Text != "" ? (precioBruto + flete) * (Convert.ToDecimal(txtGanancia.Text.Replace(".", ",")) / 100) : 0;
+            flete = txtFlete.Text != "" ? precioBruto * (Convert.ToDecimal(txtFlete.Text) / 100) : 0;
+            ganancia = txtGanancia.Text != "" ? (precioBruto + flete) * (Convert.ToDecimal(txtGanancia.Text) / 100) : 0;
             precioContado = precioBruto + flete + ganancia;
             iva = cmbIVA.Text != "" ? precioContado * (Convert.ToDecimal(cmbIVA.Text) / 100) : 0;
         }

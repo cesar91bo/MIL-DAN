@@ -33,7 +33,7 @@ namespace CapaDatos.Modelos
         public virtual DbSet<AjustesStock> AjustesStock { get; set; }
         public virtual DbSet<VistaProducto> VistaProducto { get; set; }
         public virtual DbSet<VistaPreciosVenta> VistaPreciosVenta { get; set; }
-        public virtual DbSet<PreciosVenta> PreciosVenta { get; set; }
         public virtual DbSet<Seteos> Seteos { get; set; }
+        public virtual DbSet<PreciosVenta> PreciosVenta { get; set; }
     }
 }

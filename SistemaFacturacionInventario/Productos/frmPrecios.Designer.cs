@@ -37,7 +37,10 @@
             this.rdbConIVA = new System.Windows.Forms.RadioButton();
             this.lblFechaPrecio = new System.Windows.Forms.Label();
             this.grpBoxProducto = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.lblNombreProd = new System.Windows.Forms.Label();
+            this.btnVolver = new System.Windows.Forms.Button();
             this.grpBoxVariables = new System.Windows.Forms.GroupBox();
             this.cmbIVA = new System.Windows.Forms.ComboBox();
             this.lblBonificacion = new System.Windows.Forms.Label();
@@ -58,9 +61,6 @@
             this.txtContadoConIVA = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnVolver = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtCostoFinal = new System.Windows.Forms.TextBox();
             this.grpBoxProducto.SuspendLayout();
             this.grpBoxVariables.SuspendLayout();
@@ -75,6 +75,7 @@
             this.txtNroProducto.Name = "txtNroProducto";
             this.txtNroProducto.Size = new System.Drawing.Size(71, 22);
             this.txtNroProducto.TabIndex = 13;
+            this.txtNroProducto.TabStop = false;
             this.txtNroProducto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNroProducto_KeyDown);
             this.txtNroProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNroProducto_KeyPress);
             this.txtNroProducto.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtNroProducto_PreviewKeyDown);
@@ -106,9 +107,10 @@
             this.txtPrecioBase.MaxLength = 6;
             this.txtPrecioBase.Name = "txtPrecioBase";
             this.txtPrecioBase.Size = new System.Drawing.Size(71, 22);
-            this.txtPrecioBase.TabIndex = 1;
+            this.txtPrecioBase.TabIndex = 0;
             this.txtPrecioBase.Text = "0";
             this.txtPrecioBase.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPrecioBase.TextChanged += new System.EventHandler(this.txtPrecioBase_TextChanged);
             this.txtPrecioBase.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioBase_KeyPress);
             this.txtPrecioBase.Leave += new System.EventHandler(this.txtPrecioBase_Leave);
             // 
@@ -126,11 +128,11 @@
             // rdbConIVA
             // 
             this.rdbConIVA.AutoSize = true;
+            this.rdbConIVA.Checked = true;
             this.rdbConIVA.Location = new System.Drawing.Point(267, 58);
             this.rdbConIVA.Name = "rdbConIVA";
             this.rdbConIVA.Size = new System.Drawing.Size(65, 17);
             this.rdbConIVA.TabIndex = 3;
-            this.rdbConIVA.TabStop = true;
             this.rdbConIVA.Text = "Con IVA";
             this.rdbConIVA.UseVisualStyleBackColor = true;
             // 
@@ -164,6 +166,30 @@
             this.grpBoxProducto.TabStop = false;
             this.grpBoxProducto.Text = "Producto";
             // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.textBox1.Location = new System.Drawing.Point(117, 165);
+            this.textBox1.MaxLength = 6;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(71, 22);
+            this.textBox1.TabIndex = 24;
+            this.textBox1.Text = "0";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Enabled = false;
+            this.btnBuscar.Image = global::SistemaFacturacionInventario.Properties.Resources.icons8_buscar_20;
+            this.btnBuscar.Location = new System.Drawing.Point(198, 9);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(35, 28);
+            this.btnBuscar.TabIndex = 23;
+            this.btnBuscar.TabStop = false;
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
             // lblNombreProd
             // 
             this.lblNombreProd.AutoSize = true;
@@ -173,6 +199,17 @@
             this.lblNombreProd.Size = new System.Drawing.Size(120, 13);
             this.lblNombreProd.TabIndex = 22;
             this.lblNombreProd.Text = "Nombre del Producto";
+            // 
+            // btnVolver
+            // 
+            this.btnVolver.Image = ((System.Drawing.Image)(resources.GetObject("btnVolver.Image")));
+            this.btnVolver.Location = new System.Drawing.Point(240, 8);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(30, 30);
+            this.btnVolver.TabIndex = 16;
+            this.btnVolver.TabStop = false;
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // grpBoxVariables
             // 
@@ -219,6 +256,7 @@
             this.txtBonif.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBonif.TextChanged += new System.EventHandler(this.txtBonif_TextChanged);
             this.txtBonif.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBonif_KeyPress);
+            this.txtBonif.Leave += new System.EventHandler(this.txtBonif_Leave);
             // 
             // lblCostoFinal
             // 
@@ -252,6 +290,7 @@
             this.txtGanancia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtGanancia.TextChanged += new System.EventHandler(this.txtGanancia_TextChanged);
             this.txtGanancia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGanancia_KeyPress);
+            this.txtGanancia.Leave += new System.EventHandler(this.txtGanancia_Leave);
             // 
             // lblTipoIVA
             // 
@@ -306,7 +345,8 @@
             // txtContadoSIVA
             // 
             this.txtContadoSIVA.Enabled = false;
-            this.txtContadoSIVA.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.txtContadoSIVA.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtContadoSIVA.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.txtContadoSIVA.Location = new System.Drawing.Point(281, 262);
             this.txtContadoSIVA.MaxLength = 6;
             this.txtContadoSIVA.Name = "txtContadoSIVA";
@@ -337,6 +377,7 @@
             this.txtFlete.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtFlete.TextChanged += new System.EventHandler(this.txtFlete_TextChanged);
             this.txtFlete.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFlete_KeyPress);
+            this.txtFlete.Leave += new System.EventHandler(this.txtFlete_Leave);
             // 
             // lblFleteNro
             // 
@@ -361,7 +402,8 @@
             // txtContadoConIVA
             // 
             this.txtContadoConIVA.Enabled = false;
-            this.txtContadoConIVA.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.txtContadoConIVA.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtContadoConIVA.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.txtContadoConIVA.Location = new System.Drawing.Point(518, 262);
             this.txtContadoConIVA.MaxLength = 6;
             this.txtContadoConIVA.Name = "txtContadoConIVA";
@@ -399,39 +441,6 @@
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // btnVolver
-            // 
-            this.btnVolver.Image = ((System.Drawing.Image)(resources.GetObject("btnVolver.Image")));
-            this.btnVolver.Location = new System.Drawing.Point(240, 8);
-            this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(30, 30);
-            this.btnVolver.TabIndex = 16;
-            this.btnVolver.UseVisualStyleBackColor = true;
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Enabled = false;
-            this.btnBuscar.Image = global::SistemaFacturacionInventario.Properties.Resources.icons8_buscar_20;
-            this.btnBuscar.Location = new System.Drawing.Point(198, 9);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(35, 28);
-            this.btnBuscar.TabIndex = 23;
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.textBox1.Location = new System.Drawing.Point(117, 165);
-            this.textBox1.MaxLength = 6;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(71, 22);
-            this.textBox1.TabIndex = 24;
-            this.textBox1.Text = "0";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtCostoFinal
             // 
@@ -473,6 +482,7 @@
             this.Name = "frmPrecios";
             this.Text = "Precios";
             this.Load += new System.EventHandler(this.frmPrecios_Load);
+            this.Shown += new System.EventHandler(this.frmPrecios_Shown);
             this.grpBoxProducto.ResumeLayout(false);
             this.grpBoxProducto.PerformLayout();
             this.grpBoxVariables.ResumeLayout(false);

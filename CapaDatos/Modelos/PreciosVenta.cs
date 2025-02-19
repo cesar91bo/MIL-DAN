@@ -27,7 +27,7 @@ namespace CapaDatos.Modelos
         public Nullable<decimal> Bonificacion2 { get; set; }
         public Nullable<decimal> Bonificacion3 { get; set; }
         public Nullable<decimal> Bonificacion4 { get; set; }
-        public decimal Iva { get; set; }
+        public Nullable<decimal> Iva { get; set; }
         public Nullable<decimal> CostoBruto { get; set; }
         public Nullable<decimal> PorcentajeFlete { get; set; }
         public Nullable<decimal> CostoFlete { get; set; }
