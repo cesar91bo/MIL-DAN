@@ -15,7 +15,7 @@ namespace SistemaFacturacionInventario.Productos
 {
     public partial class frmPrecios : FormBase
     {
-        private int IdProducto;
+        public int IdProducto;
         private bool cargaDatos = true;
         private decimal precioBase, bonif1, precioBruto, ganancia, iva, precioContado, flete;
         public bool DeAfuera;

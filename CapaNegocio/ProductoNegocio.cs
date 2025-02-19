@@ -297,5 +297,54 @@ namespace CapaNegocio
             }
             catch (Exception ex) { throw ex; }
         }
+
+        public List<VistaPreciosVenta> ObtenerUltPrecioVenta()
+        {
+            // Agrupar por ProductoId y seleccionar el último precio por fecha
+            var ultimosPrecios = db.VistaPreciosVenta
+                .GroupBy(p => p.IdProducto) // Agrupar por ProductoId
+                .Select(g => g.OrderByDescending(p => p.FechaPrecio).FirstOrDefault()) // Seleccionar el último precio por fecha
+                .ToList();
+
+            return ultimosPrecios;
+        }
+
+        public List<VistaPreciosVenta> ObtenerListPreciosPorNro(int idProducto)
+        {
+
+            if (idProducto.ToString() == "")
+            {
+                // Obtener todos los productos con su último precio
+                var ultimosPrecios = db.VistaPreciosVenta
+                    .GroupBy(p => p.IdProducto) // Agrupar por IdProducto
+                    .Select(g => g.OrderByDescending(p => p.FechaPrecio).FirstOrDefault()) // Seleccionar el último precio por fecha
+                    .ToList();
+
+                return ultimosPrecios;
+            }
+            else
+            {
+                // Obtener el último precio para un producto específico
+                var ultimoPrecio = db.VistaPreciosVenta
+                    .Where(p => p.IdProducto == idProducto) // Filtrar por IdProducto
+                    .OrderByDescending(p => p.FechaPrecio) // Ordenar por FechaPrecio (el más reciente primero)
+                    .FirstOrDefault(); // Seleccionar el primero (el más reciente)
+
+                // Devolver una lista con un solo elemento (el último precio)
+                return ultimoPrecio != null ? new List<VistaPreciosVenta> { ultimoPrecio } : new List<VistaPreciosVenta>();
+            }
+
+        }
+
+        public List<VistaPreciosVenta> ObtenerListPreciosPorDesc(string descr)
+        {
+
+            return db.VistaPreciosVenta
+             .Where(prod => prod.DescCorta.Contains(descr))
+             .GroupBy(prod => prod.DescCorta) // Agrupa por descripción
+             .Select(g => g.OrderByDescending(prod => prod.FechaPrecio).FirstOrDefault()) // Toma el más reciente
+             .ToList();
+
+        }
     }
 }

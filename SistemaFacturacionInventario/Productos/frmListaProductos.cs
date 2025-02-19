@@ -396,7 +396,10 @@ namespace SistemaFacturacionInventario.Productos
                 }
                 var frm = new frmPrecios(Convert.ToInt32(listViewProductos.SelectedItems[0].Tag));
                 frm.ShowDialog();
-                Llenarlistview(false);
+                btnEditar.Enabled = false;
+                btnEliminar.Enabled =  false;
+                btnPrecio.Enabled = false;
+                Llenarlistview(true);
             }
             catch (Exception ex)
             {

@@ -36,8 +36,6 @@
             this.lblFiltrar = new System.Windows.Forms.Label();
             this.lblListaPrecios = new System.Windows.Forms.Label();
             this.btnEditar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnPrecio = new System.Windows.Forms.Button();
             this.listViewProductos = new System.Windows.Forms.ListView();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -47,13 +45,14 @@
             this.btnBuscar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(594, 67);
+            this.btnBuscar.Location = new System.Drawing.Point(695, 67);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(78, 30);
             this.btnBuscar.TabIndex = 31;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // panel1
             // 
@@ -61,7 +60,7 @@
             this.panel1.Controls.Add(this.cmbFiltro);
             this.panel1.Controls.Add(this.lblFiltrar);
             this.panel1.Controls.Add(this.lblListaPrecios);
-            this.panel1.Location = new System.Drawing.Point(33, 12);
+            this.panel1.Location = new System.Drawing.Point(139, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(806, 100);
             this.panel1.TabIndex = 30;
@@ -74,6 +73,7 @@
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(504, 22);
             this.txtFiltro.TabIndex = 22;
+            this.txtFiltro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFiltro_KeyDown);
             // 
             // cmbFiltro
             // 
@@ -110,41 +110,14 @@
             this.btnEditar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(301, 437);
+            this.btnEditar.Location = new System.Drawing.Point(493, 437);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(82, 37);
+            this.btnEditar.Size = new System.Drawing.Size(97, 37);
             this.btnEditar.TabIndex = 29;
-            this.btnEditar.Text = "Editar";
+            this.btnEditar.Text = "Actualizar";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEditar.UseVisualStyleBackColor = true;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Enabled = false;
-            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
-            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(474, 437);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(78, 37);
-            this.btnEliminar.TabIndex = 28;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            // 
-            // btnPrecio
-            // 
-            this.btnPrecio.Enabled = false;
-            this.btnPrecio.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrecio.Image = ((System.Drawing.Image)(resources.GetObject("btnPrecio.Image")));
-            this.btnPrecio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrecio.Location = new System.Drawing.Point(390, 437);
-            this.btnPrecio.Name = "btnPrecio";
-            this.btnPrecio.Size = new System.Drawing.Size(77, 37);
-            this.btnPrecio.TabIndex = 27;
-            this.btnPrecio.Text = "Precio";
-            this.btnPrecio.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrecio.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // listViewProductos
             // 
@@ -154,21 +127,24 @@
             this.listViewProductos.Location = new System.Drawing.Point(28, 112);
             this.listViewProductos.MultiSelect = false;
             this.listViewProductos.Name = "listViewProductos";
-            this.listViewProductos.Size = new System.Drawing.Size(811, 302);
+            this.listViewProductos.Size = new System.Drawing.Size(1003, 302);
             this.listViewProductos.TabIndex = 26;
             this.listViewProductos.UseCompatibleStateImageBehavior = false;
             this.listViewProductos.View = System.Windows.Forms.View.Details;
+            this.listViewProductos.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewProductos_ColumnClick);
+            this.listViewProductos.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewProductos_ItemSelectionChanged);
+            this.listViewProductos.SelectedIndexChanged += new System.EventHandler(this.listViewProductos_SelectedIndexChanged);
+            this.listViewProductos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewProductos_KeyDown);
+            this.listViewProductos.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewProductos_MouseDoubleClick);
             // 
             // frmListaPrecio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(867, 487);
+            this.ClientSize = new System.Drawing.Size(1043, 487);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnPrecio);
             this.Controls.Add(this.listViewProductos);
             this.Name = "frmListaPrecio";
             this.Text = "frmListaPrecio";
@@ -188,8 +164,6 @@
         private System.Windows.Forms.Label lblFiltrar;
         private System.Windows.Forms.Label lblListaPrecios;
         private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnPrecio;
         private System.Windows.Forms.ListView listViewProductos;
     }
 }
