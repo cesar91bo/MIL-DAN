@@ -1,10 +1,13 @@
 ﻿using CapaDatos.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CapaNegocio
 {
@@ -148,6 +151,59 @@ namespace CapaNegocio
             }
             catch (Exception ex) { throw ex; }
         }
+
+        public List<Provincias> ObtenerProvincias() { return db.Provincias.ToList(); }
+        public List<VistaCPostales> ObtenerCPs() { return db.VistaCPostales.ToList(); }
+        public List<RegimenesImpositivos> ObtenerRegimenes() { return db.RegimenesImpositivos.ToList(); }
+        public List<TiposDocumento> ObtenerTiposDoc()
+        {
+            List<TiposDocumento> ltd = db.TiposDocumento.ToList();
+            TiposDocumento ItemEmpty = new TiposDocumento { TipoDocumento = "-", Descripcion = "-" };
+            ltd.Add(ItemEmpty);
+            return ltd;
+        }
+
+        public CPostales ObtenerDatosCP(short codigoPostal, byte subCodigoPostal)
+        {
+            return db.CPostales.SingleOrDefault(c => c.CodigoPostal == codigoPostal && c.SubCodigoPostal == subCodigoPostal);
+        }
+
+        public DataTable DTCP(short idProv)
+        {
+            var cps = from c in ObtenerCPs()
+                      where c.IdProvincia == idProv
+                      orderby c.Localidad
+                      select c;
+            DataTable dt = ConvertToDataTable(cps.ToList());
+            return dt;
+        }
         #endregion
+
+        public DataTable ConvertToDataTable<T>(List<T> list)
+        {
+            DataTable dt = new DataTable();
+
+            if (list.Count == 0) return dt; // Si la lista está vacía, retorna un DataTable vacío.
+
+            // Crear las columnas en base a las propiedades de la clase
+            foreach (var prop in typeof(T).GetProperties())
+            {
+                dt.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+            }
+
+            // Llenar las filas con los datos de la lista
+            foreach (var item in list)
+            {
+                DataRow row = dt.NewRow();
+                foreach (var prop in typeof(T).GetProperties())
+                {
+                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+                }
+                dt.Rows.Add(row);
+            }
+
+            return dt;
+        }
+
     }
 }

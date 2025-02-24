@@ -57,6 +57,9 @@
     <Compile Include="Modelos\Clientes.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\CPostales.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\ModelBD.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,6 +81,9 @@
     <Compile Include="Modelos\Productos.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\Provincias.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\RegimenesImpositivos.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -87,7 +93,16 @@
     <Compile Include="Modelos\Seteos.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\TiposDocumento.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\UnidadesMedida.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\VistaClientes.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\VistaCPostales.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\VistaPreciosVenta.cs">

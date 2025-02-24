@@ -360,7 +360,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(855, 517);
+            this.btnCancelar.Location = new System.Drawing.Point(752, 517);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(91, 43);
@@ -376,7 +376,7 @@
             this.btnBaja.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBaja.Image = ((System.Drawing.Image)(resources.GetObject("btnBaja.Image")));
             this.btnBaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBaja.Location = new System.Drawing.Point(661, 517);
+            this.btnBaja.Location = new System.Drawing.Point(851, 517);
             this.btnBaja.Margin = new System.Windows.Forms.Padding(4);
             this.btnBaja.Name = "btnBaja";
             this.btnBaja.Size = new System.Drawing.Size(91, 43);
@@ -391,7 +391,7 @@
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(757, 517);
+            this.btnGuardar.Location = new System.Drawing.Point(654, 517);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(91, 43);

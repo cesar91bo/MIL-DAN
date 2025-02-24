@@ -5,9 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2b3994fd756643c8b5e23072ba438048" Name="Diagram1">
-        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Clientes" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.RegimenesImpositivos" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_Clientes_RegimenesImpositivos" ManuallyRouted="false" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Productos" Width="1.5" PointX="7.625" PointY="2.5" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Rubros" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.UnidadesMedida" Width="1.5" PointX="5.375" PointY="3.75" />
@@ -20,6 +18,14 @@
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Seteos" Width="1.5" PointX="10.375" PointY="0.75" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.PreciosVenta" Width="1.5" PointX="9.875" PointY="6.875" />
         <AssociationConnector Association="SistemaGestionPymeBDModel.FK_PreciosVenta_Productos" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.CPostales" Width="1.5" PointX="15" PointY="0.875" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Provincias" Width="1.5" PointX="12.75" PointY="1.125" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.VistaCPostales" Width="1.5" PointX="0.75" PointY="12.75" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_CPOSTALES_PROVINCIAS" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.TiposDocumento" Width="1.5" PointX="12.375" PointY="3.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Clientes" Width="1.5" PointX="3" PointY="9.25" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_Clientes_RegimenesImpositivos" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.VistaClientes" Width="1.5" PointX="12.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

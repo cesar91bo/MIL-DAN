@@ -128,12 +128,13 @@ namespace SistemaFacturacionInventario
 
         private void btnListadoClientes_Click(object sender, EventArgs e)
         {
+            AbrirFormularioHijo(new frmListaClientes());
             OcultarPanelesSubMenu();
         }
 
         private void btnNuevoCliente_Click(object sender, EventArgs e)
         {
-            AbrirFormularioHijo(new frmCliente());
+            AbrirFormularioHijo(new frmCliente{ Accion = "ALTA" });
             OcultarPanelesSubMenu();
         }
 

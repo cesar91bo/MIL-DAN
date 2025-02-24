@@ -21,14 +21,18 @@
             <PropertyRef Name="IdCliente" />
           </Key>
           <Property Name="IdCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NroCliente" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Apellido" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Documento" Type="nvarchar" MaxLength="50" />
-          <Property Name="TipoDocumento" Type="nvarchar" MaxLength="50" />
+          <Property Name="Documento" Type="bigint" />
+          <Property Name="TipoDocumento" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Cuit0" Type="nvarchar" MaxLength="2" />
+          <Property Name="Cuit1" Type="nvarchar" MaxLength="8" />
+          <Property Name="Cuit2" Type="nvarchar" MaxLength="1" />
           <Property Name="Telefono" Type="nvarchar" MaxLength="50" />
           <Property Name="Direccion" Type="nvarchar" MaxLength="150" />
+          <Property Name="CodigoPostal" Type="smallint" Nullable="false" />
+          <Property Name="SubCodigoPostal" Type="tinyint" Nullable="false" />
           <Property Name="Ciudad" Type="nvarchar" MaxLength="150" />
           <Property Name="Provincia" Type="nvarchar" MaxLength="150" />
           <Property Name="FechaNacimiento" Type="datetime" />
@@ -37,6 +41,16 @@
           <Property Name="FechaBaja" Type="datetime" />
           <Property Name="IdRegimenImpositivo" Type="int" />
           <Property Name="Observaciones" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="CPostales">
+          <Key>
+            <PropertyRef Name="CodigoPostal" />
+            <PropertyRef Name="SubCodigoPostal" />
+          </Key>
+          <Property Name="CodigoPostal" Type="smallint" Nullable="false" />
+          <Property Name="SubCodigoPostal" Type="tinyint" Nullable="false" />
+          <Property Name="Localidad" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="IdProvincia" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PreciosVenta">
           <Key>
@@ -89,6 +103,13 @@
           <Property Name="Embalaje" Type="int" />
           <Property Name="FechaAcceso" Type="datetime" />
         </EntityType>
+        <EntityType Name="Provincias">
+          <Key>
+            <PropertyRef Name="IdProvincia" />
+          </Key>
+          <Property Name="IdProvincia" Type="int" Nullable="false" />
+          <Property Name="Provincia" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="RegimenesImpositivos">
           <Key>
             <PropertyRef Name="IdRegimenImpositivo" />
@@ -113,12 +134,70 @@
           <Property Name="PorcentajeInteres" Type="decimal" Precision="4" Scale="2" Nullable="false" />
           <Property Name="PorcentajeFlete" Type="decimal" Precision="4" Scale="2" />
         </EntityType>
+        <EntityType Name="TiposDocumento">
+          <Key>
+            <PropertyRef Name="TipoDocumento" />
+          </Key>
+          <Property Name="TipoDocumento" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="UnidadesMedida">
           <Key>
             <PropertyRef Name="IdUnidadMedida" />
           </Key>
           <Property Name="IdUnidadMedida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaClientes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VistaClientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Apellido" />
+            <PropertyRef Name="TipoDocumento" />
+            <PropertyRef Name="Nro.Doc" />
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="Localidad" />
+            <PropertyRef Name="Provincia" />
+            <PropertyRef Name="FechaBaja" />
+            <PropertyRef Name="CodigoPostal" />
+            <PropertyRef Name="Estado" />
+          </Key>
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TipoDocumento" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nro.Doc" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="150" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Localidad" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="datetime" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Provincia" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cuit" Type="nvarchar" MaxLength="13" />
+          <Property Name="FechaBaja" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Observaciones" Type="nvarchar" MaxLength="250" />
+          <Property Name="CodigoPostal" Type="smallint" Nullable="false" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaCPostales' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VistaCPostales">
+          <Key>
+            <PropertyRef Name="CodigoPostal" />
+            <PropertyRef Name="SubCodigoPostal" />
+            <PropertyRef Name="Localidad" />
+            <PropertyRef Name="Provincia" />
+            <PropertyRef Name="IdProvincia" />
+          </Key>
+          <Property Name="CodigoPostal" Type="smallint" Nullable="false" />
+          <Property Name="SubCodigoPostal" Type="tinyint" Nullable="false" />
+          <Property Name="Localidad" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="Provincia" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CpSubCp" Type="nvarchar" MaxLength="61" />
+          <Property Name="IdProvincia" Type="int" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaPreciosVenta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -212,6 +291,18 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CPOSTALES_PROVINCIAS">
+          <End Role="Provincias" Type="Self.Provincias" Multiplicity="1" />
+          <End Role="CPostales" Type="Self.CPostales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="IdProvincia" />
+            </Principal>
+            <Dependent Role="CPostales">
+              <PropertyRef Name="IdProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PreciosVenta_Productos">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="PreciosVenta" Type="Self.PreciosVenta" Multiplicity="*" />
@@ -251,12 +342,46 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
         <EntityContainer Name="SistemaGestionPymeBDModelStoreContainer">
           <EntitySet Name="AjustesStock" EntityType="Self.AjustesStock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CPostales" EntityType="Self.CPostales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PreciosVenta" EntityType="Self.PreciosVenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provincias" EntityType="Self.Provincias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegimenesImpositivos" EntityType="Self.RegimenesImpositivos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubros" EntityType="Self.Rubros" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Seteos" EntityType="Self.Seteos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposDocumento" EntityType="Self.TiposDocumento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnidadesMedida" EntityType="Self.UnidadesMedida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VistaClientes" EntityType="Self.VistaClientes" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VistaClientes].[IdCliente] AS [IdCliente], 
+    [VistaClientes].[Nombre] AS [Nombre], 
+    [VistaClientes].[Apellido] AS [Apellido], 
+    [VistaClientes].[TipoDocumento] AS [TipoDocumento], 
+    [VistaClientes].[Nro.Doc] AS [Nro.Doc], 
+    [VistaClientes].[Direccion] AS [Direccion], 
+    [VistaClientes].[Descripcion] AS [Descripcion], 
+    [VistaClientes].[Localidad] AS [Localidad], 
+    [VistaClientes].[FechaNacimiento] AS [FechaNacimiento], 
+    [VistaClientes].[Telefono] AS [Telefono], 
+    [VistaClientes].[Email] AS [Email], 
+    [VistaClientes].[Provincia] AS [Provincia], 
+    [VistaClientes].[Cuit] AS [Cuit], 
+    [VistaClientes].[FechaBaja] AS [FechaBaja], 
+    [VistaClientes].[Observaciones] AS [Observaciones], 
+    [VistaClientes].[CodigoPostal] AS [CodigoPostal], 
+    [VistaClientes].[Estado] AS [Estado]
+    FROM [dbo].[VistaClientes] AS [VistaClientes]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VistaCPostales" EntityType="Self.VistaCPostales" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VistaCPostales].[CodigoPostal] AS [CodigoPostal], 
+    [VistaCPostales].[SubCodigoPostal] AS [SubCodigoPostal], 
+    [VistaCPostales].[Localidad] AS [Localidad], 
+    [VistaCPostales].[Provincia] AS [Provincia], 
+    [VistaCPostales].[CpSubCp] AS [CpSubCp], 
+    [VistaCPostales].[IdProvincia] AS [IdProvincia]
+    FROM [dbo].[VistaCPostales] AS [VistaCPostales]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="VistaPreciosVenta" EntityType="Self.VistaPreciosVenta" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VistaPreciosVenta].[IdProducto] AS [IdProducto], 
@@ -310,6 +435,10 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             <End Role="RegimenesImpositivos" EntitySet="RegimenesImpositivos" />
             <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
+          <AssociationSet Name="FK_CPOSTALES_PROVINCIAS" Association="Self.FK_CPOSTALES_PROVINCIAS">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="CPostales" EntitySet="CPostales" />
+          </AssociationSet>
           <AssociationSet Name="FK_PreciosVenta_Productos" Association="Self.FK_PreciosVenta_Productos">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="PreciosVenta" EntitySet="PreciosVenta" />
@@ -327,56 +456,16 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SistemaGestionPymeBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Clientes">
-          <Key>
-            <PropertyRef Name="IdCliente" />
-          </Key>
-          <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NroCliente" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Documento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TipoDocumento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Ciudad" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Provincia" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
-          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FechaBaja" Type="DateTime" Precision="3" />
-          <Property Name="IdRegimenImpositivo" Type="Int32" />
-          <Property Name="Observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="RegimenesImpositivos" Relationship="Self.FK_Clientes_RegimenesImpositivos" FromRole="Clientes" ToRole="RegimenesImpositivos" />
-        </EntityType>
         <EntityType Name="RegimenesImpositivos">
           <Key>
             <PropertyRef Name="IdRegimenImpositivo" />
           </Key>
           <Property Name="IdRegimenImpositivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Clientes" Relationship="Self.FK_Clientes_RegimenesImpositivos" FromRole="RegimenesImpositivos" ToRole="Clientes" />
+          <NavigationProperty Name="Clientes" Relationship="SistemaGestionPymeBDModel.FK_Clientes_RegimenesImpositivos" FromRole="RegimenesImpositivos" ToRole="Clientes" />
         </EntityType>
-        <Association Name="FK_Clientes_RegimenesImpositivos">
-          <End Role="RegimenesImpositivos" Type="Self.RegimenesImpositivos" Multiplicity="0..1" />
-          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RegimenesImpositivos">
-              <PropertyRef Name="IdRegimenImpositivo" />
-            </Principal>
-            <Dependent Role="Clientes">
-              <PropertyRef Name="IdRegimenImpositivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SistemaGestionPymeBDEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Clientes" EntityType="Self.Clientes" />
           <EntitySet Name="RegimenesImpositivos" EntityType="Self.RegimenesImpositivos" />
-          <AssociationSet Name="FK_Clientes_RegimenesImpositivos" Association="Self.FK_Clientes_RegimenesImpositivos">
-            <End Role="RegimenesImpositivos" EntitySet="RegimenesImpositivos" />
-            <End Role="Clientes" EntitySet="Clientes" />
-          </AssociationSet>
           <EntitySet Name="Productos" EntityType="SistemaGestionPymeBDModel.Productos" />
           <EntitySet Name="Rubros" EntityType="SistemaGestionPymeBDModel.Rubros" />
           <EntitySet Name="UnidadesMedida" EntityType="SistemaGestionPymeBDModel.UnidadesMedida" />
@@ -401,6 +490,20 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             <End Role="Productos" EntitySet="Productos" />
             <End Role="PreciosVenta" EntitySet="PreciosVenta" />
           </AssociationSet>
+          <EntitySet Name="CPostales" EntityType="SistemaGestionPymeBDModel.CPostales" />
+          <EntitySet Name="Provincias" EntityType="SistemaGestionPymeBDModel.Provincias" />
+          <EntitySet Name="VistaCPostales" EntityType="SistemaGestionPymeBDModel.VistaCPostales" />
+          <AssociationSet Name="FK_CPOSTALES_PROVINCIAS" Association="SistemaGestionPymeBDModel.FK_CPOSTALES_PROVINCIAS">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="CPostales" EntitySet="CPostales" />
+          </AssociationSet>
+          <EntitySet Name="TiposDocumento" EntityType="SistemaGestionPymeBDModel.TiposDocumento" />
+          <EntitySet Name="Clientes" EntityType="SistemaGestionPymeBDModel.Clientes" />
+          <AssociationSet Name="FK_Clientes_RegimenesImpositivos" Association="SistemaGestionPymeBDModel.FK_Clientes_RegimenesImpositivos">
+            <End Role="RegimenesImpositivos" EntitySet="RegimenesImpositivos" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <EntitySet Name="VistaClientes" EntityType="SistemaGestionPymeBDModel.VistaClientes" />
         </EntityContainer>
         <EntityType Name="Productos">
           <Key>
@@ -608,35 +711,136 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CPostales">
+          <Key>
+            <PropertyRef Name="CodigoPostal" />
+            <PropertyRef Name="SubCodigoPostal" />
+          </Key>
+          <Property Name="CodigoPostal" Type="Int16" Nullable="false" />
+          <Property Name="SubCodigoPostal" Type="Byte" Nullable="false" />
+          <Property Name="Localidad" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="IdProvincia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Provincias" Relationship="SistemaGestionPymeBDModel.FK_CPOSTALES_PROVINCIAS" FromRole="CPostales" ToRole="Provincias" />
+        </EntityType>
+        <EntityType Name="Provincias">
+          <Key>
+            <PropertyRef Name="IdProvincia" />
+          </Key>
+          <Property Name="IdProvincia" Type="Int32" Nullable="false" />
+          <Property Name="Provincia" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CPostales" Relationship="SistemaGestionPymeBDModel.FK_CPOSTALES_PROVINCIAS" FromRole="Provincias" ToRole="CPostales" />
+        </EntityType>
+        <EntityType Name="VistaCPostales">
+          <Key>
+            <PropertyRef Name="CodigoPostal" />
+            <PropertyRef Name="SubCodigoPostal" />
+            <PropertyRef Name="Localidad" />
+            <PropertyRef Name="Provincia" />
+            <PropertyRef Name="IdProvincia" />
+          </Key>
+          <Property Name="CodigoPostal" Type="Int16" Nullable="false" />
+          <Property Name="SubCodigoPostal" Type="Byte" Nullable="false" />
+          <Property Name="Localidad" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Provincia" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CpSubCp" Type="String" MaxLength="61" FixedLength="false" Unicode="true" />
+          <Property Name="IdProvincia" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CPOSTALES_PROVINCIAS">
+          <End Type="SistemaGestionPymeBDModel.Provincias" Role="Provincias" Multiplicity="1" />
+          <End Type="SistemaGestionPymeBDModel.CPostales" Role="CPostales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="IdProvincia" />
+            </Principal>
+            <Dependent Role="CPostales">
+              <PropertyRef Name="IdProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TiposDocumento">
+          <Key>
+            <PropertyRef Name="TipoDocumento" />
+          </Key>
+          <Property Name="TipoDocumento" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Apellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Documento" Type="Int64" />
+          <Property Name="TipoDocumento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Cuit0" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Cuit1" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Cuit2" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoPostal" Type="Int16" Nullable="false" />
+          <Property Name="SubCodigoPostal" Type="Byte" Nullable="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Provincia" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="IdRegimenImpositivo" Type="Int32" />
+          <Property Name="Observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RegimenesImpositivos" Relationship="SistemaGestionPymeBDModel.FK_Clientes_RegimenesImpositivos" FromRole="Clientes" ToRole="RegimenesImpositivos" />
+        </EntityType>
+        <Association Name="FK_Clientes_RegimenesImpositivos">
+          <End Type="SistemaGestionPymeBDModel.RegimenesImpositivos" Role="RegimenesImpositivos" Multiplicity="0..1" />
+          <End Type="SistemaGestionPymeBDModel.Clientes" Role="Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegimenesImpositivos">
+              <PropertyRef Name="IdRegimenImpositivo" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="IdRegimenImpositivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="VistaClientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Apellido" />
+            <PropertyRef Name="TipoDocumento" />
+            <PropertyRef Name="Nro_Doc" />
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="Localidad" />
+            <PropertyRef Name="Provincia" />
+            <PropertyRef Name="FechaBaja" />
+            <PropertyRef Name="CodigoPostal" />
+            <PropertyRef Name="Estado" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Apellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TipoDocumento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nro_Doc" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Localidad" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Provincia" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cuit" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="FechaBaja" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoPostal" Type="Int16" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SistemaGestionPymeBDModelStoreContainer" CdmEntityContainer="SistemaGestionPymeBDEntities">
-          <EntitySetMapping Name="Clientes">
-            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.Clientes">
-              <MappingFragment StoreEntitySet="Clientes">
-                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
-                <ScalarProperty Name="NroCliente" ColumnName="NroCliente" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
-                <ScalarProperty Name="Documento" ColumnName="Documento" />
-                <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
-                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
-                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
-                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
-                <ScalarProperty Name="IdRegimenImpositivo" ColumnName="IdRegimenImpositivo" />
-                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="RegimenesImpositivos">
             <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.RegimenesImpositivos">
               <MappingFragment StoreEntitySet="RegimenesImpositivos">
@@ -782,6 +986,94 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
                 <ScalarProperty Name="PrecioContado" ColumnName="PrecioContado" />
                 <ScalarProperty Name="FechaPrecios" ColumnName="FechaPrecios" />
                 <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CPostales">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.CPostales">
+              <MappingFragment StoreEntitySet="CPostales">
+                <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="SubCodigoPostal" ColumnName="SubCodigoPostal" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provincias">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.Provincias">
+              <MappingFragment StoreEntitySet="Provincias">
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaCPostales">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.VistaCPostales">
+              <MappingFragment StoreEntitySet="VistaCPostales">
+                <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
+                <ScalarProperty Name="CpSubCp" ColumnName="CpSubCp" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="SubCodigoPostal" ColumnName="SubCodigoPostal" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposDocumento">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.TiposDocumento">
+              <MappingFragment StoreEntitySet="TiposDocumento">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.Clientes">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="IdRegimenImpositivo" ColumnName="IdRegimenImpositivo" />
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="SubCodigoPostal" ColumnName="SubCodigoPostal" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Cuit2" ColumnName="Cuit2" />
+                <ScalarProperty Name="Cuit1" ColumnName="Cuit1" />
+                <ScalarProperty Name="Cuit0" ColumnName="Cuit0" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaClientes">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.VistaClientes">
+              <MappingFragment StoreEntitySet="VistaClientes">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="Cuit" ColumnName="Cuit" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Nro_Doc" ColumnName="Nro.Doc" />
+                <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

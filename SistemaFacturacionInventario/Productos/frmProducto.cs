@@ -143,6 +143,7 @@ namespace SistemaFacturacionInventario.Productos
                             frm.DeAfuera = true;
                             frm.ShowDialog();
                         }
+                        LimpiarCampos();
                     }
                 }
                 else
@@ -155,6 +156,18 @@ namespace SistemaFacturacionInventario.Productos
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void LimpiarCampos()
+        {
+            txtDescCorta.Text = string.Empty;
+            txtDescLarga.Text = string.Empty;
+            txtStockActual.Text = string.Empty;
+            txtStockMin.Text = string.Empty;
+            cmbRubro.SelectedValue = "1";
+            cmbUMedida.SelectedValue = "1";
+            chkStock.Checked = false;
+            IdProducto = 0;
         }
 
         private void btnUMedida_Click(object sender, EventArgs e)

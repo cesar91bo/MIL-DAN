@@ -25,7 +25,6 @@ namespace CapaDatos.Modelos
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Clientes> Clientes { get; set; }
         public virtual DbSet<RegimenesImpositivos> RegimenesImpositivos { get; set; }
         public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<Rubros> Rubros { get; set; }
@@ -35,5 +34,11 @@ namespace CapaDatos.Modelos
         public virtual DbSet<VistaPreciosVenta> VistaPreciosVenta { get; set; }
         public virtual DbSet<Seteos> Seteos { get; set; }
         public virtual DbSet<PreciosVenta> PreciosVenta { get; set; }
+        public virtual DbSet<CPostales> CPostales { get; set; }
+        public virtual DbSet<Provincias> Provincias { get; set; }
+        public virtual DbSet<VistaCPostales> VistaCPostales { get; set; }
+        public virtual DbSet<TiposDocumento> TiposDocumento { get; set; }
+        public virtual DbSet<Clientes> Clientes { get; set; }
+        public virtual DbSet<VistaClientes> VistaClientes { get; set; }
     }
 }

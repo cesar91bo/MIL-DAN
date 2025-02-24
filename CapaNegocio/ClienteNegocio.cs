@@ -13,11 +13,129 @@ namespace CapaNegocio
     public class ClienteNegocio
     {
         public static SistemaGestionPymeBDEntities db = new SistemaGestionPymeBDEntities();
+
+        public int EditarCliente(Clientes cli, int nroCliente)
+        {
+            try
+            {
+                Clientes clienteBD = ObtenerCliporNroCli(nroCliente);
+                clienteBD.Nombre = cli.Nombre;
+                clienteBD.Apellido = cli.Apellido;
+                clienteBD.Documento = cli.Documento;
+                clienteBD.TipoDocumento = cli.TipoDocumento;
+                clienteBD.Email = cli.Email;
+                clienteBD.Cuit0 = cli.Cuit0;
+                clienteBD.Cuit1 = cli.Cuit1;
+                clienteBD.Cuit2 = cli.Cuit2;
+                clienteBD.Telefono = cli.Telefono;
+                clienteBD.Direccion = cli.Direccion;
+                clienteBD.CodigoPostal = cli.CodigoPostal;
+                clienteBD.SubCodigoPostal = cli.SubCodigoPostal;
+                clienteBD.Ciudad = cli.Ciudad;
+                clienteBD.Provincia = cli.Provincia;
+                clienteBD.FechaNacimiento = cli.FechaNacimiento;
+                clienteBD.Estado = cli.Estado;
+                clienteBD.FechaBaja = cli.FechaBaja;
+                clienteBD.IdRegimenImpositivo = cli.IdRegimenImpositivo;
+                clienteBD.Observaciones = cli.Observaciones;
+                db.SaveChanges();
+                return clienteBD.IdCliente;
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+
         public List<Clientes> ListaClientes()
         {
             var clientes = from cli in db.Clientes
                            select cli;
             return clientes.OrderBy(o => o.Apellido).ToList();
+        }
+
+        public int NuevoCliente(Clientes cli)
+        {
+            try
+            {
+                AgregarCliente(cli);
+                db.SaveChanges();
+                return cli.IdCliente;
+            }
+            catch  (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                foreach (var validationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Console.WriteLine($"Propiedad: {validationError.PropertyName}, Error: {validationError.ErrorMessage}");
+                    }
+                }
+                throw; // Lanza la excepción nuevamente para depuración
+            }
+        }
+
+        private void AgregarCliente(Clientes cliente)
+        {
+            db.Clientes.Add(cliente);
+        }
+
+        public List<Clientes> ObtenerClientesCargadosCUIT(long Numerodoc, string TipoDoc)
+        {
+            if (Numerodoc <= 0) return new List<Clientes>();
+
+            var detalle = db.Clientes
+                            .AsEnumerable()
+                            .Where(d => long.TryParse(d.Cuit1, out long cuit) && cuit == Numerodoc)
+                            .ToList();
+
+            return detalle ?? new List<Clientes>();
+        }
+
+        public List<VistaClientes> ObtenerClientesCargadosDni(long numerodoc, string tipoDoc)
+        {
+            var listC = from c in db.VistaClientes
+                        where Convert.ToInt64(c.Nro_Doc) == numerodoc && c.TipoDocumento == tipoDoc
+                        select c;
+
+            return listC.ToList();
+        }
+
+        public Clientes ObtenerCliporNroCli(int nroCliente)
+        {
+            return db.Clientes.SingleOrDefault(c => c.IdCliente == nroCliente);
+        }
+
+        public bool BajaCliente(int idCliente)
+        {
+            try
+            {
+                var art = ObtenerCliporNroCli(idCliente);
+                art.FechaBaja = DateTime.Now;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public List<VistaClientes> ObtenerListaClientes()
+        {
+            var listC = db.VistaClientes.ToList();
+            return listC;
+        }
+
+        public List<VistaClientes> ObtenerCliporNombreApellido(string nombreApellido)
+        {
+            var palabras = nombreApellido.ToLower().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            var clientes = ObtenerVClis().Where(cli =>
+                palabras.All(p => cli.Nombre.ToLower().Contains(p) || cli.Apellido.ToLower().Contains(p))
+            );
+
+            return clientes.ToList();
+        }
+
+        private List<VistaClientes> ObtenerVClis()
+        {
+            return db.VistaClientes.ToList();
         }
     }
 }
