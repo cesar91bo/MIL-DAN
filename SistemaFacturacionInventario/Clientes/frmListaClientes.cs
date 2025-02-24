@@ -61,8 +61,14 @@ namespace SistemaFacturacionInventario.Productos
             if (siload)
             {
                 var clienteNegocio = new ClienteNegocio();
-
-                vistaClientes = clienteNegocio.ObtenerListaClientes();
+                if(chkCliBaja.Checked)
+                {
+                    vistaClientes = clienteNegocio.ObtenerListaClientes();
+                }
+                else
+                {
+                    vistaClientes = clienteNegocio.ObtenerListaClientesActivos();
+                }
 
             }
             else
@@ -84,6 +90,8 @@ namespace SistemaFacturacionInventario.Productos
                 item.SubItems.Add(vistaCliente.Direccion);
                 item.SubItems.Add(vistaCliente.Telefono);
                 item.SubItems.Add(vistaCliente.Estado);
+
+                if (vistaCliente.FechaBaja.ToString() != "") { item.ForeColor = Color.Red; }
                 listViewClientes.Items.Add(item);
                 listViewClientes.Focus();
             }
@@ -96,7 +104,7 @@ namespace SistemaFacturacionInventario.Productos
                 var clienteNegocio = new ClienteNegocio();
 
 
-                        return (txtFiltro.Text != "") ? clienteNegocio.ObtenerCliporNombreApellido(txtFiltro.Text) : clienteNegocio.ObtenerListaClientes();
+                        return (txtFiltro.Text != "") ? clienteNegocio.ObtenerCliporNombreApellido(txtFiltro.Text, chkCliBaja.Checked) : clienteNegocio.ObtenerListaClientes();
 
             }
             catch (Exception ex)
@@ -107,7 +115,7 @@ namespace SistemaFacturacionInventario.Productos
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            var frm = new frmCliente { IdCliente = Convert.ToInt32(listViewClientes.SelectedItems[0].Tag)};
+            var frm = new frmCliente { IdCliente = Convert.ToInt32(listViewClientes.SelectedItems[0].Tag), Accion = "MOD"};
             frm.ShowDialog();
             btnEditar.Enabled = false;
             LLenarListaCliente(false);
@@ -281,7 +289,7 @@ namespace SistemaFacturacionInventario.Productos
             try
             {
                 SeleccionarCliente();
-                var frm = new frmCliente { IdCliente = IdCLiente };
+                var frm = new frmCliente { IdCliente = IdCLiente, Accion = "MOD" };
                 frm.ShowDialog();
                 btnEditar.Enabled = false;
                 LLenarListaCliente(false);
@@ -320,12 +328,31 @@ namespace SistemaFacturacionInventario.Productos
             if (listViewClientes.SelectedItems.Count > 0)
             {
                 SeleccionarCliente();
+
+                if (e.Item.SubItems[6].Text == "Dado de Baja") btnActivar.Visible = true; else btnActivar.Visible = false;
             }
             else
             {
                 IdCLiente = 0;
                 btnEditar.Enabled = false;
             }
+        }
+
+        private void btnActivar_Click(object sender, EventArgs e)
+        {
+            var clienteNegocio = new ClienteNegocio();
+
+            if (clienteNegocio.ActivarCliente(IdCLiente))
+            {
+                MessageBox.Show("El Cliente fue dado de alta nuevamente", "ACTIVACIÓN CORRECTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            LLenarListaCliente(true);
+        }
+
+        private void chkCliBaja_CheckedChanged(object sender, EventArgs e)
+        {
+            LLenarListaCliente(true);
         }
     }
 }

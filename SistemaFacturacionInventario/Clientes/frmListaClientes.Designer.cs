@@ -35,6 +35,8 @@
             this.lblListaCliente = new System.Windows.Forms.Label();
             this.listViewClientes = new System.Windows.Forms.ListView();
             this.btnEditar = new System.Windows.Forms.Button();
+            this.btnActivar = new System.Windows.Forms.Button();
+            this.chkCliBaja = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +56,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.chkCliBaja);
             this.panel1.Controls.Add(this.txtFiltro);
             this.panel1.Controls.Add(this.lblListaCliente);
             this.panel1.Location = new System.Drawing.Point(99, 22);
@@ -112,11 +115,38 @@
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
+            // btnActivar
+            // 
+            this.btnActivar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActivar.Image = ((System.Drawing.Image)(resources.GetObject("btnActivar.Image")));
+            this.btnActivar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnActivar.Location = new System.Drawing.Point(953, 436);
+            this.btnActivar.Name = "btnActivar";
+            this.btnActivar.Size = new System.Drawing.Size(78, 37);
+            this.btnActivar.TabIndex = 36;
+            this.btnActivar.Text = "Activar";
+            this.btnActivar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnActivar.UseVisualStyleBackColor = true;
+            this.btnActivar.Visible = false;
+            this.btnActivar.Click += new System.EventHandler(this.btnActivar_Click);
+            // 
+            // chkCliBaja
+            // 
+            this.chkCliBaja.AutoSize = true;
+            this.chkCliBaja.Location = new System.Drawing.Point(631, 17);
+            this.chkCliBaja.Name = "chkCliBaja";
+            this.chkCliBaja.Size = new System.Drawing.Size(172, 17);
+            this.chkCliBaja.TabIndex = 23;
+            this.chkCliBaja.Text = " Mostrar Clientes Eliminados";
+            this.chkCliBaja.UseVisualStyleBackColor = true;
+            this.chkCliBaja.CheckedChanged += new System.EventHandler(this.chkCliBaja_CheckedChanged);
+            // 
             // frmListaClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1043, 487);
+            this.Controls.Add(this.btnActivar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.listViewClientes);
             this.Controls.Add(this.btnBuscar);
@@ -139,5 +169,7 @@
         private System.Windows.Forms.Label lblListaCliente;
         private System.Windows.Forms.ListView listViewClientes;
         private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnActivar;
+        private System.Windows.Forms.CheckBox chkCliBaja;
     }
 }

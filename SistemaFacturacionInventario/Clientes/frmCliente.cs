@@ -42,6 +42,7 @@ namespace SistemaFacturacionInventario.Clientes
                 cmbRegimen.DisplayMember = "Descripcion";
                 cmbRegimen.ValueMember = "IdRegimenImpositivo";
                 cmbRegimen.DataSource = auxiliaresNegocio.ObtenerRegimenes();
+                activeForm = new frmCliente();
 
                 cargarLocalidades(Convert.ToInt16(cmbProvincia.SelectedValue));
                 cmbLocalidad.SelectedValue = "3531-1";
@@ -77,6 +78,12 @@ namespace SistemaFacturacionInventario.Clientes
                     if (cli.FechaBaja == null)
                     {
                         IdCliente = cli.IdCliente;
+                        txtNroCliente.Text = IdCliente.ToString();
+                        txtNroCliente.Enabled = true;
+                        btnBuscar.Enabled = true;
+                        btnListado.Enabled = true;
+                        btnBaja.Enabled = true;
+
                         CPostales CP = aux.ObtenerDatosCP(cli.CodigoPostal, cli.SubCodigoPostal);
                         txtNombre.Text = cli.Nombre;
                         txtApellido.Text = cli.Apellido;
@@ -96,7 +103,7 @@ namespace SistemaFacturacionInventario.Clientes
 
                         Validaciones();
                     }
-                    else { MessageBox.Show("El Cliente fue dado de baja", "Error de Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+                    else { MessageBox.Show("El Cliente fue dado de baja", "Error de Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); this.Close(); }
                 }
                 else MessageBox.Show("No se encontró el Cliente", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -232,6 +239,7 @@ namespace SistemaFacturacionInventario.Clientes
                         {
                             this.Close();
                         }
+                        this.Close();
                     }
                 }
             }
@@ -390,10 +398,7 @@ namespace SistemaFacturacionInventario.Clientes
             MenuPrincipal principal = Application.OpenForms["MenuPrincipal"] as MenuPrincipal;
             if (principal != null)
             {
-                if (activeForm != null)
-                {
-                    activeForm.Close();
-                }
+                this.Close();
 
                 activeForm = childForm;
                 childForm.TopLevel = false;
@@ -620,9 +625,9 @@ namespace SistemaFacturacionInventario.Clientes
                 var clienteNegocio = new ClienteNegocio();
                 if (clienteNegocio.BajaCliente(IdCliente))
                 {
-                    MessageBox.Show("El producto fue dado de baja correctamente", "BAJA CORRECTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("El Cliente fue dado de baja correctamente", "BAJA CORRECTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                OpenChildForm(new frmListaProductos(), sender);
+                OpenChildForm(new frmListaClientes(), sender);
             }
             catch (Exception ex)
             {

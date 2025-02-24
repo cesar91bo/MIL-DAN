@@ -418,7 +418,7 @@ namespace SistemaFacturacionInventario.Productos
 
             if (productoNegocio.ActivarProducto(IdProducto))
             {
-                MessageBox.Show("El producto fue dado de baja correctamente", "BAJA CORRECTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("El producto fue dado de alta correctamente", "ACTIVACIÓN CORRECTA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             Llenarlistview(true);

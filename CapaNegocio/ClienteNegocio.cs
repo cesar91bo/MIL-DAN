@@ -90,10 +90,10 @@ namespace CapaNegocio
             return detalle ?? new List<Clientes>();
         }
 
-        public List<VistaClientes> ObtenerClientesCargadosDni(long numerodoc, string tipoDoc)
+        public List<VistaClientes> ObtenerClientesCargadosDni(Int64 numerodoc, string tipoDoc)
         {
             var listC = from c in db.VistaClientes
-                        where Convert.ToInt64(c.Nro_Doc) == numerodoc && c.TipoDocumento == tipoDoc
+                        where c.Nro_Doc == numerodoc.ToString() && c.TipoDocumento == tipoDoc
                         select c;
 
             return listC.ToList();
@@ -110,6 +110,7 @@ namespace CapaNegocio
             {
                 var art = ObtenerCliporNroCli(idCliente);
                 art.FechaBaja = DateTime.Now;
+                art.Estado = "Dado de Baja";
                 db.SaveChanges();
                 return true;
             }
@@ -122,20 +123,49 @@ namespace CapaNegocio
             return listC;
         }
 
-        public List<VistaClientes> ObtenerCliporNombreApellido(string nombreApellido)
+        public List<VistaClientes> ObtenerCliporNombreApellido(string nombreApellido, bool dadoBaja)
         {
             var palabras = nombreApellido.ToLower().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            List<VistaClientes> clientes = null;
+            if (dadoBaja)
+            {
+                clientes = ObtenerVClis().Where(cli =>
+                    palabras.All(p => cli.Nombre.ToLower().Contains(p) || cli.Apellido.ToLower().Contains(p))
+                ).ToList();
+            }
+            else
+            {
+                clientes = ObtenerVClis().Where(cli =>
+                    palabras.All(p => cli.Nombre.ToLower().Contains(p) || cli.Apellido.ToLower().Contains(p))
+                    && cli.FechaBaja == ""
+                ).ToList();
+            }
 
-            var clientes = ObtenerVClis().Where(cli =>
-                palabras.All(p => cli.Nombre.ToLower().Contains(p) || cli.Apellido.ToLower().Contains(p))
-            );
-
-            return clientes.ToList();
+            return clientes;
         }
 
         private List<VistaClientes> ObtenerVClis()
         {
             return db.VistaClientes.ToList();
+        }
+
+        public bool ActivarCliente(int idCLiente)
+        {
+            try
+            {
+                var art = ObtenerCliporNroCli(idCLiente);
+                art.FechaBaja = null;
+                art.Estado = "Activo";
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public List<VistaClientes> ObtenerListaClientesActivos()
+        {
+            var listC = db.VistaClientes.Where(c => c.FechaBaja == "").ToList();
+            return listC;
         }
     }
 }
