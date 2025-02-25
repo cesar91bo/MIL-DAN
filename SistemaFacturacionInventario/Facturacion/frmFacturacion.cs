@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace SistemaFacturacionInventario.Facturacion
 {
-    public partial class frmFacturacion : Form
+    public partial class frmFacturacion : FormBase
     {
         public frmFacturacion()
         {
             InitializeComponent();
+        }
+
+        private void frmFacturacion_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
