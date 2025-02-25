@@ -45,7 +45,7 @@
             this.btnBuscar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(695, 67);
+            this.btnBuscar.Location = new System.Drawing.Point(751, 67);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(78, 30);
             this.btnBuscar.TabIndex = 31;
@@ -60,7 +60,7 @@
             this.panel1.Controls.Add(this.cmbFiltro);
             this.panel1.Controls.Add(this.lblFiltrar);
             this.panel1.Controls.Add(this.lblListaPrecios);
-            this.panel1.Location = new System.Drawing.Point(139, 12);
+            this.panel1.Location = new System.Drawing.Point(195, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(806, 100);
             this.panel1.TabIndex = 30;
@@ -110,7 +110,7 @@
             this.btnEditar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(493, 437);
+            this.btnEditar.Location = new System.Drawing.Point(549, 437);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(97, 37);
             this.btnEditar.TabIndex = 29;
@@ -124,7 +124,7 @@
             this.listViewProductos.FullRowSelect = true;
             this.listViewProductos.GridLines = true;
             this.listViewProductos.HideSelection = false;
-            this.listViewProductos.Location = new System.Drawing.Point(28, 112);
+            this.listViewProductos.Location = new System.Drawing.Point(84, 112);
             this.listViewProductos.MultiSelect = false;
             this.listViewProductos.Name = "listViewProductos";
             this.listViewProductos.Size = new System.Drawing.Size(1003, 302);
@@ -141,7 +141,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1043, 487);
+            this.ClientSize = new System.Drawing.Size(1148, 487);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnEditar);

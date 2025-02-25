@@ -31,12 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListaClientes));
             this.btnBuscar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chkCliBaja = new System.Windows.Forms.CheckBox();
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.lblListaCliente = new System.Windows.Forms.Label();
             this.listViewClientes = new System.Windows.Forms.ListView();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnActivar = new System.Windows.Forms.Button();
-            this.chkCliBaja = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,7 +45,7 @@
             this.btnBuscar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(655, 77);
+            this.btnBuscar.Location = new System.Drawing.Point(711, 77);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(78, 30);
             this.btnBuscar.TabIndex = 33;
@@ -59,10 +59,21 @@
             this.panel1.Controls.Add(this.chkCliBaja);
             this.panel1.Controls.Add(this.txtFiltro);
             this.panel1.Controls.Add(this.lblListaCliente);
-            this.panel1.Location = new System.Drawing.Point(99, 22);
+            this.panel1.Location = new System.Drawing.Point(155, 22);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(806, 100);
             this.panel1.TabIndex = 32;
+            // 
+            // chkCliBaja
+            // 
+            this.chkCliBaja.AutoSize = true;
+            this.chkCliBaja.Location = new System.Drawing.Point(631, 17);
+            this.chkCliBaja.Name = "chkCliBaja";
+            this.chkCliBaja.Size = new System.Drawing.Size(172, 17);
+            this.chkCliBaja.TabIndex = 23;
+            this.chkCliBaja.Text = " Mostrar Clientes Eliminados";
+            this.chkCliBaja.UseVisualStyleBackColor = true;
+            this.chkCliBaja.CheckedChanged += new System.EventHandler(this.chkCliBaja_CheckedChanged);
             // 
             // txtFiltro
             // 
@@ -88,7 +99,7 @@
             this.listViewClientes.FullRowSelect = true;
             this.listViewClientes.GridLines = true;
             this.listViewClientes.HideSelection = false;
-            this.listViewClientes.Location = new System.Drawing.Point(28, 128);
+            this.listViewClientes.Location = new System.Drawing.Point(84, 128);
             this.listViewClientes.MultiSelect = false;
             this.listViewClientes.Name = "listViewClientes";
             this.listViewClientes.Size = new System.Drawing.Size(1003, 302);
@@ -106,7 +117,7 @@
             this.btnEditar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(444, 436);
+            this.btnEditar.Location = new System.Drawing.Point(500, 436);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(97, 37);
             this.btnEditar.TabIndex = 35;
@@ -120,7 +131,7 @@
             this.btnActivar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActivar.Image = ((System.Drawing.Image)(resources.GetObject("btnActivar.Image")));
             this.btnActivar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActivar.Location = new System.Drawing.Point(953, 436);
+            this.btnActivar.Location = new System.Drawing.Point(1009, 436);
             this.btnActivar.Name = "btnActivar";
             this.btnActivar.Size = new System.Drawing.Size(78, 37);
             this.btnActivar.TabIndex = 36;
@@ -130,22 +141,11 @@
             this.btnActivar.Visible = false;
             this.btnActivar.Click += new System.EventHandler(this.btnActivar_Click);
             // 
-            // chkCliBaja
-            // 
-            this.chkCliBaja.AutoSize = true;
-            this.chkCliBaja.Location = new System.Drawing.Point(631, 17);
-            this.chkCliBaja.Name = "chkCliBaja";
-            this.chkCliBaja.Size = new System.Drawing.Size(172, 17);
-            this.chkCliBaja.TabIndex = 23;
-            this.chkCliBaja.Text = " Mostrar Clientes Eliminados";
-            this.chkCliBaja.UseVisualStyleBackColor = true;
-            this.chkCliBaja.CheckedChanged += new System.EventHandler(this.chkCliBaja_CheckedChanged);
-            // 
             // frmListaClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1043, 487);
+            this.ClientSize = new System.Drawing.Size(1148, 487);
             this.Controls.Add(this.btnActivar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.listViewClientes);

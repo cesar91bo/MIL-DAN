@@ -48,7 +48,25 @@
             this.cmbConcepto = new System.Windows.Forms.ComboBox();
             this.lblConcepto = new System.Windows.Forms.Label();
             this.grupBoxCabecera = new System.Windows.Forms.GroupBox();
+            this.dgrDetalle = new System.Windows.Forms.DataGridView();
+            this.Borrar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Buscar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ArtDesconocido = new System.Windows.Forms.DataGridViewImageColumn();
+            this.NroArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescCorta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UMedida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Iva = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nueva = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.SiDesc = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.DesdeRem = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.PrecioManual = new System.Windows.Forms.DataGridViewImageColumn();
+            this.IdFactVtaDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecManual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grupBoxCabecera.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrDetalle)).BeginInit();
             this.SuspendLayout();
             // 
             // btnListado
@@ -199,7 +217,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(595, 90);
+            this.dateTimePicker1.Location = new System.Drawing.Point(682, 90);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(97, 22);
             this.dateTimePicker1.TabIndex = 48;
@@ -208,7 +226,7 @@
             // 
             this.lblFechaVto.AutoSize = true;
             this.lblFechaVto.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblFechaVto.Location = new System.Drawing.Point(524, 95);
+            this.lblFechaVto.Location = new System.Drawing.Point(611, 95);
             this.lblFechaVto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFechaVto.Name = "lblFechaVto";
             this.lblFechaVto.Size = new System.Drawing.Size(64, 13);
@@ -218,7 +236,7 @@
             // cmbConcepto
             // 
             this.cmbConcepto.FormattingEnabled = true;
-            this.cmbConcepto.Location = new System.Drawing.Point(819, 91);
+            this.cmbConcepto.Location = new System.Drawing.Point(917, 91);
             this.cmbConcepto.Margin = new System.Windows.Forms.Padding(4);
             this.cmbConcepto.Name = "cmbConcepto";
             this.cmbConcepto.Size = new System.Drawing.Size(167, 21);
@@ -228,7 +246,7 @@
             // 
             this.lblConcepto.AutoSize = true;
             this.lblConcepto.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblConcepto.Location = new System.Drawing.Point(751, 94);
+            this.lblConcepto.Location = new System.Drawing.Point(849, 94);
             this.lblConcepto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblConcepto.Name = "lblConcepto";
             this.lblConcepto.Size = new System.Drawing.Size(60, 13);
@@ -257,16 +275,168 @@
             this.grupBoxCabecera.Controls.Add(this.txtNroCliente);
             this.grupBoxCabecera.Location = new System.Drawing.Point(26, 12);
             this.grupBoxCabecera.Name = "grupBoxCabecera";
-            this.grupBoxCabecera.Size = new System.Drawing.Size(1000, 176);
+            this.grupBoxCabecera.Size = new System.Drawing.Size(1106, 176);
             this.grupBoxCabecera.TabIndex = 51;
             this.grupBoxCabecera.TabStop = false;
             this.grupBoxCabecera.Text = "Cabecera";
+            // 
+            // dgrDetalle
+            // 
+            this.dgrDetalle.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgrDetalle.CausesValidation = false;
+            this.dgrDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgrDetalle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Borrar,
+            this.Buscar,
+            this.ArtDesconocido,
+            this.NroArt,
+            this.DescCorta,
+            this.Cantidad,
+            this.UMedida,
+            this.Iva,
+            this.Precio,
+            this.Total,
+            this.Nueva,
+            this.SiDesc,
+            this.DesdeRem,
+            this.PrecioManual,
+            this.IdFactVtaDetalle,
+            this.PrecManual});
+            this.dgrDetalle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgrDetalle.Location = new System.Drawing.Point(43, 232);
+            this.dgrDetalle.MultiSelect = false;
+            this.dgrDetalle.Name = "dgrDetalle";
+            this.dgrDetalle.RowHeadersVisible = false;
+            this.dgrDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgrDetalle.Size = new System.Drawing.Size(1089, 208);
+            this.dgrDetalle.TabIndex = 52;
+            // 
+            // Borrar
+            // 
+            this.Borrar.Frozen = true;
+            this.Borrar.HeaderText = "Borrar";
+            this.Borrar.Name = "Borrar";
+            this.Borrar.Width = 50;
+            // 
+            // Buscar
+            // 
+            this.Buscar.Frozen = true;
+            this.Buscar.HeaderText = "Buscar";
+            this.Buscar.Name = "Buscar";
+            this.Buscar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Buscar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Buscar.Width = 50;
+            // 
+            // ArtDesconocido
+            // 
+            this.ArtDesconocido.Frozen = true;
+            this.ArtDesconocido.HeaderText = "Art.Desc";
+            this.ArtDesconocido.Name = "ArtDesconocido";
+            this.ArtDesconocido.Width = 50;
+            // 
+            // NroArt
+            // 
+            this.NroArt.Frozen = true;
+            this.NroArt.HeaderText = "NroArt.";
+            this.NroArt.Name = "NroArt";
+            this.NroArt.Width = 65;
+            // 
+            // DescCorta
+            // 
+            this.DescCorta.Frozen = true;
+            this.DescCorta.HeaderText = "Desc.Corta";
+            this.DescCorta.Name = "DescCorta";
+            this.DescCorta.ReadOnly = true;
+            this.DescCorta.Width = 350;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.Frozen = true;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Width = 75;
+            // 
+            // UMedida
+            // 
+            this.UMedida.Frozen = true;
+            this.UMedida.HeaderText = "U.Medida";
+            this.UMedida.Name = "UMedida";
+            this.UMedida.ReadOnly = true;
+            this.UMedida.Width = 115;
+            // 
+            // Iva
+            // 
+            this.Iva.Frozen = true;
+            this.Iva.HeaderText = "%IVA";
+            this.Iva.Name = "Iva";
+            this.Iva.ReadOnly = true;
+            this.Iva.Width = 50;
+            // 
+            // Precio
+            // 
+            this.Precio.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.Precio.Frozen = true;
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.Width = 130;
+            // 
+            // Total
+            // 
+            this.Total.Frozen = true;
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Total.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Nueva
+            // 
+            this.Nueva.Frozen = true;
+            this.Nueva.HeaderText = "Nueva";
+            this.Nueva.Name = "Nueva";
+            this.Nueva.Visible = false;
+            // 
+            // SiDesc
+            // 
+            this.SiDesc.Frozen = true;
+            this.SiDesc.HeaderText = "SiDesc";
+            this.SiDesc.Name = "SiDesc";
+            this.SiDesc.Visible = false;
+            // 
+            // DesdeRem
+            // 
+            this.DesdeRem.Frozen = true;
+            this.DesdeRem.HeaderText = "DesdeRem";
+            this.DesdeRem.Name = "DesdeRem";
+            this.DesdeRem.Visible = false;
+            // 
+            // PrecioManual
+            // 
+            this.PrecioManual.Frozen = true;
+            this.PrecioManual.HeaderText = "$ Man";
+            this.PrecioManual.Name = "PrecioManual";
+            this.PrecioManual.Width = 50;
+            // 
+            // IdFactVtaDetalle
+            // 
+            this.IdFactVtaDetalle.Frozen = true;
+            this.IdFactVtaDetalle.HeaderText = "IdFactVtaDetalle";
+            this.IdFactVtaDetalle.Name = "IdFactVtaDetalle";
+            this.IdFactVtaDetalle.Visible = false;
+            // 
+            // PrecManual
+            // 
+            this.PrecManual.Frozen = true;
+            this.PrecManual.HeaderText = "PrecManual";
+            this.PrecManual.Name = "PrecManual";
+            this.PrecManual.Visible = false;
             // 
             // frmFacturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1055, 703);
+            this.ClientSize = new System.Drawing.Size(1166, 703);
+            this.Controls.Add(this.dgrDetalle);
             this.Controls.Add(this.grupBoxCabecera);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmFacturacion";
@@ -274,6 +444,7 @@
             this.Load += new System.EventHandler(this.frmFacturacion_Load);
             this.grupBoxCabecera.ResumeLayout(false);
             this.grupBoxCabecera.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrDetalle)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -299,5 +470,22 @@
         private System.Windows.Forms.ComboBox cmbConcepto;
         private System.Windows.Forms.Label lblConcepto;
         private System.Windows.Forms.GroupBox grupBoxCabecera;
+        private System.Windows.Forms.DataGridView dgrDetalle;
+        private System.Windows.Forms.DataGridViewImageColumn Borrar;
+        private System.Windows.Forms.DataGridViewImageColumn Buscar;
+        private System.Windows.Forms.DataGridViewImageColumn ArtDesconocido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NroArt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescCorta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UMedida;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Iva;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Nueva;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn SiDesc;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn DesdeRem;
+        private System.Windows.Forms.DataGridViewImageColumn PrecioManual;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdFactVtaDetalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecManual;
     }
 }

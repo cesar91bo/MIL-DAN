@@ -104,7 +104,7 @@
             this.btnEditar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(426, 439);
+            this.btnEditar.Location = new System.Drawing.Point(476, 439);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(82, 37);
             this.btnEditar.TabIndex = 14;
@@ -119,7 +119,7 @@
             this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(599, 439);
+            this.btnEliminar.Location = new System.Drawing.Point(649, 439);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(78, 37);
             this.btnEliminar.TabIndex = 13;
@@ -134,7 +134,7 @@
             this.btnPrecio.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrecio.Image = ((System.Drawing.Image)(resources.GetObject("btnPrecio.Image")));
             this.btnPrecio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrecio.Location = new System.Drawing.Point(515, 439);
+            this.btnPrecio.Location = new System.Drawing.Point(565, 439);
             this.btnPrecio.Name = "btnPrecio";
             this.btnPrecio.Size = new System.Drawing.Size(77, 37);
             this.btnPrecio.TabIndex = 12;
@@ -177,7 +177,7 @@
             this.listViewProductos.FullRowSelect = true;
             this.listViewProductos.GridLines = true;
             this.listViewProductos.HideSelection = false;
-            this.listViewProductos.Location = new System.Drawing.Point(22, 114);
+            this.listViewProductos.Location = new System.Drawing.Point(72, 114);
             this.listViewProductos.MultiSelect = false;
             this.listViewProductos.Name = "listViewProductos";
             this.listViewProductos.Size = new System.Drawing.Size(1003, 302);
@@ -197,7 +197,7 @@
             this.panel1.Controls.Add(this.cmbFiltro);
             this.panel1.Controls.Add(this.lblFiltrar);
             this.panel1.Controls.Add(this.lblListaProductos);
-            this.panel1.Location = new System.Drawing.Point(141, 12);
+            this.panel1.Location = new System.Drawing.Point(191, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(806, 100);
             this.panel1.TabIndex = 23;
@@ -207,7 +207,7 @@
             this.btnActivar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActivar.Image = ((System.Drawing.Image)(resources.GetObject("btnActivar.Image")));
             this.btnActivar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActivar.Location = new System.Drawing.Point(947, 439);
+            this.btnActivar.Location = new System.Drawing.Point(997, 439);
             this.btnActivar.Name = "btnActivar";
             this.btnActivar.Size = new System.Drawing.Size(78, 37);
             this.btnActivar.TabIndex = 24;
@@ -222,7 +222,7 @@
             this.btnBuscar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(697, 69);
+            this.btnBuscar.Location = new System.Drawing.Point(747, 69);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(78, 30);
             this.btnBuscar.TabIndex = 25;
@@ -236,7 +236,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(242)))));
-            this.ClientSize = new System.Drawing.Size(1057, 487);
+            this.ClientSize = new System.Drawing.Size(1148, 487);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnActivar);
             this.Controls.Add(this.panel1);

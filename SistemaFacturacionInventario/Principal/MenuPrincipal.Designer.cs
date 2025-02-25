@@ -393,14 +393,14 @@
             this.pnlContenedorPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContenedorPrincipal.Location = new System.Drawing.Point(250, 0);
             this.pnlContenedorPrincipal.Name = "pnlContenedorPrincipal";
-            this.pnlContenedorPrincipal.Size = new System.Drawing.Size(1047, 584);
+            this.pnlContenedorPrincipal.Size = new System.Drawing.Size(1148, 584);
             this.pnlContenedorPrincipal.TabIndex = 1;
             // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1297, 584);
+            this.ClientSize = new System.Drawing.Size(1398, 584);
             this.Controls.Add(this.pnlContenedorPrincipal);
             this.Controls.Add(this.pnlMenuLateral);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
