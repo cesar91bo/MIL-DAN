@@ -610,10 +610,10 @@ namespace SistemaFacturacionInventario.Clientes
 
         private void txtTelefono_TextChanged(object sender, EventArgs e)
         {
-            if (txtCuit1.Text.Length > 15)
+            if (txtTelefono.Text.Length > 15)
             {
-                txtCuit1.Text = txtCuit1.Text.Substring(0, 8);
-                txtCuit1.SelectionStart = txtCuit1.Text.Length; // Mantiene el cursor al final
+                txtTelefono.Text = txtTelefono.Text.Substring(0, 8);
+                txtTelefono.SelectionStart = txtTelefono.Text.Length; // Mantiene el cursor al final
             }
         }
 

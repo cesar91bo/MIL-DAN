@@ -147,7 +147,7 @@
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.listViewProductos);
             this.Name = "frmListaPrecio";
-            this.Text = "frmListaPrecio";
+            this.Text = "Lista de Precio";
             this.Load += new System.EventHandler(this.frmListaPrecio_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

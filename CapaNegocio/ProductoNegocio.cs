@@ -28,7 +28,6 @@ namespace CapaNegocio
             try
             {
                 Productos productoBD = ObtenerProductoPorId(idProducto);
-                productoBD.CodigoBarra = producto.CodigoBarra;
                 productoBD.DescCorta = producto.DescCorta;
                 productoBD.DescLarga = producto.DescLarga;
                 productoBD.CantidadMinima = producto.CantidadMinima;
@@ -61,7 +60,7 @@ namespace CapaNegocio
                 {
                     Cantidad = Convert.ToDecimal(cantidadDeStock),
                     FechaAjuste = DateTime.Now,
-                    IdProducto = producto.NroProducto,
+                    IdProducto = producto.IdProducto,
                     Motivo = "Stock Inicial del Producto",
                     FechaAcceso = DateTime.Now
                 };

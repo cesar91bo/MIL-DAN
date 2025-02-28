@@ -15,7 +15,6 @@
         <AssociationConnector Association="SistemaGestionPymeBDModel.FK_AjustesStock_Productos" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.VistaProducto" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.VistaPreciosVenta" Width="1.5" PointX="5.375" PointY="8.75" />
-        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Seteos" Width="1.5" PointX="10.375" PointY="0.75" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.PreciosVenta" Width="1.5" PointX="9.875" PointY="6.875" />
         <AssociationConnector Association="SistemaGestionPymeBDModel.FK_PreciosVenta_Productos" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.CPostales" Width="1.5" PointX="15" PointY="0.875" />
@@ -26,6 +25,26 @@
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Clientes" Width="1.5" PointX="3" PointY="9.25" />
         <AssociationConnector Association="SistemaGestionPymeBDModel.FK_Clientes_RegimenesImpositivos" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.VistaClientes" Width="1.5" PointX="12.375" PointY="6.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.FormasPago" Width="1.5" PointX="12.375" PointY="12.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.TiposConceptoFactura" Width="1.5" PointX="7.375" PointY="13.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.TiposFactura" Width="1.5" PointX="9.375" PointY="13.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Seteos" Width="1.5" PointX="14.375" PointY="3.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Empresa" Width="1.5" PointX="14.375" PointY="18.375" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.FacturasVenta" Width="1.5" PointX="16.625" PointY="7.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.FacturasVentaDetalle" Width="1.5" PointX="18.875" PointY="7.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.TiposDocFact" Width="1.5" PointX="14.375" PointY="16.125" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.TiposIva" Width="1.5" PointX="16.625" PointY="5" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_Facturas_Clientes" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_Empresa_Empresa" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_FacturasVenta_Empresa" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_Concepto_Factura" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_Facturas_FormasPago" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_Facturas_TiposDocFact" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_Facturas_TiposFactura" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_FacturasVenta_ConceptosFactura" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_FacturasVentaDetalle_FacturasVenta" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_FacturasDetalle_Productos" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_FacturasVentaDetalle_TiposIva" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

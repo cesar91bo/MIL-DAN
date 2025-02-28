@@ -487,7 +487,7 @@
             this.Controls.Add(this.txtApellido);
             this.Controls.Add(this.lblCliente);
             this.Name = "frmCliente";
-            this.Text = "frmCliente";
+            this.Text = "Cliente";
             this.Load += new System.EventHandler(this.frmCliente_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCliente_KeyDown);
             this.groupBox1.ResumeLayout(false);

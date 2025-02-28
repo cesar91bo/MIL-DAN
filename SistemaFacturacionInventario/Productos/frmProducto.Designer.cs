@@ -52,7 +52,6 @@
             this.btnVolver = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.lblProducto = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblBaja = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnBaja = new System.Windows.Forms.Button();
@@ -335,16 +334,6 @@
             this.lblProducto.TabIndex = 5;
             this.lblProducto.Text = "Producto";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Location = new System.Drawing.Point(126, 406);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(882, 3);
-            this.groupBox2.TabIndex = 20;
-            this.groupBox2.TabStop = false;
-            // 
             // lblBaja
             // 
             this.lblBaja.AutoSize = true;
@@ -408,7 +397,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(242)))));
             this.ClientSize = new System.Drawing.Size(1148, 573);
             this.Controls.Add(this.lblBaja);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.btnGuardar);
@@ -452,7 +440,6 @@
         private System.Windows.Forms.Button btnBaja;
         private System.Windows.Forms.Button btnUMedida;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblBaja;
         private System.Windows.Forms.Label lblErrores;
     }

@@ -1,4 +1,5 @@
-﻿using SistemaFacturacionInventario.Clientes;
+﻿using SistemaFacturacionInventario.Auxiliares;
+using SistemaFacturacionInventario.Clientes;
 using SistemaFacturacionInventario.Facturacion;
 using SistemaFacturacionInventario.Principal;
 using SistemaFacturacionInventario.Productos;
@@ -93,7 +94,7 @@ namespace SistemaFacturacionInventario
 
         private void btnNuevaFactura_Click_1(object sender, EventArgs e)
         {
-            AbrirFormularioHijo(new frmFacturacion());
+            AbrirFormularioHijo(new frmFacturacion {Accion = "NUEVO" });
             OcultarPanelesSubMenu();
         }
 
@@ -150,6 +151,7 @@ namespace SistemaFacturacionInventario
 
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
+            AbrirFormularioHijo(new frmConfiguracion());
             OcultarPanelesSubMenu();
         }
         #endregion

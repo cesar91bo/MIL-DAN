@@ -126,7 +126,7 @@ namespace SistemaFacturacionInventario.Productos
                     DescLarga = txtDescLarga.Text,
                     CantidadMinima = Convert.ToDouble(txtStockMin.Text.Replace(".", ",")),
                     IdRubro = Convert.ToInt32(cmbRubro.SelectedValue),
-                    IdUnidadMedida = Convert.ToInt16(cmbUMedida.SelectedValue),
+                    IdUnidadMedida = Convert.ToInt32(cmbUMedida.SelectedValue),
                     LlevarStock = chkStock.Checked,
                     StockActual = Convert.ToDouble(txtStockActual.Text.Replace(".", ",")),
                     UltimaActStock = DateTime.Now,
@@ -162,10 +162,10 @@ namespace SistemaFacturacionInventario.Productos
         {
             txtDescCorta.Text = string.Empty;
             txtDescLarga.Text = string.Empty;
-            txtStockActual.Text = string.Empty;
-            txtStockMin.Text = string.Empty;
-            cmbRubro.SelectedValue = "1";
-            cmbUMedida.SelectedValue = "1";
+            txtStockActual.Text = "0";
+            txtStockMin.Text = "0";
+            cmbRubro.SelectedValue = 1;
+            cmbUMedida.SelectedValue = 1;
             chkStock.Checked = false;
             IdProducto = 0;
         }
@@ -207,7 +207,7 @@ namespace SistemaFacturacionInventario.Productos
                     cmbRubro.SelectedValue = producto.IdRubro;
                     cmbUMedida.SelectedValue = producto.IdUnidadMedida;
                     chkStock.Checked = producto.LlevarStock;
-                    IdProducto = producto.NroProducto;
+                    IdProducto = producto.IdProducto;
                     Accion = "MOD";
                     if (producto.FechaBaja == null) return;
                     lblBaja.Text = "Dado de baja el día " + producto.FechaBaja.Value.ToShortDateString();
@@ -299,7 +299,8 @@ namespace SistemaFacturacionInventario.Productos
             try
             {
                 txtStockMin.Enabled = chkStock.Checked;
-                txtStockActual.Enabled = chkStock.Checked && Accion == "ALTA";
+                // txtStockActual.Enabled = chkStock.Checked && Accion == "ALTA";
+                txtStockActual.Enabled = chkStock.Checked;
             }
             catch (Exception ex)
             {

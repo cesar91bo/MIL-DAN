@@ -12,21 +12,18 @@ namespace CapaDatos.Modelos
     using System;
     using System.Collections.Generic;
     
-    public partial class CPostales
+    public partial class TiposIva
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CPostales()
+        public TiposIva()
         {
-            this.Empresa = new HashSet<Empresa>();
+            this.FacturasVentaDetalle = new HashSet<FacturasVentaDetalle>();
         }
     
-        public short CodigoPostal { get; set; }
-        public byte SubCodigoPostal { get; set; }
-        public string Localidad { get; set; }
-        public int IdProvincia { get; set; }
+        public byte IdTipoIva { get; set; }
+        public float PorcentajeIVA { get; set; }
     
-        public virtual Provincias Provincias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Empresa> Empresa { get; set; }
+        public virtual ICollection<FacturasVentaDetalle> FacturasVentaDetalle { get; set; }
     }
 }

@@ -52,6 +52,91 @@
           <Property Name="Localidad" Type="nvarchar" MaxLength="70" Nullable="false" />
           <Property Name="IdProvincia" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Name="IdEmpresa" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RazonSocial" Type="nvarchar" MaxLength="200" />
+          <Property Name="NFantasia" Type="nvarchar" MaxLength="200" />
+          <Property Name="InicioActividades" Type="smalldatetime" />
+          <Property Name="CUIT" Type="nvarchar" MaxLength="15" />
+          <Property Name="Logo" Type="varbinary(max)" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="100" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="100" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="100" />
+          <Property Name="IIBB" Type="nvarchar" MaxLength="50" />
+          <Property Name="CondicionIva" Type="nvarchar" MaxLength="50" />
+          <Property Name="CodigoPostal" Type="smallint" />
+          <Property Name="SubCodigoPostal" Type="tinyint" />
+          <Property Name="RutaCertificado" Type="nvarchar" MaxLength="500" />
+          <Property Name="SerialCertificado" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FacturasVenta">
+          <Key>
+            <PropertyRef Name="IdFacturaVenta" />
+          </Key>
+          <Property Name="IdFacturaVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTipoDocumento" Type="smallint" Nullable="false" />
+          <Property Name="IdTipoFactura" Type="smallint" />
+          <Property Name="BVFact" Type="nvarchar" MaxLength="4" />
+          <Property Name="NCompFact" Type="nvarchar" MaxLength="8" />
+          <Property Name="FechaEmision" Type="smalldatetime" Nullable="false" />
+          <Property Name="IdFormaPago" Type="smallint" Nullable="false" />
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="Impresa" Type="bit" Nullable="false" />
+          <Property Name="Observaciones" Type="nvarchar" MaxLength="500" />
+          <Property Name="Subtotal105" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Subtotal21" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="SubTotal" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="Descuento" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="TotalDescuento105" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="TotalDescuento21" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="TotalDescuento" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="TotalIva105" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="TotalIva21" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="FechaVencimiento" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="FechaAnulacion" Type="datetime2" Precision="7" />
+          <Property Name="TotalSaldado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="TotalInteres" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="TotalSaldadoInteres" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="IdEmpresa" Type="tinyint" Nullable="false" />
+          <Property Name="UsrAcceso" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaAcceso" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="BVReferencia" Type="nvarchar" MaxLength="4" />
+          <Property Name="NroCompFactReferencia" Type="nvarchar" MaxLength="8" />
+          <Property Name="IdConceptoFactura" Type="int" Nullable="false" />
+          <Property Name="FechaAlta" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Cobrador" Type="bit" Nullable="false" />
+          <Property Name="MoverStock" Type="bit" Nullable="false" />
+          <Property Name="NombreMaquina" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FacturasVentaDetalle">
+          <Key>
+            <PropertyRef Name="IdFacturaVentaDetalle" />
+          </Key>
+          <Property Name="IdFacturaVentaDetalle" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdFacturaVenta" Type="int" Nullable="false" />
+          <Property Name="IdProducto" Type="int" />
+          <Property Name="Producto" Type="nvarchar" MaxLength="200" />
+          <Property Name="UMedida" Type="nvarchar" MaxLength="100" />
+          <Property Name="Cantidad" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="PrecioUnitario" Type="decimal" Precision="14" Scale="4" Nullable="false" />
+          <Property Name="IdTipoIva" Type="tinyint" Nullable="false" />
+          <Property Name="TotalArt" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="DesdeRemito" Type="bit" Nullable="false" />
+          <Property Name="UsrAcceso" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaAcceso" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="PrecioManual" Type="bit" />
+        </EntityType>
+        <EntityType Name="FormasPago">
+          <Key>
+            <PropertyRef Name="IdFormaPago" />
+          </Key>
+          <Property Name="IdFormaPago" Type="smallint" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="PreciosVenta">
           <Key>
             <PropertyRef Name="IdProducto" />
@@ -129,10 +214,56 @@
             <PropertyRef Name="IdSeteo" />
           </Key>
           <Property Name="IdSeteo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DiasVtoFact" Type="int" Nullable="false" />
-          <Property Name="PorcentajeGanancia" Type="decimal" Precision="4" Scale="2" Nullable="false" />
-          <Property Name="PorcentajeInteres" Type="decimal" Precision="4" Scale="2" Nullable="false" />
-          <Property Name="PorcentajeFlete" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="UsarCF" Type="bit" />
+          <Property Name="DiasVtoFact" Type="tinyint" />
+          <Property Name="PathBackUp" Type="nvarchar" MaxLength="500" />
+          <Property Name="PorcentajeGcia" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="PorcentajeFiado" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="UsarCaja" Type="bit" />
+          <Property Name="UsarPrecioIVAPres" Type="bit" />
+          <Property Name="UsarCajaRegistradora" Type="bit" />
+          <Property Name="DuplicadoRecibo" Type="bit" />
+          <Property Name="UsarMultiEmpresa" Type="bit" />
+          <Property Name="MostrarArtBajas" Type="bit" />
+          <Property Name="MostrarCliBajas" Type="bit" />
+          <Property Name="MostarArtLoad" Type="bit" />
+          <Property Name="MostarArtPreciosLoad" Type="bit" />
+          <Property Name="FacturacionRapida" Type="bit" />
+          <Property Name="Usar4DigitosPrecios" Type="bit" />
+          <Property Name="UsarIntereses" Type="bit" />
+          <Property Name="PorcentajeInteres" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="PreciosSoloAdmin" Type="bit" />
+          <Property Name="UsarRemitoX" Type="bit" />
+          <Property Name="ImprimirRecCtdoCajas" Type="bit" />
+          <Property Name="UsarDetalleCajas" Type="bit" />
+          <Property Name="UsarUpdater" Type="bit" />
+          <Property Name="UsarCB" Type="bit" />
+          <Property Name="UsarDolar" Type="bit" />
+          <Property Name="UsarLogo" Type="bit" />
+          <Property Name="DuplicadoRemitoX" Type="bit" />
+          <Property Name="HabilitarUserPorIntentos" Type="bit" />
+          <Property Name="MaxIntentosFallidos" Type="tinyint" />
+          <Property Name="LapsoTiempoBloqueo" Type="smallint" />
+          <Property Name="Hollistor" Type="bit" />
+          <Property Name="Flete" Type="bit" />
+          <Property Name="Descarga" Type="bit" />
+          <Property Name="PorcentajeFlete" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PorcentajeDescarga" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Impuesto" Type="bit" />
+        </EntityType>
+        <EntityType Name="TiposConceptoFactura">
+          <Key>
+            <PropertyRef Name="IdConceptoFactura" />
+          </Key>
+          <Property Name="IdConceptoFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TiposDocFact">
+          <Key>
+            <PropertyRef Name="IdTipoDocumento" />
+          </Key>
+          <Property Name="IdTipoDocumento" Type="smallint" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TiposDocumento">
           <Key>
@@ -140,6 +271,20 @@
           </Key>
           <Property Name="TipoDocumento" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TiposFactura">
+          <Key>
+            <PropertyRef Name="IdTipoFactura" />
+          </Key>
+          <Property Name="IdTipoFactura" Type="smallint" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TiposIva">
+          <Key>
+            <PropertyRef Name="IdTipoIva" />
+          </Key>
+          <Property Name="IdTipoIva" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PorcentajeIVA" Type="real" Nullable="false" />
         </EntityType>
         <EntityType Name="UnidadesMedida">
           <Key>
@@ -291,6 +436,18 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Concepto_Factura">
+          <End Role="TiposConceptoFactura" Type="Self.TiposConceptoFactura" Multiplicity="1" />
+          <End Role="FacturasVenta" Type="Self.FacturasVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposConceptoFactura">
+              <PropertyRef Name="IdConceptoFactura" />
+            </Principal>
+            <Dependent Role="FacturasVenta">
+              <PropertyRef Name="IdConceptoFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CPOSTALES_PROVINCIAS">
           <End Role="Provincias" Type="Self.Provincias" Multiplicity="1" />
           <End Role="CPostales" Type="Self.CPostales" Multiplicity="*" />
@@ -300,6 +457,130 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             </Principal>
             <Dependent Role="CPostales">
               <PropertyRef Name="IdProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresa_Empresa">
+          <End Role="CPostales" Type="Self.CPostales" Multiplicity="0..1" />
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CPostales">
+              <PropertyRef Name="CodigoPostal" />
+              <PropertyRef Name="SubCodigoPostal" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="CodigoPostal" />
+              <PropertyRef Name="SubCodigoPostal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_Clientes">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="FacturasVenta" Type="Self.FacturasVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="FacturasVenta">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_FormasPago">
+          <End Role="FormasPago" Type="Self.FormasPago" Multiplicity="1" />
+          <End Role="FacturasVenta" Type="Self.FacturasVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormasPago">
+              <PropertyRef Name="IdFormaPago" />
+            </Principal>
+            <Dependent Role="FacturasVenta">
+              <PropertyRef Name="IdFormaPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_TiposDocFact">
+          <End Role="TiposDocFact" Type="Self.TiposDocFact" Multiplicity="1" />
+          <End Role="FacturasVenta" Type="Self.FacturasVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposDocFact">
+              <PropertyRef Name="IdTipoDocumento" />
+            </Principal>
+            <Dependent Role="FacturasVenta">
+              <PropertyRef Name="IdTipoDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_TiposFactura">
+          <End Role="TiposFactura" Type="Self.TiposFactura" Multiplicity="0..1" />
+          <End Role="FacturasVenta" Type="Self.FacturasVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposFactura">
+              <PropertyRef Name="IdTipoFactura" />
+            </Principal>
+            <Dependent Role="FacturasVenta">
+              <PropertyRef Name="IdTipoFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturasDetalle_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+          <End Role="FacturasVentaDetalle" Type="Self.FacturasVentaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="FacturasVentaDetalle">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturasVenta_ConceptosFactura">
+          <End Role="TiposConceptoFactura" Type="Self.TiposConceptoFactura" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FacturasVenta" Type="Self.FacturasVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposConceptoFactura">
+              <PropertyRef Name="IdConceptoFactura" />
+            </Principal>
+            <Dependent Role="FacturasVenta">
+              <PropertyRef Name="IdConceptoFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturasVenta_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="FacturasVenta" Type="Self.FacturasVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="FacturasVenta">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturasVentaDetalle_FacturasVenta">
+          <End Role="FacturasVenta" Type="Self.FacturasVenta" Multiplicity="1" />
+          <End Role="FacturasVentaDetalle" Type="Self.FacturasVentaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacturasVenta">
+              <PropertyRef Name="IdFacturaVenta" />
+            </Principal>
+            <Dependent Role="FacturasVentaDetalle">
+              <PropertyRef Name="IdFacturaVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturasVentaDetalle_TiposIva">
+          <End Role="TiposIva" Type="Self.TiposIva" Multiplicity="1" />
+          <End Role="FacturasVentaDetalle" Type="Self.FacturasVentaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposIva">
+              <PropertyRef Name="IdTipoIva" />
+            </Principal>
+            <Dependent Role="FacturasVentaDetalle">
+              <PropertyRef Name="IdTipoIva" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -343,13 +624,21 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <EntitySet Name="AjustesStock" EntityType="Self.AjustesStock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CPostales" EntityType="Self.CPostales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FacturasVenta" EntityType="Self.FacturasVenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FacturasVentaDetalle" EntityType="Self.FacturasVentaDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormasPago" EntityType="Self.FormasPago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PreciosVenta" EntityType="Self.PreciosVenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provincias" EntityType="Self.Provincias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegimenesImpositivos" EntityType="Self.RegimenesImpositivos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubros" EntityType="Self.Rubros" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Seteos" EntityType="Self.Seteos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposConceptoFactura" EntityType="Self.TiposConceptoFactura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposDocFact" EntityType="Self.TiposDocFact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TiposDocumento" EntityType="Self.TiposDocumento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposFactura" EntityType="Self.TiposFactura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposIva" EntityType="Self.TiposIva" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnidadesMedida" EntityType="Self.UnidadesMedida" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VistaClientes" EntityType="Self.VistaClientes" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -435,9 +724,53 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             <End Role="RegimenesImpositivos" EntitySet="RegimenesImpositivos" />
             <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Concepto_Factura" Association="Self.FK_Concepto_Factura">
+            <End Role="TiposConceptoFactura" EntitySet="TiposConceptoFactura" />
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+          </AssociationSet>
           <AssociationSet Name="FK_CPOSTALES_PROVINCIAS" Association="Self.FK_CPOSTALES_PROVINCIAS">
             <End Role="Provincias" EntitySet="Provincias" />
             <End Role="CPostales" EntitySet="CPostales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresa_Empresa" Association="Self.FK_Empresa_Empresa">
+            <End Role="CPostales" EntitySet="CPostales" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_Clientes" Association="Self.FK_Facturas_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_FormasPago" Association="Self.FK_Facturas_FormasPago">
+            <End Role="FormasPago" EntitySet="FormasPago" />
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_TiposDocFact" Association="Self.FK_Facturas_TiposDocFact">
+            <End Role="TiposDocFact" EntitySet="TiposDocFact" />
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_TiposFactura" Association="Self.FK_Facturas_TiposFactura">
+            <End Role="TiposFactura" EntitySet="TiposFactura" />
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturasDetalle_Productos" Association="Self.FK_FacturasDetalle_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="FacturasVentaDetalle" EntitySet="FacturasVentaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturasVenta_ConceptosFactura" Association="Self.FK_FacturasVenta_ConceptosFactura">
+            <End Role="TiposConceptoFactura" EntitySet="TiposConceptoFactura" />
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturasVenta_Empresa" Association="Self.FK_FacturasVenta_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturasVentaDetalle_FacturasVenta" Association="Self.FK_FacturasVentaDetalle_FacturasVenta">
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+            <End Role="FacturasVentaDetalle" EntitySet="FacturasVentaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturasVentaDetalle_TiposIva" Association="Self.FK_FacturasVentaDetalle_TiposIva">
+            <End Role="TiposIva" EntitySet="TiposIva" />
+            <End Role="FacturasVentaDetalle" EntitySet="FacturasVentaDetalle" />
           </AssociationSet>
           <AssociationSet Name="FK_PreciosVenta_Productos" Association="Self.FK_PreciosVenta_Productos">
             <End Role="Productos" EntitySet="Productos" />
@@ -484,7 +817,6 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           </AssociationSet>
           <EntitySet Name="VistaProducto" EntityType="SistemaGestionPymeBDModel.VistaProducto" />
           <EntitySet Name="VistaPreciosVenta" EntityType="SistemaGestionPymeBDModel.VistaPreciosVenta" />
-          <EntitySet Name="Seteos" EntityType="SistemaGestionPymeBDModel.Seteos" />
           <EntitySet Name="PreciosVenta" EntityType="SistemaGestionPymeBDModel.PreciosVenta" />
           <AssociationSet Name="FK_PreciosVenta_Productos" Association="SistemaGestionPymeBDModel.FK_PreciosVenta_Productos">
             <End Role="Productos" EntitySet="Productos" />
@@ -504,6 +836,59 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
           <EntitySet Name="VistaClientes" EntityType="SistemaGestionPymeBDModel.VistaClientes" />
+          <EntitySet Name="FormasPago" EntityType="SistemaGestionPymeBDModel.FormasPago" />
+          <EntitySet Name="TiposConceptoFactura" EntityType="SistemaGestionPymeBDModel.TiposConceptoFactura" />
+          <EntitySet Name="TiposFactura" EntityType="SistemaGestionPymeBDModel.TiposFactura" />
+          <EntitySet Name="Seteos" EntityType="SistemaGestionPymeBDModel.Seteos" />
+          <EntitySet Name="Empresa" EntityType="SistemaGestionPymeBDModel.Empresa" />
+          <EntitySet Name="FacturasVenta" EntityType="SistemaGestionPymeBDModel.FacturasVenta" />
+          <EntitySet Name="FacturasVentaDetalle" EntityType="SistemaGestionPymeBDModel.FacturasVentaDetalle" />
+          <EntitySet Name="TiposDocFact" EntityType="SistemaGestionPymeBDModel.TiposDocFact" />
+          <EntitySet Name="TiposIva" EntityType="SistemaGestionPymeBDModel.TiposIva" />
+          <AssociationSet Name="FK_Facturas_Clientes" Association="SistemaGestionPymeBDModel.FK_Facturas_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresa_Empresa" Association="SistemaGestionPymeBDModel.FK_Empresa_Empresa">
+            <End Role="CPostales" EntitySet="CPostales" />
+            <End Role="Empresa" EntitySet="Empresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturasVenta_Empresa" Association="SistemaGestionPymeBDModel.FK_FacturasVenta_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Concepto_Factura" Association="SistemaGestionPymeBDModel.FK_Concepto_Factura">
+            <End Role="TiposConceptoFactura" EntitySet="TiposConceptoFactura" />
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_FormasPago" Association="SistemaGestionPymeBDModel.FK_Facturas_FormasPago">
+            <End Role="FormasPago" EntitySet="FormasPago" />
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_TiposDocFact" Association="SistemaGestionPymeBDModel.FK_Facturas_TiposDocFact">
+            <End Role="TiposDocFact" EntitySet="TiposDocFact" />
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_TiposFactura" Association="SistemaGestionPymeBDModel.FK_Facturas_TiposFactura">
+            <End Role="TiposFactura" EntitySet="TiposFactura" />
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturasVenta_ConceptosFactura" Association="SistemaGestionPymeBDModel.FK_FacturasVenta_ConceptosFactura">
+            <End Role="TiposConceptoFactura" EntitySet="TiposConceptoFactura" />
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturasVentaDetalle_FacturasVenta" Association="SistemaGestionPymeBDModel.FK_FacturasVentaDetalle_FacturasVenta">
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+            <End Role="FacturasVentaDetalle" EntitySet="FacturasVentaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturasDetalle_Productos" Association="SistemaGestionPymeBDModel.FK_FacturasDetalle_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="FacturasVentaDetalle" EntitySet="FacturasVentaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacturasVentaDetalle_TiposIva" Association="SistemaGestionPymeBDModel.FK_FacturasVentaDetalle_TiposIva">
+            <End Role="TiposIva" EntitySet="TiposIva" />
+            <End Role="FacturasVentaDetalle" EntitySet="FacturasVentaDetalle" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Productos">
           <Key>
@@ -528,6 +913,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <Property Name="FechaAcceso" Type="DateTime" Precision="3" />
           <NavigationProperty Name="AjustesStock" Relationship="SistemaGestionPymeBDModel.FK_AjustesStock_Productos" FromRole="Productos" ToRole="AjustesStock" />
           <NavigationProperty Name="PreciosVenta" Relationship="SistemaGestionPymeBDModel.FK_PreciosVenta_Productos" FromRole="Productos" ToRole="PreciosVenta" />
+          <NavigationProperty Name="FacturasVentaDetalle" Relationship="SistemaGestionPymeBDModel.FK_FacturasDetalle_Productos" FromRole="Productos" ToRole="FacturasVentaDetalle" />
         </EntityType>
         <EntityType Name="Rubros">
           <Key>
@@ -657,16 +1043,6 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <Property Name="PorcentajeFiado" Type="Decimal" Precision="6" Scale="2" />
           <Property Name="Impuesto" Type="Decimal" Precision="5" Scale="2" />
         </EntityType>
-        <EntityType Name="Seteos">
-          <Key>
-            <PropertyRef Name="IdSeteo" />
-          </Key>
-          <Property Name="IdSeteo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DiasVtoFact" Type="Int32" Nullable="false" />
-          <Property Name="PorcentajeGanancia" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
-          <Property Name="PorcentajeInteres" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
-          <Property Name="PorcentajeFlete" Type="Decimal" Precision="4" Scale="2" />
-        </EntityType>
         <EntityType Name="PreciosVenta">
           <Key>
             <PropertyRef Name="IdProducto" />
@@ -721,6 +1097,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <Property Name="Localidad" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
           <Property Name="IdProvincia" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Provincias" Relationship="SistemaGestionPymeBDModel.FK_CPOSTALES_PROVINCIAS" FromRole="CPostales" ToRole="Provincias" />
+          <NavigationProperty Name="Empresa" Relationship="SistemaGestionPymeBDModel.FK_Empresa_Empresa" FromRole="CPostales" ToRole="Empresa" />
         </EntityType>
         <EntityType Name="Provincias">
           <Key>
@@ -790,6 +1167,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <Property Name="IdRegimenImpositivo" Type="Int32" />
           <Property Name="Observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="RegimenesImpositivos" Relationship="SistemaGestionPymeBDModel.FK_Clientes_RegimenesImpositivos" FromRole="Clientes" ToRole="RegimenesImpositivos" />
+          <NavigationProperty Name="FacturasVenta" Relationship="SistemaGestionPymeBDModel.FK_Facturas_Clientes" FromRole="Clientes" ToRole="FacturasVenta" />
         </EntityType>
         <Association Name="FK_Clientes_RegimenesImpositivos">
           <End Type="SistemaGestionPymeBDModel.RegimenesImpositivos" Role="RegimenesImpositivos" Multiplicity="0..1" />
@@ -835,6 +1213,316 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <Property Name="CodigoPostal" Type="Int16" Nullable="false" />
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="FormasPago">
+          <Key>
+            <PropertyRef Name="IdFormaPago" />
+          </Key>
+          <Property Name="IdFormaPago" Type="Int16" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FacturasVenta" Relationship="SistemaGestionPymeBDModel.FK_Facturas_FormasPago" FromRole="FormasPago" ToRole="FacturasVenta" />
+        </EntityType>
+        <EntityType Name="TiposConceptoFactura">
+          <Key>
+            <PropertyRef Name="IdConceptoFactura" />
+          </Key>
+          <Property Name="IdConceptoFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FacturasVenta" Relationship="SistemaGestionPymeBDModel.FK_Concepto_Factura" FromRole="TiposConceptoFactura" ToRole="FacturasVenta" />
+          <NavigationProperty Name="FacturasVenta1" Relationship="SistemaGestionPymeBDModel.FK_FacturasVenta_ConceptosFactura" FromRole="TiposConceptoFactura" ToRole="FacturasVenta" />
+        </EntityType>
+        <EntityType Name="TiposFactura">
+          <Key>
+            <PropertyRef Name="IdTipoFactura" />
+          </Key>
+          <Property Name="IdTipoFactura" Type="Int16" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FacturasVenta" Relationship="SistemaGestionPymeBDModel.FK_Facturas_TiposFactura" FromRole="TiposFactura" ToRole="FacturasVenta" />
+        </EntityType>
+        <EntityType Name="Seteos">
+          <Key>
+            <PropertyRef Name="IdSeteo" />
+          </Key>
+          <Property Name="IdSeteo" Type="Int32" Nullable="false" />
+          <Property Name="UsarCF" Type="Boolean" />
+          <Property Name="DiasVtoFact" Type="Byte" />
+          <Property Name="PathBackUp" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PorcentajeGcia" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="PorcentajeFiado" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="UsarCaja" Type="Boolean" />
+          <Property Name="UsarPrecioIVAPres" Type="Boolean" />
+          <Property Name="UsarCajaRegistradora" Type="Boolean" />
+          <Property Name="DuplicadoRecibo" Type="Boolean" />
+          <Property Name="UsarMultiEmpresa" Type="Boolean" />
+          <Property Name="MostrarArtBajas" Type="Boolean" />
+          <Property Name="MostrarCliBajas" Type="Boolean" />
+          <Property Name="MostarArtLoad" Type="Boolean" />
+          <Property Name="MostarArtPreciosLoad" Type="Boolean" />
+          <Property Name="FacturacionRapida" Type="Boolean" />
+          <Property Name="Usar4DigitosPrecios" Type="Boolean" />
+          <Property Name="UsarIntereses" Type="Boolean" />
+          <Property Name="PorcentajeInteres" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="PreciosSoloAdmin" Type="Boolean" />
+          <Property Name="UsarRemitoX" Type="Boolean" />
+          <Property Name="ImprimirRecCtdoCajas" Type="Boolean" />
+          <Property Name="UsarDetalleCajas" Type="Boolean" />
+          <Property Name="UsarUpdater" Type="Boolean" />
+          <Property Name="UsarCB" Type="Boolean" />
+          <Property Name="UsarDolar" Type="Boolean" />
+          <Property Name="UsarLogo" Type="Boolean" />
+          <Property Name="DuplicadoRemitoX" Type="Boolean" />
+          <Property Name="HabilitarUserPorIntentos" Type="Boolean" />
+          <Property Name="MaxIntentosFallidos" Type="Byte" />
+          <Property Name="LapsoTiempoBloqueo" Type="Int16" />
+          <Property Name="Hollistor" Type="Boolean" />
+          <Property Name="Flete" Type="Boolean" />
+          <Property Name="Descarga" Type="Boolean" />
+          <Property Name="PorcentajeFlete" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PorcentajeDescarga" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Impuesto" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Name="IdEmpresa" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RazonSocial" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NFantasia" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="InicioActividades" Type="DateTime" Precision="0" />
+          <Property Name="CUIT" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IIBB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CondicionIva" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoPostal" Type="Int16" />
+          <Property Name="SubCodigoPostal" Type="Byte" />
+          <Property Name="RutaCertificado" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SerialCertificado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CPostales" Relationship="SistemaGestionPymeBDModel.FK_Empresa_Empresa" FromRole="Empresa" ToRole="CPostales" />
+          <NavigationProperty Name="FacturasVenta" Relationship="SistemaGestionPymeBDModel.FK_FacturasVenta_Empresa" FromRole="Empresa" ToRole="FacturasVenta" />
+        </EntityType>
+        <EntityType Name="FacturasVenta">
+          <Key>
+            <PropertyRef Name="IdFacturaVenta" />
+          </Key>
+          <Property Name="IdFacturaVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTipoDocumento" Type="Int16" Nullable="false" />
+          <Property Name="IdTipoFactura" Type="Int16" />
+          <Property Name="BVFact" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="NCompFact" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="FechaEmision" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdFormaPago" Type="Int16" Nullable="false" />
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <Property Name="Impresa" Type="Boolean" Nullable="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Subtotal105" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="Subtotal21" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="SubTotal" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="Descuento" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="TotalDescuento105" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="TotalDescuento21" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="TotalDescuento" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="TotalIva105" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="TotalIva21" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="14" Scale="2" />
+          <Property Name="FechaVencimiento" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="FechaAnulacion" Type="DateTime" Precision="7" />
+          <Property Name="TotalSaldado" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="TotalInteres" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="TotalSaldadoInteres" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="IdEmpresa" Type="Byte" Nullable="false" />
+          <Property Name="UsrAcceso" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaAcceso" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="BVReferencia" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="NroCompFactReferencia" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="IdConceptoFactura" Type="Int32" Nullable="false" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Cobrador" Type="Boolean" Nullable="false" />
+          <Property Name="MoverStock" Type="Boolean" Nullable="false" />
+          <Property Name="NombreMaquina" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Clientes" Relationship="SistemaGestionPymeBDModel.FK_Facturas_Clientes" FromRole="FacturasVenta" ToRole="Clientes" />
+          <NavigationProperty Name="Empresa" Relationship="SistemaGestionPymeBDModel.FK_FacturasVenta_Empresa" FromRole="FacturasVenta" ToRole="Empresa" />
+          <NavigationProperty Name="TiposConceptoFactura" Relationship="SistemaGestionPymeBDModel.FK_Concepto_Factura" FromRole="FacturasVenta" ToRole="TiposConceptoFactura" />
+          <NavigationProperty Name="FormasPago" Relationship="SistemaGestionPymeBDModel.FK_Facturas_FormasPago" FromRole="FacturasVenta" ToRole="FormasPago" />
+          <NavigationProperty Name="TiposDocFact" Relationship="SistemaGestionPymeBDModel.FK_Facturas_TiposDocFact" FromRole="FacturasVenta" ToRole="TiposDocFact" />
+          <NavigationProperty Name="TiposFactura" Relationship="SistemaGestionPymeBDModel.FK_Facturas_TiposFactura" FromRole="FacturasVenta" ToRole="TiposFactura" />
+          <NavigationProperty Name="TiposConceptoFactura1" Relationship="SistemaGestionPymeBDModel.FK_FacturasVenta_ConceptosFactura" FromRole="FacturasVenta" ToRole="TiposConceptoFactura" />
+          <NavigationProperty Name="FacturasVentaDetalle" Relationship="SistemaGestionPymeBDModel.FK_FacturasVentaDetalle_FacturasVenta" FromRole="FacturasVenta" ToRole="FacturasVentaDetalle" />
+        </EntityType>
+        <EntityType Name="FacturasVentaDetalle">
+          <Key>
+            <PropertyRef Name="IdFacturaVentaDetalle" />
+          </Key>
+          <Property Name="IdFacturaVentaDetalle" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdFacturaVenta" Type="Int32" Nullable="false" />
+          <Property Name="IdProducto" Type="Int32" />
+          <Property Name="Producto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UMedida" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Cantidad" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="PrecioUnitario" Type="Decimal" Nullable="false" Precision="14" Scale="4" />
+          <Property Name="IdTipoIva" Type="Byte" Nullable="false" />
+          <Property Name="TotalArt" Type="Decimal" Nullable="false" Precision="14" Scale="2" />
+          <Property Name="DesdeRemito" Type="Boolean" Nullable="false" />
+          <Property Name="UsrAcceso" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaAcceso" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="PrecioManual" Type="Boolean" />
+          <NavigationProperty Name="FacturasVenta" Relationship="SistemaGestionPymeBDModel.FK_FacturasVentaDetalle_FacturasVenta" FromRole="FacturasVentaDetalle" ToRole="FacturasVenta" />
+          <NavigationProperty Name="Productos" Relationship="SistemaGestionPymeBDModel.FK_FacturasDetalle_Productos" FromRole="FacturasVentaDetalle" ToRole="Productos" />
+          <NavigationProperty Name="TiposIva" Relationship="SistemaGestionPymeBDModel.FK_FacturasVentaDetalle_TiposIva" FromRole="FacturasVentaDetalle" ToRole="TiposIva" />
+        </EntityType>
+        <EntityType Name="TiposDocFact">
+          <Key>
+            <PropertyRef Name="IdTipoDocumento" />
+          </Key>
+          <Property Name="IdTipoDocumento" Type="Int16" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FacturasVenta" Relationship="SistemaGestionPymeBDModel.FK_Facturas_TiposDocFact" FromRole="TiposDocFact" ToRole="FacturasVenta" />
+        </EntityType>
+        <EntityType Name="TiposIva">
+          <Key>
+            <PropertyRef Name="IdTipoIva" />
+          </Key>
+          <Property Name="IdTipoIva" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PorcentajeIVA" Type="Single" Nullable="false" />
+          <NavigationProperty Name="FacturasVentaDetalle" Relationship="SistemaGestionPymeBDModel.FK_FacturasVentaDetalle_TiposIva" FromRole="TiposIva" ToRole="FacturasVentaDetalle" />
+        </EntityType>
+        <Association Name="FK_Facturas_Clientes">
+          <End Type="SistemaGestionPymeBDModel.Clientes" Role="Clientes" Multiplicity="1" />
+          <End Type="SistemaGestionPymeBDModel.FacturasVenta" Role="FacturasVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="FacturasVenta">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresa_Empresa">
+          <End Type="SistemaGestionPymeBDModel.CPostales" Role="CPostales" Multiplicity="0..1" />
+          <End Type="SistemaGestionPymeBDModel.Empresa" Role="Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CPostales">
+              <PropertyRef Name="CodigoPostal" />
+              <PropertyRef Name="SubCodigoPostal" />
+            </Principal>
+            <Dependent Role="Empresa">
+              <PropertyRef Name="CodigoPostal" />
+              <PropertyRef Name="SubCodigoPostal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturasVenta_Empresa">
+          <End Type="SistemaGestionPymeBDModel.Empresa" Role="Empresa" Multiplicity="1" />
+          <End Type="SistemaGestionPymeBDModel.FacturasVenta" Role="FacturasVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="FacturasVenta">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Concepto_Factura">
+          <End Type="SistemaGestionPymeBDModel.TiposConceptoFactura" Role="TiposConceptoFactura" Multiplicity="1" />
+          <End Type="SistemaGestionPymeBDModel.FacturasVenta" Role="FacturasVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposConceptoFactura">
+              <PropertyRef Name="IdConceptoFactura" />
+            </Principal>
+            <Dependent Role="FacturasVenta">
+              <PropertyRef Name="IdConceptoFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_FormasPago">
+          <End Type="SistemaGestionPymeBDModel.FormasPago" Role="FormasPago" Multiplicity="1" />
+          <End Type="SistemaGestionPymeBDModel.FacturasVenta" Role="FacturasVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormasPago">
+              <PropertyRef Name="IdFormaPago" />
+            </Principal>
+            <Dependent Role="FacturasVenta">
+              <PropertyRef Name="IdFormaPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_TiposDocFact">
+          <End Type="SistemaGestionPymeBDModel.TiposDocFact" Role="TiposDocFact" Multiplicity="1" />
+          <End Type="SistemaGestionPymeBDModel.FacturasVenta" Role="FacturasVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposDocFact">
+              <PropertyRef Name="IdTipoDocumento" />
+            </Principal>
+            <Dependent Role="FacturasVenta">
+              <PropertyRef Name="IdTipoDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_TiposFactura">
+          <End Type="SistemaGestionPymeBDModel.TiposFactura" Role="TiposFactura" Multiplicity="0..1" />
+          <End Type="SistemaGestionPymeBDModel.FacturasVenta" Role="FacturasVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposFactura">
+              <PropertyRef Name="IdTipoFactura" />
+            </Principal>
+            <Dependent Role="FacturasVenta">
+              <PropertyRef Name="IdTipoFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturasVenta_ConceptosFactura">
+          <End Type="SistemaGestionPymeBDModel.TiposConceptoFactura" Role="TiposConceptoFactura" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SistemaGestionPymeBDModel.FacturasVenta" Role="FacturasVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposConceptoFactura">
+              <PropertyRef Name="IdConceptoFactura" />
+            </Principal>
+            <Dependent Role="FacturasVenta">
+              <PropertyRef Name="IdConceptoFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturasVentaDetalle_FacturasVenta">
+          <End Type="SistemaGestionPymeBDModel.FacturasVenta" Role="FacturasVenta" Multiplicity="1" />
+          <End Type="SistemaGestionPymeBDModel.FacturasVentaDetalle" Role="FacturasVentaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacturasVenta">
+              <PropertyRef Name="IdFacturaVenta" />
+            </Principal>
+            <Dependent Role="FacturasVentaDetalle">
+              <PropertyRef Name="IdFacturaVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturasDetalle_Productos">
+          <End Type="SistemaGestionPymeBDModel.Productos" Role="Productos" Multiplicity="0..1" />
+          <End Type="SistemaGestionPymeBDModel.FacturasVentaDetalle" Role="FacturasVentaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="FacturasVentaDetalle">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacturasVentaDetalle_TiposIva">
+          <End Type="SistemaGestionPymeBDModel.TiposIva" Role="TiposIva" Multiplicity="1" />
+          <End Type="SistemaGestionPymeBDModel.FacturasVentaDetalle" Role="FacturasVentaDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposIva">
+              <PropertyRef Name="IdTipoIva" />
+            </Principal>
+            <Dependent Role="FacturasVentaDetalle">
+              <PropertyRef Name="IdTipoIva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -944,17 +1632,6 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
                 <ScalarProperty Name="FechaPrecio" ColumnName="FechaPrecio" />
                 <ScalarProperty Name="DescCorta" ColumnName="DescCorta" />
                 <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Seteos">
-            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.Seteos">
-              <MappingFragment StoreEntitySet="Seteos">
-                <ScalarProperty Name="PorcentajeFlete" ColumnName="PorcentajeFlete" />
-                <ScalarProperty Name="PorcentajeInteres" ColumnName="PorcentajeInteres" />
-                <ScalarProperty Name="PorcentajeGanancia" ColumnName="PorcentajeGanancia" />
-                <ScalarProperty Name="DiasVtoFact" ColumnName="DiasVtoFact" />
-                <ScalarProperty Name="IdSeteo" ColumnName="IdSeteo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1074,6 +1751,170 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormasPago">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.FormasPago">
+              <MappingFragment StoreEntitySet="FormasPago">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdFormaPago" ColumnName="IdFormaPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposConceptoFactura">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.TiposConceptoFactura">
+              <MappingFragment StoreEntitySet="TiposConceptoFactura">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdConceptoFactura" ColumnName="IdConceptoFactura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposFactura">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.TiposFactura">
+              <MappingFragment StoreEntitySet="TiposFactura">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdTipoFactura" ColumnName="IdTipoFactura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seteos">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.Seteos">
+              <MappingFragment StoreEntitySet="Seteos">
+                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+                <ScalarProperty Name="PorcentajeDescarga" ColumnName="PorcentajeDescarga" />
+                <ScalarProperty Name="PorcentajeFlete" ColumnName="PorcentajeFlete" />
+                <ScalarProperty Name="Descarga" ColumnName="Descarga" />
+                <ScalarProperty Name="Flete" ColumnName="Flete" />
+                <ScalarProperty Name="Hollistor" ColumnName="Hollistor" />
+                <ScalarProperty Name="LapsoTiempoBloqueo" ColumnName="LapsoTiempoBloqueo" />
+                <ScalarProperty Name="MaxIntentosFallidos" ColumnName="MaxIntentosFallidos" />
+                <ScalarProperty Name="HabilitarUserPorIntentos" ColumnName="HabilitarUserPorIntentos" />
+                <ScalarProperty Name="DuplicadoRemitoX" ColumnName="DuplicadoRemitoX" />
+                <ScalarProperty Name="UsarLogo" ColumnName="UsarLogo" />
+                <ScalarProperty Name="UsarDolar" ColumnName="UsarDolar" />
+                <ScalarProperty Name="UsarCB" ColumnName="UsarCB" />
+                <ScalarProperty Name="UsarUpdater" ColumnName="UsarUpdater" />
+                <ScalarProperty Name="UsarDetalleCajas" ColumnName="UsarDetalleCajas" />
+                <ScalarProperty Name="ImprimirRecCtdoCajas" ColumnName="ImprimirRecCtdoCajas" />
+                <ScalarProperty Name="UsarRemitoX" ColumnName="UsarRemitoX" />
+                <ScalarProperty Name="PreciosSoloAdmin" ColumnName="PreciosSoloAdmin" />
+                <ScalarProperty Name="PorcentajeInteres" ColumnName="PorcentajeInteres" />
+                <ScalarProperty Name="UsarIntereses" ColumnName="UsarIntereses" />
+                <ScalarProperty Name="Usar4DigitosPrecios" ColumnName="Usar4DigitosPrecios" />
+                <ScalarProperty Name="FacturacionRapida" ColumnName="FacturacionRapida" />
+                <ScalarProperty Name="MostarArtPreciosLoad" ColumnName="MostarArtPreciosLoad" />
+                <ScalarProperty Name="MostarArtLoad" ColumnName="MostarArtLoad" />
+                <ScalarProperty Name="MostrarCliBajas" ColumnName="MostrarCliBajas" />
+                <ScalarProperty Name="MostrarArtBajas" ColumnName="MostrarArtBajas" />
+                <ScalarProperty Name="UsarMultiEmpresa" ColumnName="UsarMultiEmpresa" />
+                <ScalarProperty Name="DuplicadoRecibo" ColumnName="DuplicadoRecibo" />
+                <ScalarProperty Name="UsarCajaRegistradora" ColumnName="UsarCajaRegistradora" />
+                <ScalarProperty Name="UsarPrecioIVAPres" ColumnName="UsarPrecioIVAPres" />
+                <ScalarProperty Name="UsarCaja" ColumnName="UsarCaja" />
+                <ScalarProperty Name="PorcentajeFiado" ColumnName="PorcentajeFiado" />
+                <ScalarProperty Name="PorcentajeGcia" ColumnName="PorcentajeGcia" />
+                <ScalarProperty Name="PathBackUp" ColumnName="PathBackUp" />
+                <ScalarProperty Name="DiasVtoFact" ColumnName="DiasVtoFact" />
+                <ScalarProperty Name="UsarCF" ColumnName="UsarCF" />
+                <ScalarProperty Name="IdSeteo" ColumnName="IdSeteo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresa">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="SerialCertificado" ColumnName="SerialCertificado" />
+                <ScalarProperty Name="RutaCertificado" ColumnName="RutaCertificado" />
+                <ScalarProperty Name="SubCodigoPostal" ColumnName="SubCodigoPostal" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="CondicionIva" ColumnName="CondicionIva" />
+                <ScalarProperty Name="IIBB" ColumnName="IIBB" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="CUIT" ColumnName="CUIT" />
+                <ScalarProperty Name="InicioActividades" ColumnName="InicioActividades" />
+                <ScalarProperty Name="NFantasia" ColumnName="NFantasia" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacturasVenta">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.FacturasVenta">
+              <MappingFragment StoreEntitySet="FacturasVenta">
+                <ScalarProperty Name="NombreMaquina" ColumnName="NombreMaquina" />
+                <ScalarProperty Name="MoverStock" ColumnName="MoverStock" />
+                <ScalarProperty Name="Cobrador" ColumnName="Cobrador" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="IdConceptoFactura" ColumnName="IdConceptoFactura" />
+                <ScalarProperty Name="NroCompFactReferencia" ColumnName="NroCompFactReferencia" />
+                <ScalarProperty Name="BVReferencia" ColumnName="BVReferencia" />
+                <ScalarProperty Name="FechaAcceso" ColumnName="FechaAcceso" />
+                <ScalarProperty Name="UsrAcceso" ColumnName="UsrAcceso" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="TotalSaldadoInteres" ColumnName="TotalSaldadoInteres" />
+                <ScalarProperty Name="TotalInteres" ColumnName="TotalInteres" />
+                <ScalarProperty Name="TotalSaldado" ColumnName="TotalSaldado" />
+                <ScalarProperty Name="FechaAnulacion" ColumnName="FechaAnulacion" />
+                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="TotalIva21" ColumnName="TotalIva21" />
+                <ScalarProperty Name="TotalIva105" ColumnName="TotalIva105" />
+                <ScalarProperty Name="TotalDescuento" ColumnName="TotalDescuento" />
+                <ScalarProperty Name="TotalDescuento21" ColumnName="TotalDescuento21" />
+                <ScalarProperty Name="TotalDescuento105" ColumnName="TotalDescuento105" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Subtotal21" ColumnName="Subtotal21" />
+                <ScalarProperty Name="Subtotal105" ColumnName="Subtotal105" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Impresa" ColumnName="Impresa" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdFormaPago" ColumnName="IdFormaPago" />
+                <ScalarProperty Name="FechaEmision" ColumnName="FechaEmision" />
+                <ScalarProperty Name="NCompFact" ColumnName="NCompFact" />
+                <ScalarProperty Name="BVFact" ColumnName="BVFact" />
+                <ScalarProperty Name="IdTipoFactura" ColumnName="IdTipoFactura" />
+                <ScalarProperty Name="IdTipoDocumento" ColumnName="IdTipoDocumento" />
+                <ScalarProperty Name="IdFacturaVenta" ColumnName="IdFacturaVenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacturasVentaDetalle">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.FacturasVentaDetalle">
+              <MappingFragment StoreEntitySet="FacturasVentaDetalle">
+                <ScalarProperty Name="PrecioManual" ColumnName="PrecioManual" />
+                <ScalarProperty Name="FechaAcceso" ColumnName="FechaAcceso" />
+                <ScalarProperty Name="UsrAcceso" ColumnName="UsrAcceso" />
+                <ScalarProperty Name="DesdeRemito" ColumnName="DesdeRemito" />
+                <ScalarProperty Name="TotalArt" ColumnName="TotalArt" />
+                <ScalarProperty Name="IdTipoIva" ColumnName="IdTipoIva" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="UMedida" ColumnName="UMedida" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdFacturaVenta" ColumnName="IdFacturaVenta" />
+                <ScalarProperty Name="IdFacturaVentaDetalle" ColumnName="IdFacturaVentaDetalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposDocFact">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.TiposDocFact">
+              <MappingFragment StoreEntitySet="TiposDocFact">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdTipoDocumento" ColumnName="IdTipoDocumento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposIva">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.TiposIva">
+              <MappingFragment StoreEntitySet="TiposIva">
+                <ScalarProperty Name="PorcentajeIVA" ColumnName="PorcentajeIVA" />
+                <ScalarProperty Name="IdTipoIva" ColumnName="IdTipoIva" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

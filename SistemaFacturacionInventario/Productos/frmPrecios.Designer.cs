@@ -133,6 +133,7 @@
             this.rdbConIVA.Name = "rdbConIVA";
             this.rdbConIVA.Size = new System.Drawing.Size(65, 17);
             this.rdbConIVA.TabIndex = 3;
+            this.rdbConIVA.TabStop = true;
             this.rdbConIVA.Text = "Con IVA";
             this.rdbConIVA.UseVisualStyleBackColor = true;
             // 
@@ -224,10 +225,6 @@
             // cmbIVA
             // 
             this.cmbIVA.FormattingEnabled = true;
-            this.cmbIVA.Items.AddRange(new object[] {
-            "21",
-            "10.5",
-            "0"});
             this.cmbIVA.Location = new System.Drawing.Point(431, 57);
             this.cmbIVA.Name = "cmbIVA";
             this.cmbIVA.Size = new System.Drawing.Size(43, 21);

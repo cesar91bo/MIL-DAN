@@ -22,7 +22,7 @@ namespace SistemaFacturacionInventario.Facturacion
         private void frmConsultaFacturas_Load(object sender, EventArgs e)
         {
             // TODO: esta línea de código carga datos en la tabla 'sistemaGestionPymeBDDataSet.Clientes' Puede moverla o quitarla según sea necesario.
-            this.clientesTableAdapter.Fill(this.sistemaGestionPymeBDDataSet.Clientes);
+           // this.clientesTableAdapter.Fill(this.sistemaGestionPymeBDDataSet.Clientes);
 
         }
 

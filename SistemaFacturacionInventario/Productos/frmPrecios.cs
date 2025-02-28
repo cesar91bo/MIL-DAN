@@ -43,7 +43,7 @@ namespace SistemaFacturacionInventario.Productos
                 Bonificacion1 = txtBonif.Text != "" && Convert.ToDecimal(txtBonif.Text) != 0 ? Convert.ToDecimal(txtBonif.Text) : (decimal?)null,
                 PorcentajeGcia = Convert.ToDecimal(txtGanancia.Text),
                 PorcentajeFlete = Convert.ToDecimal(txtFlete.Text),
-                Iva = Convert.ToDecimal(cmbIVA.SelectedItem),
+                Iva = Convert.ToDecimal(cmbIVA.SelectedValue?.ToString()),
                 PrecioContado = Convert.ToDecimal(txtContadoSIVA.Text.Substring(1), CultureInfo.InvariantCulture),
                 PrecioContadoIva = Convert.ToDecimal(txtContadoConIVA.Text.Substring(1), CultureInfo.InvariantCulture)
             };
@@ -277,12 +277,13 @@ namespace SistemaFacturacionInventario.Productos
 
         private void frmPrecios_Load(object sender, EventArgs e)
         {
+            LlenarComboIVA();
             if (IdProducto > 0)
             {
                 BuscarProducto(IdProducto);
             }
             txtPrecioBase.Focus();
-            rdbConIVA.TabStop = false;
+            rdbConIVA.TabStop = false;            
             activeForm = new frmPrecios(); 
         }
 
@@ -310,7 +311,7 @@ namespace SistemaFacturacionInventario.Productos
             if (!productoNegocio.ExistePrecio(IdProducto))
             {
                 lblFechaPrecio.Text = "El Producto no posee precios hasta la fecha";
-                txtGanancia.Text = auxiliares.PorcentajeGanancia.ToString();
+                txtGanancia.Text = (auxiliares.PorcentajeGcia ?? 0).ToString("0.##");
             }
             else
             {
@@ -320,7 +321,7 @@ namespace SistemaFacturacionInventario.Productos
                 if (vpv.Bonificacion1 != null) txtBonif.Text = vpv.Bonificacion1.ToString();
                 txtGanancia.Text = vpv.PorcentajeGcia.ToString();
                 txtFlete.Text = vpv.PorcentajeFlete.ToString();
-                cmbIVA.SelectedText = vpv.Iva.ToString("0.##");
+                cmbIVA.SelectedValue = Convert.ToSingle(vpv.Iva);
             }
 
             cargaDatos = false;
@@ -368,6 +369,14 @@ namespace SistemaFacturacionInventario.Productos
 
 
             return ok;
+        }
+
+        private void LlenarComboIVA()
+        {
+            var rep = new AuxiliaresNegocio();
+            cmbIVA.DisplayMember = "PorcentajeIVA";
+            cmbIVA.ValueMember = "PorcentajeIVA";
+            cmbIVA.DataSource = rep.ObtenerIVA();
         }
     }
 }

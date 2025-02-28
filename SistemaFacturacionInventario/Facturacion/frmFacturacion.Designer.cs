@@ -43,12 +43,13 @@
             this.lblFormaPago = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaVto = new System.Windows.Forms.DateTimePicker();
             this.lblFechaVto = new System.Windows.Forms.Label();
             this.cmbConcepto = new System.Windows.Forms.ComboBox();
             this.lblConcepto = new System.Windows.Forms.Label();
             this.grupBoxCabecera = new System.Windows.Forms.GroupBox();
             this.dgrDetalle = new System.Windows.Forms.DataGridView();
+            this.groupBoxDetalle = new System.Windows.Forms.GroupBox();
             this.Borrar = new System.Windows.Forms.DataGridViewImageColumn();
             this.Buscar = new System.Windows.Forms.DataGridViewImageColumn();
             this.ArtDesconocido = new System.Windows.Forms.DataGridViewImageColumn();
@@ -65,13 +66,45 @@
             this.PrecioManual = new System.Windows.Forms.DataGridViewImageColumn();
             this.IdFactVtaDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecManual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbCondPago = new System.Windows.Forms.ComboBox();
+            this.lblCondPago = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblSubtDto0 = new System.Windows.Forms.Label();
+            this.lbllblSubTotaldto0 = new System.Windows.Forms.Label();
+            this.lblSubTotal0 = new System.Windows.Forms.Label();
+            this.lbllblSubTotal0 = new System.Windows.Forms.Label();
+            this.lblTotalIva0 = new System.Windows.Forms.Label();
+            this.lbllblIVA0 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblTotalIVA = new System.Windows.Forms.Label();
+            this.lbllblIVA = new System.Windows.Forms.Label();
+            this.lblSubtDto105 = new System.Windows.Forms.Label();
+            this.lblSubtDto21 = new System.Windows.Forms.Label();
+            this.lbllblSubTotaldto105 = new System.Windows.Forms.Label();
+            this.lbllblSubTotaldto21 = new System.Windows.Forms.Label();
+            this.lblSubTotal105 = new System.Windows.Forms.Label();
+            this.lblSubTotal21 = new System.Windows.Forms.Label();
+            this.lbllblSubTotal105 = new System.Windows.Forms.Label();
+            this.lbllblSubTotal21 = new System.Windows.Forms.Label();
+            this.lblTotalIva105 = new System.Windows.Forms.Label();
+            this.lbllblIVA105 = new System.Windows.Forms.Label();
+            this.lblTotalIva21 = new System.Windows.Forms.Label();
+            this.lbllblIVA21 = new System.Windows.Forms.Label();
+            this.lblSubtDto = new System.Windows.Forms.Label();
+            this.lbllblSubtDto = new System.Windows.Forms.Label();
+            this.lblTotalDto = new System.Windows.Forms.Label();
+            this.txtDto = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblSubTotal = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.grupBoxCabecera.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDetalle)).BeginInit();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnListado
             // 
-            this.btnListado.Enabled = false;
             this.btnListado.Image = ((System.Drawing.Image)(resources.GetObject("btnListado.Image")));
             this.btnListado.Location = new System.Drawing.Point(257, 11);
             this.btnListado.Margin = new System.Windows.Forms.Padding(4);
@@ -82,7 +115,6 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Enabled = false;
             this.btnBuscar.Image = global::SistemaFacturacionInventario.Properties.Resources.icons8_buscar_20;
             this.btnBuscar.Location = new System.Drawing.Point(214, 11);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
@@ -104,7 +136,6 @@
             // 
             // txtNroCliente
             // 
-            this.txtNroCliente.Enabled = false;
             this.txtNroCliente.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.txtNroCliente.Location = new System.Drawing.Point(125, 19);
             this.txtNroCliente.Margin = new System.Windows.Forms.Padding(4);
@@ -124,7 +155,6 @@
             // 
             // brnAnonimo
             // 
-            this.brnAnonimo.Enabled = false;
             this.brnAnonimo.Image = ((System.Drawing.Image)(resources.GetObject("brnAnonimo.Image")));
             this.brnAnonimo.Location = new System.Drawing.Point(300, 11);
             this.brnAnonimo.Margin = new System.Windows.Forms.Padding(4);
@@ -208,19 +238,21 @@
             // 
             // dtpFecha
             // 
+            this.dtpFecha.Enabled = false;
             this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFecha.Location = new System.Drawing.Point(409, 90);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(97, 22);
             this.dtpFecha.TabIndex = 46;
             // 
-            // dateTimePicker1
+            // dtpFechaVto
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(682, 90);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(97, 22);
-            this.dateTimePicker1.TabIndex = 48;
+            this.dtpFechaVto.Enabled = false;
+            this.dtpFechaVto.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaVto.Location = new System.Drawing.Point(682, 90);
+            this.dtpFechaVto.Name = "dtpFechaVto";
+            this.dtpFechaVto.Size = new System.Drawing.Size(97, 22);
+            this.dtpFechaVto.TabIndex = 48;
             // 
             // lblFechaVto
             // 
@@ -255,9 +287,11 @@
             // 
             // grupBoxCabecera
             // 
+            this.grupBoxCabecera.Controls.Add(this.cmbCondPago);
+            this.grupBoxCabecera.Controls.Add(this.lblCondPago);
             this.grupBoxCabecera.Controls.Add(this.cmbConcepto);
             this.grupBoxCabecera.Controls.Add(this.lblConcepto);
-            this.grupBoxCabecera.Controls.Add(this.dateTimePicker1);
+            this.grupBoxCabecera.Controls.Add(this.dtpFechaVto);
             this.grupBoxCabecera.Controls.Add(this.lblFechaVto);
             this.grupBoxCabecera.Controls.Add(this.dtpFecha);
             this.grupBoxCabecera.Controls.Add(this.lblFecha);
@@ -303,7 +337,7 @@
             this.IdFactVtaDetalle,
             this.PrecManual});
             this.dgrDetalle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgrDetalle.Location = new System.Drawing.Point(43, 232);
+            this.dgrDetalle.Location = new System.Drawing.Point(36, 237);
             this.dgrDetalle.MultiSelect = false;
             this.dgrDetalle.Name = "dgrDetalle";
             this.dgrDetalle.RowHeadersVisible = false;
@@ -311,10 +345,20 @@
             this.dgrDetalle.Size = new System.Drawing.Size(1089, 208);
             this.dgrDetalle.TabIndex = 52;
             // 
+            // groupBoxDetalle
+            // 
+            this.groupBoxDetalle.Location = new System.Drawing.Point(24, 211);
+            this.groupBoxDetalle.Name = "groupBoxDetalle";
+            this.groupBoxDetalle.Size = new System.Drawing.Size(1114, 258);
+            this.groupBoxDetalle.TabIndex = 53;
+            this.groupBoxDetalle.TabStop = false;
+            this.groupBoxDetalle.Text = "Detalle";
+            // 
             // Borrar
             // 
             this.Borrar.Frozen = true;
             this.Borrar.HeaderText = "Borrar";
+            this.Borrar.Image = ((System.Drawing.Image)(resources.GetObject("Borrar.Image")));
             this.Borrar.Name = "Borrar";
             this.Borrar.Width = 50;
             // 
@@ -322,6 +366,7 @@
             // 
             this.Buscar.Frozen = true;
             this.Buscar.HeaderText = "Buscar";
+            this.Buscar.Image = ((System.Drawing.Image)(resources.GetObject("Buscar.Image")));
             this.Buscar.Name = "Buscar";
             this.Buscar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Buscar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -431,20 +476,358 @@
             this.PrecManual.Name = "PrecManual";
             this.PrecManual.Visible = false;
             // 
+            // cmbCondPago
+            // 
+            this.cmbCondPago.FormattingEnabled = true;
+            this.cmbCondPago.Location = new System.Drawing.Point(125, 120);
+            this.cmbCondPago.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbCondPago.Name = "cmbCondPago";
+            this.cmbCondPago.Size = new System.Drawing.Size(167, 21);
+            this.cmbCondPago.TabIndex = 52;
+            // 
+            // lblCondPago
+            // 
+            this.lblCondPago.AutoSize = true;
+            this.lblCondPago.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.lblCondPago.Location = new System.Drawing.Point(9, 123);
+            this.lblCondPago.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCondPago.Name = "lblCondPago";
+            this.lblCondPago.Size = new System.Drawing.Size(108, 13);
+            this.lblCondPago.TabIndex = 51;
+            this.lblCondPago.Text = "Condición de Pago:";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.lblSubtDto0);
+            this.groupBox4.Controls.Add(this.lbllblSubTotaldto0);
+            this.groupBox4.Controls.Add(this.lblSubTotal0);
+            this.groupBox4.Controls.Add(this.lbllblSubTotal0);
+            this.groupBox4.Controls.Add(this.lblTotalIva0);
+            this.groupBox4.Controls.Add(this.lbllblIVA0);
+            this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.Controls.Add(this.lblTotal);
+            this.groupBox4.Controls.Add(this.lblTotalIVA);
+            this.groupBox4.Controls.Add(this.lbllblIVA);
+            this.groupBox4.Controls.Add(this.lblSubtDto105);
+            this.groupBox4.Controls.Add(this.lblSubtDto21);
+            this.groupBox4.Controls.Add(this.lbllblSubTotaldto105);
+            this.groupBox4.Controls.Add(this.lbllblSubTotaldto21);
+            this.groupBox4.Controls.Add(this.lblSubTotal105);
+            this.groupBox4.Controls.Add(this.lblSubTotal21);
+            this.groupBox4.Controls.Add(this.lbllblSubTotal105);
+            this.groupBox4.Controls.Add(this.lbllblSubTotal21);
+            this.groupBox4.Controls.Add(this.lblTotalIva105);
+            this.groupBox4.Controls.Add(this.lbllblIVA105);
+            this.groupBox4.Controls.Add(this.lblTotalIva21);
+            this.groupBox4.Controls.Add(this.lbllblIVA21);
+            this.groupBox4.Controls.Add(this.lblSubtDto);
+            this.groupBox4.Controls.Add(this.lbllblSubtDto);
+            this.groupBox4.Controls.Add(this.lblTotalDto);
+            this.groupBox4.Controls.Add(this.txtDto);
+            this.groupBox4.Controls.Add(this.label9);
+            this.groupBox4.Controls.Add(this.lblSubTotal);
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Enabled = false;
+            this.groupBox4.Location = new System.Drawing.Point(24, 492);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(1114, 171);
+            this.groupBox4.TabIndex = 54;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Pie";
+            // 
+            // lblSubtDto0
+            // 
+            this.lblSubtDto0.AutoSize = true;
+            this.lblSubtDto0.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubtDto0.Location = new System.Drawing.Point(304, 57);
+            this.lblSubtDto0.Name = "lblSubtDto0";
+            this.lblSubtDto0.Size = new System.Drawing.Size(15, 15);
+            this.lblSubtDto0.TabIndex = 67;
+            this.lblSubtDto0.Text = "0";
+            // 
+            // lbllblSubTotaldto0
+            // 
+            this.lbllblSubTotaldto0.AutoSize = true;
+            this.lbllblSubTotaldto0.Location = new System.Drawing.Point(160, 58);
+            this.lbllblSubTotaldto0.Name = "lbllblSubTotaldto0";
+            this.lbllblSubTotaldto0.Size = new System.Drawing.Size(130, 13);
+            this.lbllblSubTotaldto0.TabIndex = 66;
+            this.lbllblSubTotaldto0.Text = "SubTotal c/dto IVA 0%: $";
+            // 
+            // lblSubTotal0
+            // 
+            this.lblSubTotal0.AutoSize = true;
+            this.lblSubTotal0.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTotal0.Location = new System.Drawing.Point(304, 13);
+            this.lblSubTotal0.Name = "lblSubTotal0";
+            this.lblSubTotal0.Size = new System.Drawing.Size(15, 15);
+            this.lblSubTotal0.TabIndex = 65;
+            this.lblSubTotal0.Text = "0";
+            // 
+            // lbllblSubTotal0
+            // 
+            this.lbllblSubTotal0.AutoSize = true;
+            this.lbllblSubTotal0.Location = new System.Drawing.Point(191, 14);
+            this.lbllblSubTotal0.Name = "lbllblSubTotal0";
+            this.lbllblSubTotal0.Size = new System.Drawing.Size(100, 13);
+            this.lbllblSubTotal0.TabIndex = 64;
+            this.lbllblSubTotal0.Text = "SubTotal IVA 0%: $";
+            // 
+            // lblTotalIva0
+            // 
+            this.lblTotalIva0.AutoSize = true;
+            this.lblTotalIva0.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalIva0.Location = new System.Drawing.Point(304, 78);
+            this.lblTotalIva0.Name = "lblTotalIva0";
+            this.lblTotalIva0.Size = new System.Drawing.Size(15, 15);
+            this.lblTotalIva0.TabIndex = 63;
+            this.lblTotalIva0.Text = "0";
+            // 
+            // lbllblIVA0
+            // 
+            this.lbllblIVA0.AutoSize = true;
+            this.lbllblIVA0.Location = new System.Drawing.Point(211, 79);
+            this.lbllblIVA0.Name = "lbllblIVA0";
+            this.lbllblIVA0.Size = new System.Drawing.Size(80, 13);
+            this.lbllblIVA0.TabIndex = 62;
+            this.lbllblIVA0.Text = "Total IVA 0%: $";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(958, 139);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(82, 25);
+            this.label13.TabIndex = 42;
+            this.label13.Text = "Total: $";
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(1046, 139);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(25, 25);
+            this.lblTotal.TabIndex = 43;
+            this.lblTotal.Text = "0";
+            // 
+            // lblTotalIVA
+            // 
+            this.lblTotalIVA.AutoSize = true;
+            this.lblTotalIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalIVA.Location = new System.Drawing.Point(960, 79);
+            this.lblTotalIVA.Name = "lblTotalIVA";
+            this.lblTotalIVA.Size = new System.Drawing.Size(15, 15);
+            this.lblTotalIVA.TabIndex = 55;
+            this.lblTotalIVA.Text = "0";
+            // 
+            // lbllblIVA
+            // 
+            this.lbllblIVA.AutoSize = true;
+            this.lbllblIVA.Location = new System.Drawing.Point(892, 81);
+            this.lbllblIVA.Name = "lbllblIVA";
+            this.lbllblIVA.Size = new System.Drawing.Size(62, 13);
+            this.lbllblIVA.TabIndex = 54;
+            this.lbllblIVA.Text = "Total IVA: $";
+            // 
+            // lblSubtDto105
+            // 
+            this.lblSubtDto105.AutoSize = true;
+            this.lblSubtDto105.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubtDto105.Location = new System.Drawing.Point(770, 57);
+            this.lblSubtDto105.Name = "lblSubtDto105";
+            this.lblSubtDto105.Size = new System.Drawing.Size(15, 15);
+            this.lblSubtDto105.TabIndex = 53;
+            this.lblSubtDto105.Text = "0";
+            // 
+            // lblSubtDto21
+            // 
+            this.lblSubtDto21.AutoSize = true;
+            this.lblSubtDto21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubtDto21.Location = new System.Drawing.Point(533, 58);
+            this.lblSubtDto21.Name = "lblSubtDto21";
+            this.lblSubtDto21.Size = new System.Drawing.Size(15, 15);
+            this.lblSubtDto21.TabIndex = 52;
+            this.lblSubtDto21.Text = "0";
+            // 
+            // lbllblSubTotaldto105
+            // 
+            this.lbllblSubTotaldto105.AutoSize = true;
+            this.lbllblSubTotaldto105.Location = new System.Drawing.Point(612, 58);
+            this.lbllblSubTotaldto105.Name = "lbllblSubTotaldto105";
+            this.lbllblSubTotaldto105.Size = new System.Drawing.Size(145, 13);
+            this.lbllblSubTotaldto105.TabIndex = 51;
+            this.lbllblSubTotaldto105.Text = "SubTotal c/dto IVA 10,5%: $";
+            // 
+            // lbllblSubTotaldto21
+            // 
+            this.lbllblSubTotaldto21.AutoSize = true;
+            this.lbllblSubTotaldto21.Location = new System.Drawing.Point(384, 59);
+            this.lbllblSubTotaldto21.Name = "lbllblSubTotaldto21";
+            this.lbllblSubTotaldto21.Size = new System.Drawing.Size(136, 13);
+            this.lbllblSubTotaldto21.TabIndex = 50;
+            this.lbllblSubTotaldto21.Text = "SubTotal c/dto IVA 21%: $";
+            // 
+            // lblSubTotal105
+            // 
+            this.lblSubTotal105.AutoSize = true;
+            this.lblSubTotal105.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTotal105.Location = new System.Drawing.Point(770, 13);
+            this.lblSubTotal105.Name = "lblSubTotal105";
+            this.lblSubTotal105.Size = new System.Drawing.Size(15, 15);
+            this.lblSubTotal105.TabIndex = 49;
+            this.lblSubTotal105.Text = "0";
+            // 
+            // lblSubTotal21
+            // 
+            this.lblSubTotal21.AutoSize = true;
+            this.lblSubTotal21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTotal21.Location = new System.Drawing.Point(533, 14);
+            this.lblSubTotal21.Name = "lblSubTotal21";
+            this.lblSubTotal21.Size = new System.Drawing.Size(15, 15);
+            this.lblSubTotal21.TabIndex = 48;
+            this.lblSubTotal21.Text = "0";
+            // 
+            // lbllblSubTotal105
+            // 
+            this.lbllblSubTotal105.AutoSize = true;
+            this.lbllblSubTotal105.Location = new System.Drawing.Point(643, 14);
+            this.lbllblSubTotal105.Name = "lbllblSubTotal105";
+            this.lbllblSubTotal105.Size = new System.Drawing.Size(115, 13);
+            this.lbllblSubTotal105.TabIndex = 47;
+            this.lbllblSubTotal105.Text = "SubTotal IVA 10,5%: $";
+            // 
+            // lbllblSubTotal21
+            // 
+            this.lbllblSubTotal21.AutoSize = true;
+            this.lbllblSubTotal21.Location = new System.Drawing.Point(415, 15);
+            this.lbllblSubTotal21.Name = "lbllblSubTotal21";
+            this.lbllblSubTotal21.Size = new System.Drawing.Size(106, 13);
+            this.lbllblSubTotal21.TabIndex = 46;
+            this.lbllblSubTotal21.Text = "SubTotal IVA 21%: $";
+            // 
+            // lblTotalIva105
+            // 
+            this.lblTotalIva105.AutoSize = true;
+            this.lblTotalIva105.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalIva105.Location = new System.Drawing.Point(770, 79);
+            this.lblTotalIva105.Name = "lblTotalIva105";
+            this.lblTotalIva105.Size = new System.Drawing.Size(15, 15);
+            this.lblTotalIva105.TabIndex = 45;
+            this.lblTotalIva105.Text = "0";
+            // 
+            // lbllblIVA105
+            // 
+            this.lbllblIVA105.AutoSize = true;
+            this.lbllblIVA105.Location = new System.Drawing.Point(663, 80);
+            this.lbllblIVA105.Name = "lbllblIVA105";
+            this.lbllblIVA105.Size = new System.Drawing.Size(95, 13);
+            this.lbllblIVA105.TabIndex = 44;
+            this.lbllblIVA105.Text = "Total IVA 10,5%: $";
+            // 
+            // lblTotalIva21
+            // 
+            this.lblTotalIva21.AutoSize = true;
+            this.lblTotalIva21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalIva21.Location = new System.Drawing.Point(533, 79);
+            this.lblTotalIva21.Name = "lblTotalIva21";
+            this.lblTotalIva21.Size = new System.Drawing.Size(15, 15);
+            this.lblTotalIva21.TabIndex = 41;
+            this.lblTotalIva21.Text = "0";
+            // 
+            // lbllblIVA21
+            // 
+            this.lbllblIVA21.AutoSize = true;
+            this.lbllblIVA21.Location = new System.Drawing.Point(435, 80);
+            this.lbllblIVA21.Name = "lbllblIVA21";
+            this.lbllblIVA21.Size = new System.Drawing.Size(86, 13);
+            this.lbllblIVA21.TabIndex = 14;
+            this.lbllblIVA21.Text = "Total IVA 21%: $";
+            // 
+            // lblSubtDto
+            // 
+            this.lblSubtDto.AutoSize = true;
+            this.lblSubtDto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubtDto.Location = new System.Drawing.Point(960, 59);
+            this.lblSubtDto.Name = "lblSubtDto";
+            this.lblSubtDto.Size = new System.Drawing.Size(15, 15);
+            this.lblSubtDto.TabIndex = 13;
+            this.lblSubtDto.Text = "0";
+            // 
+            // lbllblSubtDto
+            // 
+            this.lbllblSubtDto.AutoSize = true;
+            this.lbllblSubtDto.Location = new System.Drawing.Point(850, 59);
+            this.lbllblSubtDto.Name = "lbllblSubtDto";
+            this.lbllblSubtDto.Size = new System.Drawing.Size(107, 13);
+            this.lbllblSubtDto.TabIndex = 12;
+            this.lbllblSubtDto.Text = "SubTotal con Dto: $";
+            // 
+            // lblTotalDto
+            // 
+            this.lblTotalDto.AutoSize = true;
+            this.lblTotalDto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalDto.Location = new System.Drawing.Point(1008, 35);
+            this.lblTotalDto.Name = "lblTotalDto";
+            this.lblTotalDto.Size = new System.Drawing.Size(0, 15);
+            this.lblTotalDto.TabIndex = 11;
+            // 
+            // txtDto
+            // 
+            this.txtDto.Location = new System.Drawing.Point(960, 32);
+            this.txtDto.MaxLength = 5;
+            this.txtDto.Name = "txtDto";
+            this.txtDto.Size = new System.Drawing.Size(36, 22);
+            this.txtDto.TabIndex = 11;
+            this.txtDto.Text = "0";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(881, 36);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(77, 13);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "Descuento: %";
+            // 
+            // lblSubTotal
+            // 
+            this.lblSubTotal.AutoSize = true;
+            this.lblSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTotal.Location = new System.Drawing.Point(960, 13);
+            this.lblSubTotal.Name = "lblSubTotal";
+            this.lblSubTotal.Size = new System.Drawing.Size(15, 15);
+            this.lblSubTotal.TabIndex = 8;
+            this.lblSubTotal.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(892, 15);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "SubTotal: $";
+            // 
             // frmFacturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1166, 703);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.dgrDetalle);
             this.Controls.Add(this.grupBoxCabecera);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Controls.Add(this.groupBoxDetalle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmFacturacion";
-            this.Text = "frmFacturacion";
+            this.Text = "Facturacion";
             this.Load += new System.EventHandler(this.frmFacturacion_Load);
             this.grupBoxCabecera.ResumeLayout(false);
             this.grupBoxCabecera.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDetalle)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -465,12 +848,13 @@
         private System.Windows.Forms.Label lblFormaPago;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.DateTimePicker dtpFecha;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpFechaVto;
         private System.Windows.Forms.Label lblFechaVto;
         private System.Windows.Forms.ComboBox cmbConcepto;
         private System.Windows.Forms.Label lblConcepto;
         private System.Windows.Forms.GroupBox grupBoxCabecera;
         private System.Windows.Forms.DataGridView dgrDetalle;
+        private System.Windows.Forms.GroupBox groupBoxDetalle;
         private System.Windows.Forms.DataGridViewImageColumn Borrar;
         private System.Windows.Forms.DataGridViewImageColumn Buscar;
         private System.Windows.Forms.DataGridViewImageColumn ArtDesconocido;
@@ -487,5 +871,37 @@
         private System.Windows.Forms.DataGridViewImageColumn PrecioManual;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdFactVtaDetalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecManual;
+        private System.Windows.Forms.ComboBox cmbCondPago;
+        private System.Windows.Forms.Label lblCondPago;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label lblSubtDto0;
+        private System.Windows.Forms.Label lbllblSubTotaldto0;
+        private System.Windows.Forms.Label lblSubTotal0;
+        private System.Windows.Forms.Label lbllblSubTotal0;
+        private System.Windows.Forms.Label lblTotalIva0;
+        private System.Windows.Forms.Label lbllblIVA0;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Label lblTotalIVA;
+        private System.Windows.Forms.Label lbllblIVA;
+        private System.Windows.Forms.Label lblSubtDto105;
+        private System.Windows.Forms.Label lblSubtDto21;
+        private System.Windows.Forms.Label lbllblSubTotaldto105;
+        private System.Windows.Forms.Label lbllblSubTotaldto21;
+        private System.Windows.Forms.Label lblSubTotal105;
+        private System.Windows.Forms.Label lblSubTotal21;
+        private System.Windows.Forms.Label lbllblSubTotal105;
+        private System.Windows.Forms.Label lbllblSubTotal21;
+        private System.Windows.Forms.Label lblTotalIva105;
+        private System.Windows.Forms.Label lbllblIVA105;
+        private System.Windows.Forms.Label lblTotalIva21;
+        private System.Windows.Forms.Label lbllblIVA21;
+        private System.Windows.Forms.Label lblSubtDto;
+        private System.Windows.Forms.Label lbllblSubtDto;
+        private System.Windows.Forms.Label lblTotalDto;
+        private System.Windows.Forms.TextBox txtDto;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblSubTotal;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -205,5 +205,84 @@ namespace CapaNegocio
             return dt;
         }
 
+        public DataTable DtTiposConceptosFactura()
+        {
+            DataTable dt = ConvertToDataTable(ObtenerTiposConceptosFactura().ToList());
+            return dt;
+        }
+
+        public DataTable DtFormasPago()
+        {
+            DataTable dt = ConvertToDataTable(ObtenerFormasPago().ToList());
+            return dt;
+        }
+
+        private IQueryable<FormasPago> ObtenerFormasPago()
+        {
+            return db.FormasPago;
+        }
+
+        public DataTable DtTiposFact()
+        {
+            DataTable dt = ConvertToDataTable(ObtenerTiposFact().ToList());
+            return dt;
+        }
+
+        public IQueryable<TiposFactura> ObtenerTiposFact()
+        {
+            return db.TiposFactura;
+        }
+
+        public IQueryable<TiposConceptoFactura> ObtenerTiposConceptosFactura()
+        {
+            return db.TiposConceptoFactura;
+        }
+
+        public Seteos ObtenerSeteos()
+        {
+            return db.Seteos.OrderByDescending(s => s.IdSeteo).FirstOrDefault();
+        }
+
+        public List<TiposIva> ObtenerIVA()
+        {
+            return db.TiposIva.ToList();
+        }
+
+        public bool NuevoSeteos(Seteos seteos)
+        {
+            try
+            {
+                AgregarSeteos(seteos);
+                return true;
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private void AgregarSeteos(Seteos seteos)
+        {
+            db.Seteos.Add(seteos);
+            db.SaveChanges();
+        }
+
+        public bool NuevaEmpresa(Empresa empresa)
+        {
+            try
+            {
+                AgregarEmpresa(empresa);
+                return true;
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private void AgregarEmpresa(Empresa empresa)
+        {
+            db.Empresa.Add(empresa);
+            db.SaveChanges();
+        }
+
+        public Empresa ObtenerEmpresa()
+        {
+            return db.Empresa.OrderByDescending(s => s.IdEmpresa).FirstOrDefault();
+        }
     }
 }

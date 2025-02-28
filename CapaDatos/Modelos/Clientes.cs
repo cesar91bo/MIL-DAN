@@ -14,6 +14,12 @@ namespace CapaDatos.Modelos
     
     public partial class Clientes
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Clientes()
+        {
+            this.FacturasVenta = new HashSet<FacturasVenta>();
+        }
+    
         public int IdCliente { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
@@ -37,5 +43,7 @@ namespace CapaDatos.Modelos
         public string Observaciones { get; set; }
     
         public virtual RegimenesImpositivos RegimenesImpositivos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FacturasVenta> FacturasVenta { get; set; }
     }
 }

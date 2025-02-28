@@ -15,9 +15,41 @@ namespace CapaDatos.Modelos
     public partial class Seteos
     {
         public int IdSeteo { get; set; }
-        public int DiasVtoFact { get; set; }
-        public decimal PorcentajeGanancia { get; set; }
-        public decimal PorcentajeInteres { get; set; }
+        public Nullable<bool> UsarCF { get; set; }
+        public Nullable<byte> DiasVtoFact { get; set; }
+        public string PathBackUp { get; set; }
+        public Nullable<decimal> PorcentajeGcia { get; set; }
+        public Nullable<decimal> PorcentajeFiado { get; set; }
+        public Nullable<bool> UsarCaja { get; set; }
+        public Nullable<bool> UsarPrecioIVAPres { get; set; }
+        public Nullable<bool> UsarCajaRegistradora { get; set; }
+        public Nullable<bool> DuplicadoRecibo { get; set; }
+        public Nullable<bool> UsarMultiEmpresa { get; set; }
+        public Nullable<bool> MostrarArtBajas { get; set; }
+        public Nullable<bool> MostrarCliBajas { get; set; }
+        public Nullable<bool> MostarArtLoad { get; set; }
+        public Nullable<bool> MostarArtPreciosLoad { get; set; }
+        public Nullable<bool> FacturacionRapida { get; set; }
+        public Nullable<bool> Usar4DigitosPrecios { get; set; }
+        public Nullable<bool> UsarIntereses { get; set; }
+        public Nullable<decimal> PorcentajeInteres { get; set; }
+        public Nullable<bool> PreciosSoloAdmin { get; set; }
+        public Nullable<bool> UsarRemitoX { get; set; }
+        public Nullable<bool> ImprimirRecCtdoCajas { get; set; }
+        public Nullable<bool> UsarDetalleCajas { get; set; }
+        public Nullable<bool> UsarUpdater { get; set; }
+        public Nullable<bool> UsarCB { get; set; }
+        public Nullable<bool> UsarDolar { get; set; }
+        public Nullable<bool> UsarLogo { get; set; }
+        public Nullable<bool> DuplicadoRemitoX { get; set; }
+        public Nullable<bool> HabilitarUserPorIntentos { get; set; }
+        public Nullable<byte> MaxIntentosFallidos { get; set; }
+        public Nullable<short> LapsoTiempoBloqueo { get; set; }
+        public Nullable<bool> Hollistor { get; set; }
+        public Nullable<bool> Flete { get; set; }
+        public Nullable<bool> Descarga { get; set; }
         public Nullable<decimal> PorcentajeFlete { get; set; }
+        public Nullable<decimal> PorcentajeDescarga { get; set; }
+        public Nullable<bool> Impuesto { get; set; }
     }
 }

@@ -66,6 +66,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auxiliares\frmConfiguracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Auxiliares\frmConfiguracion.Designer.cs">
+      <DependentUpon>frmConfiguracion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Auxiliares\FuncionesForms.cs" />
     <Compile Include="Clientes\frmCliente.cs">
       <SubType>Form</SubType>
@@ -152,6 +158,9 @@
     <Compile Include="Unidad Medida\frmUMedida.Designer.cs">
       <DependentUpon>frmUMedida.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Auxiliares\frmConfiguracion.resx">
+      <DependentUpon>frmConfiguracion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Clientes\frmCliente.resx">
       <DependentUpon>frmCliente.cs</DependentUpon>
     </EmbeddedResource>
