@@ -113,7 +113,8 @@ namespace SistemaFacturacionInventario.Auxiliares
 
             var seteos = new Seteos
             {
-                PorcentajeGcia = Convert.ToDecimal(txtGncia.Text)
+                PorcentajeGcia = Convert.ToDecimal(txtGncia.Text),
+                DiasVtoFact = Convert.ToByte(txtDiasVto.Text)
             };
 
             var auxiliaresNegocio = new AuxiliaresNegocio();

@@ -47,6 +47,8 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.lblTitulo = new System.Windows.Forms.Label();
+            this.lblDiasVto = new System.Windows.Forms.Label();
+            this.txtDiasVto = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -252,11 +254,33 @@
             this.lblTitulo.TabIndex = 23;
             this.lblTitulo.Text = "Configuración";
             // 
+            // lblDiasVto
+            // 
+            this.lblDiasVto.AutoSize = true;
+            this.lblDiasVto.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.lblDiasVto.Location = new System.Drawing.Point(117, 313);
+            this.lblDiasVto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDiasVto.Name = "lblDiasVto";
+            this.lblDiasVto.Size = new System.Drawing.Size(113, 13);
+            this.lblDiasVto.TabIndex = 24;
+            this.lblDiasVto.Text = "Días de Vto. Factura:";
+            // 
+            // txtDiasVto
+            // 
+            this.txtDiasVto.Location = new System.Drawing.Point(253, 309);
+            this.txtDiasVto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDiasVto.Name = "txtDiasVto";
+            this.txtDiasVto.Size = new System.Drawing.Size(57, 22);
+            this.txtDiasVto.TabIndex = 25;
+            this.txtDiasVto.Text = "0";
+            // 
             // frmConfiguracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1123, 558);
+            this.Controls.Add(this.txtDiasVto);
+            this.Controls.Add(this.lblDiasVto);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
@@ -292,5 +316,7 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Label lblTitulo;
+        private System.Windows.Forms.Label lblDiasVto;
+        private System.Windows.Forms.TextBox txtDiasVto;
     }
 }

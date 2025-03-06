@@ -71,7 +71,7 @@
             // 
             this.lblCliente.AutoSize = true;
             this.lblCliente.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblCliente.Location = new System.Drawing.Point(503, 24);
+            this.lblCliente.Location = new System.Drawing.Point(503, 55);
             this.lblCliente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCliente.Name = "lblCliente";
             this.lblCliente.Size = new System.Drawing.Size(64, 21);
@@ -81,7 +81,7 @@
             // cmbRegimen
             // 
             this.cmbRegimen.FormattingEnabled = true;
-            this.cmbRegimen.Location = new System.Drawing.Point(708, 127);
+            this.cmbRegimen.Location = new System.Drawing.Point(708, 158);
             this.cmbRegimen.Margin = new System.Windows.Forms.Padding(4);
             this.cmbRegimen.Name = "cmbRegimen";
             this.cmbRegimen.Size = new System.Drawing.Size(266, 21);
@@ -92,7 +92,7 @@
             // 
             this.lblLocalidad.AutoSize = true;
             this.lblLocalidad.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblLocalidad.Location = new System.Drawing.Point(195, 232);
+            this.lblLocalidad.Location = new System.Drawing.Point(195, 263);
             this.lblLocalidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLocalidad.Name = "lblLocalidad";
             this.lblLocalidad.Size = new System.Drawing.Size(59, 13);
@@ -102,7 +102,7 @@
             // cmbLocalidad
             // 
             this.cmbLocalidad.FormattingEnabled = true;
-            this.cmbLocalidad.Location = new System.Drawing.Point(262, 228);
+            this.cmbLocalidad.Location = new System.Drawing.Point(262, 259);
             this.cmbLocalidad.Margin = new System.Windows.Forms.Padding(4);
             this.cmbLocalidad.Name = "cmbLocalidad";
             this.cmbLocalidad.Size = new System.Drawing.Size(212, 21);
@@ -111,7 +111,7 @@
             // cmbProvincia
             // 
             this.cmbProvincia.FormattingEnabled = true;
-            this.cmbProvincia.Location = new System.Drawing.Point(262, 194);
+            this.cmbProvincia.Location = new System.Drawing.Point(262, 225);
             this.cmbProvincia.Margin = new System.Windows.Forms.Padding(4);
             this.cmbProvincia.Name = "cmbProvincia";
             this.cmbProvincia.Size = new System.Drawing.Size(212, 21);
@@ -122,7 +122,7 @@
             // 
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblNombre.Location = new System.Drawing.Point(198, 127);
+            this.lblNombre.Location = new System.Drawing.Point(198, 158);
             this.lblNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(56, 13);
@@ -133,7 +133,7 @@
             // 
             this.btnListado.Enabled = false;
             this.btnListado.Image = ((System.Drawing.Image)(resources.GetObject("btnListado.Image")));
-            this.btnListado.Location = new System.Drawing.Point(394, 73);
+            this.btnListado.Location = new System.Drawing.Point(394, 104);
             this.btnListado.Margin = new System.Windows.Forms.Padding(4);
             this.btnListado.Name = "btnListado";
             this.btnListado.Size = new System.Drawing.Size(35, 35);
@@ -145,7 +145,7 @@
             // 
             this.btnBuscar.Enabled = false;
             this.btnBuscar.Image = global::SistemaFacturacionInventario.Properties.Resources.icons8_buscar_20;
-            this.btnBuscar.Location = new System.Drawing.Point(351, 73);
+            this.btnBuscar.Location = new System.Drawing.Point(351, 104);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(35, 35);
@@ -158,7 +158,7 @@
             // 
             this.lblNroCliente.AutoSize = true;
             this.lblNroCliente.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblNroCliente.Location = new System.Drawing.Point(183, 87);
+            this.lblNroCliente.Location = new System.Drawing.Point(183, 118);
             this.lblNroCliente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNroCliente.Name = "lblNroCliente";
             this.lblNroCliente.Size = new System.Drawing.Size(71, 13);
@@ -169,7 +169,7 @@
             // 
             this.txtNroCliente.Enabled = false;
             this.txtNroCliente.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.txtNroCliente.Location = new System.Drawing.Point(262, 81);
+            this.txtNroCliente.Location = new System.Drawing.Point(262, 112);
             this.txtNroCliente.Margin = new System.Windows.Forms.Padding(4);
             this.txtNroCliente.MaxLength = 6;
             this.txtNroCliente.Name = "txtNroCliente";
@@ -178,7 +178,7 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(262, 124);
+            this.txtNombre.Location = new System.Drawing.Point(262, 155);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(310, 22);
@@ -188,7 +188,7 @@
             // 
             this.lblRegimen.AutoSize = true;
             this.lblRegimen.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblRegimen.Location = new System.Drawing.Point(588, 132);
+            this.lblRegimen.Location = new System.Drawing.Point(588, 163);
             this.lblRegimen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRegimen.Name = "lblRegimen";
             this.lblRegimen.Size = new System.Drawing.Size(111, 13);
@@ -199,7 +199,7 @@
             // 
             this.lblProvincia.AutoSize = true;
             this.lblProvincia.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblProvincia.Location = new System.Drawing.Point(198, 197);
+            this.lblProvincia.Location = new System.Drawing.Point(198, 228);
             this.lblProvincia.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProvincia.Name = "lblProvincia";
             this.lblProvincia.Size = new System.Drawing.Size(56, 13);
@@ -210,7 +210,7 @@
             // 
             this.lblDireccion.AutoSize = true;
             this.lblDireccion.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblDireccion.Location = new System.Drawing.Point(196, 265);
+            this.lblDireccion.Location = new System.Drawing.Point(196, 296);
             this.lblDireccion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDireccion.Name = "lblDireccion";
             this.lblDireccion.Size = new System.Drawing.Size(58, 13);
@@ -219,7 +219,7 @@
             // 
             // txtDireccion
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(262, 262);
+            this.txtDireccion.Location = new System.Drawing.Point(262, 293);
             this.txtDireccion.Margin = new System.Windows.Forms.Padding(4);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(310, 22);
@@ -229,7 +229,7 @@
             // 
             this.lblApellido.AutoSize = true;
             this.lblApellido.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblApellido.Location = new System.Drawing.Point(196, 161);
+            this.lblApellido.Location = new System.Drawing.Point(196, 192);
             this.lblApellido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(58, 13);
@@ -238,7 +238,7 @@
             // 
             // txtApellido
             // 
-            this.txtApellido.Location = new System.Drawing.Point(262, 158);
+            this.txtApellido.Location = new System.Drawing.Point(262, 189);
             this.txtApellido.Margin = new System.Windows.Forms.Padding(4);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(310, 22);
@@ -248,7 +248,7 @@
             // 
             this.lblTipoDoc.AutoSize = true;
             this.lblTipoDoc.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblTipoDoc.Location = new System.Drawing.Point(581, 161);
+            this.lblTipoDoc.Location = new System.Drawing.Point(581, 192);
             this.lblTipoDoc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTipoDoc.Name = "lblTipoDoc";
             this.lblTipoDoc.Size = new System.Drawing.Size(118, 13);
@@ -258,7 +258,7 @@
             // cmbTipoDoc
             // 
             this.cmbTipoDoc.FormattingEnabled = true;
-            this.cmbTipoDoc.Location = new System.Drawing.Point(708, 159);
+            this.cmbTipoDoc.Location = new System.Drawing.Point(708, 190);
             this.cmbTipoDoc.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTipoDoc.Name = "cmbTipoDoc";
             this.cmbTipoDoc.Size = new System.Drawing.Size(68, 21);
@@ -267,7 +267,7 @@
             // 
             // txtCuit1
             // 
-            this.txtCuit1.Location = new System.Drawing.Point(817, 158);
+            this.txtCuit1.Location = new System.Drawing.Point(817, 189);
             this.txtCuit1.Margin = new System.Windows.Forms.Padding(4);
             this.txtCuit1.Name = "txtCuit1";
             this.txtCuit1.Size = new System.Drawing.Size(122, 22);
@@ -281,7 +281,7 @@
             // 
             this.lblFechaNac.AutoSize = true;
             this.lblFechaNac.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblFechaNac.Location = new System.Drawing.Point(598, 197);
+            this.lblFechaNac.Location = new System.Drawing.Point(598, 228);
             this.lblFechaNac.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFechaNac.Name = "lblFechaNac";
             this.lblFechaNac.Size = new System.Drawing.Size(101, 13);
@@ -292,7 +292,7 @@
             // 
             this.dtpFechaNac.Checked = false;
             this.dtpFechaNac.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaNac.Location = new System.Drawing.Point(708, 194);
+            this.dtpFechaNac.Location = new System.Drawing.Point(708, 225);
             this.dtpFechaNac.Name = "dtpFechaNac";
             this.dtpFechaNac.ShowCheckBox = true;
             this.dtpFechaNac.Size = new System.Drawing.Size(105, 22);
@@ -302,7 +302,7 @@
             // 
             this.lblTelefono.AutoSize = true;
             this.lblTelefono.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblTelefono.Location = new System.Drawing.Point(645, 232);
+            this.lblTelefono.Location = new System.Drawing.Point(645, 263);
             this.lblTelefono.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTelefono.Name = "lblTelefono";
             this.lblTelefono.Size = new System.Drawing.Size(54, 13);
@@ -311,7 +311,7 @@
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(708, 228);
+            this.txtTelefono.Location = new System.Drawing.Point(708, 259);
             this.txtTelefono.Margin = new System.Windows.Forms.Padding(4);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(266, 22);
@@ -323,7 +323,7 @@
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblEmail.Location = new System.Drawing.Point(662, 266);
+            this.lblEmail.Location = new System.Drawing.Point(662, 297);
             this.lblEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(37, 13);
@@ -332,7 +332,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(708, 262);
+            this.txtEmail.Location = new System.Drawing.Point(708, 293);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(266, 22);
@@ -341,7 +341,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtComentario);
-            this.groupBox1.Location = new System.Drawing.Point(186, 318);
+            this.groupBox1.Location = new System.Drawing.Point(186, 349);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(787, 118);
             this.groupBox1.TabIndex = 52;
@@ -362,7 +362,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(784, 484);
+            this.btnCancelar.Location = new System.Drawing.Point(784, 515);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(91, 43);
@@ -377,7 +377,7 @@
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(685, 484);
+            this.btnGuardar.Location = new System.Drawing.Point(685, 515);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(91, 43);
@@ -389,7 +389,7 @@
             // 
             // txtCuit2
             // 
-            this.txtCuit2.Location = new System.Drawing.Point(947, 158);
+            this.txtCuit2.Location = new System.Drawing.Point(947, 189);
             this.txtCuit2.Margin = new System.Windows.Forms.Padding(4);
             this.txtCuit2.Name = "txtCuit2";
             this.txtCuit2.Size = new System.Drawing.Size(25, 22);
@@ -400,7 +400,7 @@
             // 
             // txtCuit0
             // 
-            this.txtCuit0.Location = new System.Drawing.Point(784, 158);
+            this.txtCuit0.Location = new System.Drawing.Point(784, 189);
             this.txtCuit0.Margin = new System.Windows.Forms.Padding(4);
             this.txtCuit0.Name = "txtCuit0";
             this.txtCuit0.Size = new System.Drawing.Size(25, 22);
@@ -410,7 +410,7 @@
             // 
             // txtNumDoc
             // 
-            this.txtNumDoc.Location = new System.Drawing.Point(784, 158);
+            this.txtNumDoc.Location = new System.Drawing.Point(784, 189);
             this.txtNumDoc.Margin = new System.Windows.Forms.Padding(4);
             this.txtNumDoc.Name = "txtNumDoc";
             this.txtNumDoc.Size = new System.Drawing.Size(122, 22);
@@ -423,7 +423,7 @@
             this.lblErrores.AutoSize = true;
             this.lblErrores.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lblErrores.ForeColor = System.Drawing.Color.Red;
-            this.lblErrores.Location = new System.Drawing.Point(183, 442);
+            this.lblErrores.Location = new System.Drawing.Point(183, 473);
             this.lblErrores.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblErrores.Name = "lblErrores";
             this.lblErrores.Size = new System.Drawing.Size(43, 13);
@@ -437,7 +437,7 @@
             this.btnBaja.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBaja.Image = ((System.Drawing.Image)(resources.GetObject("btnBaja.Image")));
             this.btnBaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBaja.Location = new System.Drawing.Point(883, 484);
+            this.btnBaja.Location = new System.Drawing.Point(883, 515);
             this.btnBaja.Margin = new System.Windows.Forms.Padding(4);
             this.btnBaja.Name = "btnBaja";
             this.btnBaja.Size = new System.Drawing.Size(91, 43);
@@ -451,7 +451,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1148, 573);
+            this.ClientSize = new System.Drawing.Size(1148, 622);
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.lblErrores);
             this.Controls.Add(this.txtNumDoc);

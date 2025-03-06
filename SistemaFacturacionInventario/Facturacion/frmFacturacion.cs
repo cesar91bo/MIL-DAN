@@ -1,5 +1,6 @@
 ﻿using CapaDatos.Modelos;
 using CapaNegocio;
+using SistemaFacturacionInventario.Productos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,8 @@ namespace SistemaFacturacionInventario.Facturacion
         private decimal SaldoCtaCte;
         private bool artdesc, Autorizar;
         private List<Int64> lint;
+        public Int32 IdCliente;
+
         public frmFacturacion()
         {
             InitializeComponent();
@@ -35,7 +38,7 @@ namespace SistemaFacturacionInventario.Facturacion
             try
             {
                 SaldoCtaCte = 0;
-                //LlenarCombos();
+                LlenarCombos();
 
                 AuxiliaresNegocio auxiliares = new AuxiliaresNegocio();
                 Seteos seteos = auxiliares.ObtenerSeteos();
@@ -44,16 +47,138 @@ namespace SistemaFacturacionInventario.Facturacion
 
                 if (Accion.ToUpper() == "MOD")
                 {
-                   // if (IdFact > 0) ConsultarFact(IdFact);
+                    // if (IdFact > 0) ConsultarFact(IdFact);
                     if (Accion.ToUpper() == "MOD") lint = new List<Int64>();
                 }
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                string mensajeError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                MessageBox.Show(mensajeError);
             }
         }
+
+        private void btnListado_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmListaClientes { Seleccion = true };
+                frm.ShowDialog();
+                if (frm.DialogResult != DialogResult.OK || frm.IdCLiente <= 0) return;
+                BuscarCliente(frm.IdCLiente);
+            }
+            catch (Exception ex)
+            {
+                string mensajeError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                MessageBox.Show(mensajeError);
+            }
+        }
+
+        private void brnAnonimo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtNroCliente.Text = "1";
+                BuscarCliente(1);
+            }
+            catch (Exception ex)
+            {
+                string mensajeError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                MessageBox.Show(mensajeError);
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtNroCliente.Text != "")
+                {
+                    IdCliente = Convert.ToInt32(txtNroCliente.Text);
+                    BuscarCliente(IdCliente);
+                }
+                else
+                {
+                    IdCliente = 0;
+                    lblNomreCliente.Visible = false;
+                    MessageBox.Show("Ingrese Nro. de Cliente para realizar la búsqueda", "Error de Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                string mensajeError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                MessageBox.Show(mensajeError);
+            }
+        }
+
+        private void dgrDetalle_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex == 0) e.Value = new System.Drawing.Bitmap(imageList1.Images[1]);
+                if (e.ColumnIndex == 1) e.Value = new System.Drawing.Bitmap(imageList1.Images[0]);
+                if (e.ColumnIndex == 2) e.Value = new System.Drawing.Bitmap(imageList1.Images[2]);
+                if (e.ColumnIndex == 13) e.Value = new System.Drawing.Bitmap(imageList1.Images[3]);
+            }
+            catch (Exception ex)
+            {
+                string mensajeError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                MessageBox.Show(mensajeError);
+            }
+        }
+
+        private void BuscarCliente(int nroCliente)
+        {
+            try
+            {
+                var clienteNegocio = new ClienteNegocio();
+                CapaDatos.Modelos.Clientes cli = clienteNegocio.ObtenerCliporNroCli(nroCliente);
+                var aux = new AuxiliaresNegocio();
+                if (cli != null)
+                {
+                    if (cli.FechaBaja == null)
+                    {
+                        IdCliente = cli.IdCliente;
+                        lblNomreCliente.Text = cli.Nombre + " " + cli.Apellido;
+                        lblNomreCliente.Visible = true;
+                        txtNroCliente.Text = IdCliente.ToString();
+                    }
+                    else { MessageBox.Show("El Cliente fue dado de baja", "Error de Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); this.Close(); }
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró el Cliente", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    IdCliente = 0;
+                    lblNomreCliente.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                string mensajeError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                MessageBox.Show(mensajeError);
+            }
+        }
+
+        private void LlenarCombos()
+        {
+            var auxiliares = new AuxiliaresNegocio();
+            Seteos seteos = auxiliares.ObtenerSeteo();
+            cmbConcepto.DataSource = auxiliares.DtTiposConceptosFactura();
+            cmbConcepto.DisplayMember = "Descripcion";
+            cmbConcepto.ValueMember = "IdConceptoFactura";
+            cmboFormaPago.DataSource = auxiliares.DtFormasPago();
+            cmboFormaPago.DisplayMember = "Descripcion";
+            cmboFormaPago.ValueMember = "IdFormaPago";
+            cmboFormaPago.SelectedValue = 1;
+            cmboFormaPago.Enabled = true;
+            cmbTipoFac.DataSource = auxiliares.DtTiposFact();
+            cmbTipoFac.DisplayMember = "Descripcion";
+            cmbTipoFac.ValueMember = "IdTipoFactura";
+            dtpFechaVto.Value = DateTime.Now.AddDays((double)(seteos.DiasVtoFact ??15));
+        }
+
+
 
         //    private void ConsultarFact(int idFact)
         //    {
