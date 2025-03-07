@@ -284,5 +284,12 @@ namespace CapaNegocio
         {
             return db.Empresa.OrderByDescending(s => s.IdEmpresa).FirstOrDefault();
         }
+
+        public List<TiposIva> ListTiposIva() { return db.TiposIva.ToList(); }
+
+        public TiposIva ObtenerTipoIVAporId(int idTipoIVa)
+        {
+            return db.TiposIva.SingleOrDefault(c => c.IdTipoIva == idTipoIVa);
+        }
     }
 }

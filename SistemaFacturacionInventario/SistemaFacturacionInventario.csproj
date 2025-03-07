@@ -123,6 +123,18 @@
     <Compile Include="Facturacion\frmFacturacion.Designer.cs">
       <DependentUpon>frmFacturacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Facturacion\frmIngPrecioManual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturacion\frmIngPrecioManual.Designer.cs">
+      <DependentUpon>frmIngPrecioManual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Facturacion\frmIngProdDesconocido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturacion\frmIngProdDesconocido.Designer.cs">
+      <DependentUpon>frmIngProdDesconocido.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +213,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Facturacion\frmFacturacion.resx">
       <DependentUpon>frmFacturacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturacion\frmIngPrecioManual.resx">
+      <DependentUpon>frmIngPrecioManual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturacion\frmIngProdDesconocido.resx">
+      <DependentUpon>frmIngProdDesconocido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBase.resx">
       <DependentUpon>FormBase.cs</DependentUpon>

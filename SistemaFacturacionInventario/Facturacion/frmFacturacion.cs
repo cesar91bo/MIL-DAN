@@ -1,5 +1,6 @@
 ﻿using CapaDatos.Modelos;
 using CapaNegocio;
+using SistemaFacturacionInventario.Auxiliares;
 using SistemaFacturacionInventario.Productos;
 using System;
 using System.Collections.Generic;
@@ -128,21 +129,145 @@ namespace SistemaFacturacionInventario.Facturacion
             }
         }
 
+        private void dgrDetalle_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                switch (e.ColumnIndex)
+                {
+                    case 0:
+                        EliminarFila();
+                        break;
+
+                    case 1:
+                        if (dgrDetalle.Rows.Count > 15)
+                        {
+                            MessageBox.Show("El máximo de líneas por factura es 15. Por favor elimine los restantes y haga una factura nueva", "CANTIDAD MAXIMA ALCANZADA", MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        }
+                        else
+                            BuscarArtDgr();
+                        break;
+
+                    case 2:
+                        if (dgrDetalle.Rows.Count > 15)
+                        {
+                            MessageBox.Show("El máximo de líneas por factura es 15. Por favor elimine los restantes y haga una factura nueva", "CANTIDAD MAXIMA ALCANZADA", MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        }
+                        else
+                            IngresarProdDesconocido();
+                        break;
+
+                    case 13:
+                        IngresarPcioManual(e.RowIndex);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                string mensajeError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                MessageBox.Show(mensajeError);
+            }
+        }
+
+        private void IngresarPcioManual(int fila)
+        {
+            try
+            {
+                var frma3 = new frmIngPrecioManual();
+                frma3.ShowDialog();
+                var cmb = dgrDetalle.Rows[fila].Cells[8] as DataGridViewComboBoxCell;
+                if (frma3.DialogResult == DialogResult.OK)
+                {
+                    var dt = new DataTable();
+                    if (dgrDetalle["NroArt", fila].Value != null)
+                    {
+                        var productoNegocio = new ProductoNegocio();
+                        dt = productoNegocio.CargarComboPrecios(Convert.ToInt32(dgrDetalle.Rows[fila].Cells[3].Value),
+                                cmbTipoFac.Text);
+                    }
+                    else
+                    {
+                        dt.Columns.Add("Desc");
+                        dt.Columns.Add("Precio");
+                        DataRow rw2 = dt.NewRow();
+                        rw2[0] = cmb.Value;
+                        rw2[1] = cmb.Value;
+                        dt.Rows.Add(rw2);
+                    }
+                    DataRow rw = dt.NewRow();
+                    rw[0] = "Manual: $" + frma3.Pcio;
+#pragma warning disable CS1690 // Accessing a member on 'frmIngPrecioManual.Pcio' may cause a runtime exception because it is a field of a marshal-by-reference class
+                    rw[1] = frma3.Pcio.ToString();
+#pragma warning restore CS1690 // Accessing a member on 'frmIngPrecioManual.Pcio' may cause a runtime exception because it is a field of a marshal-by-reference class
+                    dt.Rows.Add(rw);
+                    cmb.DataSource = dt;
+                    cmb.DisplayMember = "Desc";
+                    cmb.ValueMember = "Precio";
+                    cmb.Value = dgrDetalle["NroArt", fila].Value != null ? dt.Rows[2]["Precio"] : dt.Rows[1]["Precio"];
+                    dgrDetalle["PrecManual", fila].Value = 1;
+                }
+                else
+                {
+                    dgrDetalle["PrecManual", fila].Value = 0;
+                }
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
         private void BuscarCliente(int nroCliente)
         {
             try
             {
                 var clienteNegocio = new ClienteNegocio();
-                CapaDatos.Modelos.Clientes cli = clienteNegocio.ObtenerCliporNroCli(nroCliente);
+                VistaClientes  cli = clienteNegocio.ObtenerVCliporNroCli(nroCliente);
                 var aux = new AuxiliaresNegocio();
                 if (cli != null)
                 {
-                    if (cli.FechaBaja == null)
+                    if (cli.FechaBaja == "")
                     {
                         IdCliente = cli.IdCliente;
                         lblNomreCliente.Text = cli.Nombre + " " + cli.Apellido;
                         lblNomreCliente.Visible = true;
                         txtNroCliente.Text = IdCliente.ToString();
+
+                        if (cli.IdCliente == 1)
+                        {
+                            cmboFormaPago.SelectedValue = 1;
+                            cmbCondPago.Enabled = false;
+                        }
+                        else
+                        {
+                            cmboFormaPago.SelectedValue = 2;
+                            cmbCondPago.SelectedValue = 1;
+                        }
+
+                        dgrDetalle.Enabled = true;
+                        txtNroCliente.Text = cli.IdCliente.ToString();
+                        if (cli.Cuit != "")
+                        {
+                            lblNomreCliente.Text = "CUIT - " + cli.Cuit + " - " + cli.Nombre + " " + cli.Apellido + " (" + cli.Descripcion + ")";
+                            cuit = cli.Cuit;
+                        }
+                        else
+                        {
+                            lblNomreCliente.Text = cli.TipoDocumento + " - " + cli.Nro_Doc + " - " + cli.Nombre + " " + cli.Apellido + " (" + cli.Descripcion + ")";
+                            cuit = cli.Nro_Doc;
+                        }
+                        bool tipoA = false;
+                        if (cli.Descripcion.ToUpper() != "RESPONSABLE INSCRIPTO") { cmbTipoFac.SelectedValue = "2"; } //tipo B
+                        else
+                        {
+                            cmbTipoFac.SelectedValue = "1";
+                            tipoA = true;
+                        }
+                        CambiarTipoFact();
+                        if (dgrDetalle.Rows.Count > 1)
+                        {
+                            CambiarPrecios(true);
+                            CalcularTotales(tipoA);
+                        }
                     }
                     else { MessageBox.Show("El Cliente fue dado de baja", "Error de Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); this.Close(); }
                 }
@@ -158,6 +283,64 @@ namespace SistemaFacturacionInventario.Facturacion
                 string mensajeError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
                 MessageBox.Show(mensajeError);
             }
+        }
+
+        private void CambiarPrecios(bool CambioCli)
+        {
+            try
+            {
+                foreach (DataGridViewRow rw in dgrDetalle.Rows)
+                {
+                    if (!rw.IsNewRow && rw.Cells["NroArt"].Value != null)
+                    {
+                        var cmb = rw.Cells["Precio"] as DataGridViewComboBoxCell;
+                        var rep = new ProductoNegocio();
+                        byte fPago = Convert.ToByte(cmboFormaPago.SelectedValue);
+                        if (CambioCli)
+                        {
+                            DataTable dt =  rep.CargarComboPrecios(Convert.ToInt32(rw.Cells["NroArt"].Value), cmbTipoFac.Text);
+                            cmb.DataSource = dt;
+                            //cmb.Value = fPago == 1 | chkSelContado.Checked ? dt.Rows[0]["Precio"] : dt.Rows[1]["Precio"];
+                        }
+                        else
+                        {
+                            PreciosVenta pv = rep.ObtenerUltPrecioVentaPorId(Convert.ToInt32(rw.Cells["NroArt"].Value));
+                            cmb.Value = cmbTipoFac.Text == "A" ? Math.Round(pv.PrecioContado, 2, MidpointRounding.AwayFromZero) : Math.Round(pv.PrecioContadoIva, 2, MidpointRounding.AwayFromZero);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private void CambiarTipoFact()
+        {
+            try
+            {
+                lbllblIVA21.Visible = cmbTipoFac.Text == "A";
+                lbllblSubtDto.Visible = cmbTipoFac.Text == "A";
+                lbllblSubTotaldto105.Visible = cmbTipoFac.Text == "A";
+                lbllblSubTotaldto21.Visible = cmbTipoFac.Text == "A";
+                lbllblSubTotal21.Visible = cmbTipoFac.Text == "A";
+                lbllblSubTotal105.Visible = cmbTipoFac.Text == "A";
+                lbllblIVA105.Visible = cmbTipoFac.Text == "A";
+                lbllblIVA.Visible = cmbTipoFac.Text == "A";
+                lblSubtDto105.Visible = cmbTipoFac.Text == "A";
+                lblSubtDto21.Visible = cmbTipoFac.Text == "A";
+                lblSubTotal105.Visible = cmbTipoFac.Text == "A";
+                lblSubTotal21.Visible = cmbTipoFac.Text == "A";
+                lblSubtDto.Visible = cmbTipoFac.Text == "A";
+                lblTotalIva21.Visible = cmbTipoFac.Text == "A";
+                lblTotalIVA.Visible = cmbTipoFac.Text == "A";
+                lblTotalIva105.Visible = cmbTipoFac.Text == "A";
+                lbllblIVA0.Visible = cmbTipoFac.Text == "A";
+                lbllblSubTotal0.Visible = cmbTipoFac.Text == "A";
+                lbllblSubTotaldto0.Visible = cmbTipoFac.Text == "A";
+                lblSubtDto0.Visible = cmbTipoFac.Text == "A";
+                lblSubTotal0.Visible = cmbTipoFac.Text == "A";
+                lblTotalIva0.Visible = cmbTipoFac.Text == "A";
+            }
+            catch (Exception ex) { throw ex; }
         }
 
         private void LlenarCombos()
@@ -178,297 +361,452 @@ namespace SistemaFacturacionInventario.Facturacion
             dtpFechaVto.Value = DateTime.Now.AddDays((double)(seteos.DiasVtoFact ??15));
         }
 
+        private void EliminarFila()
+        {
+            try
+            {
+                if (!dgrDetalle.Rows[dgrDetalle.SelectedCells[0].RowIndex].IsNewRow)
+                {
+                    if (Accion.ToUpper() == "MOD")
+                    {
+                        if (dgrDetalle["IdFactVtaDetalle", dgrDetalle.SelectedCells[0].RowIndex].Value != null)
+                        {
+                            lint.Add(Convert.ToInt64(dgrDetalle["IdFactVtaDetalle", dgrDetalle.SelectedCells[0].RowIndex].Value));
+                        }
+                    }
+                    dgrDetalle.Rows.RemoveAt(dgrDetalle.SelectedCells[0].RowIndex);
+                    CalcularTotales(true);
+                }
+            }
+            catch (Exception ex) { throw ex; }
+        }
 
+        private void BuscarArtDgr()
+        {
+            try
+            {
+                if (dgrDetalle.Rows.Count > 15)
+                {
+                    MessageBox.Show("El máximo de líneas por factura es 15. Por favor elimine los restantes y haga una factura nueva", "CANTIDAD MAXIMA ALCANZADA", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+                if (Convert.ToBoolean(dgrDetalle.Rows[dgrDetalle.SelectedCells[0].RowIndex].Cells[12].Value) != false) return;
+                var frm = new frmListaProductos { Seleccion = true };
+                frm.ShowDialog();
+                if (frm.DialogResult != DialogResult.OK || frm.IdProducto <= 0) return;
+                BuscarArt(dgrDetalle.SelectedCells[0].RowIndex, frm.IdProducto, "");
+            }
+            catch (Exception ex) { throw ex; }
+        }
 
-        //    private void ConsultarFact(int idFact)
-        //    {
-        //        try
-        //        {
-        //            var facturacionNegocio = new FacturacionNegocio();
-        //            FacturasVenta fv = facturacionNegocio .ObtenerFactura(idFact);
-        //            int f = 0;
+        private void BuscarArt(int row, int idprod, string cb)
+        {
+            try
+            {
+                var productoNegocio = new ProductoNegocio();
+                var prod = new VistaProducto();
+                if (dgrDetalle.Rows.Count > 16)
+                {
+                    MessageBox.Show("El máximo de líneas por factura es 15. Por favor elimine los restantes y haga una factura nueva", "CANTIDAD MAXIMA ALCANZADA", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    if (idprod > 0)
+                    {
+                        prod = productoNegocio.ObtenerVistaProductoPorId(idprod);
+                        if (prod == null)
+                        {
+                            MessageBox.Show("No se encontró el Producto", "Error de Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                        if (prod.FechaBaja != "")
+                        {
+                            MessageBox.Show("El Producto fue dado de baja", "Error de Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                    }
 
-        //            txtNroCliente.Text = fv.IdCliente.ToString();
-        //            BuscarCli(fv.IdCliente);
-        //            cmboFormaPago.SelectedValue = fv.IdFormaPago;
-        //            if (cmboFormaPago.SelectedValue.ToString() == "2")
-        //            {
-        //                cmbCondPago.Visible = true;
-        //                LlenarComboCond();
-        //                cmbCondPago.SelectedValue = fv.IdCondicionPago;
-        //            }
-        //            if (!string.IsNullOrEmpty(fv.BVFact) && IdTipoDoc != 8) { txtBV.Text = fv.BVFact; }
-        //            if (IdTipoDoc == 2 || IdTipoDoc == 3)
-        //            {
-        //                txtBVNC.Text = fv.BVReferencia;
-        //                txtNroFactNC.Text = fv.NroCompFactReferencia;
-        //            }
-        //            if (IdTipoDoc == 8)
-        //            {
-        //                txtNroComp.Text = fv.NCompFact;
-        //                btnImprimir.Visible = true;
-        //            }
-        //            FacturasVenta fact = repv.ObtenerFactura(lrem[0]);//agregado
-        //            txtObservaciones.Text = fact.Observaciones;
-        //            foreach (Int32 r in lrem)
-        //            {
-        //                List<VistaDetalleFactVenta> detrem = repv.ObtenerVistaDetalledeFacturaVta(r);
-        //                FacturasVenta rem = repv.ObtenerFactura(r);
-        //                txtDto.Text = rem.Descuento.ToString();
-        //                dgrDetalle.Rows.Add(detrem.Count);
+                    VistaPreciosVenta vpv = productoNegocio.ObtenerVistaUltVPV(prod.IdProducto);
+                    if (vpv == null)
+                    {
+                        if (MessageBox.Show("El producto no tiene precios. Desea cargarlos?", "Producto sin Precios", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            var frmp = new frmPrecios(prod.IdProducto) { DeAfuera = true };
+                            frmp.ShowDialog();
+                            if (DialogResult != DialogResult.OK) { return; }
+                            vpv = productoNegocio.ObtenerVistaUltVPV(prod.IdProducto);
+                        }
+                        else return;
+                    }
+                    foreach (DataGridViewRow rw in dgrDetalle.Rows)
+                    {
+                        if (rw.IsNewRow || row == rw.Index || Convert.ToInt32(rw.Cells[3].Value) != prod.IdProducto) continue;
+                        MessageBox.Show("El producto ya fue ingresado al detalle", "Error de Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+                    dgrDetalle["NroArt", row].Value = prod.IdProducto.ToString();
+                    dgrDetalle["DescCorta", row].Value = prod.DescCorta;
+                    dgrDetalle["Cantidad", row].Selected = true;
+                    dgrDetalle["UMedida", row].Value = prod.UnidadMedida;
+                    dgrDetalle["Iva", row].Value = vpv.Iva;
+                    var cmb = dgrDetalle["Precio", row] as DataGridViewComboBoxCell;
+                    DataTable dt = productoNegocio.CargarComboPrecios(prod.IdProducto, cmbTipoFac.Text);
+                    cmb.DataSource = dt;
+                    cmb.DisplayMember = "Desc";
+                    cmb.ValueMember = "Precio";
+                    if (cmboFormaPago.SelectedValue.ToString() == "1") { cmb.Value = dt.Rows[0]["Precio"]; }
+                    else { cmb.Value = dt.Rows[0]["Precio"]; }
+                    if (Convert.ToDecimal(cmb.Value) == 0)
+                    {
+                        MessageBox.Show("El precio del producto es 0, modifíquelo antes de guardar el documento", "PRECIO CERO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    dgrDetalle["Nueva", row].Value = true;
+                    dgrDetalle["DesdeRem", row].Value = false;
+                }
+            }
+            catch (Exception ex) { throw ex; }
+        }
 
-        //                if (!set.UsarCF)
-        //                {
-        //                    txtNroComp.Visible = true;
-        //                    txtBV.Visible = true;
-        //                    txtBV.Text = fv.BVFact;
-        //                    txtNroComp.Text = fv.NCompFact;
-        //                }
-        //                else
-        //                {
-        //                    if (fv.Impresa)
-        //                    {
-        //                        lblImpresa.Text = "La factura ya fue impresa";
-        //                        txtNroComp.Text = fv.NCompFact;
-        //                        txtBV.Text = fv.BVFact;
-        //                        txtNroComp.Visible = true;
-        //                        txtBV.Visible = true;
-        //                    }
-        //                    else if (IdTipoDoc != 8) lblImpresa.Text = "La factura está pendiente de impresión";
-        //                }
+        private void dgrDetalle_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
 
-        //                if (cmbTipoFact.Text == "B")
-        //                {
-        //                    lbllblIVA21.Visible = false;
-        //                    lbllblSubtDto.Visible = false;
-        //                    lbllblSubTotaldto105.Visible = false;
-        //                    lbllblSubTotaldto21.Visible = false;
-        //                    lbllblSubTotal21.Visible = false;
-        //                    lbllblSubTotal105.Visible = false;
-        //                    lbllblIVA105.Visible = false;
-        //                    lbllblIVA.Visible = false;
-        //                    lblSubtDto105.Visible = false;
-        //                    lblSubtDto21.Visible = false;
-        //                    lblSubTotal105.Visible = false;
-        //                    lblSubTotal21.Visible = false;
-        //                    lblSubtDto.Visible = false;
-        //                    lblTotalIva21.Visible = false;
-        //                    lblTotalIVA.Visible = false;
-        //                    lblTotalIva105.Visible = false;
-        //                }
-        //                else
-        //                {
-        //                    lblSubtDto.Text = Math.Round(Convert.ToDecimal(lblSubtDto105.Text) + Convert.ToDecimal(lblSubtDto21.Text), 2, MidpointRounding.AwayFromZero).ToString();
-        //                    lblTotalIVA.Text = Math.Round(Convert.ToDecimal(lblTotalIva21.Text) + Convert.ToDecimal(lblTotalIva105.Text), 2, MidpointRounding.AwayFromZero).ToString();
-        //                }
-        //                if (Accion.ToUpper() == "VER") btnGuardar.Visible = false;
+            try
+            {
+                if (Accion == "VER" || siload || e.RowIndex <= -1) return;
+                switch (e.ColumnIndex)
+                {
+                    case 3:
+                        if (FuncionesForms.NroEneteroInt32(dgrDetalle[e.ColumnIndex, e.RowIndex].Value.ToString())) BuscarArt(e.RowIndex, Convert.ToInt32(dgrDetalle[e.ColumnIndex, e.RowIndex].Value), "");
+                        else MessageBox.Show("Ingrese Nro.producto correcto", "Error de Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        break;
 
-        //                List<FacturasVentaDetalle> det = repv.ObtenerDetalledeFacturaVta(Id);
-        //                int i = 0;
-        //                foreach (FacturasVentaDetalle fvd in det)
-        //                {
+                    case 5:
+                        if (!artdesc)
+                        {
+                            if (!FuncionesForms.NroDecimal(dgrDetalle[e.ColumnIndex, e.RowIndex].Value.ToString()))
+                            {
+                                MessageBox.Show("Ingrese cantidad correcta", "Error de Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                dgrDetalle[e.ColumnIndex, e.RowIndex].Value = "";
+                            }
+                            else
+                            {
+                                var productoNegocio = new ProductoNegocio();
+                                if (dgrDetalle[4, e.RowIndex].Value != null)
+                                {
+                                    CapaDatos.Modelos.Productos art = productoNegocio.ObtenerProductoPorId(Convert.ToInt32(dgrDetalle[3, e.RowIndex].Value));
+                                    //if (IdTipoDoc != 2)
+                                    //{
+                                        //if (art.LlevarStock)
+                                        //{
+                                        //    if (Convert.ToDouble(dgrDetalle[e.ColumnIndex, e.RowIndex].Value.ToString().Replace(".", ",")) > art.StockActual)
+                                        //    {
+                                        //        if (User.Rol != TiposUsers.Administrador)
+                                        //        {
+                                        //            MessageBox.Show("No hay stock suficiente para este producto. " + Environment.NewLine + "Se requerirá autorización al Guardar", "ATENCIÓN!",
+                                        //                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                        //            Autorizar = true;
+                                        //        }
+                                        //        else MessageBox.Show("No hay stock suficiente para este producto. ", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                        //    }
+                                        //    else if ((art.StockActual - Convert.ToDouble(dgrDetalle[e.ColumnIndex, e.RowIndex].Value.ToString().Replace(".", ","))) < art.CantidadMinima)
+                                        //    {
+                                        //        MessageBox.Show("Se está superando la cantidad minima de Stock del Articulo", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                        //    }
+                                        //}
+                                    //}
+                                }
+                                var cmb = dgrDetalle.Rows[e.RowIndex].Cells[8] as DataGridViewComboBoxCell;
+                                if (cmb.Value != null)
+                                {
+                                    if (FuncionesForms.NroDecimal(cmb.Value))
+                                    {
+                                        dgrDetalle[9, e.RowIndex].Value =
+                                            Math.Round(Convert.ToDecimal(dgrDetalle[e.ColumnIndex, e.RowIndex].Value.ToString().Replace(".", ",")) * Convert.ToDecimal(cmb.Value), 2, MidpointRounding.AwayFromZero);
+                                    }
+                                }
+                            }
+                        }
+                        break;
 
-        //                    var cmb = dgrDetalle["Precio", i] as DataGridViewComboBoxCell;
-        //                    var dt = new DataTable();
-        //                    if (fvd.IdArticulo != null)
-        //                    {
-        //                        var repa = new RepositorioArticulos();
-        //                        VistaArticulos art = repa.ObtenerVArtporId(Convert.ToInt64(fvd.IdArticulo));
-        //                        dgrDetalle.Rows[i].Cells[3].Value = art.CodigoBarra;
-        //                        dgrDetalle.Rows[i].Cells[4].Value = art.IdArticulo.ToString();
-        //                        dgrDetalle.Rows[i].Cells[5].Value = art.DescCorta;
-        //                        dgrDetalle.Rows[i].Cells[7].Value = art.UnidadMedida;
+                    case 8:
+                        var cmb2 = dgrDetalle.Rows[e.RowIndex].Cells[8] as DataGridViewComboBoxCell;
+                        if (cmb2.Value != null)
+                        {
+                            if (dgrDetalle[5, e.RowIndex].Value != null)
+                            {
+                                if (FuncionesForms.NroDecimal(cmb2.Value) && FuncionesForms.NroDecimal(dgrDetalle[5, e.RowIndex].Value))
+                                {
+                                    dgrDetalle[9, e.RowIndex].Value = Math.Round(Convert.ToDecimal(dgrDetalle[5, e.RowIndex].Value.ToString().Replace(".", ",")) * Convert.ToDecimal(cmb2.Value), 2,
+                                        MidpointRounding.AwayFromZero);
+                                    // Se valida si se cambió el precio de manual a contado o fíado, para poner el valor de PrecManual en 0 (false).
+                                    var formattedValue = dgrDetalle.Rows[e.RowIndex].Cells[9].FormattedValue;
+                                    if (formattedValue != null && formattedValue.ToString().Substring(0, 1) != "M")
+                                    {
+                                        dgrDetalle["PrecManual", e.RowIndex].Value = 0;
+                                    }
+                                    else
+                                    {
+                                        dgrDetalle["PrecManual", e.RowIndex].Value = 1;
+                                    }
+                                }
+                            }
+                        }
+                        break;
 
-        //                        dt = SeteosStatic.Usar4DigitosPrecios ? repa.CargarComboPrecios4digitos(art.IdArticulo, cmbTipoFact.Text) : repa.CargarComboPrecios2digitos(art.IdArticulo, cmbTipoFact.Text);
+                    case 9:
+                        if (FuncionesForms.NroDecimal(dgrDetalle[9, e.RowIndex].Value)) CalcularTotales(true);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                string mensajeError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                MessageBox.Show(mensajeError);
+            }
+        }
 
-        //                        cmb.DataSource = dt;
-        //                        cmb.DisplayMember = "Desc";
-        //                        cmb.ValueMember = "Precio";
-        //                        dgrDetalle.Rows[i].Cells[12].Value = false;
+        private void dgrDetalle_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    switch (dgrDetalle.SelectedCells[0].ColumnIndex)
+                    {
+                        case 0:
+                            EliminarFila();
+                            break;
 
-        //                        if (Convert.ToBoolean(fvd.PrecioManual))
-        //                        {
-        //                            var rw = dt.NewRow();
-        //                            rw[0] = "Manual: $" + fvd.PrecioUnitario.ToString(CultureInfo.InvariantCulture).Replace(".", ",");
-        //                            rw[1] = fvd.PrecioUnitario.ToString(CultureInfo.InvariantCulture).Replace(".", ",");
-        //                            dt.Rows.Add(rw);
-        //                            cmb.DataSource = dt;
-        //                            cmb.DisplayMember = "Desc";
-        //                            cmb.ValueMember = "Precio";
-        //                        }
+                        case 1:
+                            BuscarArtDgr();
+                            break;
 
-        //                        cmb.Value = fvd.PrecioManual == false ? dt.Rows[0]["Precio"] : dt.Rows[2]["Precio"];
-        //                    }
-        //                    else
-        //                    {
-        //                        dgrDetalle.Rows[i].Cells[5].Value = fvd.Articulo;
-        //                        dgrDetalle.Rows[i].Cells[7].Value = fvd.UMedida;
-        //                        dt.Columns.Add("Desc");
-        //                        dt.Columns.Add("Precio");
-        //                        DataRow rw = dt.NewRow();
-        //                        rw[0] = "$ " + fvd.PrecioUnitario;
-        //                        rw[1] = fvd.PrecioUnitario;
-        //                        dt.Rows.Add(rw);
-        //                        cmb.DataSource = dt;
-        //                        cmb.DisplayMember = "Desc";
-        //                        cmb.ValueMember = "Precio";
-        //                        cmb.Value = dt.Rows[0]["Precio"];
-        //                        dgrDetalle.Rows[i].Cells[12].Value = true;
-        //                        artdesc = true;
-        //                    }
+                        case 2:
+                            if (dgrDetalle.Rows.Count > 15)
+                            {
+                                MessageBox.Show("El máximo de líneas por factura es 15. Por favor elimine los restantes y haga una factura nueva", "CANTIDAD MAXIMA ALCANZADA", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                            }
+                            else IngresarProdDesconocido();
 
-        //                    dgrDetalle.Rows[i].Cells[6].Value = fvd.Cantidad;
-        //                    dgrDetalle["Total", i].Value = Math.Round(fvd.Cantidad * Convert.ToDecimal(cmb.Value), 2, MidpointRounding.AwayFromZero);
-        //                    var repax = new RepositorioAuxiliares();
-        //                    TiposIva ti = repax.ObtenerTipoIVAporId(fvd.IdTipoIva);
-        //                    dgrDetalle.Rows[i].Cells[8].Value = ti.PorcentajeIVA;
-        //                    dgrDetalle.Rows[i].Cells[11].Value = false;
-        //                    dgrDetalle.Rows[i].Cells["IdFactVtaDetalle"].Value = fvd.IdFacturaVentaDetalle;
-        //                    i += 1;
-        //                    artdesc = false;
+                            break;
 
-        //                IdTipoDoc = fv.IdTipoDocumento;
-        //                if (IdTipoDoc == 8) btnImprimir.Visible = true;
-        //                CalcularTotales(true);
-        //            }
-        //        }
-        //        catch (Exception ex) { throw ex; }
-        //    }
+                        case 13:
+                            IngresarPcioManual(dgrDetalle.SelectedCells[0].RowIndex);
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string mensajeError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                MessageBox.Show(mensajeError);
+            }
+        }
 
-        //    private void BuscarCli(object nroCliente)
-        //    {
-        //        var repc = new RepositorioClientes();
-        //        try
-        //        {
-        //            VistaClientes cli = repc.ObtenerVCliporNroCli(IdCliente);
-        //            if (cli != null)
-        //            {
-        //                Activar(true);
-        //                if (cli.FechaBaja == "")
-        //                {
-        //                    //List<VistaFacturasSinSaldar> Lista = repv.ObtenerListFacturasVencidas30DiasxNroCli(SeteosStatic.IdEmpresa, idcli);
-        //                    if (cli.IdCliente == 1)
-        //                    {
-        //                        cmboFormaPago.SelectedValue = 1;
-        //                        cmbCondPago.Enabled = false;
-        //                    }
-        //                    else
-        //                    {
-        //                        cmbFPago.SelectedValue = 2;
-        //                        cmbCondPago.SelectedValue = 1;
-        //                    }
-        //                    var Lista = new List<Clientes>();
-        //                    if (Lista.Count > 0 && Accion.ToUpper() == "ALTA" && idcli > 1)
-        //                    {
-        //                        if (MessageBox.Show("El Cliente posee facturas impagas de más de 30 días, ¿Desea facturar igual?", "AVISO IMPORTANTE", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-        //                        {
-        //                            dgrDetalle.Enabled = true;
-        //                            txtNroCli.Text = cli.NroCliente.ToString();
-        //                            if (cli.Cuit != "")
-        //                            {
-        //                                lblCliente.Text = "CUIT - " + cli.Cuit + " - " + cli.ApellidoyNombre + " (" + cli.Descripcion + ")";
-        //                                cuit = cli.Cuit;
-        //                            }
-        //                            else
-        //                            {
-        //                                lblCliente.Text = cli.TipoDocumento + " - " + cli.Nro_Doc + " - " + cli.ApellidoyNombre + " (" + cli.Descripcion + ")";
-        //                                cuit = cli.Nro_Doc;
-        //                            }
-        //                            bool tipoA = false;
-        //                            if (cli.Descripcion.ToUpper() != "RESPONSABLE INSCRIPTO") { cmbTipoFact.SelectedValue = "2"; } //tipo B
-        //                            else
-        //                            {
-        //                                cmbTipoFact.SelectedValue = "1";
-        //                                tipoA = true;
-        //                            }
-        //                            CambiarTipoFact();
-        //                            if (dgrDetalle.Rows.Count > 1)
-        //                            {
-        //                                CambiarPrecios(true);
-        //                                CalcularTotales(tipoA);
-        //                            }
-        //                        }
-        //                        else
-        //                        {
-        //                            idcli = 0;
-        //                            txtNroCli.Text = "0";
-        //                            lblCliente.Text = "";
-        //                        }
-        //                    }
-        //                    else
-        //                    {
-        //                        dgrDetalle.Enabled = true;
-        //                        txtNroCli.Text = cli.NroCliente.ToString();
-        //                        if (cli.Cuit != "")
-        //                        {
-        //                            lblCliente.Text = "CUIT - " + cli.Cuit + " - " + cli.ApellidoyNombre + " (" + cli.Descripcion + ")";
-        //                            cuit = cli.Cuit;
-        //                        }
-        //                        else
-        //                        {
-        //                            lblCliente.Text = cli.TipoDocumento + " - " + cli.Nro_Doc + " - " + cli.ApellidoyNombre + " (" + cli.Descripcion + ")";
-        //                            cuit = cli.Nro_Doc;
-        //                        }
-        //                        bool tipoA = false;
-        //                        if (cli.Descripcion.ToUpper() != "RESPONSABLE INSCRIPTO") { cmbTipoFact.SelectedValue = "2"; } //tipo B
-        //                        else
-        //                        {
-        //                            cmbTipoFact.SelectedValue = "1";
-        //                            tipoA = true;
-        //                        }
-        //                        CambiarTipoFact();
-        //                        if (dgrDetalle.Rows.Count > 1)
-        //                        {
-        //                            CambiarPrecios(true);
-        //                            CalcularTotales(tipoA);
-        //                        }
-        //                    }
-        //                }
-        //                else
-        //                {
-        //                    MessageBox.Show("El cliente fue dado de baja", "Error de Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        //                    Activar(false);
-        //                }
-        //            }
-        //            else
-        //            {
-        //                MessageBox.Show("No se encontró el Cliente", "Error de Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        //                Activar(false);
-        //            }
-        //        }
-        //        catch (Exception ex) { throw ex; }
-        //    }
+        private void dgrDetalle_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (dgrDetalle.SelectedCells[0].ColumnIndex - 1 == 6 && e.KeyCode == Keys.Tab &&
+                    dgrDetalle.Rows[dgrDetalle.SelectedCells[0].RowIndex].Cells["DescCorta"].Value != null && dgrDetalle.Rows[dgrDetalle.SelectedCells[0].RowIndex].Cells["Cantidad"].Value != null)
+                {
+                    dgrDetalle[1, dgrDetalle.SelectedCells[0].RowIndex + 1].Selected = true;
+                    BuscarArtDgr();
+                }
+            }
+            catch (Exception ex) {
+                string mensajeError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                MessageBox.Show(mensajeError);
+            }
+        }
 
-        //    private void LlenarCombos()
-        //    {
-        //        var auxiliares = new AuxiliaresNegocio();
-        //        cmbConcepto.DataSource = auxiliares.DtTiposConceptosFactura();
-        //        cmbConcepto.DisplayMember = "Descripcion";
-        //        cmbConcepto.ValueMember = "IdConceptoFactura";
-        //        cmboFormaPago.DataSource = auxiliares.DtFormasPago();
-        //        cmboFormaPago.DisplayMember = "Descripcion";
-        //        cmboFormaPago.ValueMember = "IdFormaPago";
-        //        cmboFormaPago.SelectedValue = 2;
-        //        cmboFormaPago.Enabled = true;
-        //        cmbCondPago.SelectedValue = 1;
-        //        cmbCondPago.Enabled = true;
-        //        cmbTipoFac.DataSource = auxiliares.DtTiposFact();
-        //        cmbTipoFac.DisplayMember = "Descripcion";
-        //        cmbTipoFac.ValueMember = "IdTipoFactura";
-        //        cmbCondPago.Enabled = false;
-        //    }
+        private void txtDto_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (FuncionesForms.NroDecimal(txtDto.Text)) CalcularTotales(false);
+                else
+                {
+                    if (txtDto.Text == "") CalcularTotales(false);
+                    else MessageBox.Show("Ingrese valor correcto para descuento", "Error de ingreso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    txtDto.Text = 0.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                string mensajeError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                MessageBox.Show(mensajeError);
+            }
+        }
 
-        //    private void LlenarComboCond()
-        //    {
-        //        try
-        //        {
-        //            var rep = new AuxiliaresNegocio();
-        //            cmbCondPago.DisplayMember = "Descripcion";
-        //            cmbCondPago.ValueMember = "IdCondicionPago";
-        //            cmbCondPago.DataSource = rep.DtCondPago();
-        //            cmbCondPago.Enabled = true;
-        //        }
-        //        catch (Exception ex) { throw ex; }
-        //    }
+        private void CalcularTotales(bool CalcSubT)
+        {
+            try
+            {
+                if (CalcSubT)
+                {
+                    lblSubTotal.Text = "0"; //en cero los subtotales
+                    lblSubTotal105.Text = "0";
+                    lblSubTotal21.Text = "0";
+                    lblSubTotal0.Text = "0";
+                    foreach (DataGridViewRow rw in dgrDetalle.Rows)
+                    {
+                        decimal subt = rw.Cells[9].Value == null ? 0 : Convert.ToDecimal(rw.Cells[9].Value);
+                        if (cmbTipoFac.Text == "A") //Si es "A" se calculan los subtotales correspondientes al IVA del producto y se suman
+                        {
+                            if (Convert.ToDecimal(rw.Cells[8].Value) == 21) //IVA 21%
+                            {
+                                lblSubTotal21.Text = Math.Round(Convert.ToDecimal(lblSubTotal21.Text) + subt, 2, MidpointRounding.AwayFromZero).ToString();
+                            }
+                            else if (Convert.ToDecimal(rw.Cells[8].Value) == 10.5M) //IVA 10,5%
+                            {
+                                lblSubTotal105.Text = Math.Round(Convert.ToDecimal(lblSubTotal105.Text) + subt, 2, MidpointRounding.AwayFromZero).ToString();
+                            }
+                            else //IVA 0%
+                            {
+                                lblSubTotal0.Text = Math.Round(Convert.ToDecimal(lblSubTotal0.Text) + subt, 2, MidpointRounding.AwayFromZero).ToString();
+                            }
+                            lblSubTotal.Text = Math.Round(Convert.ToDecimal(lblSubTotal0.Text) + Convert.ToDecimal(lblSubTotal21.Text) + Convert.ToDecimal(lblSubTotal105.Text), 2,
+                                MidpointRounding.AwayFromZero).ToString();
+                        }
+                        else //Si es B solo subtotal sin IVA
+                        {
+                            if (Convert.ToDecimal(rw.Cells[8].Value) == 21) //IVA 21%
+                            {
+                                lblSubTotal21.Text = Math.Round((Convert.ToDecimal(lblSubTotal21.Text) + subt), 2, MidpointRounding.AwayFromZero).ToString();
+                            }
+                            else if (Convert.ToDecimal(rw.Cells[8].Value) == 10.5M) //IVA 10,5%
+                            {
+                                lblSubTotal105.Text = Math.Round((Convert.ToDecimal(lblSubTotal105.Text) + subt), 2, MidpointRounding.AwayFromZero).ToString();
+                            }
+                            else //IVA 0%
+                            {
+                                lblSubTotal0.Text = Math.Round(Convert.ToDecimal(lblSubTotal0.Text) + subt, 2, MidpointRounding.AwayFromZero).ToString();
+                            }
+                            lblSubTotal.Text = Math.Round(Convert.ToDecimal(lblSubTotal.Text) + subt, 2, MidpointRounding.AwayFromZero).ToString();
+                        }
+                    }
+                }
+
+                if (cmbTipoFac.Text == "A")
+                {
+                    lblTotalDto.Text = (Math.Round(Convert.ToDecimal(lblSubTotal0.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100), 2, MidpointRounding.AwayFromZero) +
+                                        Math.Round(Convert.ToDecimal(lblSubTotal105.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100), 2, MidpointRounding.AwayFromZero) +
+                                        Math.Round(Convert.ToDecimal(lblSubTotal21.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100), 2, MidpointRounding.AwayFromZero)).ToString();
+                    //Esta porción de código es para que cuando el cálculo de abajo de -0.01 se sume 0.01 al campo de TotalDescuento.
+                    //De esta forma se evita el error a la hora de actualizar algunas facturas que usan descuento.
+                    if (Convert.ToDecimal(lblSubTotal.Text.Replace(".", ",")) -
+                        Convert.ToDecimal(lblTotalDto.Text.Replace(".", ",")) -
+                        Convert.ToDecimal(lblSubtDto21.Text.Replace(".", ",")) -
+                        Convert.ToDecimal(lblSubtDto105.Text.Replace(".", ",")) == Convert.ToDecimal(-0.01))
+                    {
+                        lblTotalDto.Text = Convert.ToString(Convert.ToDecimal(lblTotalDto.Text.Replace(".", ",")) - Convert.ToDecimal(0.01), CultureInfo.InvariantCulture);
+                    }
+                    //Fin de la porción de código de validación del campo TotalDescuento.
+                    lblSubtDto0.Text = Math.Round(Convert.ToDecimal(lblSubTotal0.Text) - (Convert.ToDecimal(lblSubTotal0.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100)), 2,
+                        MidpointRounding.AwayFromZero).ToString();
+                    lblSubtDto105.Text = Math.Round(Convert.ToDecimal(lblSubTotal105.Text) - (Convert.ToDecimal(lblSubTotal105.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100)), 2,
+                        MidpointRounding.AwayFromZero).ToString();
+                    lblSubtDto21.Text = Math.Round(Convert.ToDecimal(lblSubTotal21.Text) - (Convert.ToDecimal(lblSubTotal21.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100)), 2,
+                        MidpointRounding.AwayFromZero).ToString();
+                    lblSubtDto.Text = Math.Round(Convert.ToDecimal(lblSubtDto0.Text) + Convert.ToDecimal(lblSubtDto105.Text) + Convert.ToDecimal(lblSubtDto21.Text), 2,
+                        MidpointRounding.AwayFromZero).ToString();
+                    lblTotalIva105.Text = Math.Round(Convert.ToDecimal(lblSubtDto105.Text) * Convert.ToDecimal(0.105), 2, MidpointRounding.AwayFromZero).ToString();
+                    lblTotalIva21.Text = Math.Round(Convert.ToDecimal(lblSubtDto21.Text) * Convert.ToDecimal(0.21), 2, MidpointRounding.AwayFromZero).ToString();
+                    lblTotalIva0.Text = "0";
+                    lblTotalIVA.Text = Math.Round(Convert.ToDecimal(lblTotalIva105.Text) + Convert.ToDecimal(lblTotalIva21.Text), 2, MidpointRounding.AwayFromZero).ToString();
+                    lblTotal.Text = Math.Round(Convert.ToDecimal(lblSubtDto.Text) + Convert.ToDecimal(lblTotalIva105.Text) + Convert.ToDecimal(lblTotalIva21.Text), 2,
+                        MidpointRounding.AwayFromZero).ToString();
+                }
+                else
+                {
+                    lblTotalDto.Text = Math.Round(Convert.ToDecimal(lblSubTotal.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100), 2, MidpointRounding.AwayFromZero).ToString();
+                    //Esta porción de código es para que cuando el cálculo de abajo de -0.01 se sume 0.01 al campo de TotalDescuento.
+                    //De esta forma se evita el error a la hora de actualizar algunas facturas que usan descuento.
+                    if (Convert.ToDecimal(lblSubTotal.Text.Replace(".", ",")) -
+                        Convert.ToDecimal(lblTotalDto.Text.Replace(".", ",")) -
+                        Convert.ToDecimal(lblSubtDto21.Text.Replace(".", ",")) -
+                        Convert.ToDecimal(lblSubtDto105.Text.Replace(".", ",")) == Convert.ToDecimal(-0.01))
+                    {
+                        lblTotalDto.Text = Convert.ToString(Convert.ToDecimal(lblTotalDto.Text.Replace(".", ",")) - Convert.ToDecimal(0.01), CultureInfo.InvariantCulture);
+                    }
+                    //Fin de la porción de código de validación del campo TotalDescuento.
+                    lblSubtDto.Text = Math.Round(Convert.ToDecimal(lblSubTotal.Text) - Convert.ToDecimal(lblTotalDto.Text), 2, MidpointRounding.AwayFromZero).ToString();
+                    lblTotal.Text = Convert.ToString(Math.Round(Decimal.Parse(lblSubTotal.Text) - (Decimal.Parse(lblSubTotal.Text) * (Decimal.Parse(txtDto.Text.Replace(".", ",")) / 100)), 2,
+                        MidpointRounding.AwayFromZero));
+                    lblSubtDto0.Text = Math.Round(Convert.ToDecimal(lblSubTotal0.Text) - (Convert.ToDecimal(lblSubTotal0.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100)), 2,
+                        MidpointRounding.AwayFromZero).ToString();
+                    lblSubtDto105.Text = Math.Round(Convert.ToDecimal(lblSubTotal105.Text) - (Convert.ToDecimal(lblSubTotal105.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100)), 2,
+                        MidpointRounding.AwayFromZero).ToString();
+                    lblSubtDto21.Text = Math.Round(Convert.ToDecimal(lblSubTotal21.Text) - (Convert.ToDecimal(lblSubTotal21.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100)), 2,
+                        MidpointRounding.AwayFromZero).ToString();
+                    lblSubtDto.Text = Math.Round(Convert.ToDecimal(lblSubtDto0.Text) + Convert.ToDecimal(lblSubtDto105.Text) + Convert.ToDecimal(lblSubtDto21.Text), 2,
+                        MidpointRounding.AwayFromZero).ToString();
+
+                }
+
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private void IngresarProdDesconocido()
+        {
+            try
+            {
+                var frma = new frmIngProdDesconocido { Compra = false };
+                frma.ShowDialog();
+                if (frma.DialogResult == DialogResult.OK)
+                {
+                    dgrDetalle.Rows.Add();
+                    artdesc = true;
+                    var auxiliares = new AuxiliaresNegocio();
+                    TiposIva ti = auxiliares.ObtenerTipoIVAporId(frma.IdTipoIVa);
+                    dgrDetalle["DescCorta", dgrDetalle.CurrentRow.Index - 1].Value = frma.Descripcion;
+                    dgrDetalle["Cantidad", dgrDetalle.CurrentRow.Index - 1].Value = frma.Cantidad;
+                    dgrDetalle["UMedida", dgrDetalle.CurrentRow.Index - 1].Value = frma.UMedida;
+                    dgrDetalle["SiDesc", dgrDetalle.CurrentRow.Index - 1].Value = true;
+                    dgrDetalle["Iva", dgrDetalle.CurrentRow.Index - 1].Value = ti.PorcentajeIVA;
+                    var cmb = dgrDetalle["Precio", dgrDetalle.CurrentRow.Index - 1] as DataGridViewComboBoxCell;
+                    var dt = new DataTable();
+                    dt.Columns.Add("Desc");
+                    dt.Columns.Add("Precio");
+                    DataRow rw = dt.NewRow();
+                    decimal PorcIva = Convert.ToDecimal(ti.PorcentajeIVA) / 100;
+                    decimal precio;
+                    if (cmbTipoFac.SelectedValue.ToString() == "1")
+                    {
+                        if (frma.PrecioFinal)
+                        {
+                            precio = Math.Round(frma.Precio / (PorcIva + 1), 2);
+
+                        }
+                        else precio = frma.Precio;
+                    }
+                    else
+                    {
+                        if (frma.PrecioFinal) precio = frma.Precio;
+                        else
+                        {
+                            precio = Math.Round(frma.Precio + (frma.Precio * PorcIva),2);
+                        }
+                    }
+                    rw[0] = precio;
+                    rw[1] = precio;
+                    dt.Rows.Add(rw);
+                    cmb.DataSource = dt;
+                    cmb.DisplayMember = "Desc";
+                    cmb.ValueMember = "Precio";
+                    cmb.Value = dt.Rows[0]["Precio"];
+                    dgrDetalle.Rows[dgrDetalle.SelectedCells[0].RowIndex - 1].Cells[1].ReadOnly = true;
+                    dgrDetalle.Rows[dgrDetalle.SelectedCells[0].RowIndex - 1].Cells[2].ReadOnly = true;
+                    dgrDetalle.Rows[dgrDetalle.SelectedCells[0].RowIndex - 1].Cells[4].ReadOnly = true;
+                    artdesc = false;
+                }
+            }
+            catch (Exception ex) { throw ex; }
+        }
     }
 }

@@ -117,6 +117,11 @@ namespace CapaNegocio
             return db.Productos.SingleOrDefault(c => c.IdProducto == idProducto);
         }
 
+        public VistaProducto ObtenerVistaProductoPorId(int idProducto)
+        {
+            return db.VistaProducto.SingleOrDefault(c => c.IdProducto == idProducto);
+        }
+
         public bool SumarStockArt(double cantidad, int idProducto)
         {
             try
@@ -261,29 +266,33 @@ namespace CapaNegocio
 
         public VistaPreciosVenta ObtenerVistaUltVPV(int idProducto)
         {
-            // Primero obtenemos la fecha máxima
-            var maxFecha = ObtenerMaxFecha(idProducto);
+            if (ExistePrecio(idProducto))
+            {
+                // Primero obtenemos la fecha máxima
+                var maxFecha = ObtenerMaxFecha(idProducto);
 
-            // Luego usamos esa fecha en la consulta LINQ
-            return ExistePrecio(idProducto)
-            ? db.VistaPreciosVenta
-            .Where(c => c.IdProducto == idProducto &&
-                              c.FechaPrecio.Year == maxFecha.Year &&
-                              c.FechaPrecio.Month == maxFecha.Month &&
-                              c.FechaPrecio.Day == maxFecha.Day)
-            .OrderByDescending(c => c.FechaPrecio)
-            .FirstOrDefault()
-            : null;
-
+                // Luego usamos esa fecha en la consulta LINQ
+                return db.VistaPreciosVenta
+                .Where(c => c.IdProducto == idProducto &&
+                                  c.FechaPrecio.Year == maxFecha.Year &&
+                                  c.FechaPrecio.Month == maxFecha.Month &&
+                                  c.FechaPrecio.Day == maxFecha.Day)
+                .OrderByDescending(c => c.FechaPrecio)
+                .FirstOrDefault();
+            }
+            else {
+                return null;
+            }
         }
 
         private DateTime ObtenerMaxFecha(int idProd)
         {
-            // Obtener la fecha máxima fuera de la consulta LINQ to Entities
             return db.PreciosVenta
                 .Where(p => p.IdProducto == idProd)
+                .AsEnumerable() // Convierte a consulta en memoria (Evita que LINQ to Entities falle)
                 .Max(p => p.FechaPrecios);
         }
+
 
 
         public bool NuevoPrecioVenta(PreciosVenta pv)
@@ -344,6 +353,57 @@ namespace CapaNegocio
              .Select(g => g.OrderByDescending(prod => prod.FechaPrecio).FirstOrDefault()) // Toma el más reciente
              .ToList();
 
+        }
+
+        public DataTable CargarComboPrecios(int idProducto, string tipofact)
+        {
+            try
+            {
+                PreciosVenta pre = ObtenerUltPrecioVentaPorId(idProducto);
+                if (pre != null)
+                {
+                    var dt = new DataTable();
+                    dt.Columns.Add("Desc", typeof(string));
+                    dt.Columns.Add("Precio", typeof(decimal));
+                    DataRow newRow = dt.NewRow();
+                    if (tipofact == "A")
+                    {
+                        newRow["Desc"] = "Contado: $ " + Math.Round(pre.PrecioContado, 2, MidpointRounding.AwayFromZero);
+                        newRow["Precio"] = Math.Round(pre.PrecioContado, 2, MidpointRounding.AwayFromZero);
+                        dt.Rows.Add(newRow);
+                        newRow = dt.NewRow();
+                        //newRow["Desc"] = "Fiado: $ " + Math.Round(pre.PrecioFiado, 2, MidpointRounding.AwayFromZero);
+                        //newRow["Precio"] = Math.Round(pre.PrecioFiado, 2, MidpointRounding.AwayFromZero);
+                        dt.Rows.Add(newRow);
+                    }
+                    else
+                    {
+                        newRow["Desc"] = "Contado: $ " + Math.Round(pre.PrecioContadoIva, 2, MidpointRounding.AwayFromZero);
+                        newRow["Precio"] = Math.Round(pre.PrecioContadoIva, 2, MidpointRounding.AwayFromZero);
+                        dt.Rows.Add(newRow);
+                        newRow = dt.NewRow();
+                        //newRow["Desc"] = "Fiado: $ " + Math.Round(pre.PrecioFiadoIva, 2, MidpointRounding.AwayFromZero);
+                        //newRow["Precio"] = Math.Round(pre.PrecioFiadoIva, 2, MidpointRounding.AwayFromZero);
+                        dt.Rows.Add(newRow);
+                    }
+                    return dt;
+                }
+                return null;
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        public PreciosVenta ObtenerUltPrecioVentaPorId(int idProducto)
+        {
+            PreciosVenta preciosVenta = new PreciosVenta();
+            if (ExistePrecio(idProducto))
+            {
+                preciosVenta = db.PreciosVenta
+             .Where(prod => prod.IdProducto == idProducto)
+             .OrderByDescending(ultPrecio => ultPrecio.FechaPrecios).FirstOrDefault();
+            }
+
+            return preciosVenta;
         }
     }
 }

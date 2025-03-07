@@ -30,12 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFacturacion));
-            this.btnListado = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.lblNroCliente = new System.Windows.Forms.Label();
             this.txtNroCliente = new System.Windows.Forms.TextBox();
             this.lblNomreCliente = new System.Windows.Forms.Label();
-            this.brnAnonimo = new System.Windows.Forms.Button();
             this.lblTipoFact = new System.Windows.Forms.Label();
             this.cmbTipoFac = new System.Windows.Forms.ComboBox();
             this.txtBV = new System.Windows.Forms.TextBox();
@@ -52,8 +49,6 @@
             this.cmbCondPago = new System.Windows.Forms.ComboBox();
             this.lblCondPago = new System.Windows.Forms.Label();
             this.dgrDetalle = new System.Windows.Forms.DataGridView();
-            this.Borrar = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Buscar = new System.Windows.Forms.DataGridViewImageColumn();
             this.ArtDesconocido = new System.Windows.Forms.DataGridViewImageColumn();
             this.NroArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescCorta = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -100,32 +95,17 @@
             this.lblSubTotal = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Borrar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Buscar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.brnAnonimo = new System.Windows.Forms.Button();
+            this.btnListado = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.grupBoxCabecera.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDetalle)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnListado
-            // 
-            this.btnListado.Image = ((System.Drawing.Image)(resources.GetObject("btnListado.Image")));
-            this.btnListado.Location = new System.Drawing.Point(343, 16);
-            this.btnListado.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.btnListado.Name = "btnListado";
-            this.btnListado.Size = new System.Drawing.Size(47, 51);
-            this.btnListado.TabIndex = 36;
-            this.btnListado.UseVisualStyleBackColor = true;
-            this.btnListado.Click += new System.EventHandler(this.btnListado_Click);
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Image = global::SistemaFacturacionInventario.Properties.Resources.icons8_buscar_20;
-            this.btnBuscar.Location = new System.Drawing.Point(285, 16);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(47, 51);
-            this.btnBuscar.TabIndex = 35;
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // lblNroCliente
             // 
@@ -158,17 +138,6 @@
             this.lblNomreCliente.TabIndex = 37;
             this.lblNomreCliente.Text = "Nombre Cliente";
             this.lblNomreCliente.Visible = false;
-            // 
-            // brnAnonimo
-            // 
-            this.brnAnonimo.Image = ((System.Drawing.Image)(resources.GetObject("brnAnonimo.Image")));
-            this.brnAnonimo.Location = new System.Drawing.Point(400, 16);
-            this.brnAnonimo.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.brnAnonimo.Name = "brnAnonimo";
-            this.brnAnonimo.Size = new System.Drawing.Size(47, 51);
-            this.brnAnonimo.TabIndex = 38;
-            this.brnAnonimo.UseVisualStyleBackColor = true;
-            this.brnAnonimo.Click += new System.EventHandler(this.brnAnonimo_Click);
             // 
             // lblTipoFact
             // 
@@ -379,27 +348,11 @@
             this.dgrDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgrDetalle.Size = new System.Drawing.Size(1490, 304);
             this.dgrDetalle.TabIndex = 52;
+            this.dgrDetalle.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDetalle_CellClick);
             this.dgrDetalle.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgrDetalle_CellFormatting);
-            // 
-            // Borrar
-            // 
-            this.Borrar.Frozen = true;
-            this.Borrar.HeaderText = "Borrar";
-            this.Borrar.Image = ((System.Drawing.Image)(resources.GetObject("Borrar.Image")));
-            this.Borrar.MinimumWidth = 6;
-            this.Borrar.Name = "Borrar";
-            this.Borrar.Width = 50;
-            // 
-            // Buscar
-            // 
-            this.Buscar.Frozen = true;
-            this.Buscar.HeaderText = "Buscar";
-            this.Buscar.Image = ((System.Drawing.Image)(resources.GetObject("Buscar.Image")));
-            this.Buscar.MinimumWidth = 6;
-            this.Buscar.Name = "Buscar";
-            this.Buscar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Buscar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Buscar.Width = 50;
+            this.dgrDetalle.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDetalle_CellValueChanged);
+            this.dgrDetalle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgrDetalle_KeyDown);
+            this.dgrDetalle.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgrDetalle_KeyUp);
             // 
             // ArtDesconocido
             // 
@@ -644,7 +597,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(1277, 203);
+            this.label13.Location = new System.Drawing.Point(1170, 203);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(105, 32);
@@ -655,7 +608,7 @@
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(1395, 203);
+            this.lblTotal.Location = new System.Drawing.Point(1288, 203);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(30, 31);
@@ -849,6 +802,7 @@
             this.txtDto.Size = new System.Drawing.Size(47, 26);
             this.txtDto.TabIndex = 11;
             this.txtDto.Text = "0";
+            this.txtDto.Leave += new System.EventHandler(this.txtDto_Leave);
             // 
             // label9
             // 
@@ -889,6 +843,79 @@
             this.imageList1.Images.SetKeyName(1, "eliminar.gif");
             this.imageList1.Images.SetKeyName(2, "Credito.ico");
             this.imageList1.Images.SetKeyName(3, "Moneda.ico");
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.Frozen = true;
+            this.dataGridViewImageColumn1.HeaderText = "Borrar";
+            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
+            this.dataGridViewImageColumn1.MinimumWidth = 6;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Width = 50;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.Frozen = true;
+            this.dataGridViewImageColumn2.HeaderText = "Buscar";
+            this.dataGridViewImageColumn2.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn2.Image")));
+            this.dataGridViewImageColumn2.MinimumWidth = 6;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewImageColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewImageColumn2.Width = 50;
+            // 
+            // Borrar
+            // 
+            this.Borrar.Frozen = true;
+            this.Borrar.HeaderText = "Borrar";
+            this.Borrar.Image = ((System.Drawing.Image)(resources.GetObject("Borrar.Image")));
+            this.Borrar.MinimumWidth = 6;
+            this.Borrar.Name = "Borrar";
+            this.Borrar.Width = 50;
+            // 
+            // Buscar
+            // 
+            this.Buscar.Frozen = true;
+            this.Buscar.HeaderText = "Buscar";
+            this.Buscar.Image = ((System.Drawing.Image)(resources.GetObject("Buscar.Image")));
+            this.Buscar.MinimumWidth = 6;
+            this.Buscar.Name = "Buscar";
+            this.Buscar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Buscar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Buscar.Width = 50;
+            // 
+            // brnAnonimo
+            // 
+            this.brnAnonimo.Image = ((System.Drawing.Image)(resources.GetObject("brnAnonimo.Image")));
+            this.brnAnonimo.Location = new System.Drawing.Point(400, 16);
+            this.brnAnonimo.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.brnAnonimo.Name = "brnAnonimo";
+            this.brnAnonimo.Size = new System.Drawing.Size(47, 51);
+            this.brnAnonimo.TabIndex = 38;
+            this.brnAnonimo.UseVisualStyleBackColor = true;
+            this.brnAnonimo.Click += new System.EventHandler(this.brnAnonimo_Click);
+            // 
+            // btnListado
+            // 
+            this.btnListado.Image = ((System.Drawing.Image)(resources.GetObject("btnListado.Image")));
+            this.btnListado.Location = new System.Drawing.Point(343, 16);
+            this.btnListado.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.btnListado.Name = "btnListado";
+            this.btnListado.Size = new System.Drawing.Size(47, 51);
+            this.btnListado.TabIndex = 36;
+            this.btnListado.UseVisualStyleBackColor = true;
+            this.btnListado.Click += new System.EventHandler(this.btnListado_Click);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Image = global::SistemaFacturacionInventario.Properties.Resources.icons8_buscar_20;
+            this.btnBuscar.Location = new System.Drawing.Point(285, 16);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(47, 51);
+            this.btnBuscar.TabIndex = 35;
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // frmFacturacion
             // 
@@ -985,5 +1012,7 @@
         private System.Windows.Forms.Label lblSubTotal;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
     }
 }

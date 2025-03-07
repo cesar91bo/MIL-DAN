@@ -162,6 +162,11 @@ namespace CapaNegocio
             catch (Exception ex) { throw ex; }
         }
 
+        public VistaClientes ObtenerVCliporNroCli(int idCliente)
+        {
+            return db.VistaClientes.SingleOrDefault(c => c.IdCliente == idCliente);
+        }
+
         public List<VistaClientes> ObtenerListaClientesActivos()
         {
             var listC = db.VistaClientes.Where(c => c.FechaBaja == "").ToList();

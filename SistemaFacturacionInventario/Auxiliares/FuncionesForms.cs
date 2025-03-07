@@ -20,5 +20,19 @@ namespace SistemaFacturacionInventario.Auxiliares
                 return true;
             }
         }
+
+        // SI EL NRO ES DECIMAL
+        public static bool NroDecimal(object valor)
+        {
+            decimal i;
+            if (decimal.TryParse(valor.ToString(), out i) == false)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }
