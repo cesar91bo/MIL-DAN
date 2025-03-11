@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.Design;
 
 namespace CapaNegocio
 {
@@ -361,6 +362,28 @@ namespace CapaNegocio
         {
             var det = from d in db.FacturasVentaDetalle where d.IdFacturaVenta == IdFact select d;
             return det.ToList();
+        }
+
+        public List<VistaCabFactVenta> ObtenerListaFacturas(string fechadf, string fechahf, string clientefact)
+        {
+            var facturas = db.VistaCabFactVenta.AsQueryable();
+
+            if (!string.IsNullOrEmpty(fechadf) && DateTime.TryParse(fechadf, out DateTime fechaDesde))
+            {
+                facturas = facturas.Where(f => f.FechaEmision >= fechaDesde);
+            }
+
+            if (!string.IsNullOrEmpty(fechahf) && DateTime.TryParse(fechahf, out DateTime fechaHasta))
+            {
+                facturas = facturas.Where(f => f.FechaEmision <= fechaHasta);
+            }
+
+            if (!string.IsNullOrEmpty(clientefact))
+            {
+                facturas = facturas.Where(f => f.Cliente.Contains(clientefact));
+            }
+
+            return facturas.ToList();
         }
     }
 }

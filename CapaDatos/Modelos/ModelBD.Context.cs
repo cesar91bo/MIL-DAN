@@ -51,5 +51,7 @@ namespace CapaDatos.Modelos
         public virtual DbSet<Remitos> Remitos { get; set; }
         public virtual DbSet<RemitosDetalle> RemitosDetalle { get; set; }
         public virtual DbSet<RemitosXfacturados> RemitosXfacturados { get; set; }
+        public virtual DbSet<VistaCabFactVenta> VistaCabFactVenta { get; set; }
+        public virtual DbSet<VistaDetalleFactVenta> VistaDetalleFactVenta { get; set; }
     }
 }

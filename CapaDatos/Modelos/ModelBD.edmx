@@ -337,6 +337,63 @@
           <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaCabFactVenta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VistaCabFactVenta">
+          <Key>
+            <PropertyRef Name="TipoDoc" />
+            <PropertyRef Name="IdFacturaVenta" />
+            <PropertyRef Name="TipoFact" />
+            <PropertyRef Name="FechaEmision" />
+            <PropertyRef Name="Impresa" />
+            <PropertyRef Name="SubTotal" />
+            <PropertyRef Name="Descuento" />
+            <PropertyRef Name="TotalDescuento" />
+            <PropertyRef Name="Cliente" />
+            <PropertyRef Name="Total" />
+            <PropertyRef Name="FPago" />
+            <PropertyRef Name="FechaVencimiento" />
+            <PropertyRef Name="FechaAnulacion" />
+            <PropertyRef Name="IdCliente" />
+            <PropertyRef Name="TotalIva105" />
+            <PropertyRef Name="TotalIva21" />
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="TotalSaldado" />
+            <PropertyRef Name="TotalInteres" />
+            <PropertyRef Name="TotalSaldadoInteres" />
+            <PropertyRef Name="IdConceptoFactura" />
+            <PropertyRef Name="FechaAlta" />
+            <PropertyRef Name="Cobrador" />
+          </Key>
+          <Property Name="TipoDoc" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdFacturaVenta" Type="int" Nullable="false" />
+          <Property Name="TipoFact" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="NroFact" Type="nvarchar" MaxLength="15" />
+          <Property Name="FechaEmision" Type="smalldatetime" Nullable="false" />
+          <Property Name="Impresa" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Observaciones" Type="nvarchar" MaxLength="500" />
+          <Property Name="SubTotal" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="Descuento" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="TotalDescuento" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="Cliente" Type="nvarchar" MaxLength="201" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="FPago" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaVencimiento" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="FechaAnulacion" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="BVFact" Type="nvarchar" MaxLength="4" />
+          <Property Name="TotalIva105" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="TotalIva21" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="IdEmpresa" Type="tinyint" Nullable="false" />
+          <Property Name="RazonSocial" Type="nvarchar" MaxLength="200" />
+          <Property Name="TotalSaldado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="TotalInteres" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="TotalSaldadoInteres" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="NroFactReferencia" Type="nvarchar" MaxLength="13" />
+          <Property Name="IdConceptoFactura" Type="int" Nullable="false" />
+          <Property Name="FechaAlta" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Cobrador" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaClientes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="VistaClientes">
           <Key>
@@ -386,6 +443,30 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaCPostales' no 
           <Property Name="Provincia" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CpSubCp" Type="nvarchar" MaxLength="61" />
           <Property Name="IdProvincia" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaDetalleFactVenta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VistaDetalleFactVenta">
+          <Key>
+            <PropertyRef Name="IdFacturaVentaDetalle" />
+            <PropertyRef Name="Cantidad" />
+            <PropertyRef Name="PrecioUnitario" />
+            <PropertyRef Name="TotalArt" />
+            <PropertyRef Name="IdFacturaVenta" />
+            <PropertyRef Name="DesdeRemito" />
+            <PropertyRef Name="IdArticulo" />
+            <PropertyRef Name="PorcentajeIVA" />
+          </Key>
+          <Property Name="IdFacturaVentaDetalle" Type="bigint" Nullable="false" />
+          <Property Name="DescCorta" Type="nvarchar" MaxLength="100" />
+          <Property Name="Cantidad" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="UMedida" Type="nvarchar" MaxLength="100" />
+          <Property Name="PrecioUnitario" Type="decimal" Precision="14" Scale="4" Nullable="false" />
+          <Property Name="TotalArt" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="IdFacturaVenta" Type="int" Nullable="false" />
+          <Property Name="DesdeRemito" Type="bit" Nullable="false" />
+          <Property Name="IdArticulo" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="PorcentajeIVA" Type="real" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaPreciosVenta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -746,6 +827,38 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <EntitySet Name="TiposFactura" EntityType="Self.TiposFactura" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TiposIva" EntityType="Self.TiposIva" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnidadesMedida" EntityType="Self.UnidadesMedida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VistaCabFactVenta" EntityType="Self.VistaCabFactVenta" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VistaCabFactVenta].[TipoDoc] AS [TipoDoc], 
+    [VistaCabFactVenta].[IdFacturaVenta] AS [IdFacturaVenta], 
+    [VistaCabFactVenta].[TipoFact] AS [TipoFact], 
+    [VistaCabFactVenta].[NroFact] AS [NroFact], 
+    [VistaCabFactVenta].[FechaEmision] AS [FechaEmision], 
+    [VistaCabFactVenta].[Impresa] AS [Impresa], 
+    [VistaCabFactVenta].[Observaciones] AS [Observaciones], 
+    [VistaCabFactVenta].[SubTotal] AS [SubTotal], 
+    [VistaCabFactVenta].[Descuento] AS [Descuento], 
+    [VistaCabFactVenta].[TotalDescuento] AS [TotalDescuento], 
+    [VistaCabFactVenta].[Cliente] AS [Cliente], 
+    [VistaCabFactVenta].[Total] AS [Total], 
+    [VistaCabFactVenta].[FPago] AS [FPago], 
+    [VistaCabFactVenta].[FechaVencimiento] AS [FechaVencimiento], 
+    [VistaCabFactVenta].[FechaAnulacion] AS [FechaAnulacion], 
+    [VistaCabFactVenta].[IdCliente] AS [IdCliente], 
+    [VistaCabFactVenta].[BVFact] AS [BVFact], 
+    [VistaCabFactVenta].[TotalIva105] AS [TotalIva105], 
+    [VistaCabFactVenta].[TotalIva21] AS [TotalIva21], 
+    [VistaCabFactVenta].[IdEmpresa] AS [IdEmpresa], 
+    [VistaCabFactVenta].[RazonSocial] AS [RazonSocial], 
+    [VistaCabFactVenta].[TotalSaldado] AS [TotalSaldado], 
+    [VistaCabFactVenta].[TotalInteres] AS [TotalInteres], 
+    [VistaCabFactVenta].[TotalSaldadoInteres] AS [TotalSaldadoInteres], 
+    [VistaCabFactVenta].[NroFactReferencia] AS [NroFactReferencia], 
+    [VistaCabFactVenta].[IdConceptoFactura] AS [IdConceptoFactura], 
+    [VistaCabFactVenta].[FechaAlta] AS [FechaAlta], 
+    [VistaCabFactVenta].[Cobrador] AS [Cobrador]
+    FROM [dbo].[VistaCabFactVenta] AS [VistaCabFactVenta]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="VistaClientes" EntityType="Self.VistaClientes" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VistaClientes].[IdCliente] AS [IdCliente], 
@@ -776,6 +889,20 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
     [VistaCPostales].[CpSubCp] AS [CpSubCp], 
     [VistaCPostales].[IdProvincia] AS [IdProvincia]
     FROM [dbo].[VistaCPostales] AS [VistaCPostales]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VistaDetalleFactVenta" EntityType="Self.VistaDetalleFactVenta" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VistaDetalleFactVenta].[IdFacturaVentaDetalle] AS [IdFacturaVentaDetalle], 
+    [VistaDetalleFactVenta].[DescCorta] AS [DescCorta], 
+    [VistaDetalleFactVenta].[Cantidad] AS [Cantidad], 
+    [VistaDetalleFactVenta].[UMedida] AS [UMedida], 
+    [VistaDetalleFactVenta].[PrecioUnitario] AS [PrecioUnitario], 
+    [VistaDetalleFactVenta].[TotalArt] AS [TotalArt], 
+    [VistaDetalleFactVenta].[IdFacturaVenta] AS [IdFacturaVenta], 
+    [VistaDetalleFactVenta].[DesdeRemito] AS [DesdeRemito], 
+    [VistaDetalleFactVenta].[IdArticulo] AS [IdArticulo], 
+    [VistaDetalleFactVenta].[PorcentajeIVA] AS [PorcentajeIVA]
+    FROM [dbo].[VistaDetalleFactVenta] AS [VistaDetalleFactVenta]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VistaPreciosVenta" EntityType="Self.VistaPreciosVenta" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1038,6 +1165,8 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             <End Role="RemitosDetalle" EntitySet="RemitosDetalle" />
           </AssociationSet>
           <EntitySet Name="RemitosXfacturados" EntityType="SistemaGestionPymeBDModel.RemitosXfacturados" />
+          <EntitySet Name="VistaCabFactVenta" EntityType="SistemaGestionPymeBDModel.VistaCabFactVenta" />
+          <EntitySet Name="VistaDetalleFactVenta" EntityType="SistemaGestionPymeBDModel.VistaDetalleFactVenta" />
         </EntityContainer>
         <EntityType Name="Productos">
           <Key>
@@ -1785,6 +1914,83 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <Property Name="IdFacturaVenta" Type="Int32" Nullable="false" />
           <Property Name="IdFacturaFinal" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="VistaCabFactVenta">
+          <Key>
+            <PropertyRef Name="TipoDoc" />
+            <PropertyRef Name="IdFacturaVenta" />
+            <PropertyRef Name="TipoFact" />
+            <PropertyRef Name="FechaEmision" />
+            <PropertyRef Name="Impresa" />
+            <PropertyRef Name="SubTotal" />
+            <PropertyRef Name="Descuento" />
+            <PropertyRef Name="TotalDescuento" />
+            <PropertyRef Name="Cliente" />
+            <PropertyRef Name="Total" />
+            <PropertyRef Name="FPago" />
+            <PropertyRef Name="FechaVencimiento" />
+            <PropertyRef Name="FechaAnulacion" />
+            <PropertyRef Name="IdCliente" />
+            <PropertyRef Name="TotalIva105" />
+            <PropertyRef Name="TotalIva21" />
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="TotalSaldado" />
+            <PropertyRef Name="TotalInteres" />
+            <PropertyRef Name="TotalSaldadoInteres" />
+            <PropertyRef Name="IdConceptoFactura" />
+            <PropertyRef Name="FechaAlta" />
+            <PropertyRef Name="Cobrador" />
+          </Key>
+          <Property Name="TipoDoc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdFacturaVenta" Type="Int32" Nullable="false" />
+          <Property Name="TipoFact" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="NroFact" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="FechaEmision" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Impresa" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SubTotal" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="Descuento" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="TotalDescuento" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="Cliente" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="14" Scale="2" />
+          <Property Name="FPago" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaVencimiento" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="FechaAnulacion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <Property Name="BVFact" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="TotalIva105" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="TotalIva21" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="IdEmpresa" Type="Byte" Nullable="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TotalSaldado" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="TotalInteres" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="TotalSaldadoInteres" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="NroFactReferencia" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="IdConceptoFactura" Type="Int32" Nullable="false" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Cobrador" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VistaDetalleFactVenta">
+          <Key>
+            <PropertyRef Name="IdFacturaVentaDetalle" />
+            <PropertyRef Name="Cantidad" />
+            <PropertyRef Name="PrecioUnitario" />
+            <PropertyRef Name="TotalArt" />
+            <PropertyRef Name="IdFacturaVenta" />
+            <PropertyRef Name="DesdeRemito" />
+            <PropertyRef Name="IdArticulo" />
+            <PropertyRef Name="PorcentajeIVA" />
+          </Key>
+          <Property Name="IdFacturaVentaDetalle" Type="Int64" Nullable="false" />
+          <Property Name="DescCorta" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Cantidad" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="UMedida" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PrecioUnitario" Type="Decimal" Nullable="false" Precision="14" Scale="4" />
+          <Property Name="TotalArt" Type="Decimal" Nullable="false" Precision="14" Scale="2" />
+          <Property Name="IdFacturaVenta" Type="Int32" Nullable="false" />
+          <Property Name="DesdeRemito" Type="Boolean" Nullable="false" />
+          <Property Name="IdArticulo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PorcentajeIVA" Type="Single" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2223,6 +2429,56 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
                 <ScalarProperty Name="IdFacturaFinal" ColumnName="IdFacturaFinal" />
                 <ScalarProperty Name="IdFacturaVenta" ColumnName="IdFacturaVenta" />
                 <ScalarProperty Name="IdFacturacion" ColumnName="IdFacturacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaCabFactVenta">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.VistaCabFactVenta">
+              <MappingFragment StoreEntitySet="VistaCabFactVenta">
+                <ScalarProperty Name="Cobrador" ColumnName="Cobrador" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="IdConceptoFactura" ColumnName="IdConceptoFactura" />
+                <ScalarProperty Name="NroFactReferencia" ColumnName="NroFactReferencia" />
+                <ScalarProperty Name="TotalSaldadoInteres" ColumnName="TotalSaldadoInteres" />
+                <ScalarProperty Name="TotalInteres" ColumnName="TotalInteres" />
+                <ScalarProperty Name="TotalSaldado" ColumnName="TotalSaldado" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="TotalIva21" ColumnName="TotalIva21" />
+                <ScalarProperty Name="TotalIva105" ColumnName="TotalIva105" />
+                <ScalarProperty Name="BVFact" ColumnName="BVFact" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="FechaAnulacion" ColumnName="FechaAnulacion" />
+                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+                <ScalarProperty Name="FPago" ColumnName="FPago" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="TotalDescuento" ColumnName="TotalDescuento" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Impresa" ColumnName="Impresa" />
+                <ScalarProperty Name="FechaEmision" ColumnName="FechaEmision" />
+                <ScalarProperty Name="NroFact" ColumnName="NroFact" />
+                <ScalarProperty Name="TipoFact" ColumnName="TipoFact" />
+                <ScalarProperty Name="IdFacturaVenta" ColumnName="IdFacturaVenta" />
+                <ScalarProperty Name="TipoDoc" ColumnName="TipoDoc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaDetalleFactVenta">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.VistaDetalleFactVenta">
+              <MappingFragment StoreEntitySet="VistaDetalleFactVenta">
+                <ScalarProperty Name="PorcentajeIVA" ColumnName="PorcentajeIVA" />
+                <ScalarProperty Name="IdArticulo" ColumnName="IdArticulo" />
+                <ScalarProperty Name="DesdeRemito" ColumnName="DesdeRemito" />
+                <ScalarProperty Name="IdFacturaVenta" ColumnName="IdFacturaVenta" />
+                <ScalarProperty Name="TotalArt" ColumnName="TotalArt" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="UMedida" ColumnName="UMedida" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="DescCorta" ColumnName="DescCorta" />
+                <ScalarProperty Name="IdFacturaVentaDetalle" ColumnName="IdFacturaVentaDetalle" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

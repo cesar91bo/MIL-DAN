@@ -53,6 +53,8 @@
         <AssociationConnector Association="SistemaGestionPymeBDModel.FK_RemitosDetalle_Productos" />
         <AssociationConnector Association="SistemaGestionPymeBDModel.FK_RemitosDetalle_Remitos" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.RemitosXfacturados" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.VistaCabFactVenta" Width="1.5" PointX="3.375" PointY="15.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.VistaDetalleFactVenta" Width="1.5" PointX="11.375" PointY="15.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
