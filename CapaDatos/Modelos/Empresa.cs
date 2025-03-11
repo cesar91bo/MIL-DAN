@@ -18,6 +18,7 @@ namespace CapaDatos.Modelos
         public Empresa()
         {
             this.FacturasVenta = new HashSet<FacturasVenta>();
+            this.Remitos = new HashSet<Remitos>();
         }
     
         public byte IdEmpresa { get; set; }
@@ -39,5 +40,7 @@ namespace CapaDatos.Modelos
         public virtual CPostales CPostales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FacturasVenta> FacturasVenta { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Remitos> Remitos { get; set; }
     }
 }

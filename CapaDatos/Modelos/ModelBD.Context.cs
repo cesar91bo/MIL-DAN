@@ -48,5 +48,8 @@ namespace CapaDatos.Modelos
         public virtual DbSet<FacturasVentaDetalle> FacturasVentaDetalle { get; set; }
         public virtual DbSet<TiposDocFact> TiposDocFact { get; set; }
         public virtual DbSet<TiposIva> TiposIva { get; set; }
+        public virtual DbSet<Remitos> Remitos { get; set; }
+        public virtual DbSet<RemitosDetalle> RemitosDetalle { get; set; }
+        public virtual DbSet<RemitosXfacturados> RemitosXfacturados { get; set; }
     }
 }

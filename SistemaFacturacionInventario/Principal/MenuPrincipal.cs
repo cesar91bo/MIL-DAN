@@ -94,18 +94,19 @@ namespace SistemaFacturacionInventario
 
         private void btnNuevaFactura_Click_1(object sender, EventArgs e)
         {
-            AbrirFormularioHijo(new frmFacturacion {Accion = "NUEVO" });
+            AbrirFormularioHijo(new frmFacturacion {Accion = "ALTA", IdTipoDoc = 1 });
+            OcultarPanelesSubMenu();
+        }
+
+        private void btnFacturaX_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new frmFacturacion { Accion = "ALTA", IdTipoDoc = 8 });
             OcultarPanelesSubMenu();
         }
 
         private void btnListadoFacturas_Click(object sender, EventArgs e)
         {
             AbrirFormularioHijo(new frmConsultaFacturas());
-            OcultarPanelesSubMenu();
-        }
-
-        private void btnAnulacionFactura_Click(object sender, EventArgs e)
-        {
             OcultarPanelesSubMenu();
         }
 
@@ -172,6 +173,6 @@ namespace SistemaFacturacionInventario
             formularioHijo.Show();
         }
 
-        #endregion        
+        #endregion
     }
 }

@@ -18,6 +18,7 @@ namespace CapaDatos.Modelos
         public FacturasVenta()
         {
             this.FacturasVentaDetalle = new HashSet<FacturasVentaDetalle>();
+            this.Remitos = new HashSet<Remitos>();
         }
     
         public int IdFacturaVenta { get; set; }
@@ -65,5 +66,7 @@ namespace CapaDatos.Modelos
         public virtual TiposConceptoFactura TiposConceptoFactura1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FacturasVentaDetalle> FacturasVentaDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Remitos> Remitos { get; set; }
     }
 }

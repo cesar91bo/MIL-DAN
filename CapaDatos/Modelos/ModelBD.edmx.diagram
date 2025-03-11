@@ -45,6 +45,14 @@
         <AssociationConnector Association="SistemaGestionPymeBDModel.FK_FacturasVentaDetalle_FacturasVenta" />
         <AssociationConnector Association="SistemaGestionPymeBDModel.FK_FacturasDetalle_Productos" />
         <AssociationConnector Association="SistemaGestionPymeBDModel.FK_FacturasVentaDetalle_TiposIva" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Remitos" Width="1.5" PointX="18.875" PointY="13.125" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.RemitosDetalle" Width="1.5" PointX="21.125" PointY="8.125" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_Remitos_Clientes" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_Remitos_Remitos" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_Remitos_FacturasVenta" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_RemitosDetalle_Productos" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_RemitosDetalle_Remitos" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.RemitosXfacturados" Width="1.5" PointX="0.75" PointY="15.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -202,6 +202,49 @@
           <Property Name="IdRegimenImpositivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Remitos">
+          <Key>
+            <PropertyRef Name="IdRemito" />
+          </Key>
+          <Property Name="IdRemito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NroRemito" Type="nvarchar" MaxLength="13" Nullable="false" />
+          <Property Name="FechaRemito" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="Observaciones" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IdFactura" Type="int" />
+          <Property Name="IdEmpresa" Type="tinyint" Nullable="false" />
+          <Property Name="FechaAnulacion" Type="datetime2" Precision="7" />
+          <Property Name="FechaAcceso" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UsrAcceso" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Total" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TotalDescuento" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="PorcDescuento" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="RemitosDetalle">
+          <Key>
+            <PropertyRef Name="IdRemitoDetalle" />
+          </Key>
+          <Property Name="IdRemitoDetalle" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRemito" Type="int" Nullable="false" />
+          <Property Name="IdProducto" Type="int" />
+          <Property Name="Cantidad" Type="numeric" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="FechaLinea" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="FechaAcceso" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UsrAcceso" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Articulo" Type="nvarchar" MaxLength="200" />
+          <Property Name="UMedida" Type="nvarchar" MaxLength="100" />
+          <Property Name="IVA" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="PrecioTotal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MueveStock" Type="bit" />
+        </EntityType>
+        <EntityType Name="RemitosXfacturados">
+          <Key>
+            <PropertyRef Name="IdFacturacion" />
+          </Key>
+          <Property Name="IdFacturacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdFacturaVenta" Type="int" Nullable="false" />
+          <Property Name="IdFacturaFinal" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Rubros">
           <Key>
             <PropertyRef Name="IdRubro" />
@@ -620,6 +663,66 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Remitos_Clientes">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Remitos" Type="Self.Remitos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Remitos">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remitos_FacturasVenta">
+          <End Role="FacturasVenta" Type="Self.FacturasVenta" Multiplicity="0..1" />
+          <End Role="Remitos" Type="Self.Remitos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacturasVenta">
+              <PropertyRef Name="IdFacturaVenta" />
+            </Principal>
+            <Dependent Role="Remitos">
+              <PropertyRef Name="IdFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remitos_Remitos">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="Remitos" Type="Self.Remitos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="Remitos">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RemitosDetalle_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+          <End Role="RemitosDetalle" Type="Self.RemitosDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="RemitosDetalle">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RemitosDetalle_Remitos">
+          <End Role="Remitos" Type="Self.Remitos" Multiplicity="1" />
+          <End Role="RemitosDetalle" Type="Self.RemitosDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Remitos">
+              <PropertyRef Name="IdRemito" />
+            </Principal>
+            <Dependent Role="RemitosDetalle">
+              <PropertyRef Name="IdRemito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SistemaGestionPymeBDModelStoreContainer">
           <EntitySet Name="AjustesStock" EntityType="Self.AjustesStock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
@@ -632,6 +735,9 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provincias" EntityType="Self.Provincias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegimenesImpositivos" EntityType="Self.RegimenesImpositivos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Remitos" EntityType="Self.Remitos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RemitosDetalle" EntityType="Self.RemitosDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RemitosXfacturados" EntityType="Self.RemitosXfacturados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubros" EntityType="Self.Rubros" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Seteos" EntityType="Self.Seteos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TiposConceptoFactura" EntityType="Self.TiposConceptoFactura" Schema="dbo" store:Type="Tables" />
@@ -784,6 +890,26 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             <End Role="UnidadesMedida" EntitySet="UnidadesMedida" />
             <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
+          <AssociationSet Name="FK_Remitos_Clientes" Association="Self.FK_Remitos_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Remitos" EntitySet="Remitos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remitos_FacturasVenta" Association="Self.FK_Remitos_FacturasVenta">
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+            <End Role="Remitos" EntitySet="Remitos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remitos_Remitos" Association="Self.FK_Remitos_Remitos">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Remitos" EntitySet="Remitos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RemitosDetalle_Productos" Association="Self.FK_RemitosDetalle_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="RemitosDetalle" EntitySet="RemitosDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RemitosDetalle_Remitos" Association="Self.FK_RemitosDetalle_Remitos">
+            <End Role="Remitos" EntitySet="Remitos" />
+            <End Role="RemitosDetalle" EntitySet="RemitosDetalle" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -889,6 +1015,29 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             <End Role="TiposIva" EntitySet="TiposIva" />
             <End Role="FacturasVentaDetalle" EntitySet="FacturasVentaDetalle" />
           </AssociationSet>
+          <EntitySet Name="Remitos" EntityType="SistemaGestionPymeBDModel.Remitos" />
+          <EntitySet Name="RemitosDetalle" EntityType="SistemaGestionPymeBDModel.RemitosDetalle" />
+          <AssociationSet Name="FK_Remitos_Clientes" Association="SistemaGestionPymeBDModel.FK_Remitos_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Remitos" EntitySet="Remitos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remitos_Remitos" Association="SistemaGestionPymeBDModel.FK_Remitos_Remitos">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Remitos" EntitySet="Remitos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remitos_FacturasVenta" Association="SistemaGestionPymeBDModel.FK_Remitos_FacturasVenta">
+            <End Role="FacturasVenta" EntitySet="FacturasVenta" />
+            <End Role="Remitos" EntitySet="Remitos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RemitosDetalle_Productos" Association="SistemaGestionPymeBDModel.FK_RemitosDetalle_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="RemitosDetalle" EntitySet="RemitosDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RemitosDetalle_Remitos" Association="SistemaGestionPymeBDModel.FK_RemitosDetalle_Remitos">
+            <End Role="Remitos" EntitySet="Remitos" />
+            <End Role="RemitosDetalle" EntitySet="RemitosDetalle" />
+          </AssociationSet>
+          <EntitySet Name="RemitosXfacturados" EntityType="SistemaGestionPymeBDModel.RemitosXfacturados" />
         </EntityContainer>
         <EntityType Name="Productos">
           <Key>
@@ -914,6 +1063,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <NavigationProperty Name="AjustesStock" Relationship="SistemaGestionPymeBDModel.FK_AjustesStock_Productos" FromRole="Productos" ToRole="AjustesStock" />
           <NavigationProperty Name="PreciosVenta" Relationship="SistemaGestionPymeBDModel.FK_PreciosVenta_Productos" FromRole="Productos" ToRole="PreciosVenta" />
           <NavigationProperty Name="FacturasVentaDetalle" Relationship="SistemaGestionPymeBDModel.FK_FacturasDetalle_Productos" FromRole="Productos" ToRole="FacturasVentaDetalle" />
+          <NavigationProperty Name="RemitosDetalle" Relationship="SistemaGestionPymeBDModel.FK_RemitosDetalle_Productos" FromRole="Productos" ToRole="RemitosDetalle" />
         </EntityType>
         <EntityType Name="Rubros">
           <Key>
@@ -1168,6 +1318,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <Property Name="Observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="RegimenesImpositivos" Relationship="SistemaGestionPymeBDModel.FK_Clientes_RegimenesImpositivos" FromRole="Clientes" ToRole="RegimenesImpositivos" />
           <NavigationProperty Name="FacturasVenta" Relationship="SistemaGestionPymeBDModel.FK_Facturas_Clientes" FromRole="Clientes" ToRole="FacturasVenta" />
+          <NavigationProperty Name="Remitos" Relationship="SistemaGestionPymeBDModel.FK_Remitos_Clientes" FromRole="Clientes" ToRole="Remitos" />
         </EntityType>
         <Association Name="FK_Clientes_RegimenesImpositivos">
           <End Type="SistemaGestionPymeBDModel.RegimenesImpositivos" Role="RegimenesImpositivos" Multiplicity="0..1" />
@@ -1301,6 +1452,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <Property Name="SerialCertificado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CPostales" Relationship="SistemaGestionPymeBDModel.FK_Empresa_Empresa" FromRole="Empresa" ToRole="CPostales" />
           <NavigationProperty Name="FacturasVenta" Relationship="SistemaGestionPymeBDModel.FK_FacturasVenta_Empresa" FromRole="Empresa" ToRole="FacturasVenta" />
+          <NavigationProperty Name="Remitos" Relationship="SistemaGestionPymeBDModel.FK_Remitos_Remitos" FromRole="Empresa" ToRole="Remitos" />
         </EntityType>
         <EntityType Name="FacturasVenta">
           <Key>
@@ -1349,6 +1501,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <NavigationProperty Name="TiposFactura" Relationship="SistemaGestionPymeBDModel.FK_Facturas_TiposFactura" FromRole="FacturasVenta" ToRole="TiposFactura" />
           <NavigationProperty Name="TiposConceptoFactura1" Relationship="SistemaGestionPymeBDModel.FK_FacturasVenta_ConceptosFactura" FromRole="FacturasVenta" ToRole="TiposConceptoFactura" />
           <NavigationProperty Name="FacturasVentaDetalle" Relationship="SistemaGestionPymeBDModel.FK_FacturasVentaDetalle_FacturasVenta" FromRole="FacturasVenta" ToRole="FacturasVentaDetalle" />
+          <NavigationProperty Name="Remitos" Relationship="SistemaGestionPymeBDModel.FK_Remitos_FacturasVenta" FromRole="FacturasVenta" ToRole="Remitos" />
         </EntityType>
         <EntityType Name="FacturasVentaDetalle">
           <Key>
@@ -1523,6 +1676,115 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Remitos">
+          <Key>
+            <PropertyRef Name="IdRemito" />
+          </Key>
+          <Property Name="IdRemito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NroRemito" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="FechaRemito" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IdFactura" Type="Int32" />
+          <Property Name="IdEmpresa" Type="Byte" Nullable="false" />
+          <Property Name="FechaAnulacion" Type="DateTime" Precision="7" />
+          <Property Name="FechaAcceso" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UsrAcceso" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalDescuento" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PorcDescuento" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Clientes" Relationship="SistemaGestionPymeBDModel.FK_Remitos_Clientes" FromRole="Remitos" ToRole="Clientes" />
+          <NavigationProperty Name="Empresa" Relationship="SistemaGestionPymeBDModel.FK_Remitos_Remitos" FromRole="Remitos" ToRole="Empresa" />
+          <NavigationProperty Name="FacturasVenta" Relationship="SistemaGestionPymeBDModel.FK_Remitos_FacturasVenta" FromRole="Remitos" ToRole="FacturasVenta" />
+          <NavigationProperty Name="RemitosDetalle" Relationship="SistemaGestionPymeBDModel.FK_RemitosDetalle_Remitos" FromRole="Remitos" ToRole="RemitosDetalle" />
+        </EntityType>
+        <EntityType Name="RemitosDetalle">
+          <Key>
+            <PropertyRef Name="IdRemitoDetalle" />
+          </Key>
+          <Property Name="IdRemitoDetalle" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRemito" Type="Int32" Nullable="false" />
+          <Property Name="IdProducto" Type="Int32" />
+          <Property Name="Cantidad" Type="Decimal" Nullable="false" Precision="11" Scale="2" />
+          <Property Name="FechaLinea" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="FechaAcceso" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UsrAcceso" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Articulo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UMedida" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IVA" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="PrecioTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MueveStock" Type="Boolean" />
+          <NavigationProperty Name="Productos" Relationship="SistemaGestionPymeBDModel.FK_RemitosDetalle_Productos" FromRole="RemitosDetalle" ToRole="Productos" />
+          <NavigationProperty Name="Remitos" Relationship="SistemaGestionPymeBDModel.FK_RemitosDetalle_Remitos" FromRole="RemitosDetalle" ToRole="Remitos" />
+        </EntityType>
+        <Association Name="FK_Remitos_Clientes">
+          <End Type="SistemaGestionPymeBDModel.Clientes" Role="Clientes" Multiplicity="1" />
+          <End Type="SistemaGestionPymeBDModel.Remitos" Role="Remitos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Remitos">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remitos_Remitos">
+          <End Type="SistemaGestionPymeBDModel.Empresa" Role="Empresa" Multiplicity="1" />
+          <End Type="SistemaGestionPymeBDModel.Remitos" Role="Remitos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="Remitos">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remitos_FacturasVenta">
+          <End Type="SistemaGestionPymeBDModel.FacturasVenta" Role="FacturasVenta" Multiplicity="0..1" />
+          <End Type="SistemaGestionPymeBDModel.Remitos" Role="Remitos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacturasVenta">
+              <PropertyRef Name="IdFacturaVenta" />
+            </Principal>
+            <Dependent Role="Remitos">
+              <PropertyRef Name="IdFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RemitosDetalle_Productos">
+          <End Type="SistemaGestionPymeBDModel.Productos" Role="Productos" Multiplicity="0..1" />
+          <End Type="SistemaGestionPymeBDModel.RemitosDetalle" Role="RemitosDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="RemitosDetalle">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RemitosDetalle_Remitos">
+          <End Type="SistemaGestionPymeBDModel.Remitos" Role="Remitos" Multiplicity="1" />
+          <End Type="SistemaGestionPymeBDModel.RemitosDetalle" Role="RemitosDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Remitos">
+              <PropertyRef Name="IdRemito" />
+            </Principal>
+            <Dependent Role="RemitosDetalle">
+              <PropertyRef Name="IdRemito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RemitosXfacturados">
+          <Key>
+            <PropertyRef Name="IdFacturacion" />
+          </Key>
+          <Property Name="IdFacturacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdFacturaVenta" Type="Int32" Nullable="false" />
+          <Property Name="IdFacturaFinal" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1915,6 +2177,52 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
               <MappingFragment StoreEntitySet="TiposIva">
                 <ScalarProperty Name="PorcentajeIVA" ColumnName="PorcentajeIVA" />
                 <ScalarProperty Name="IdTipoIva" ColumnName="IdTipoIva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Remitos">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.Remitos">
+              <MappingFragment StoreEntitySet="Remitos">
+                <ScalarProperty Name="PorcDescuento" ColumnName="PorcDescuento" />
+                <ScalarProperty Name="TotalDescuento" ColumnName="TotalDescuento" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="UsrAcceso" ColumnName="UsrAcceso" />
+                <ScalarProperty Name="FechaAcceso" ColumnName="FechaAcceso" />
+                <ScalarProperty Name="FechaAnulacion" ColumnName="FechaAnulacion" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="FechaRemito" ColumnName="FechaRemito" />
+                <ScalarProperty Name="NroRemito" ColumnName="NroRemito" />
+                <ScalarProperty Name="IdRemito" ColumnName="IdRemito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RemitosDetalle">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.RemitosDetalle">
+              <MappingFragment StoreEntitySet="RemitosDetalle">
+                <ScalarProperty Name="MueveStock" ColumnName="MueveStock" />
+                <ScalarProperty Name="PrecioTotal" ColumnName="PrecioTotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="UMedida" ColumnName="UMedida" />
+                <ScalarProperty Name="Articulo" ColumnName="Articulo" />
+                <ScalarProperty Name="UsrAcceso" ColumnName="UsrAcceso" />
+                <ScalarProperty Name="FechaAcceso" ColumnName="FechaAcceso" />
+                <ScalarProperty Name="FechaLinea" ColumnName="FechaLinea" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdRemito" ColumnName="IdRemito" />
+                <ScalarProperty Name="IdRemitoDetalle" ColumnName="IdRemitoDetalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RemitosXfacturados">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.RemitosXfacturados">
+              <MappingFragment StoreEntitySet="RemitosXfacturados">
+                <ScalarProperty Name="IdFacturaFinal" ColumnName="IdFacturaFinal" />
+                <ScalarProperty Name="IdFacturaVenta" ColumnName="IdFacturaVenta" />
+                <ScalarProperty Name="IdFacturacion" ColumnName="IdFacturacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

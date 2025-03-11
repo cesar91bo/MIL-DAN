@@ -57,6 +57,7 @@
     <Compile Include="ProductoNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AuxiliaresNegocio.cs" />
+    <Compile Include="RemitosNegocio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaDatos\CapaDatos.csproj">

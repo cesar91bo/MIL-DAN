@@ -26,7 +26,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -105,6 +105,7 @@
       <DependentUpon>frmConfiguracion.cs</DependentUpon>
     </Compile>
     <Compile Include="Auxiliares\FuncionesForms.cs" />
+    <Compile Include="Auxiliares\ImprimeFactura.cs" />
     <Compile Include="Clientes\frmCliente.cs">
       <SubType>Form</SubType>
     </Compile>

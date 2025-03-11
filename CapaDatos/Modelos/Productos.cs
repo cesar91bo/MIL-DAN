@@ -20,6 +20,7 @@ namespace CapaDatos.Modelos
             this.AjustesStock = new HashSet<AjustesStock>();
             this.PreciosVenta = new HashSet<PreciosVenta>();
             this.FacturasVentaDetalle = new HashSet<FacturasVentaDetalle>();
+            this.RemitosDetalle = new HashSet<RemitosDetalle>();
         }
     
         public int IdProducto { get; set; }
@@ -46,5 +47,7 @@ namespace CapaDatos.Modelos
         public virtual ICollection<PreciosVenta> PreciosVenta { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FacturasVentaDetalle> FacturasVentaDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RemitosDetalle> RemitosDetalle { get; set; }
     }
 }

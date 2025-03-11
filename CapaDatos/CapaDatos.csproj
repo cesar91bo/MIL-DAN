@@ -99,6 +99,15 @@
     <Compile Include="Modelos\RegimenesImpositivos.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\Remitos.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\RemitosDetalle.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\RemitosXfacturados.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\Rubros.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
