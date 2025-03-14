@@ -56,22 +56,6 @@
             this.btnListado = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dgrDetalle = new System.Windows.Forms.DataGridView();
-            this.Borrar = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Buscar = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ArtDesconocido = new System.Windows.Forms.DataGridViewImageColumn();
-            this.NroArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DescCorta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UMedida = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Iva = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nueva = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.SiDesc = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.DesdeRem = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.PrecioManual = new System.Windows.Forms.DataGridViewImageColumn();
-            this.IdFactVtaDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecManual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxDetalle = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lblSubtDto0 = new System.Windows.Forms.Label();
@@ -109,6 +93,22 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.Error = new System.Windows.Forms.ErrorProvider(this.components);
+            this.Borrar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Buscar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ArtDesconocido = new System.Windows.Forms.DataGridViewImageColumn();
+            this.NroArt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescCorta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UMedida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Iva = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nueva = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.SiDesc = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.DesdeRem = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.PrecioManual = new System.Windows.Forms.DataGridViewImageColumn();
+            this.IdFactVtaDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecManual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grupBoxCabecera.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDetalle)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -130,7 +130,7 @@
             // 
             this.txtNroCliente.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.txtNroCliente.Location = new System.Drawing.Point(125, 19);
-            this.txtNroCliente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNroCliente.Margin = new System.Windows.Forms.Padding(4);
             this.txtNroCliente.MaxLength = 6;
             this.txtNroCliente.Name = "txtNroCliente";
             this.txtNroCliente.Size = new System.Drawing.Size(68, 22);
@@ -161,7 +161,7 @@
             // 
             this.cmbTipoFac.FormattingEnabled = true;
             this.cmbTipoFac.Location = new System.Drawing.Point(125, 55);
-            this.cmbTipoFac.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbTipoFac.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTipoFac.Name = "cmbTipoFac";
             this.cmbTipoFac.Size = new System.Drawing.Size(68, 21);
             this.cmbTipoFac.TabIndex = 40;
@@ -171,7 +171,7 @@
             this.txtBV.Enabled = false;
             this.txtBV.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.txtBV.Location = new System.Drawing.Point(201, 54);
-            this.txtBV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBV.Margin = new System.Windows.Forms.Padding(4);
             this.txtBV.MaxLength = 6;
             this.txtBV.Name = "txtBV";
             this.txtBV.Size = new System.Drawing.Size(39, 22);
@@ -182,7 +182,7 @@
             this.txtNroComp.Enabled = false;
             this.txtNroComp.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.txtNroComp.Location = new System.Drawing.Point(248, 54);
-            this.txtNroComp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNroComp.Margin = new System.Windows.Forms.Padding(4);
             this.txtNroComp.MaxLength = 6;
             this.txtNroComp.Name = "txtNroComp";
             this.txtNroComp.Size = new System.Drawing.Size(113, 22);
@@ -192,7 +192,7 @@
             // 
             this.cmboFormaPago.FormattingEnabled = true;
             this.cmboFormaPago.Location = new System.Drawing.Point(125, 88);
-            this.cmboFormaPago.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmboFormaPago.Margin = new System.Windows.Forms.Padding(4);
             this.cmboFormaPago.Name = "cmboFormaPago";
             this.cmboFormaPago.Size = new System.Drawing.Size(167, 21);
             this.cmboFormaPago.TabIndex = 44;
@@ -232,7 +232,7 @@
             // 
             this.dtpFechaVto.Enabled = false;
             this.dtpFechaVto.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaVto.Location = new System.Drawing.Point(682, 90);
+            this.dtpFechaVto.Location = new System.Drawing.Point(602, 88);
             this.dtpFechaVto.Name = "dtpFechaVto";
             this.dtpFechaVto.Size = new System.Drawing.Size(97, 22);
             this.dtpFechaVto.TabIndex = 48;
@@ -241,7 +241,7 @@
             // 
             this.lblFechaVto.AutoSize = true;
             this.lblFechaVto.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblFechaVto.Location = new System.Drawing.Point(611, 95);
+            this.lblFechaVto.Location = new System.Drawing.Point(531, 93);
             this.lblFechaVto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFechaVto.Name = "lblFechaVto";
             this.lblFechaVto.Size = new System.Drawing.Size(64, 13);
@@ -251,8 +251,8 @@
             // cmbConcepto
             // 
             this.cmbConcepto.FormattingEnabled = true;
-            this.cmbConcepto.Location = new System.Drawing.Point(917, 91);
-            this.cmbConcepto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbConcepto.Location = new System.Drawing.Point(822, 90);
+            this.cmbConcepto.Margin = new System.Windows.Forms.Padding(4);
             this.cmbConcepto.Name = "cmbConcepto";
             this.cmbConcepto.Size = new System.Drawing.Size(167, 21);
             this.cmbConcepto.TabIndex = 50;
@@ -261,7 +261,7 @@
             // 
             this.lblConcepto.AutoSize = true;
             this.lblConcepto.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblConcepto.Location = new System.Drawing.Point(849, 94);
+            this.lblConcepto.Location = new System.Drawing.Point(754, 93);
             this.lblConcepto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblConcepto.Name = "lblConcepto";
             this.lblConcepto.Size = new System.Drawing.Size(60, 13);
@@ -296,7 +296,7 @@
             this.grupBoxCabecera.Controls.Add(this.txtNroCliente);
             this.grupBoxCabecera.Location = new System.Drawing.Point(26, 12);
             this.grupBoxCabecera.Name = "grupBoxCabecera";
-            this.grupBoxCabecera.Size = new System.Drawing.Size(1133, 176);
+            this.grupBoxCabecera.Size = new System.Drawing.Size(1072, 176);
             this.grupBoxCabecera.TabIndex = 51;
             this.grupBoxCabecera.TabStop = false;
             this.grupBoxCabecera.Text = "Cabecera";
@@ -305,7 +305,7 @@
             // 
             this.chkMoverStock.AutoSize = true;
             this.chkMoverStock.Location = new System.Drawing.Point(365, 123);
-            this.chkMoverStock.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkMoverStock.Margin = new System.Windows.Forms.Padding(2);
             this.chkMoverStock.Name = "chkMoverStock";
             this.chkMoverStock.Size = new System.Drawing.Size(106, 17);
             this.chkMoverStock.TabIndex = 94;
@@ -317,7 +317,7 @@
             // 
             this.txtNroFactNC.Enabled = false;
             this.txtNroFactNC.Location = new System.Drawing.Point(198, 151);
-            this.txtNroFactNC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNroFactNC.Margin = new System.Windows.Forms.Padding(2);
             this.txtNroFactNC.MaxLength = 8;
             this.txtNroFactNC.Name = "txtNroFactNC";
             this.txtNroFactNC.Size = new System.Drawing.Size(94, 22);
@@ -328,7 +328,7 @@
             // 
             this.txtBVNC.Enabled = false;
             this.txtBVNC.Location = new System.Drawing.Point(155, 151);
-            this.txtBVNC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBVNC.Margin = new System.Windows.Forms.Padding(2);
             this.txtBVNC.MaxLength = 4;
             this.txtBVNC.Name = "txtBVNC";
             this.txtBVNC.Size = new System.Drawing.Size(35, 22);
@@ -350,7 +350,7 @@
             // 
             this.cmbCondPago.FormattingEnabled = true;
             this.cmbCondPago.Location = new System.Drawing.Point(125, 120);
-            this.cmbCondPago.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbCondPago.Margin = new System.Windows.Forms.Padding(4);
             this.cmbCondPago.Name = "cmbCondPago";
             this.cmbCondPago.Size = new System.Drawing.Size(167, 21);
             this.cmbCondPago.TabIndex = 52;
@@ -372,7 +372,7 @@
             // 
             this.brnAnonimo.Image = ((System.Drawing.Image)(resources.GetObject("brnAnonimo.Image")));
             this.brnAnonimo.Location = new System.Drawing.Point(300, 11);
-            this.brnAnonimo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.brnAnonimo.Margin = new System.Windows.Forms.Padding(4);
             this.brnAnonimo.Name = "brnAnonimo";
             this.brnAnonimo.Size = new System.Drawing.Size(35, 35);
             this.brnAnonimo.TabIndex = 38;
@@ -383,7 +383,7 @@
             // 
             this.btnListado.Image = ((System.Drawing.Image)(resources.GetObject("btnListado.Image")));
             this.btnListado.Location = new System.Drawing.Point(257, 11);
-            this.btnListado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnListado.Margin = new System.Windows.Forms.Padding(4);
             this.btnListado.Name = "btnListado";
             this.btnListado.Size = new System.Drawing.Size(35, 35);
             this.btnListado.TabIndex = 36;
@@ -394,7 +394,7 @@
             // 
             this.btnBuscar.Image = global::SistemaFacturacionInventario.Properties.Resources.icons8_buscar_20;
             this.btnBuscar.Location = new System.Drawing.Point(214, 11);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(35, 35);
             this.btnBuscar.TabIndex = 35;
@@ -431,7 +431,7 @@
             this.dgrDetalle.RowHeadersVisible = false;
             this.dgrDetalle.RowHeadersWidth = 51;
             this.dgrDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgrDetalle.Size = new System.Drawing.Size(1118, 208);
+            this.dgrDetalle.Size = new System.Drawing.Size(1062, 208);
             this.dgrDetalle.TabIndex = 52;
             this.dgrDetalle.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrDetalle_CellClick);
             this.dgrDetalle.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgrDetalle_CellFormatting);
@@ -439,155 +439,11 @@
             this.dgrDetalle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgrDetalle_KeyDown);
             this.dgrDetalle.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgrDetalle_KeyUp);
             // 
-            // Borrar
-            // 
-            this.Borrar.Frozen = true;
-            this.Borrar.HeaderText = "Borrar";
-            this.Borrar.Image = ((System.Drawing.Image)(resources.GetObject("Borrar.Image")));
-            this.Borrar.MinimumWidth = 6;
-            this.Borrar.Name = "Borrar";
-            this.Borrar.Width = 50;
-            // 
-            // Buscar
-            // 
-            this.Buscar.Frozen = true;
-            this.Buscar.HeaderText = "Buscar";
-            this.Buscar.Image = ((System.Drawing.Image)(resources.GetObject("Buscar.Image")));
-            this.Buscar.MinimumWidth = 6;
-            this.Buscar.Name = "Buscar";
-            this.Buscar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Buscar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Buscar.Width = 50;
-            // 
-            // ArtDesconocido
-            // 
-            this.ArtDesconocido.Frozen = true;
-            this.ArtDesconocido.HeaderText = "Art.Desc";
-            this.ArtDesconocido.MinimumWidth = 6;
-            this.ArtDesconocido.Name = "ArtDesconocido";
-            this.ArtDesconocido.Width = 50;
-            // 
-            // NroArt
-            // 
-            this.NroArt.Frozen = true;
-            this.NroArt.HeaderText = "NroArt.";
-            this.NroArt.MinimumWidth = 6;
-            this.NroArt.Name = "NroArt";
-            this.NroArt.Width = 65;
-            // 
-            // DescCorta
-            // 
-            this.DescCorta.Frozen = true;
-            this.DescCorta.HeaderText = "Desc.Corta";
-            this.DescCorta.MinimumWidth = 6;
-            this.DescCorta.Name = "DescCorta";
-            this.DescCorta.ReadOnly = true;
-            this.DescCorta.Width = 350;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.Frozen = true;
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.MinimumWidth = 6;
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.Width = 75;
-            // 
-            // UMedida
-            // 
-            this.UMedida.Frozen = true;
-            this.UMedida.HeaderText = "U.Medida";
-            this.UMedida.MinimumWidth = 6;
-            this.UMedida.Name = "UMedida";
-            this.UMedida.ReadOnly = true;
-            this.UMedida.Width = 115;
-            // 
-            // Iva
-            // 
-            this.Iva.Frozen = true;
-            this.Iva.HeaderText = "%IVA";
-            this.Iva.MinimumWidth = 6;
-            this.Iva.Name = "Iva";
-            this.Iva.ReadOnly = true;
-            this.Iva.Width = 50;
-            // 
-            // Precio
-            // 
-            this.Precio.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.Precio.Frozen = true;
-            this.Precio.HeaderText = "Precio";
-            this.Precio.MinimumWidth = 6;
-            this.Precio.Name = "Precio";
-            this.Precio.Width = 130;
-            // 
-            // Total
-            // 
-            this.Total.Frozen = true;
-            this.Total.HeaderText = "Total";
-            this.Total.MinimumWidth = 6;
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            this.Total.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Total.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Total.Width = 125;
-            // 
-            // Nueva
-            // 
-            this.Nueva.Frozen = true;
-            this.Nueva.HeaderText = "Nueva";
-            this.Nueva.MinimumWidth = 6;
-            this.Nueva.Name = "Nueva";
-            this.Nueva.Visible = false;
-            this.Nueva.Width = 125;
-            // 
-            // SiDesc
-            // 
-            this.SiDesc.Frozen = true;
-            this.SiDesc.HeaderText = "SiDesc";
-            this.SiDesc.MinimumWidth = 6;
-            this.SiDesc.Name = "SiDesc";
-            this.SiDesc.Visible = false;
-            this.SiDesc.Width = 125;
-            // 
-            // DesdeRem
-            // 
-            this.DesdeRem.Frozen = true;
-            this.DesdeRem.HeaderText = "DesdeRem";
-            this.DesdeRem.MinimumWidth = 6;
-            this.DesdeRem.Name = "DesdeRem";
-            this.DesdeRem.Visible = false;
-            this.DesdeRem.Width = 125;
-            // 
-            // PrecioManual
-            // 
-            this.PrecioManual.Frozen = true;
-            this.PrecioManual.HeaderText = "$ Man";
-            this.PrecioManual.MinimumWidth = 6;
-            this.PrecioManual.Name = "PrecioManual";
-            this.PrecioManual.Width = 50;
-            // 
-            // IdFactVtaDetalle
-            // 
-            this.IdFactVtaDetalle.Frozen = true;
-            this.IdFactVtaDetalle.HeaderText = "IdFactVtaDetalle";
-            this.IdFactVtaDetalle.MinimumWidth = 6;
-            this.IdFactVtaDetalle.Name = "IdFactVtaDetalle";
-            this.IdFactVtaDetalle.Visible = false;
-            this.IdFactVtaDetalle.Width = 125;
-            // 
-            // PrecManual
-            // 
-            this.PrecManual.Frozen = true;
-            this.PrecManual.HeaderText = "PrecManual";
-            this.PrecManual.MinimumWidth = 6;
-            this.PrecManual.Name = "PrecManual";
-            this.PrecManual.Visible = false;
-            this.PrecManual.Width = 125;
-            // 
             // groupBoxDetalle
             // 
             this.groupBoxDetalle.Location = new System.Drawing.Point(24, 187);
             this.groupBoxDetalle.Name = "groupBoxDetalle";
-            this.groupBoxDetalle.Size = new System.Drawing.Size(1136, 258);
+            this.groupBoxDetalle.Size = new System.Drawing.Size(1086, 258);
             this.groupBoxDetalle.TabIndex = 53;
             this.groupBoxDetalle.TabStop = false;
             this.groupBoxDetalle.Text = "Detalle";
@@ -626,7 +482,7 @@
             this.groupBox4.Enabled = false;
             this.groupBox4.Location = new System.Drawing.Point(24, 451);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1136, 171);
+            this.groupBox4.Size = new System.Drawing.Size(1074, 171);
             this.groupBox4.TabIndex = 54;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Pie";
@@ -941,8 +797,8 @@
             this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(1069, 658);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Location = new System.Drawing.Point(1007, 629);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(91, 43);
             this.btnCancelar.TabIndex = 56;
@@ -956,8 +812,8 @@
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(970, 658);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGuardar.Location = new System.Drawing.Point(908, 629);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(91, 43);
             this.btnGuardar.TabIndex = 55;
@@ -970,11 +826,155 @@
             // 
             this.Error.ContainerControl = this;
             // 
+            // Borrar
+            // 
+            this.Borrar.Frozen = true;
+            this.Borrar.HeaderText = "Borrar";
+            this.Borrar.Image = ((System.Drawing.Image)(resources.GetObject("Borrar.Image")));
+            this.Borrar.MinimumWidth = 6;
+            this.Borrar.Name = "Borrar";
+            this.Borrar.Width = 50;
+            // 
+            // Buscar
+            // 
+            this.Buscar.Frozen = true;
+            this.Buscar.HeaderText = "Buscar";
+            this.Buscar.Image = ((System.Drawing.Image)(resources.GetObject("Buscar.Image")));
+            this.Buscar.MinimumWidth = 6;
+            this.Buscar.Name = "Buscar";
+            this.Buscar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Buscar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Buscar.Width = 50;
+            // 
+            // ArtDesconocido
+            // 
+            this.ArtDesconocido.Frozen = true;
+            this.ArtDesconocido.HeaderText = "Art.Desc";
+            this.ArtDesconocido.MinimumWidth = 6;
+            this.ArtDesconocido.Name = "ArtDesconocido";
+            this.ArtDesconocido.Width = 50;
+            // 
+            // NroArt
+            // 
+            this.NroArt.Frozen = true;
+            this.NroArt.HeaderText = "NroArt.";
+            this.NroArt.MinimumWidth = 6;
+            this.NroArt.Name = "NroArt";
+            this.NroArt.Width = 65;
+            // 
+            // DescCorta
+            // 
+            this.DescCorta.Frozen = true;
+            this.DescCorta.HeaderText = "Desc.Corta";
+            this.DescCorta.MinimumWidth = 6;
+            this.DescCorta.Name = "DescCorta";
+            this.DescCorta.ReadOnly = true;
+            this.DescCorta.Width = 300;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.Frozen = true;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.MinimumWidth = 6;
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Width = 75;
+            // 
+            // UMedida
+            // 
+            this.UMedida.Frozen = true;
+            this.UMedida.HeaderText = "U.Medida";
+            this.UMedida.MinimumWidth = 6;
+            this.UMedida.Name = "UMedida";
+            this.UMedida.ReadOnly = true;
+            this.UMedida.Width = 115;
+            // 
+            // Iva
+            // 
+            this.Iva.Frozen = true;
+            this.Iva.HeaderText = "%IVA";
+            this.Iva.MinimumWidth = 6;
+            this.Iva.Name = "Iva";
+            this.Iva.ReadOnly = true;
+            this.Iva.Width = 50;
+            // 
+            // Precio
+            // 
+            this.Precio.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.Precio.Frozen = true;
+            this.Precio.HeaderText = "Precio";
+            this.Precio.MinimumWidth = 6;
+            this.Precio.Name = "Precio";
+            this.Precio.Width = 130;
+            // 
+            // Total
+            // 
+            this.Total.Frozen = true;
+            this.Total.HeaderText = "Total";
+            this.Total.MinimumWidth = 6;
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Total.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Total.Width = 125;
+            // 
+            // Nueva
+            // 
+            this.Nueva.Frozen = true;
+            this.Nueva.HeaderText = "Nueva";
+            this.Nueva.MinimumWidth = 6;
+            this.Nueva.Name = "Nueva";
+            this.Nueva.Visible = false;
+            this.Nueva.Width = 125;
+            // 
+            // SiDesc
+            // 
+            this.SiDesc.Frozen = true;
+            this.SiDesc.HeaderText = "SiDesc";
+            this.SiDesc.MinimumWidth = 6;
+            this.SiDesc.Name = "SiDesc";
+            this.SiDesc.Visible = false;
+            this.SiDesc.Width = 125;
+            // 
+            // DesdeRem
+            // 
+            this.DesdeRem.Frozen = true;
+            this.DesdeRem.HeaderText = "DesdeRem";
+            this.DesdeRem.MinimumWidth = 6;
+            this.DesdeRem.Name = "DesdeRem";
+            this.DesdeRem.Visible = false;
+            this.DesdeRem.Width = 125;
+            // 
+            // PrecioManual
+            // 
+            this.PrecioManual.Frozen = true;
+            this.PrecioManual.HeaderText = "$ Man";
+            this.PrecioManual.MinimumWidth = 6;
+            this.PrecioManual.Name = "PrecioManual";
+            this.PrecioManual.Width = 50;
+            // 
+            // IdFactVtaDetalle
+            // 
+            this.IdFactVtaDetalle.Frozen = true;
+            this.IdFactVtaDetalle.HeaderText = "IdFactVtaDetalle";
+            this.IdFactVtaDetalle.MinimumWidth = 6;
+            this.IdFactVtaDetalle.Name = "IdFactVtaDetalle";
+            this.IdFactVtaDetalle.Visible = false;
+            this.IdFactVtaDetalle.Width = 125;
+            // 
+            // PrecManual
+            // 
+            this.PrecManual.Frozen = true;
+            this.PrecManual.HeaderText = "PrecManual";
+            this.PrecManual.MinimumWidth = 6;
+            this.PrecManual.Name = "PrecManual";
+            this.PrecManual.Visible = false;
+            this.PrecManual.Width = 125;
+            // 
             // frmFacturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1472, 726);
+            this.ClientSize = new System.Drawing.Size(1113, 676);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox4);
@@ -1018,22 +1018,6 @@
         private System.Windows.Forms.GroupBox grupBoxCabecera;
         private System.Windows.Forms.DataGridView dgrDetalle;
         private System.Windows.Forms.GroupBox groupBoxDetalle;
-        private System.Windows.Forms.DataGridViewImageColumn Borrar;
-        private System.Windows.Forms.DataGridViewImageColumn Buscar;
-        private System.Windows.Forms.DataGridViewImageColumn ArtDesconocido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NroArt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DescCorta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UMedida;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Iva;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Precio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Nueva;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn SiDesc;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn DesdeRem;
-        private System.Windows.Forms.DataGridViewImageColumn PrecioManual;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdFactVtaDetalle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecManual;
         private System.Windows.Forms.ComboBox cmbCondPago;
         private System.Windows.Forms.Label lblCondPago;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -1076,5 +1060,21 @@
         private System.Windows.Forms.TextBox txtBVNC;
         private System.Windows.Forms.Label lblReferenciaFact;
         private System.Windows.Forms.CheckBox chkMoverStock;
+        private System.Windows.Forms.DataGridViewImageColumn Borrar;
+        private System.Windows.Forms.DataGridViewImageColumn Buscar;
+        private System.Windows.Forms.DataGridViewImageColumn ArtDesconocido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NroArt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescCorta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UMedida;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Iva;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Nueva;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn SiDesc;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn DesdeRem;
+        private System.Windows.Forms.DataGridViewImageColumn PrecioManual;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdFactVtaDetalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecManual;
     }
 }

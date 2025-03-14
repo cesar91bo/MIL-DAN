@@ -219,7 +219,7 @@ namespace SistemaFacturacionInventario.Facturacion
                     dgrDetalle["PrecManual", fila].Value = 0;
                 }
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void BuscarCliente(int nroCliente)
@@ -318,7 +318,7 @@ namespace SistemaFacturacionInventario.Facturacion
                     }
                 }
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void CambiarTipoFact()
@@ -386,9 +386,11 @@ namespace SistemaFacturacionInventario.Facturacion
                     CalcularTotales(true);
                 }
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
         private void BuscarArtDgr()
         {
             try
@@ -405,7 +407,7 @@ namespace SistemaFacturacionInventario.Facturacion
                 if (frm.DialogResult != DialogResult.OK || frm.IdProducto <= 0) return;
                 BuscarArt(dgrDetalle.SelectedCells[0].RowIndex, frm.IdProducto, "");
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void BuscarArt(int row, int idprod, string cb)
@@ -474,7 +476,7 @@ namespace SistemaFacturacionInventario.Facturacion
                     dgrDetalle["DesdeRem", row].Value = false;
                 }
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void dgrDetalle_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -708,8 +710,7 @@ namespace SistemaFacturacionInventario.Facturacion
             }
             catch (Exception ex)
             {
-                string mensajeError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
-                MessageBox.Show(mensajeError);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -815,7 +816,7 @@ namespace SistemaFacturacionInventario.Facturacion
 
                 return ok;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) { throw new Exception($"Error : {ex.Message}", ex); }
         }
 
         private FacturasVenta DatosCabecera()
@@ -1012,7 +1013,7 @@ namespace SistemaFacturacionInventario.Facturacion
                 }
 
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void IngresarProdDesconocido()
@@ -1069,7 +1070,7 @@ namespace SistemaFacturacionInventario.Facturacion
                     artdesc = false;
                 }
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

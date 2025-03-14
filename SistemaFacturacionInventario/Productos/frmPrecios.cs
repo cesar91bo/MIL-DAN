@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,34 +29,38 @@ namespace SistemaFacturacionInventario.Productos
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (!Validaciones())
+            try
             {
-                MessageBox.Show("Verifique los datos ingresados y vuelva a intentarlo", "Carga de Precios", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                if (!Validaciones())
+                {
+                    MessageBox.Show("Verifique los datos ingresados y vuelva a intentarlo", "Carga de Precios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                var pv = new PreciosVenta
+                {
+                    IdProducto = IdProducto,
+                    UsrAcceso = "",
+                    FechaAcceso = DateTime.Now,
+                    FechaPrecios = DateTime.Now,
+                    PrecioBase = Convert.ToDecimal(txtPrecioBase.Text),
+                    Bonificacion1 = txtBonif.Text != "" && Convert.ToDecimal(txtBonif.Text) != 0 ? Convert.ToDecimal(txtBonif.Text) : (decimal?)null,
+                    PorcentajeGcia = Convert.ToDecimal(txtGanancia.Text),
+                    PorcentajeFlete = Convert.ToDecimal(txtFlete.Text),
+                    Iva = Convert.ToDecimal(cmbIVA.SelectedValue?.ToString()),
+                    PrecioContado = Convert.ToDecimal(txtContadoSIVA.Text.Substring(1), CultureInfo.InvariantCulture),
+                    PrecioContadoIva = Convert.ToDecimal(txtContadoConIVA.Text.Substring(1), CultureInfo.InvariantCulture)
+                };
+                var productoNegocio = new ProductoNegocio();
+                if (!productoNegocio.NuevoPrecioVenta(pv)) return;
+                MessageBox.Show("Los precios se cargaron correctamente", "Carga de Precios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.OK;
+                if (DeAfuera)
+                {
+                    Close();
+                }
+                lblFechaPrecio.Text = DateTime.Now.ToString();
             }
-            var pv = new PreciosVenta
-            {
-                IdProducto = IdProducto,
-                UsrAcceso = "",
-                FechaAcceso = DateTime.Now,
-                FechaPrecios = DateTime.Now,
-                PrecioBase = Convert.ToDecimal(txtPrecioBase.Text),
-                Bonificacion1 = txtBonif.Text != "" && Convert.ToDecimal(txtBonif.Text) != 0 ? Convert.ToDecimal(txtBonif.Text) : (decimal?)null,
-                PorcentajeGcia = Convert.ToDecimal(txtGanancia.Text),
-                PorcentajeFlete = Convert.ToDecimal(txtFlete.Text),
-                Iva = Convert.ToDecimal(cmbIVA.SelectedValue?.ToString()),
-                PrecioContado = Convert.ToDecimal(txtContadoSIVA.Text.Substring(1), CultureInfo.InvariantCulture),
-                PrecioContadoIva = Convert.ToDecimal(txtContadoConIVA.Text.Substring(1), CultureInfo.InvariantCulture)
-            };
-            var productoNegocio = new ProductoNegocio();
-            if (!productoNegocio.NuevoPrecioVenta(pv)) return;
-            MessageBox.Show("Los precios se cargaron correctamente", "Carga de Precios", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            DialogResult = DialogResult.OK;
-            if (DeAfuera)
-            {
-                Close();
-            }
-            lblFechaPrecio.Text = DateTime.Now.ToString();
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         public frmPrecios(int idProducto = 0)
@@ -86,7 +91,7 @@ namespace SistemaFacturacionInventario.Productos
                 if (value < 0 || value > 100)
                 {
                     MessageBox.Show("Ingrese un porcentaje entre 0 y 100.", "Valor inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtBonif.Text = "0"; 
+                    txtBonif.Text = "0";
                 }
             }
         }
@@ -246,7 +251,7 @@ namespace SistemaFacturacionInventario.Productos
             {
                 txtGanancia.Text = "0";
             }
-            ganancia = Math.Round(Convert.ToDecimal(txtGanancia.Text),2);
+            ganancia = Math.Round(Convert.ToDecimal(txtGanancia.Text), 2);
             Calculos();
         }
 
@@ -266,7 +271,7 @@ namespace SistemaFacturacionInventario.Productos
             {
                 txtFlete.Text = "0";
             }
-            flete = Math.Round(Convert.ToDecimal(txtFlete.Text),2);
+            flete = Math.Round(Convert.ToDecimal(txtFlete.Text), 2);
             Calculos();
         }
 
@@ -283,8 +288,8 @@ namespace SistemaFacturacionInventario.Productos
                 BuscarProducto(IdProducto);
             }
             txtPrecioBase.Focus();
-            rdbConIVA.TabStop = false;            
-            activeForm = new frmPrecios(); 
+            rdbConIVA.TabStop = false;
+            activeForm = new frmPrecios();
         }
 
         private void BuscarProducto(int idProducto)

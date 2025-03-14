@@ -51,7 +51,7 @@ namespace SistemaFacturacionInventario.Productos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -73,7 +73,7 @@ namespace SistemaFacturacionInventario.Productos
                 cmbRubro.DataSource = rep.ObtenerRubros();
 
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private bool Validaciones()
@@ -108,7 +108,7 @@ namespace SistemaFacturacionInventario.Productos
                 }
 
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             return Correcto;
         }
 
@@ -154,7 +154,7 @@ namespace SistemaFacturacionInventario.Productos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -182,7 +182,7 @@ namespace SistemaFacturacionInventario.Productos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -216,7 +216,7 @@ namespace SistemaFacturacionInventario.Productos
                 }
                 else { MessageBox.Show("No se encontró el producto", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void btnRubro_Click(object sender, EventArgs e)
@@ -231,7 +231,7 @@ namespace SistemaFacturacionInventario.Productos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -290,7 +290,7 @@ namespace SistemaFacturacionInventario.Productos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -304,7 +304,7 @@ namespace SistemaFacturacionInventario.Productos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -328,7 +328,7 @@ namespace SistemaFacturacionInventario.Productos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

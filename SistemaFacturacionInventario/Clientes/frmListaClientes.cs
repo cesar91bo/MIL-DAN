@@ -39,7 +39,7 @@ namespace SistemaFacturacionInventario.Productos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -61,7 +61,7 @@ namespace SistemaFacturacionInventario.Productos
             if (siload)
             {
                 var clienteNegocio = new ClienteNegocio();
-                if(chkCliBaja.Checked)
+                if (chkCliBaja.Checked)
                 {
                     vistaClientes = clienteNegocio.ObtenerListaClientes();
                 }
@@ -84,7 +84,7 @@ namespace SistemaFacturacionInventario.Productos
                     Tag = vistaCliente.IdCliente.ToString(),
                     Text = vistaCliente.IdCliente.ToString()
                 };
-                item.SubItems.Add(vistaCliente.Nombre +" "+ vistaCliente.Apellido);
+                item.SubItems.Add(vistaCliente.Nombre + " " + vistaCliente.Apellido);
                 item.SubItems.Add(vistaCliente.TipoDocumento);
                 item.SubItems.Add(vistaCliente.Nro_Doc != "" ? vistaCliente.Nro_Doc : vistaCliente.Cuit);
                 item.SubItems.Add(vistaCliente.Direccion);
@@ -104,18 +104,19 @@ namespace SistemaFacturacionInventario.Productos
                 var clienteNegocio = new ClienteNegocio();
 
 
-                        return (txtFiltro.Text != "") ? clienteNegocio.ObtenerCliporNombreApellido(txtFiltro.Text, chkCliBaja.Checked) : clienteNegocio.ObtenerListaClientes();
+                return (txtFiltro.Text != "") ? clienteNegocio.ObtenerCliporNombreApellido(txtFiltro.Text, chkCliBaja.Checked) : clienteNegocio.ObtenerListaClientes();
 
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw ex;
             }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            var frm = new frmCliente { IdCliente = Convert.ToInt32(listViewClientes.SelectedItems[0].Tag), Accion = "MOD"};
+            var frm = new frmCliente { IdCliente = Convert.ToInt32(listViewClientes.SelectedItems[0].Tag), Accion = "MOD" };
             frm.ShowDialog();
             btnEditar.Enabled = false;
             LLenarListaCliente(false);
@@ -134,7 +135,7 @@ namespace SistemaFacturacionInventario.Productos
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw ex;
             }
         }
@@ -163,7 +164,7 @@ namespace SistemaFacturacionInventario.Productos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -256,7 +257,7 @@ namespace SistemaFacturacionInventario.Productos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -280,7 +281,7 @@ namespace SistemaFacturacionInventario.Productos
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -296,7 +297,7 @@ namespace SistemaFacturacionInventario.Productos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

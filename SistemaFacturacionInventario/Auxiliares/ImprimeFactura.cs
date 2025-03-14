@@ -79,7 +79,7 @@ namespace SistemaFacturacionInventario.Auxiliares
                 // Detalles de compra
                 foreach (var detalle in factDetalle)
                 {
-                    string producto = detalle.Producto.Length > 20 ? detalle.Producto.Substring(0, 20) + "..." : detalle.Producto.PadRight(20);
+                    string producto = detalle.Producto.Length > 20 ? detalle.IdProducto +"-"+ detalle.Producto.Substring(0, 20) + "..." : detalle.Producto.PadRight(20);
                     string cantidadPrecio = $"x{detalle.Cantidad}  ${detalle.PrecioUnitario,6}";
 
                     e.Graphics.DrawString(producto, fuente, Brushes.Black, x, y);

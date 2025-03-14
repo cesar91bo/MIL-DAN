@@ -41,6 +41,8 @@
             this.lblListaFacturas = new System.Windows.Forms.Label();
             this.btnEditar = new System.Windows.Forms.Button();
             this.listViewFactura = new System.Windows.Forms.ListView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +58,7 @@
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // panel1
             // 
@@ -144,6 +147,7 @@
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(474, 22);
             this.txtFiltro.TabIndex = 22;
+            this.txtFiltro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFiltro_KeyDown);
             // 
             // lblListaFacturas
             // 
@@ -161,11 +165,11 @@
             this.btnEditar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(560, 477);
+            this.btnEditar.Location = new System.Drawing.Point(425, 477);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(61, 37);
+            this.btnEditar.Size = new System.Drawing.Size(84, 37);
             this.btnEditar.TabIndex = 29;
-            this.btnEditar.Text = "Ver";
+            this.btnEditar.Text = "Detalle";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEditar.UseVisualStyleBackColor = true;
             // 
@@ -182,11 +186,41 @@
             this.listViewFactura.UseCompatibleStateImageBehavior = false;
             this.listViewFactura.View = System.Windows.Forms.View.Details;
             // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(515, 477);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(93, 37);
+            this.button1.TabIndex = 31;
+            this.button1.Text = "Imprimir";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Enabled = false;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(617, 477);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(99, 37);
+            this.button2.TabIndex = 32;
+            this.button2.Text = "Anulación";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // frmConsultaFacturas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1164, 526);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.listViewFactura);
@@ -214,5 +248,7 @@
         private System.Windows.Forms.Label lblHasta;
         private System.Windows.Forms.Label lblDesde;
         private System.Windows.Forms.CheckBox chkClienteFactura;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

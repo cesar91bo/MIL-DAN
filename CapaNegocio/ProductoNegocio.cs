@@ -16,7 +16,7 @@ namespace CapaNegocio
     public class ProductoNegocio
     {
         public static SistemaGestionPymeBDEntities db = new SistemaGestionPymeBDEntities();
-
+        private Logger logger = new Logger();
         public int AgregarNroProducto()
         {
             return (db.Productos.OrderByDescending(p => p.NroProducto).FirstOrDefault()?.NroProducto ?? 0) + 1;
@@ -39,7 +39,11 @@ namespace CapaNegocio
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("ProductoNegocio", "EditarProducto", ex);
+                throw new Exception("Ocurrió un error al editar producto. Contacte al soporte técnico.", ex);
+            }
         }
 
         public int NuevoProducto(Productos producto)
@@ -67,7 +71,11 @@ namespace CapaNegocio
                 NuevoAjuste(aj);
                 return producto.IdProducto;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("ProductoNegocio", "NuevoProducto", ex);
+                throw new Exception("Ocurrió un error al insertar producto. Contacte al soporte técnico.", ex);
+            }
         }
 
         public bool NuevoAjuste(AjustesStock aj)
@@ -104,7 +112,11 @@ namespace CapaNegocio
                 return true;
 
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("ProductoNegocio", "NuevoAjuste", ex);
+                throw new Exception("Ocurrió un error al insertar ajuste. Contacte al soporte técnico.", ex);
+            }
         }
 
         private void AgregarProducto(Productos producto)
@@ -136,7 +148,11 @@ namespace CapaNegocio
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("ProductoNegocio", "SumarStockArt", ex);
+                throw new Exception("Ocurrió un error al sumar stock de producto. Contacte al soporte técnico.", ex);
+            }
         }
 
         public bool RestarStockArt(double cantidad, int idProducto)
@@ -154,7 +170,11 @@ namespace CapaNegocio
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("ProductoNegocio", "RestarStockArt", ex);
+                throw new Exception("Ocurrió un error al restar stock de producto. Contacte al soporte técnico.", ex);
+            }
         }
 
         public bool BajaProducto(int idProducto)
@@ -166,7 +186,11 @@ namespace CapaNegocio
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("ProductoNegocio", "BajaProducto", ex);
+                throw new Exception("Ocurrió un error al eliminar un producto. Contacte al soporte técnico.", ex);
+            }
         }
 
         public List<VistaProducto> ObtenerTodo()
@@ -194,7 +218,11 @@ namespace CapaNegocio
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("ProductoNegocio", "ActivarProducto", ex);
+                throw new Exception("Ocurrió un error al activar un producto. Contacte al soporte técnico.", ex);
+            }
         }
 
         public List<VistaProducto> ObtenerListProductosPorNro(int idProducto, bool prodBaja)
@@ -303,7 +331,11 @@ namespace CapaNegocio
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("ProductoNegocio", "NuevoPrecioVenta", ex);
+                throw new Exception("Ocurrió un error al insertar precio. Contacte al soporte técnico.", ex);
+            }
         }
 
         public List<VistaPreciosVenta> ObtenerUltPrecioVenta()
@@ -390,7 +422,11 @@ namespace CapaNegocio
                 }
                 return null;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("ProductoNegocio", "CargarComboPrecios", ex);
+                throw new Exception("Ocurrió un error al cargar combo precio. Contacte al soporte técnico.", ex);
+            }
         }
 
         public PreciosVenta ObtenerUltPrecioVentaPorId(int idProducto)

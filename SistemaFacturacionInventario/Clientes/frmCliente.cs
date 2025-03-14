@@ -62,7 +62,7 @@ namespace SistemaFacturacionInventario.Clientes
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -107,7 +107,7 @@ namespace SistemaFacturacionInventario.Clientes
                 }
                 else MessageBox.Show("No se encontró el Cliente", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void cargarLocalidades(Int16 IdProv)
@@ -120,7 +120,7 @@ namespace SistemaFacturacionInventario.Clientes
                 cmbLocalidad.ValueMember = "CpSubCp";
                 cmbLocalidad.DataSource = dt;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -245,7 +245,7 @@ namespace SistemaFacturacionInventario.Clientes
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -384,7 +384,11 @@ namespace SistemaFacturacionInventario.Clientes
                 }
                 return Correcto;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                throw ex;
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -455,7 +459,7 @@ namespace SistemaFacturacionInventario.Clientes
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -475,7 +479,7 @@ namespace SistemaFacturacionInventario.Clientes
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -502,7 +506,7 @@ namespace SistemaFacturacionInventario.Clientes
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -517,7 +521,7 @@ namespace SistemaFacturacionInventario.Clientes
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -545,7 +549,7 @@ namespace SistemaFacturacionInventario.Clientes
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -560,7 +564,7 @@ namespace SistemaFacturacionInventario.Clientes
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -631,7 +635,7 @@ namespace SistemaFacturacionInventario.Clientes
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -15,6 +15,12 @@ namespace SistemaFacturacionInventario
         public FormBase()
         {
             InitializeComponent();
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+        }
+
+        private void FormBase_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

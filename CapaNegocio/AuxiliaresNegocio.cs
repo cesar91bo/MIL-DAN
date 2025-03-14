@@ -14,7 +14,7 @@ namespace CapaNegocio
     public class AuxiliaresNegocio
     {
         public static SistemaGestionPymeBDEntities db = new SistemaGestionPymeBDEntities();
-
+        private Logger logger = new Logger();
         public bool EditarUMedida(UnidadesMedida umed)
         {
             try
@@ -24,7 +24,11 @@ namespace CapaNegocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                // Registrar error en la base de datos
+                logger.RegistrarError("AuxiliaresNegocio", "EditarUMedida", ex);
+
+                // Lanzar una nueva excepción con un mensaje más claro sin perder la información original
+                throw new Exception("Ocurrió un error al editar la unidad de medida. Contacte al soporte técnico.", ex);
             }
         }
 
@@ -46,7 +50,8 @@ namespace CapaNegocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                logger.RegistrarError("AuxiliaresNegocio", "EditarRubro", ex);
+                throw new Exception("Ocurrió un error al editar rubro. Contacte al soporte técnico.", ex);
             }
         }
 
@@ -57,7 +62,11 @@ namespace CapaNegocio
                 AgregarUmedida(umed);
                 return true;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("AuxiliaresNegocio", "NuevaUMedida", ex);
+                throw new Exception("Ocurrió un error al insertar unidad de medida. Contacte al soporte técnico.", ex);
+            }
         }
 
         public void AgregarUmedida(UnidadesMedida um)
@@ -115,7 +124,11 @@ namespace CapaNegocio
                     return false;
                 }
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("AuxiliaresNegocio", "BorrarUMedida", ex);
+                throw new Exception("Ocurrió un error al borrar unidad de medida. Contacte al soporte técnico.", ex);
+            }
         }
 
         public bool BorrarRubro(int idRubro)
@@ -139,7 +152,11 @@ namespace CapaNegocio
                     return false;
                 }
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("AuxiliaresNegocio", "BorrarRubro", ex);
+                throw new Exception("Ocurrió un error al borrar rubro. Contacte al soporte técnico.", ex);
+            }
         }
 
         public bool NuevoRubro(Rubros rubro)
@@ -255,7 +272,11 @@ namespace CapaNegocio
                 AgregarSeteos(seteos);
                 return true;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("AuxiliaresNegocio", "NuevoSeteos", ex);
+                throw new Exception("Ocurrió un error al insertar seteos. Contacte al soporte técnico.", ex);
+            }
         }
 
         private void AgregarSeteos(Seteos seteos)
@@ -271,7 +292,11 @@ namespace CapaNegocio
                 AgregarEmpresa(empresa);
                 return true;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("AuxiliaresNegocio", "NuevaEmpresa", ex);
+                throw new Exception("Ocurrió un error al insertar empresa. Contacte al soporte técnico.", ex);
+            }
         }
 
         private void AgregarEmpresa(Empresa empresa)

@@ -13,7 +13,7 @@ namespace CapaNegocio
     public class ClienteNegocio
     {
         public static SistemaGestionPymeBDEntities db = new SistemaGestionPymeBDEntities();
-
+        private Logger logger = new Logger();
         public int EditarCliente(Clientes cli, int nroCliente)
         {
             try
@@ -41,7 +41,11 @@ namespace CapaNegocio
                 db.SaveChanges();
                 return clienteBD.IdCliente;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("ClienteNegocio", "EditarCliente", ex);
+                throw new Exception("Ocurrió un error al editar cliente. Contacte al soporte técnico.", ex);
+            }
         }
 
 
@@ -60,16 +64,10 @@ namespace CapaNegocio
                 db.SaveChanges();
                 return cli.IdCliente;
             }
-            catch  (System.Data.Entity.Validation.DbEntityValidationException ex)
+            catch  (Exception ex)
             {
-                foreach (var validationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        Console.WriteLine($"Propiedad: {validationError.PropertyName}, Error: {validationError.ErrorMessage}");
-                    }
-                }
-                throw; // Lanza la excepción nuevamente para depuración
+                logger.RegistrarError("ClienteNegocio", "NuevoCliente", ex);
+                throw new Exception("Ocurrió un error al insertar cliente. Contacte al soporte técnico.", ex);
             }
         }
 
@@ -114,7 +112,11 @@ namespace CapaNegocio
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("ClienteNegocio", "BajaCliente", ex);
+                throw new Exception("Ocurrió un error al eliminar cliente. Contacte al soporte técnico.", ex);
+            }
         }
 
         public List<VistaClientes> ObtenerListaClientes()
@@ -159,7 +161,11 @@ namespace CapaNegocio
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("ClienteNegocio", "ActivarCliente", ex);
+                throw new Exception("Ocurrió un error al activar cliente. Contacte al soporte técnico.", ex);
+            }
         }
 
         public VistaClientes ObtenerVCliporNroCli(int idCliente)

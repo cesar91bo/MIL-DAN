@@ -13,6 +13,7 @@ namespace CapaNegocio
     public class FacturacionNegocio
     {
         public static SistemaGestionPymeBDEntities db = new SistemaGestionPymeBDEntities();
+        private Logger logger = new Logger();
 
         public FacturasVenta ObtenerFactura(int idFact)
         {
@@ -128,10 +129,11 @@ namespace CapaNegocio
                         trans.Commit();
                         id = f.IdFacturaVenta;
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
                         trans.Rollback();
-                        throw;
+                        logger.RegistrarError("FacturacionNegocio", "NuevoDetFact", ex);
+                        throw new Exception("Ocurrió un error al crear detalle de factura. Contacte al soporte técnico.", ex);
                     }
                 }
 
@@ -139,7 +141,8 @@ namespace CapaNegocio
             }
             catch (Exception ex)
             {
-                throw;
+                logger.RegistrarError("FacturacionNegocio", "NuevaFact", ex);
+                throw new Exception("Ocurrió un error al crear factura. Contacte al soporte técnico.", ex);
             }
         }
 
@@ -242,7 +245,8 @@ namespace CapaNegocio
                 catch (Exception ex)
                 {
                     trans.Rollback();
-                    throw ex;
+                    logger.RegistrarError("FacturacionNegocio", "EditarFact", ex);
+                    throw new Exception("Ocurrió un error al editar detalle de factura. Contacte al soporte técnico.", ex);
                 }
                 finally
                 {
@@ -251,7 +255,11 @@ namespace CapaNegocio
 
                 return true;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("FacturacionNegocio", "EditarFact", ex);
+                throw new Exception("Ocurrió un error al editar de factura. Contacte al soporte técnico.", ex);
+            }
         }
 
         private void AgregarFactura(FacturasVenta fact) { db.FacturasVenta.Add(fact); }
@@ -275,9 +283,10 @@ namespace CapaNegocio
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw; // Mantiene la pila de excepciones original
+                logger.RegistrarError("FacturacionNegocio", "EditarNroFact", ex);
+                throw new Exception("Ocurrió un error al editar nro. de factura. Contacte al soporte técnico.", ex);
             }
         }
 
@@ -334,7 +343,11 @@ namespace CapaNegocio
 
                 return id;
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("FacturacionNegocio", "NuevaFactx", ex);
+                throw new Exception("Ocurrió un error al insertar factura x. Contacte al soporte técnico.", ex);
+            }
         }
 
         public List<FacturasVentaDetalle> ObtenerFacturaVentaDetallexTipoIvayNroFact(int IdFact, int IdTipoIva)
@@ -355,7 +368,11 @@ namespace CapaNegocio
                 db.FacturasVentaDetalle.Remove(det);
                 db.SaveChanges();
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) 
+            {
+                logger.RegistrarError("FacturacionNegocio", "BorrarDetalle", ex);
+                throw new Exception("Ocurrió un error al borrar detalle. Contacte al soporte técnico.", ex);
+            }
         }
 
         public List<FacturasVentaDetalle> ObtenerDetalledeFacturaVta(int IdFact)
@@ -381,6 +398,20 @@ namespace CapaNegocio
             if (!string.IsNullOrEmpty(clientefact))
             {
                 facturas = facturas.Where(f => f.Cliente.Contains(clientefact));
+            }
+
+            facturas.OrderBy(x => x.FechaEmision);
+
+            return facturas.ToList();
+        }
+
+        public List<VistaCabFactVenta> ObtenerListCabFactPorCliente(string cliente)
+        {
+            var facturas = db.VistaCabFactVenta.AsQueryable();
+
+            if (!string.IsNullOrEmpty(cliente))
+            {
+                facturas = facturas.Where(f => f.Cliente.Contains(cliente));
             }
 
             return facturas.ToList();

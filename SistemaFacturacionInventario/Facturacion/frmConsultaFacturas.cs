@@ -14,6 +14,8 @@ namespace SistemaFacturacionInventario.Facturacion
 {
     public partial class frmConsultaFacturas : FormBase
     {
+        private List<VistaCabFactVenta> vistaCabFactVentas;
+        private FacturacionNegocio facturacionNegocio = new FacturacionNegocio();
         public frmConsultaFacturas()
         {
             InitializeComponent();
@@ -22,7 +24,7 @@ namespace SistemaFacturacionInventario.Facturacion
         private void frmConsultaFacturas_Load(object sender, EventArgs e)
         {
             CrearColumnasLv();
-            LlenarLv();
+            LlenarLv(true);
         }
 
         private void CrearColumnasLv()
@@ -42,28 +44,56 @@ namespace SistemaFacturacionInventario.Facturacion
             catch (Exception ex) { throw ex; }
         }
 
-        private void LlenarLv()
+        private void LlenarLv(bool isLoad)
         {
             try
             {
                 listViewFactura.Items.Clear();
-                List<VistaCabFactVenta> Lista = FiltrarBusqueda();
-                foreach (VistaCabFactVenta l in Lista)
+                if (isLoad)
                 {
-                    var item = new ListViewItem { Tag = l, Text = l.IdFacturaVenta.ToString() };
-                    item.SubItems.Add(l.TipoDoc);
-                    item.SubItems.Add(l.FPago);
-                    item.SubItems.Add(l.FechaEmision.ToShortDateString());
-                    item.SubItems.Add(l.Cliente);
-                    item.SubItems.Add(l.SubTotal.ToString());
-                    item.SubItems.Add(l.TotalIva105.ToString());
-                    item.SubItems.Add(l.TotalIva21.ToString());
-                    item.SubItems.Add(l.Total.ToString());
+                    List<VistaCabFactVenta> Lista = FiltrarBusqueda();
+                    foreach (VistaCabFactVenta l in Lista)
+                    {
+                        var item = new ListViewItem { Tag = l, Text = l.IdFacturaVenta.ToString() };
+                        item.SubItems.Add(l.TipoDoc);
+                        item.SubItems.Add(l.FPago);
+                        item.SubItems.Add(l.FechaEmision.ToShortDateString());
+                        item.SubItems.Add(l.Cliente);
+                        item.SubItems.Add(l.SubTotal.ToString());
+                        item.SubItems.Add(l.TotalIva105.ToString());
+                        item.SubItems.Add(l.TotalIva21.ToString());
+                        item.SubItems.Add(l.Total.ToString());
+                        listViewFactura.Items.Add(item);
+                    }
+                }
+                else
+                {
+                    vistaCabFactVentas = FiltrarBusqueda();
+                }
+
+                if (vistaCabFactVentas == null) return;
+                foreach (CapaDatos.Modelos.VistaCabFactVenta fact in vistaCabFactVentas)
+                {
+                    var item = new ListViewItem { Tag = fact, Text = fact.IdFacturaVenta.ToString() };
+                    item.SubItems.Add(fact.TipoDoc);
+                    item.SubItems.Add(fact.FPago);
+                    item.SubItems.Add(fact.FechaEmision.ToShortDateString());
+                    item.SubItems.Add(fact.Cliente);
+                    item.SubItems.Add(fact.SubTotal.ToString());
+                    item.SubItems.Add(fact.TotalIva105.ToString());
+                    item.SubItems.Add(fact.TotalIva21.ToString());
+                    item.SubItems.Add(fact.Total.ToString());
                     listViewFactura.Items.Add(item);
+                    listViewFactura.Focus();
                 }
             }
             catch (Exception ex) { throw ex; }
         }
+
+        //private List<VistaCabFactVenta> BuscarFacturas()
+        //{
+        //    return facturacionNegocio.ObtenerListCabFactPorCliente(txtFiltro.Text);
+        //}
 
         private List<VistaCabFactVenta> FiltrarBusqueda()
         {
@@ -72,7 +102,7 @@ namespace SistemaFacturacionInventario.Facturacion
                 string fechadf = chkFechaFactura.Checked ? dtpFechaDesdeFact.Value.ToShortDateString() + " 00:00:00" : "";
                 string fechahf = chkFechaFactura.Checked ? dtpFechaHastaFact.Value.ToShortDateString() + " 23:59:59" : "";
                 string clientefact = chkClienteFactura.Checked ? txtFiltro.Text : "";
-                var facturacionNegocio = new FacturacionNegocio();
+                
                 return facturacionNegocio.ObtenerListaFacturas(fechadf, fechahf, clientefact);
             }
             catch (Exception ex) { throw ex; }
@@ -87,6 +117,31 @@ namespace SistemaFacturacionInventario.Facturacion
         {
             dtpFechaDesdeFact.Enabled = chkFechaFactura.Checked;
             dtpFechaHastaFact.Enabled = chkFechaFactura.Checked;
+        }
+
+        private void txtFiltro_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter) { LlenarLv(false); }
+                txtFiltro.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LlenarLv(false); 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
