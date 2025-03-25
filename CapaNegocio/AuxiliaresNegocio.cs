@@ -316,5 +316,9 @@ namespace CapaNegocio
         {
             return db.TiposIva.SingleOrDefault(c => c.IdTipoIva == idTipoIVa);
         }
+        public static Empresa GetEmpresa()
+        {
+            return db.Empresa.OrderByDescending(s => s.IdEmpresa).FirstOrDefault();
+        }
     }
 }

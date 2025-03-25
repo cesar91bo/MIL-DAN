@@ -394,8 +394,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(242)))));
-            this.ClientSize = new System.Drawing.Size(1148, 645);
+            this.ClientSize = new System.Drawing.Size(1084, 595);
             this.Controls.Add(this.lblBaja);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnBaja);

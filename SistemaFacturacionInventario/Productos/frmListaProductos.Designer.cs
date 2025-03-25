@@ -235,8 +235,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(242)))));
-            this.ClientSize = new System.Drawing.Size(1148, 487);
+            this.ClientSize = new System.Drawing.Size(1137, 479);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnActivar);
             this.Controls.Add(this.panel1);

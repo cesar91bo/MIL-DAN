@@ -55,6 +55,11 @@
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.RemitosXfacturados" Width="1.5" PointX="0.75" PointY="15.75" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.VistaCabFactVenta" Width="1.5" PointX="3.375" PointY="15.75" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.VistaDetalleFactVenta" Width="1.5" PointX="11.375" PointY="15.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.FacturasElectronicas" Width="1.5" PointX="5.375" PointY="16.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.LogErrores" Width="1.5" PointX="7.375" PointY="16.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.AutenticacionesWSAA" Width="1.5" PointX="17.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.VistaLibroIvaVenta" Width="1.5" PointX="0.75" PointY="18.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.VistaTotalesDiscriminadosFactB" Width="1.5" PointX="16.75" PointY="18.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

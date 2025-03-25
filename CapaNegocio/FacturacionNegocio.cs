@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.Design;
+using System.Web.Configuration;
+using Unity.Policy;
 
 namespace CapaNegocio
 {
@@ -416,5 +418,55 @@ namespace CapaNegocio
 
             return facturas.ToList();
         }
+
+        public bool AnularFactura(int IdFact, DateTime Fecha, short IdEmp)
+        {
+            try
+            {
+                db.Database.Connection.Open();
+                DbTransaction trans = db.Database.Connection.BeginTransaction();
+                try
+                {
+                    FacturasVenta fv = ObtenerFactura(IdFact);
+                    fv.FechaAnulacion = Fecha;
+                    db.SaveChanges();
+                    DataTable dt = ObtenerDetalleFactVenta(IdFact);
+                    foreach (DataRow rw in dt.Rows)
+                        if (Convert.ToBoolean(rw["DesdeRemito"].ToString()) == false && rw["IdArticulo"].ToString() != "")
+                        {
+                            var rep = new ProductoNegocio();
+                            if (rep.SumarStockArt(Convert.ToDouble(rw["Cantidad"].ToString()), Convert.ToInt32(rw["IdProducto"].ToString())) == false)
+                            {
+                                rep = null;
+                                throw new Exception("Error en la actualización de Stock");
+                            }
+
+                            rep = null;
+                        }
+
+                    trans.Commit();
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    throw ex;
+                }
+                finally
+                {
+                    if (db.Database.Connection.State == ConnectionState.Open) db.Database.Connection.Close();
+                }
+
+                return true;
+            }
+            catch (Exception ex) { throw ex; }
+        }
+        private DataTable ObtenerDetalleFactVenta(int id)
+        {
+            var aux = new AuxiliaresNegocio();
+            var detalle = from dp in db.VistaDetalleFactVenta where dp.IdFacturaVenta == id select dp;
+            DataTable dt = aux.ConvertToDataTable(detalle.ToList());
+            return dt;
+        }
+
     }
 }

@@ -451,7 +451,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1148, 622);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
+            this.ClientSize = new System.Drawing.Size(1142, 562);
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.lblErrores);
             this.Controls.Add(this.txtNumDoc);

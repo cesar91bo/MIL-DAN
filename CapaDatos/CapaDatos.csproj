@@ -54,6 +54,9 @@
     <Compile Include="Modelos\AjustesStock.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\AutenticacionesWSAA.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\Clientes.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -63,6 +66,9 @@
     <Compile Include="Modelos\Empresa.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\FacturasElectronicas.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\FacturasVenta.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -70,6 +76,9 @@
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\FormasPago.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\LogErrores.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\ModelBD.Context.cs">
@@ -144,10 +153,16 @@
     <Compile Include="Modelos\VistaDetalleFactVenta.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\VistaLibroIvaVenta.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\VistaPreciosVenta.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\VistaProducto.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\VistaTotalesDiscriminadosFactB.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -156,7 +171,6 @@
     <None Include="App.Config" />
     <EntityDeploy Include="Modelos\ModelBD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelBD.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="Modelos\ModelBD.edmx.diagram">
       <DependentUpon>ModelBD.edmx</DependentUpon>

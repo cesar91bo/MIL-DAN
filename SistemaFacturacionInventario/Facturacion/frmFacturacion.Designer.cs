@@ -109,6 +109,7 @@
             this.PrecioManual = new System.Windows.Forms.DataGridViewImageColumn();
             this.IdFactVtaDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecManual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblImpresa = new System.Windows.Forms.Label();
             this.grupBoxCabecera.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDetalle)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -970,11 +971,22 @@
             this.PrecManual.Visible = false;
             this.PrecManual.Width = 125;
             // 
+            // lblImpresa
+            // 
+            this.lblImpresa.AutoSize = true;
+            this.lblImpresa.Location = new System.Drawing.Point(215, 644);
+            this.lblImpresa.Name = "lblImpresa";
+            this.lblImpresa.Size = new System.Drawing.Size(47, 13);
+            this.lblImpresa.TabIndex = 57;
+            this.lblImpresa.Text = "impresa";
+            this.lblImpresa.Visible = false;
+            // 
             // frmFacturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1113, 676);
+            this.Controls.Add(this.lblImpresa);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox4);
@@ -992,6 +1004,7 @@
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Error)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1076,5 +1089,6 @@
         private System.Windows.Forms.DataGridViewImageColumn PrecioManual;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdFactVtaDetalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecManual;
+        private System.Windows.Forms.Label lblImpresa;
     }
 }

@@ -16,6 +16,17 @@
           <Property Name="Motivo" Type="nvarchar" MaxLength="250" />
           <Property Name="FechaAcceso" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="AutenticacionesWSAA">
+          <Key>
+            <PropertyRef Name="IdAutenticacion" />
+          </Key>
+          <Property Name="IdAutenticacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Token" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Sign" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="FechaAutorizacion" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="FechaExpiracion" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="IdEmpresa" Type="tinyint" Nullable="false" />
+        </EntityType>
         <EntityType Name="Clientes">
           <Key>
             <PropertyRef Name="IdCliente" />
@@ -71,6 +82,17 @@
           <Property Name="SubCodigoPostal" Type="tinyint" />
           <Property Name="RutaCertificado" Type="nvarchar" MaxLength="500" />
           <Property Name="SerialCertificado" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FacturasElectronicas">
+          <Key>
+            <PropertyRef Name="IdFacturaElectronica" />
+          </Key>
+          <Property Name="IdFacturaElectronica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdFacturaVenta" Type="int" />
+          <Property Name="CAE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaVtoCAE" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="NCompFact" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="Fecha" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="FacturasVenta">
           <Key>
@@ -136,6 +158,17 @@
           </Key>
           <Property Name="IdFormaPago" Type="smallint" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogErrores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" />
+          <Property Name="Origen" Type="nvarchar" MaxLength="255" />
+          <Property Name="Metodo" Type="nvarchar" MaxLength="255" />
+          <Property Name="Mensaje" Type="nvarchar(max)" />
+          <Property Name="StackTrace" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="PreciosVenta">
           <Key>
@@ -469,6 +502,37 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaDetalleFactVen
           <Property Name="PorcentajeIVA" Type="real" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaLibroIvaVenta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VistaLibroIvaVenta">
+          <Key>
+            <PropertyRef Name="TipoDoc" />
+            <PropertyRef Name="IdFacturaVenta" />
+            <PropertyRef Name="ApellidoyNombre" />
+            <PropertyRef Name="TipoDocumento" />
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdRegimenImpositivo" />
+            <PropertyRef Name="Impresa" />
+          </Key>
+          <Property Name="TipoDoc" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="LetraFact" Type="varchar" MaxLength="1" />
+          <Property Name="IdFacturaVenta" Type="int" Nullable="false" />
+          <Property Name="NroFactura" Type="nvarchar" MaxLength="13" />
+          <Property Name="FechaEmision" Type="nvarchar" MaxLength="30" />
+          <Property Name="ApellidoyNombre" Type="nvarchar" MaxLength="201" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="6" />
+          <Property Name="TipoDocumento" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NroDocumento" Type="nvarchar" MaxLength="15" />
+          <Property Name="NetoGravado" Type="float" />
+          <Property Name="NoGravado" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="Iva105" Type="float" />
+          <Property Name="Iva21" Type="float" />
+          <Property Name="MontoTotal" Type="decimal" Precision="14" Scale="2" />
+          <Property Name="IdEmpresa" Type="tinyint" Nullable="false" />
+          <Property Name="IdRegimenImpositivo" Type="int" Nullable="false" />
+          <Property Name="Impresa" Type="bit" Nullable="false" />
+          <Property Name="Observaciones" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaPreciosVenta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="VistaPreciosVenta">
           <Key>
@@ -535,6 +599,20 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <Property Name="IdRubro" Type="int" Nullable="false" />
           <Property Name="IdUnidadMedida" Type="int" Nullable="false" />
           <Property Name="CodigoProducto" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscriminadosFactB' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VistaTotalesDiscriminadosFactB">
+          <Key>
+            <PropertyRef Name="IdFacturaVenta" />
+            <PropertyRef Name="Total" />
+          </Key>
+          <Property Name="IdFacturaVenta" Type="int" Nullable="false" />
+          <Property Name="TotalGravado" Type="float" />
+          <Property Name="TotalNOGravado" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="IVA21" Type="float" />
+          <Property Name="IVA105" Type="float" />
+          <Property Name="Total" Type="decimal" Precision="14" Scale="2" Nullable="false" />
         </EntityType>
         <Association Name="FK_AjustesStock_Productos">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
@@ -804,14 +882,23 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SP_InsertarLogError" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Origen" Type="nvarchar" Mode="In" />
+          <Parameter Name="Metodo" Type="nvarchar" Mode="In" />
+          <Parameter Name="Mensaje" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="StackTrace" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <EntityContainer Name="SistemaGestionPymeBDModelStoreContainer">
           <EntitySet Name="AjustesStock" EntityType="Self.AjustesStock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AutenticacionesWSAA" EntityType="Self.AutenticacionesWSAA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CPostales" EntityType="Self.CPostales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FacturasElectronicas" EntityType="Self.FacturasElectronicas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FacturasVenta" EntityType="Self.FacturasVenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FacturasVentaDetalle" EntityType="Self.FacturasVentaDetalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormasPago" EntityType="Self.FormasPago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogErrores" EntityType="Self.LogErrores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PreciosVenta" EntityType="Self.PreciosVenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provincias" EntityType="Self.Provincias" Schema="dbo" store:Type="Tables" />
@@ -904,6 +991,28 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
     [VistaDetalleFactVenta].[PorcentajeIVA] AS [PorcentajeIVA]
     FROM [dbo].[VistaDetalleFactVenta] AS [VistaDetalleFactVenta]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="VistaLibroIvaVenta" EntityType="Self.VistaLibroIvaVenta" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VistaLibroIvaVenta].[TipoDoc] AS [TipoDoc], 
+    [VistaLibroIvaVenta].[LetraFact] AS [LetraFact], 
+    [VistaLibroIvaVenta].[IdFacturaVenta] AS [IdFacturaVenta], 
+    [VistaLibroIvaVenta].[NroFactura] AS [NroFactura], 
+    [VistaLibroIvaVenta].[FechaEmision] AS [FechaEmision], 
+    [VistaLibroIvaVenta].[ApellidoyNombre] AS [ApellidoyNombre], 
+    [VistaLibroIvaVenta].[Descripcion] AS [Descripcion], 
+    [VistaLibroIvaVenta].[TipoDocumento] AS [TipoDocumento], 
+    [VistaLibroIvaVenta].[NroDocumento] AS [NroDocumento], 
+    [VistaLibroIvaVenta].[NetoGravado] AS [NetoGravado], 
+    [VistaLibroIvaVenta].[NoGravado] AS [NoGravado], 
+    [VistaLibroIvaVenta].[Iva105] AS [Iva105], 
+    [VistaLibroIvaVenta].[Iva21] AS [Iva21], 
+    [VistaLibroIvaVenta].[MontoTotal] AS [MontoTotal], 
+    [VistaLibroIvaVenta].[IdEmpresa] AS [IdEmpresa], 
+    [VistaLibroIvaVenta].[IdRegimenImpositivo] AS [IdRegimenImpositivo], 
+    [VistaLibroIvaVenta].[Impresa] AS [Impresa], 
+    [VistaLibroIvaVenta].[Observaciones] AS [Observaciones]
+    FROM [dbo].[VistaLibroIvaVenta] AS [VistaLibroIvaVenta]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="VistaPreciosVenta" EntityType="Self.VistaPreciosVenta" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VistaPreciosVenta].[IdProducto] AS [IdProducto], 
@@ -948,6 +1057,16 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
     [VistaProducto].[IdUnidadMedida] AS [IdUnidadMedida], 
     [VistaProducto].[CodigoProducto] AS [CodigoProducto]
     FROM [dbo].[VistaProducto] AS [VistaProducto]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VistaTotalesDiscriminadosFactB" EntityType="Self.VistaTotalesDiscriminadosFactB" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VistaTotalesDiscriminadosFactB].[IdFacturaVenta] AS [IdFacturaVenta], 
+    [VistaTotalesDiscriminadosFactB].[TotalGravado] AS [TotalGravado], 
+    [VistaTotalesDiscriminadosFactB].[TotalNOGravado] AS [TotalNOGravado], 
+    [VistaTotalesDiscriminadosFactB].[IVA21] AS [IVA21], 
+    [VistaTotalesDiscriminadosFactB].[IVA105] AS [IVA105], 
+    [VistaTotalesDiscriminadosFactB].[Total] AS [Total]
+    FROM [dbo].[VistaTotalesDiscriminadosFactB] AS [VistaTotalesDiscriminadosFactB]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_AjustesStock_Productos" Association="Self.FK_AjustesStock_Productos">
             <End Role="Productos" EntitySet="Productos" />
@@ -1167,6 +1286,17 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <EntitySet Name="RemitosXfacturados" EntityType="SistemaGestionPymeBDModel.RemitosXfacturados" />
           <EntitySet Name="VistaCabFactVenta" EntityType="SistemaGestionPymeBDModel.VistaCabFactVenta" />
           <EntitySet Name="VistaDetalleFactVenta" EntityType="SistemaGestionPymeBDModel.VistaDetalleFactVenta" />
+          <EntitySet Name="FacturasElectronicas" EntityType="SistemaGestionPymeBDModel.FacturasElectronicas" />
+          <EntitySet Name="LogErrores" EntityType="SistemaGestionPymeBDModel.LogErrores" />
+          <FunctionImport Name="SP_InsertarLogError">
+            <Parameter Name="Origen" Mode="In" Type="String" />
+            <Parameter Name="Metodo" Mode="In" Type="String" />
+            <Parameter Name="Mensaje" Mode="In" Type="String" />
+            <Parameter Name="StackTrace" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="AutenticacionesWSAA" EntityType="SistemaGestionPymeBDModel.AutenticacionesWSAA" />
+          <EntitySet Name="VistaLibroIvaVenta" EntityType="SistemaGestionPymeBDModel.VistaLibroIvaVenta" />
+          <EntitySet Name="VistaTotalesDiscriminadosFactB" EntityType="SistemaGestionPymeBDModel.VistaTotalesDiscriminadosFactB" />
         </EntityContainer>
         <EntityType Name="Productos">
           <Key>
@@ -1991,6 +2121,80 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <Property Name="IdArticulo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="PorcentajeIVA" Type="Single" Nullable="false" />
         </EntityType>
+        <EntityType Name="FacturasElectronicas">
+          <Key>
+            <PropertyRef Name="IdFacturaElectronica" />
+          </Key>
+          <Property Name="IdFacturaElectronica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdFacturaVenta" Type="Int32" />
+          <Property Name="CAE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaVtoCAE" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="NCompFact" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="LogErrores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaHora" Type="DateTime" Precision="3" />
+          <Property Name="Origen" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Metodo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Mensaje" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AutenticacionesWSAA">
+          <Key>
+            <PropertyRef Name="IdAutenticacion" />
+          </Key>
+          <Property Name="IdAutenticacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Token" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Sign" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FechaAutorizacion" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="FechaExpiracion" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="IdEmpresa" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VistaLibroIvaVenta">
+          <Key>
+            <PropertyRef Name="TipoDoc" />
+            <PropertyRef Name="IdFacturaVenta" />
+            <PropertyRef Name="ApellidoyNombre" />
+            <PropertyRef Name="TipoDocumento" />
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdRegimenImpositivo" />
+            <PropertyRef Name="Impresa" />
+          </Key>
+          <Property Name="TipoDoc" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="LetraFact" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="IdFacturaVenta" Type="Int32" Nullable="false" />
+          <Property Name="NroFactura" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="FechaEmision" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ApellidoyNombre" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="TipoDocumento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NroDocumento" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="NetoGravado" Type="Double" />
+          <Property Name="NoGravado" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="Iva105" Type="Double" />
+          <Property Name="Iva21" Type="Double" />
+          <Property Name="MontoTotal" Type="Decimal" Precision="14" Scale="2" />
+          <Property Name="IdEmpresa" Type="Byte" Nullable="false" />
+          <Property Name="IdRegimenImpositivo" Type="Int32" Nullable="false" />
+          <Property Name="Impresa" Type="Boolean" Nullable="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VistaTotalesDiscriminadosFactB">
+          <Key>
+            <PropertyRef Name="IdFacturaVenta" />
+            <PropertyRef Name="Total" />
+          </Key>
+          <Property Name="IdFacturaVenta" Type="Int32" Nullable="false" />
+          <Property Name="TotalGravado" Type="Double" />
+          <Property Name="TotalNOGravado" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="IVA21" Type="Double" />
+          <Property Name="IVA105" Type="Double" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="14" Scale="2" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2479,6 +2683,79 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
                 <ScalarProperty Name="DescCorta" ColumnName="DescCorta" />
                 <ScalarProperty Name="IdFacturaVentaDetalle" ColumnName="IdFacturaVentaDetalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacturasElectronicas">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.FacturasElectronicas">
+              <MappingFragment StoreEntitySet="FacturasElectronicas">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="NCompFact" ColumnName="NCompFact" />
+                <ScalarProperty Name="FechaVtoCAE" ColumnName="FechaVtoCAE" />
+                <ScalarProperty Name="CAE" ColumnName="CAE" />
+                <ScalarProperty Name="IdFacturaVenta" ColumnName="IdFacturaVenta" />
+                <ScalarProperty Name="IdFacturaElectronica" ColumnName="IdFacturaElectronica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogErrores">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.LogErrores">
+              <MappingFragment StoreEntitySet="LogErrores">
+                <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+                <ScalarProperty Name="Metodo" ColumnName="Metodo" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_InsertarLogError" FunctionName="SistemaGestionPymeBDModel.Store.SP_InsertarLogError" />
+          <EntitySetMapping Name="AutenticacionesWSAA">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.AutenticacionesWSAA">
+              <MappingFragment StoreEntitySet="AutenticacionesWSAA">
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="FechaExpiracion" ColumnName="FechaExpiracion" />
+                <ScalarProperty Name="FechaAutorizacion" ColumnName="FechaAutorizacion" />
+                <ScalarProperty Name="Sign" ColumnName="Sign" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="IdAutenticacion" ColumnName="IdAutenticacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaLibroIvaVenta">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.VistaLibroIvaVenta">
+              <MappingFragment StoreEntitySet="VistaLibroIvaVenta">
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Impresa" ColumnName="Impresa" />
+                <ScalarProperty Name="IdRegimenImpositivo" ColumnName="IdRegimenImpositivo" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="MontoTotal" ColumnName="MontoTotal" />
+                <ScalarProperty Name="Iva21" ColumnName="Iva21" />
+                <ScalarProperty Name="Iva105" ColumnName="Iva105" />
+                <ScalarProperty Name="NoGravado" ColumnName="NoGravado" />
+                <ScalarProperty Name="NetoGravado" ColumnName="NetoGravado" />
+                <ScalarProperty Name="NroDocumento" ColumnName="NroDocumento" />
+                <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="ApellidoyNombre" ColumnName="ApellidoyNombre" />
+                <ScalarProperty Name="FechaEmision" ColumnName="FechaEmision" />
+                <ScalarProperty Name="NroFactura" ColumnName="NroFactura" />
+                <ScalarProperty Name="IdFacturaVenta" ColumnName="IdFacturaVenta" />
+                <ScalarProperty Name="LetraFact" ColumnName="LetraFact" />
+                <ScalarProperty Name="TipoDoc" ColumnName="TipoDoc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaTotalesDiscriminadosFactB">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.VistaTotalesDiscriminadosFactB">
+              <MappingFragment StoreEntitySet="VistaTotalesDiscriminadosFactB">
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IVA105" ColumnName="IVA105" />
+                <ScalarProperty Name="IVA21" ColumnName="IVA21" />
+                <ScalarProperty Name="TotalNOGravado" ColumnName="TotalNOGravado" />
+                <ScalarProperty Name="TotalGravado" ColumnName="TotalGravado" />
+                <ScalarProperty Name="IdFacturaVenta" ColumnName="IdFacturaVenta" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

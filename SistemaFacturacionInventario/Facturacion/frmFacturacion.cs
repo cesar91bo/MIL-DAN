@@ -50,7 +50,7 @@ namespace SistemaFacturacionInventario.Facturacion
 
                 if (Accion.ToUpper() == "MOD")
                 {
-                    // if (IdFact > 0) ConsultarFact(IdFact);
+                    if (IdFact > 0) ConsultarFact(IdFact);
                     if (Accion.ToUpper() == "MOD") lint = new List<Int64>();
                 }
 
@@ -60,6 +60,152 @@ namespace SistemaFacturacionInventario.Facturacion
                 string mensajeError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
                 MessageBox.Show(mensajeError);
             }
+        }
+
+        private void ConsultarFact(int idFact)
+        {
+            try
+            {
+                var repv = new FacturacionNegocio();
+                FacturasVenta fv = repv.ObtenerFactura(idFact);
+                int f = 0;
+
+
+                txtNroCliente.Text = fv.IdCliente.ToString();
+                chkMoverStock.Checked = fv.MoverStock;
+                BuscarCliente(fv.IdCliente);
+                cmboFormaPago.SelectedValue = fv.IdFormaPago;
+
+                if (!string.IsNullOrEmpty(fv.BVFact) && IdTipoDoc != 8) { txtBV.Text = fv.BVFact; }
+                if (IdTipoDoc == 2 || IdTipoDoc == 3)
+                {
+                    txtBVNC.Text = fv.BVReferencia;
+                    txtNroFactNC.Text = fv.NroCompFactReferencia;
+                }
+                if (IdTipoDoc == 8)
+                {
+                    txtNroComp.Text = fv.NCompFact;
+                }
+                FacturasVenta fact = repv.ObtenerFactura(lrem[0]);//agregado
+                foreach (Int32 r in lrem)
+                {
+                    List<FacturasVentaDetalle> detrem = repv.ObtenerDetalledeFacturaVta(r);
+                    FacturasVenta rem = repv.ObtenerFactura(r);
+                    txtDto.Text = rem.Descuento.ToString();
+                    dgrDetalle.Rows.Add(detrem.Count);
+
+
+                    if (fv.Impresa)
+                    {
+                        lblImpresa.Text = "La factura ya fue impresa";
+                        lblImpresa.Visible = true;
+                        txtNroComp.Text = fv.NCompFact;
+                        txtBV.Text = fv.BVFact;
+                        txtNroComp.Visible = true;
+                        txtBV.Visible = true;
+                    }
+                    else if (IdTipoDoc != 8)
+                    {
+                        lblImpresa.Visible = true;
+                        lblImpresa.Text = "La factura está pendiente de impresión";
+                    }
+
+                    if (cmbTipoFac.Text == "B")
+                    {
+                        lbllblIVA21.Visible = false;
+                        lbllblSubtDto.Visible = false;
+                        lbllblSubTotaldto105.Visible = false;
+                        lbllblSubTotaldto21.Visible = false;
+                        lbllblSubTotal21.Visible = false;
+                        lbllblSubTotal105.Visible = false;
+                        lbllblIVA105.Visible = false;
+                        lbllblIVA.Visible = false;
+                        lblSubtDto105.Visible = false;
+                        lblSubtDto21.Visible = false;
+                        lblSubTotal105.Visible = false;
+                        lblSubTotal21.Visible = false;
+                        lblSubtDto.Visible = false;
+                        lblTotalIva21.Visible = false;
+                        lblTotalIVA.Visible = false;
+                        lblTotalIva105.Visible = false;
+                    }
+                    else
+                    {
+                        lblSubtDto.Text = Math.Round(Convert.ToDecimal(lblSubtDto105.Text) + Convert.ToDecimal(lblSubtDto21.Text), 2, MidpointRounding.AwayFromZero).ToString();
+                        lblTotalIVA.Text = Math.Round(Convert.ToDecimal(lblTotalIva21.Text) + Convert.ToDecimal(lblTotalIva105.Text), 2, MidpointRounding.AwayFromZero).ToString();
+                    }
+                    if (Accion.ToUpper() == "VER") btnGuardar.Visible = false;
+
+                    List<FacturasVentaDetalle> det = repv.ObtenerDetalledeFacturaVta(IdFact);
+                    int i = 0;
+                    foreach (FacturasVentaDetalle fvd in det)
+                    {
+
+                        var cmb = dgrDetalle["Precio", i] as DataGridViewComboBoxCell;
+                        var dt = new DataTable();
+                        if (fvd.IdProducto != null)
+                        {
+                            var productoNegocio = new ProductoNegocio();
+                            CapaDatos.Modelos.Productos producto = productoNegocio.ObtenerProductoPorId(Convert.ToInt32(fvd.IdProducto));
+                            dgrDetalle.Rows[i].Cells[3].Value = producto.IdProducto.ToString();
+                            dgrDetalle.Rows[i].Cells[4].Value = producto.DescCorta;
+                            dgrDetalle.Rows[i].Cells[6].Value = producto.UnidadesMedida;
+
+                            dt =  productoNegocio.CargarComboPrecios(producto.IdProducto, cmbTipoFac.Text);
+
+                            cmb.DataSource = dt;
+                            cmb.DisplayMember = "Desc";
+                            cmb.ValueMember = "Precio";
+                            dgrDetalle.Rows[i].Cells[12].Value = false;
+
+                            if (Convert.ToBoolean(fvd.PrecioManual))
+                            {
+                                var rw = dt.NewRow();
+                                rw[0] = "Manual: $" + fvd.PrecioUnitario.ToString(CultureInfo.InvariantCulture).Replace(".", ",");
+                                rw[1] = fvd.PrecioUnitario.ToString(CultureInfo.InvariantCulture).Replace(".", ",");
+                                dt.Rows.Add(rw);
+                                cmb.DataSource = dt;
+                                cmb.DisplayMember = "Desc";
+                                cmb.ValueMember = "Precio";
+                            }
+
+                            cmb.Value = fvd.PrecioManual == false ? dt.Rows[0]["Precio"] : dt.Rows[2]["Precio"];
+                        }
+                        else
+                        {
+                            dgrDetalle.Rows[i].Cells[5].Value = fvd.IdProducto;
+                            dgrDetalle.Rows[i].Cells[7].Value = fvd.UMedida;
+                            dt.Columns.Add("Desc");
+                            dt.Columns.Add("Precio");
+                            DataRow rw = dt.NewRow();
+                            rw[0] = "$ " + fvd.PrecioUnitario;
+                            rw[1] = fvd.PrecioUnitario;
+                            dt.Rows.Add(rw);
+                            cmb.DataSource = dt;
+                            cmb.DisplayMember = "Desc";
+                            cmb.ValueMember = "Precio";
+                            cmb.Value = dt.Rows[0]["Precio"];
+                            dgrDetalle.Rows[i].Cells[12].Value = true;
+                            artdesc = true;
+                        }
+
+                        dgrDetalle.Rows[i].Cells[6].Value = fvd.Cantidad;
+                        dgrDetalle["Total", i].Value = Math.Round(fvd.Cantidad * Convert.ToDecimal(cmb.Value), 2, MidpointRounding.AwayFromZero);
+                        var repax = new AuxiliaresNegocio();
+                        TiposIva ti = repax.ObtenerTipoIVAporId(fvd.IdTipoIva);
+                        dgrDetalle.Rows[i].Cells[8].Value = ti.PorcentajeIVA;
+                        dgrDetalle.Rows[i].Cells[11].Value = false;
+                        dgrDetalle.Rows[i].Cells["IdFactVtaDetalle"].Value = fvd.IdFacturaVentaDetalle;
+                        i += 1;
+                        artdesc = false;
+                    }
+
+                    IdTipoDoc = fv.IdTipoDocumento;
+                    //if (IdTipoDoc == 8) btnImprimir.Visible = true;
+                    CalcularTotales(true);
+                }
+            }
+            catch (Exception ex) { throw ex; }
         }
 
         private void btnListado_Click(object sender, EventArgs e)
@@ -102,13 +248,13 @@ namespace SistemaFacturacionInventario.Facturacion
                 {
                     IdCliente = Convert.ToInt32(txtNroCliente.Text);
                     BuscarCliente(IdCliente);
-                    dgrDetalle.Enabled=true;
+                    dgrDetalle.Enabled = true;
                 }
                 else
                 {
                     IdCliente = 0;
                     lblNomreCliente.Visible = false;
-                    dgrDetalle.Enabled=false;
+                    dgrDetalle.Enabled = false;
                     MessageBox.Show("Ingrese Nro. de Cliente para realizar la búsqueda", "Error de Ingreso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
@@ -283,7 +429,7 @@ namespace SistemaFacturacionInventario.Facturacion
                     MessageBox.Show("No se encontró el Cliente", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     IdCliente = 0;
                     lblNomreCliente.Visible = false;
-                    dgrDetalle.Enabled  = false;
+                    dgrDetalle.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -506,26 +652,20 @@ namespace SistemaFacturacionInventario.Facturacion
                                 if (dgrDetalle[4, e.RowIndex].Value != null)
                                 {
                                     CapaDatos.Modelos.Productos art = productoNegocio.ObtenerProductoPorId(Convert.ToInt32(dgrDetalle[3, e.RowIndex].Value));
-                                    //if (IdTipoDoc != 2)
-                                    //{
-                                    //if (art.LlevarStock)
-                                    //{
-                                    //    if (Convert.ToDouble(dgrDetalle[e.ColumnIndex, e.RowIndex].Value.ToString().Replace(".", ",")) > art.StockActual)
-                                    //    {
-                                    //        if (User.Rol != TiposUsers.Administrador)
-                                    //        {
-                                    //            MessageBox.Show("No hay stock suficiente para este producto. " + Environment.NewLine + "Se requerirá autorización al Guardar", "ATENCIÓN!",
-                                    //                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                    //            Autorizar = true;
-                                    //        }
-                                    //        else MessageBox.Show("No hay stock suficiente para este producto. ", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                    //    }
-                                    //    else if ((art.StockActual - Convert.ToDouble(dgrDetalle[e.ColumnIndex, e.RowIndex].Value.ToString().Replace(".", ","))) < art.CantidadMinima)
-                                    //    {
-                                    //        MessageBox.Show("Se está superando la cantidad minima de Stock del Articulo", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                    //    }
-                                    //}
-                                    //}
+                                    if (IdTipoDoc != 2)
+                                    {
+                                        if (art.LlevarStock)
+                                        {
+                                            if (Convert.ToDouble(dgrDetalle[e.ColumnIndex, e.RowIndex].Value.ToString().Replace(".", ",")) > art.StockActual)
+                                            {
+                                                MessageBox.Show("No hay stock suficiente para este producto. ", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                            }
+                                            else if ((art.StockActual - Convert.ToDouble(dgrDetalle[e.ColumnIndex, e.RowIndex].Value.ToString().Replace(".", ","))) < art.CantidadMinima)
+                                            {
+                                                MessageBox.Show("Se está superando la cantidad minima de Stock del producto", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                            }
+                                        }
+                                    }
                                 }
                                 var cmb = dgrDetalle.Rows[e.RowIndex].Cells[8] as DataGridViewComboBoxCell;
                                 if (cmb.Value != null)
@@ -855,7 +995,7 @@ namespace SistemaFacturacionInventario.Facturacion
                 FacturasVenta factV = facturacionNegocio.ObtenerFacturasXNumFact(txtBVNC.Text, txtNroFactNC.Text, Convert.ToInt16(cmbTipoFac.SelectedValue));
                 if (factV != null) fact.MoverStock = factV.MoverStock;
             }
-            //else fact.MoverStock = chkMoverStock.Checked;
+            else fact.MoverStock = chkMoverStock.Checked;
 
             if (IdTipoDoc == 8 && Accion.ToUpper() == "ALTA")
             {
@@ -1122,7 +1262,16 @@ namespace SistemaFacturacionInventario.Facturacion
 
         private void Impresion()
         {
+            if(IdFact > 0)
+            {
+                var listado = new List<int>();
 
+                listado.Add(Convert.ToInt32(IdFact));
+
+                var frmc = new frmFacturaElectronica() { ListFacturas = listado, bocaVenta = "008" };
+
+                frmc.ShowDialog();
+            }
         }
     }
 }

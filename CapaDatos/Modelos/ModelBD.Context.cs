@@ -12,6 +12,8 @@ namespace CapaDatos.Modelos
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class SistemaGestionPymeBDEntities : DbContext
     {
@@ -53,5 +55,31 @@ namespace CapaDatos.Modelos
         public virtual DbSet<RemitosXfacturados> RemitosXfacturados { get; set; }
         public virtual DbSet<VistaCabFactVenta> VistaCabFactVenta { get; set; }
         public virtual DbSet<VistaDetalleFactVenta> VistaDetalleFactVenta { get; set; }
+        public virtual DbSet<FacturasElectronicas> FacturasElectronicas { get; set; }
+        public virtual DbSet<LogErrores> LogErrores { get; set; }
+        public virtual DbSet<AutenticacionesWSAA> AutenticacionesWSAA { get; set; }
+        public virtual DbSet<VistaLibroIvaVenta> VistaLibroIvaVenta { get; set; }
+        public virtual DbSet<VistaTotalesDiscriminadosFactB> VistaTotalesDiscriminadosFactB { get; set; }
+    
+        public virtual int SP_InsertarLogError(string origen, string metodo, string mensaje, string stackTrace)
+        {
+            var origenParameter = origen != null ?
+                new ObjectParameter("Origen", origen) :
+                new ObjectParameter("Origen", typeof(string));
+    
+            var metodoParameter = metodo != null ?
+                new ObjectParameter("Metodo", metodo) :
+                new ObjectParameter("Metodo", typeof(string));
+    
+            var mensajeParameter = mensaje != null ?
+                new ObjectParameter("Mensaje", mensaje) :
+                new ObjectParameter("Mensaje", typeof(string));
+    
+            var stackTraceParameter = stackTrace != null ?
+                new ObjectParameter("StackTrace", stackTrace) :
+                new ObjectParameter("StackTrace", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertarLogError", origenParameter, metodoParameter, mensajeParameter, stackTraceParameter);
+        }
     }
 }
