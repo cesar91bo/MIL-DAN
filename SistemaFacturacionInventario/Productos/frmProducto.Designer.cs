@@ -56,6 +56,9 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnBaja = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnProveedor = new System.Windows.Forms.Button();
+            this.cmbProveedor = new System.Windows.Forms.ComboBox();
+            this.lblProveedor = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,6 +96,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnProveedor);
+            this.groupBox1.Controls.Add(this.cmbProveedor);
+            this.groupBox1.Controls.Add(this.lblProveedor);
             this.groupBox1.Controls.Add(this.lblErrores);
             this.groupBox1.Controls.Add(this.btnUMedida);
             this.groupBox1.Controls.Add(this.cmbUMedida);
@@ -119,7 +125,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(895, 264);
+            this.groupBox1.Size = new System.Drawing.Size(895, 309);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
@@ -128,7 +134,7 @@
             this.lblErrores.AutoSize = true;
             this.lblErrores.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lblErrores.ForeColor = System.Drawing.Color.Red;
-            this.lblErrores.Location = new System.Drawing.Point(20, 214);
+            this.lblErrores.Location = new System.Drawing.Point(9, 247);
             this.lblErrores.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblErrores.Name = "lblErrores";
             this.lblErrores.Size = new System.Drawing.Size(43, 13);
@@ -139,7 +145,7 @@
             // btnUMedida
             // 
             this.btnUMedida.Image = ((System.Drawing.Image)(resources.GetObject("btnUMedida.Image")));
-            this.btnUMedida.Location = new System.Drawing.Point(852, 56);
+            this.btnUMedida.Location = new System.Drawing.Point(852, 55);
             this.btnUMedida.Margin = new System.Windows.Forms.Padding(4);
             this.btnUMedida.Name = "btnUMedida";
             this.btnUMedida.Size = new System.Drawing.Size(35, 35);
@@ -160,7 +166,7 @@
             // 
             this.lblStockMinimo.AutoSize = true;
             this.lblStockMinimo.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblStockMinimo.Location = new System.Drawing.Point(496, 158);
+            this.lblStockMinimo.Location = new System.Drawing.Point(496, 196);
             this.lblStockMinimo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStockMinimo.Name = "lblStockMinimo";
             this.lblStockMinimo.Size = new System.Drawing.Size(80, 13);
@@ -182,7 +188,7 @@
             // 
             this.txtStockMin.Enabled = false;
             this.txtStockMin.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.txtStockMin.Location = new System.Drawing.Point(615, 155);
+            this.txtStockMin.Location = new System.Drawing.Point(615, 193);
             this.txtStockMin.Margin = new System.Windows.Forms.Padding(4);
             this.txtStockMin.MaxLength = 6;
             this.txtStockMin.Name = "txtStockMin";
@@ -195,7 +201,7 @@
             // 
             this.lblStockActual.AutoSize = true;
             this.lblStockActual.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblStockActual.Location = new System.Drawing.Point(503, 128);
+            this.lblStockActual.Location = new System.Drawing.Point(503, 166);
             this.lblStockActual.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStockActual.Name = "lblStockActual";
             this.lblStockActual.Size = new System.Drawing.Size(73, 13);
@@ -206,7 +212,7 @@
             // 
             this.txtStockActual.Enabled = false;
             this.txtStockActual.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.txtStockActual.Location = new System.Drawing.Point(615, 119);
+            this.txtStockActual.Location = new System.Drawing.Point(615, 157);
             this.txtStockActual.Margin = new System.Windows.Forms.Padding(4);
             this.txtStockActual.MaxLength = 6;
             this.txtStockActual.Name = "txtStockActual";
@@ -218,7 +224,7 @@
             // chkStock
             // 
             this.chkStock.AutoSize = true;
-            this.chkStock.Location = new System.Drawing.Point(615, 93);
+            this.chkStock.Location = new System.Drawing.Point(615, 131);
             this.chkStock.Margin = new System.Windows.Forms.Padding(4);
             this.chkStock.Name = "chkStock";
             this.chkStock.Size = new System.Drawing.Size(15, 14);
@@ -230,7 +236,7 @@
             // 
             this.lblLlevarStock.AutoSize = true;
             this.lblLlevarStock.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblLlevarStock.Location = new System.Drawing.Point(506, 95);
+            this.lblLlevarStock.Location = new System.Drawing.Point(506, 133);
             this.lblLlevarStock.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLlevarStock.Name = "lblLlevarStock";
             this.lblLlevarStock.Size = new System.Drawing.Size(70, 13);
@@ -285,7 +291,7 @@
             this.txtDescLarga.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescLarga.Multiline = true;
             this.txtDescLarga.Name = "txtDescLarga";
-            this.txtDescLarga.Size = new System.Drawing.Size(310, 105);
+            this.txtDescLarga.Size = new System.Drawing.Size(310, 138);
             this.txtDescLarga.TabIndex = 3;
             // 
             // lblDescCorta
@@ -390,6 +396,37 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // btnProveedor
+            // 
+            this.btnProveedor.Image = ((System.Drawing.Image)(resources.GetObject("btnProveedor.Image")));
+            this.btnProveedor.Location = new System.Drawing.Point(852, 91);
+            this.btnProveedor.Margin = new System.Windows.Forms.Padding(4);
+            this.btnProveedor.Name = "btnProveedor";
+            this.btnProveedor.Size = new System.Drawing.Size(35, 35);
+            this.btnProveedor.TabIndex = 22;
+            this.btnProveedor.UseVisualStyleBackColor = true;
+            this.btnProveedor.Click += new System.EventHandler(this.btnProveedor_Click);
+            // 
+            // cmbProveedor
+            // 
+            this.cmbProveedor.FormattingEnabled = true;
+            this.cmbProveedor.Location = new System.Drawing.Point(612, 97);
+            this.cmbProveedor.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbProveedor.Name = "cmbProveedor";
+            this.cmbProveedor.Size = new System.Drawing.Size(227, 21);
+            this.cmbProveedor.TabIndex = 21;
+            // 
+            // lblProveedor
+            // 
+            this.lblProveedor.AutoSize = true;
+            this.lblProveedor.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.lblProveedor.Location = new System.Drawing.Point(514, 102);
+            this.lblProveedor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProveedor.Name = "lblProveedor";
+            this.lblProveedor.Size = new System.Drawing.Size(62, 13);
+            this.lblProveedor.TabIndex = 23;
+            this.lblProveedor.Text = "Proveedor:";
+            // 
             // frmProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -443,5 +480,8 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblBaja;
         private System.Windows.Forms.Label lblErrores;
+        private System.Windows.Forms.Button btnProveedor;
+        private System.Windows.Forms.ComboBox cmbProveedor;
+        private System.Windows.Forms.Label lblProveedor;
     }
 }

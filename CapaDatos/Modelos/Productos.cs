@@ -38,6 +38,7 @@ namespace CapaDatos.Modelos
         public string CodigoProducto { get; set; }
         public Nullable<int> Embalaje { get; set; }
         public Nullable<System.DateTime> FechaAcceso { get; set; }
+        public int IdProveedor { get; set; }
     
         public virtual Rubros Rubros { get; set; }
         public virtual UnidadesMedida UnidadesMedida { get; set; }

@@ -96,10 +96,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelBD.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\ModelBD1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelBD.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\PreciosVenta.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Productos.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\Proveedores.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Provincias.cs">
@@ -171,6 +179,7 @@
     <None Include="App.Config" />
     <EntityDeploy Include="Modelos\ModelBD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelBD1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="Modelos\ModelBD.edmx.diagram">
       <DependentUpon>ModelBD.edmx</DependentUpon>

@@ -1,6 +1,7 @@
 ﻿using CapaDatos.Modelos;
 using CapaNegocio;
 using SistemaFacturacionInventario.Principal;
+using SistemaFacturacionInventario.Proveedores;
 using SistemaFacturacionInventario.Rubros;
 using SistemaFacturacionInventario.Unidad_Medida;
 using System;
@@ -32,8 +33,9 @@ namespace SistemaFacturacionInventario.Productos
             {
                 LlenarComboRubro();
                 LlenarComboUMedida();
+                LlenarComboProveedor();
 
-                if(Accion.ToUpper() == "MOD")
+                if (Accion.ToUpper() == "MOD")
                 {
                     btnBaja.Visible = true;
                     txtStockActual.Enabled = false;
@@ -61,6 +63,14 @@ namespace SistemaFacturacionInventario.Productos
             cmbUMedida.DisplayMember = "Descripcion";
             cmbUMedida.ValueMember = "IdUnidadMedida";
             cmbUMedida.DataSource = rep.ObtenerUMedida() ;
+        }
+
+        private void LlenarComboProveedor()
+        {
+            var rep = new AuxiliaresNegocio();
+            cmbProveedor.DisplayMember = "Descripcion";
+            cmbProveedor.ValueMember = "IdProveedor";
+            cmbProveedor.DataSource = rep.ObtenerProveedores();
         }
 
         private void LlenarComboRubro()
@@ -127,6 +137,7 @@ namespace SistemaFacturacionInventario.Productos
                     CantidadMinima = Convert.ToDouble(txtStockMin.Text.Replace(".", ",")),
                     IdRubro = Convert.ToInt32(cmbRubro.SelectedValue),
                     IdUnidadMedida = Convert.ToInt32(cmbUMedida.SelectedValue),
+                    IdProveedor = Convert.ToInt32(cmbProveedor.SelectedValue),
                     LlevarStock = chkStock.Checked,
                     StockActual = Convert.ToDouble(txtStockActual.Text.Replace(".", ",")),
                     UltimaActStock = DateTime.Now,
@@ -166,6 +177,7 @@ namespace SistemaFacturacionInventario.Productos
             txtStockMin.Text = "0";
             cmbRubro.SelectedValue = 1;
             cmbUMedida.SelectedValue = 1;
+            cmbProveedor.SelectedValue = 1;
             chkStock.Checked = false;
             IdProducto = 0;
         }
@@ -206,6 +218,7 @@ namespace SistemaFacturacionInventario.Productos
                     txtStockMin.Text = producto.CantidadMinima.ToString();
                     cmbRubro.SelectedValue = producto.IdRubro;
                     cmbUMedida.SelectedValue = producto.IdUnidadMedida;
+                    cmbProveedor.SelectedValue = producto.IdProveedor;
                     chkStock.Checked = producto.LlevarStock;
                     IdProducto = producto.IdProducto;
                     Accion = "MOD";
@@ -332,5 +345,20 @@ namespace SistemaFacturacionInventario.Productos
             }
         }
 
+        private void btnProveedor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmProveedores();
+                frm.ShowDialog();
+                if (frm.DialogResult != DialogResult.Cancel) return;
+                LlenarComboProveedor();
+                cmbProveedor.SelectedIndex = cmbProveedor.Items.Count - 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

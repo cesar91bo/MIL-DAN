@@ -55,6 +55,22 @@ namespace CapaNegocio
             }
         }
 
+        public bool EditarProveedor(Proveedores proveedor)
+        {
+            try
+            {
+                var proveedorBase = db.Proveedores.SingleOrDefault(c => c.IdProveedor == proveedor.IdProveedor);
+                proveedorBase.Descripcion = proveedor.Descripcion;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                logger.RegistrarError("AuxiliaresNegocio", "EditarProveedor", ex);
+                throw new Exception("Ocurrió un error al editar proveedor. Contacte al soporte técnico.", ex);
+            }
+        }
+
         public bool NuevaUMedida(UnidadesMedida umed)
         {
             try
@@ -124,10 +140,48 @@ namespace CapaNegocio
                     return false;
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 logger.RegistrarError("AuxiliaresNegocio", "BorrarUMedida", ex);
                 throw new Exception("Ocurrió un error al borrar unidad de medida. Contacte al soporte técnico.", ex);
+            }
+        }
+
+        public List<Proveedores> ObtenerProveedores()
+        {
+            return db.Proveedores.OrderBy(x => x.IdProveedor).ToList();
+        }
+
+        public Proveedores ObtenerProveedorPorId(int idproveedor)
+        {
+            return db.Proveedores.SingleOrDefault(c => c.IdProveedor == idproveedor);
+        }
+
+        public bool BorrarProveedor(int idProveedor)
+        {
+            try
+            {
+                var productoNegocio = new ProductoNegocio();
+                if (productoNegocio.ObtenerTodo().Any(c => c.IdProveedor == idProveedor))
+                {
+                    return false;
+                }
+                else
+                {
+                    var proveedor = db.Proveedores.SingleOrDefault(u => u.IdProveedor == idProveedor);
+                    if (proveedor != null)
+                    {
+                        db.Proveedores.Remove(proveedor);
+                        db.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.RegistrarError("AuxiliaresNegocio", "BorrarProveedor", ex);
+                throw new Exception("Ocurrió un error al borrar proveedor. Contacte al soporte técnico.", ex);
             }
         }
 
@@ -167,6 +221,22 @@ namespace CapaNegocio
                 return true;
             }
             catch (Exception ex) { throw ex; }
+        }
+
+        public bool NuevoProveedor(Proveedores proveedores)
+        {
+            try
+            {
+                AgregarProveedor(proveedores);
+                return true;
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private void AgregarProveedor(Proveedores proveedores)
+        {
+            db.Proveedores.Add(proveedores);
+            db.SaveChanges();
         }
 
         public List<Provincias> ObtenerProvincias() { return db.Provincias.ToList(); }

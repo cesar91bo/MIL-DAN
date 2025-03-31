@@ -220,6 +220,14 @@
           <Property Name="CodigoProducto" Type="nvarchar" MaxLength="50" />
           <Property Name="Embalaje" Type="int" />
           <Property Name="FechaAcceso" Type="datetime" />
+          <Property Name="IdProveedor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Provincias">
           <Key>
@@ -581,6 +589,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             <PropertyRef Name="UnidadMedida" />
             <PropertyRef Name="IdRubro" />
             <PropertyRef Name="IdUnidadMedida" />
+            <PropertyRef Name="IdProveedor" />
           </Key>
           <Property Name="IdProducto" Type="int" Nullable="false" />
           <Property Name="DescCorta" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -598,6 +607,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <Property Name="FechaCarga" Type="datetime" />
           <Property Name="IdRubro" Type="int" Nullable="false" />
           <Property Name="IdUnidadMedida" Type="int" Nullable="false" />
+          <Property Name="IdProveedor" Type="int" Nullable="false" />
           <Property Name="CodigoProducto" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errores durante la generación:
@@ -901,6 +911,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
           <EntitySet Name="LogErrores" EntityType="Self.LogErrores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PreciosVenta" EntityType="Self.PreciosVenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provincias" EntityType="Self.Provincias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegimenesImpositivos" EntityType="Self.RegimenesImpositivos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Remitos" EntityType="Self.Remitos" Schema="dbo" store:Type="Tables" />
@@ -1055,6 +1066,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
     [VistaProducto].[FechaCarga] AS [FechaCarga], 
     [VistaProducto].[IdRubro] AS [IdRubro], 
     [VistaProducto].[IdUnidadMedida] AS [IdUnidadMedida], 
+    [VistaProducto].[IdProveedor] AS [IdProveedor], 
     [VistaProducto].[CodigoProducto] AS [CodigoProducto]
     FROM [dbo].[VistaProducto] AS [VistaProducto]</DefiningQuery>
           </EntitySet>
@@ -1297,6 +1309,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
           <EntitySet Name="AutenticacionesWSAA" EntityType="SistemaGestionPymeBDModel.AutenticacionesWSAA" />
           <EntitySet Name="VistaLibroIvaVenta" EntityType="SistemaGestionPymeBDModel.VistaLibroIvaVenta" />
           <EntitySet Name="VistaTotalesDiscriminadosFactB" EntityType="SistemaGestionPymeBDModel.VistaTotalesDiscriminadosFactB" />
+          <EntitySet Name="Proveedores" EntityType="SistemaGestionPymeBDModel.Proveedores" />
         </EntityContainer>
         <EntityType Name="Productos">
           <Key>
@@ -1323,6 +1336,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
           <NavigationProperty Name="PreciosVenta" Relationship="SistemaGestionPymeBDModel.FK_PreciosVenta_Productos" FromRole="Productos" ToRole="PreciosVenta" />
           <NavigationProperty Name="FacturasVentaDetalle" Relationship="SistemaGestionPymeBDModel.FK_FacturasDetalle_Productos" FromRole="Productos" ToRole="FacturasVentaDetalle" />
           <NavigationProperty Name="RemitosDetalle" Relationship="SistemaGestionPymeBDModel.FK_RemitosDetalle_Productos" FromRole="Productos" ToRole="RemitosDetalle" />
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Rubros">
           <Key>
@@ -1399,6 +1413,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
             <PropertyRef Name="UnidadMedida" />
             <PropertyRef Name="IdRubro" />
             <PropertyRef Name="IdUnidadMedida" />
+            <PropertyRef Name="IdProveedor" />
           </Key>
           <Property Name="IdProducto" Type="Int32" Nullable="false" />
           <Property Name="DescCorta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -1417,6 +1432,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
           <Property Name="IdRubro" Type="Int32" Nullable="false" />
           <Property Name="CodigoProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdUnidadMedida" Type="Int32" Nullable="false" />
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="VistaPreciosVenta">
           <Key>
@@ -2195,6 +2211,13 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
           <Property Name="IVA105" Type="Double" />
           <Property Name="Total" Type="Decimal" Nullable="false" Precision="14" Scale="2" />
         </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2212,6 +2235,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
           <EntitySetMapping Name="Productos">
             <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.Productos">
               <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
                 <ScalarProperty Name="FechaAcceso" ColumnName="FechaAcceso" />
                 <ScalarProperty Name="Embalaje" ColumnName="Embalaje" />
                 <ScalarProperty Name="CodigoProducto" ColumnName="CodigoProducto" />
@@ -2261,6 +2285,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
           <EntitySetMapping Name="VistaProducto">
             <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.VistaProducto">
               <MappingFragment StoreEntitySet="VistaProducto">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
                 <ScalarProperty Name="IdUnidadMedida" ColumnName="IdUnidadMedida" />
                 <ScalarProperty Name="CodigoProducto" ColumnName="CodigoProducto" />
                 <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
@@ -2756,6 +2781,14 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
                 <ScalarProperty Name="TotalNOGravado" ColumnName="TotalNOGravado" />
                 <ScalarProperty Name="TotalGravado" ColumnName="TotalGravado" />
                 <ScalarProperty Name="IdFacturaVenta" ColumnName="IdFacturaVenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedores">
+            <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.Proveedores">
+              <MappingFragment StoreEntitySet="Proveedores">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

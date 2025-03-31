@@ -834,7 +834,7 @@ namespace SistemaFacturacionInventario.Facturacion
                         else
                         {
                             if (MessageBox.Show("El Comprobante se ingresó correctamente." + Environment.NewLine + "Imprimir Comprobante?", "ALTA COMPROBANTE", MessageBoxButtons.YesNo,
-                                    MessageBoxIcon.Question) == DialogResult.Yes) Impresion();
+                                    MessageBoxIcon.Question) == DialogResult.Yes) GenerarFacturaElectronica();
                         }
                         Limpiar();
                         if (ListPre != null) ListPre.Clear();
@@ -844,7 +844,7 @@ namespace SistemaFacturacionInventario.Facturacion
                 {
                     if (!facturacionNegocio.EditarFact(IdFact, fact, det, lint)) return;
                     if (MessageBox.Show("El Comprobante se actualizó correctamente." + Environment.NewLine + "Imprimir Comprobante?", "EDICIÓN COMPROBANTE", MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.Yes) Impresion();
+                            MessageBoxIcon.Question) == DialogResult.Yes) GenerarFacturaElectronica();
                     Close();
                 }
             }
@@ -1260,7 +1260,7 @@ namespace SistemaFacturacionInventario.Facturacion
             chkMoverStock.Checked = false;
         }
 
-        private void Impresion()
+        private void GenerarFacturaElectronica()
         {
             if(IdFact > 0)
             {
@@ -1271,6 +1271,36 @@ namespace SistemaFacturacionInventario.Facturacion
                 var frmc = new frmFacturaElectronica() { ListFacturas = listado, bocaVenta = "008" };
 
                 frmc.ShowDialog();
+
+                ImprimirTicket();
+            }
+        }
+
+        private void ImprimirTicket()
+        {
+            try
+            {
+                var facturacionNegocio = new FacturacionNegocio();
+
+                var factura = facturacionNegocio.ObtenerFactura(IdFact);
+                if (factura != null)
+                {
+                    var factDetalle = facturacionNegocio.ObtenerDetalledeFacturaVta(IdFact);
+
+                    if (factDetalle != null)
+                    {
+                        ImprimeFactura.ImprimeFacturaElec(factura, factDetalle);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró la factura.");
+                }
+            }
+            catch (Exception ex)
+            {
+                string mensajeError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                MessageBox.Show(mensajeError);
             }
         }
     }

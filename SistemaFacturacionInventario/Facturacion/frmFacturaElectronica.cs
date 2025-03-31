@@ -397,7 +397,7 @@ namespace SistemaFacturacionInventario.Facturacion
 
                 foreach (FECAEDetResponse res in Autorizacion.FeDetResp.ToList())
                 {
-                    MessageBox.Show(res.Resultado);
+                    //MessageBox.Show(res.Resultado);
                     if (res.Observaciones == null) continue;
                     foreach (Obs obs in res.Observaciones) MessageBox.Show(obs.Msg);
                 }
