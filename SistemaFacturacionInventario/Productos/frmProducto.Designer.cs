@@ -33,6 +33,9 @@
             this.txtNroProducto = new System.Windows.Forms.TextBox();
             this.lblNroArticulo = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnProveedor = new System.Windows.Forms.Button();
+            this.cmbProveedor = new System.Windows.Forms.ComboBox();
+            this.lblProveedor = new System.Windows.Forms.Label();
             this.lblErrores = new System.Windows.Forms.Label();
             this.btnUMedida = new System.Windows.Forms.Button();
             this.cmbUMedida = new System.Windows.Forms.ComboBox();
@@ -56,9 +59,6 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnBaja = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnProveedor = new System.Windows.Forms.Button();
-            this.cmbProveedor = new System.Windows.Forms.ComboBox();
-            this.lblProveedor = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,6 +128,37 @@
             this.groupBox1.Size = new System.Drawing.Size(895, 309);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
+            // 
+            // btnProveedor
+            // 
+            this.btnProveedor.Image = ((System.Drawing.Image)(resources.GetObject("btnProveedor.Image")));
+            this.btnProveedor.Location = new System.Drawing.Point(852, 91);
+            this.btnProveedor.Margin = new System.Windows.Forms.Padding(4);
+            this.btnProveedor.Name = "btnProveedor";
+            this.btnProveedor.Size = new System.Drawing.Size(35, 35);
+            this.btnProveedor.TabIndex = 22;
+            this.btnProveedor.UseVisualStyleBackColor = true;
+            this.btnProveedor.Click += new System.EventHandler(this.btnProveedor_Click);
+            // 
+            // cmbProveedor
+            // 
+            this.cmbProveedor.FormattingEnabled = true;
+            this.cmbProveedor.Location = new System.Drawing.Point(612, 97);
+            this.cmbProveedor.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbProveedor.Name = "cmbProveedor";
+            this.cmbProveedor.Size = new System.Drawing.Size(227, 21);
+            this.cmbProveedor.TabIndex = 21;
+            // 
+            // lblProveedor
+            // 
+            this.lblProveedor.AutoSize = true;
+            this.lblProveedor.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.lblProveedor.Location = new System.Drawing.Point(514, 102);
+            this.lblProveedor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProveedor.Name = "lblProveedor";
+            this.lblProveedor.Size = new System.Drawing.Size(62, 13);
+            this.lblProveedor.TabIndex = 23;
+            this.lblProveedor.Text = "Proveedor:";
             // 
             // lblErrores
             // 
@@ -267,12 +298,12 @@
             // 
             this.lblRubro.AutoSize = true;
             this.lblRubro.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblRubro.Location = new System.Drawing.Point(534, 42);
+            this.lblRubro.Location = new System.Drawing.Point(515, 42);
             this.lblRubro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRubro.Name = "lblRubro";
-            this.lblRubro.Size = new System.Drawing.Size(42, 13);
+            this.lblRubro.Size = new System.Drawing.Size(60, 13);
             this.lblRubro.TabIndex = 8;
-            this.lblRubro.Text = "Rubro:";
+            this.lblRubro.Text = "Categoría:";
             // 
             // lblDescLarga
             // 
@@ -395,37 +426,6 @@
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // btnProveedor
-            // 
-            this.btnProveedor.Image = ((System.Drawing.Image)(resources.GetObject("btnProveedor.Image")));
-            this.btnProveedor.Location = new System.Drawing.Point(852, 91);
-            this.btnProveedor.Margin = new System.Windows.Forms.Padding(4);
-            this.btnProveedor.Name = "btnProveedor";
-            this.btnProveedor.Size = new System.Drawing.Size(35, 35);
-            this.btnProveedor.TabIndex = 22;
-            this.btnProveedor.UseVisualStyleBackColor = true;
-            this.btnProveedor.Click += new System.EventHandler(this.btnProveedor_Click);
-            // 
-            // cmbProveedor
-            // 
-            this.cmbProveedor.FormattingEnabled = true;
-            this.cmbProveedor.Location = new System.Drawing.Point(612, 97);
-            this.cmbProveedor.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbProveedor.Name = "cmbProveedor";
-            this.cmbProveedor.Size = new System.Drawing.Size(227, 21);
-            this.cmbProveedor.TabIndex = 21;
-            // 
-            // lblProveedor
-            // 
-            this.lblProveedor.AutoSize = true;
-            this.lblProveedor.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblProveedor.Location = new System.Drawing.Point(514, 102);
-            this.lblProveedor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblProveedor.Name = "lblProveedor";
-            this.lblProveedor.Size = new System.Drawing.Size(62, 13);
-            this.lblProveedor.TabIndex = 23;
-            this.lblProveedor.Text = "Proveedor:";
             // 
             // frmProducto
             // 

@@ -297,7 +297,14 @@ namespace SistemaFacturacionInventario.wsfev1 {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string MonIdField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double MonCotizField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CanMisMonExtField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CondicionIVAReceptorIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private SistemaFacturacionInventario.wsfev1.CbteAsoc[] CbtesAsocField;
@@ -538,7 +545,7 @@ namespace SistemaFacturacionInventario.wsfev1 {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=16)]
+        [System.Runtime.Serialization.DataMemberAttribute(Order=16)]
         public double MonCotiz {
             get {
                 return this.MonCotizField;
@@ -552,6 +559,32 @@ namespace SistemaFacturacionInventario.wsfev1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=17)]
+        public string CanMisMonExt {
+            get {
+                return this.CanMisMonExtField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CanMisMonExtField, value) != true)) {
+                    this.CanMisMonExtField = value;
+                    this.RaisePropertyChanged("CanMisMonExt");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=18)]
+        public int CondicionIVAReceptorId {
+            get {
+                return this.CondicionIVAReceptorIdField;
+            }
+            set {
+                if ((this.CondicionIVAReceptorIdField.Equals(value) != true)) {
+                    this.CondicionIVAReceptorIdField = value;
+                    this.RaisePropertyChanged("CondicionIVAReceptorId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=19)]
         public SistemaFacturacionInventario.wsfev1.CbteAsoc[] CbtesAsoc {
             get {
                 return this.CbtesAsocField;
@@ -564,7 +597,7 @@ namespace SistemaFacturacionInventario.wsfev1 {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=18)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=20)]
         public SistemaFacturacionInventario.wsfev1.Tributo[] Tributos {
             get {
                 return this.TributosField;
@@ -577,7 +610,7 @@ namespace SistemaFacturacionInventario.wsfev1 {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=19)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=21)]
         public SistemaFacturacionInventario.wsfev1.AlicIva[] Iva {
             get {
                 return this.IvaField;
@@ -590,7 +623,7 @@ namespace SistemaFacturacionInventario.wsfev1 {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=20)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=22)]
         public SistemaFacturacionInventario.wsfev1.Opcional[] Opcionales {
             get {
                 return this.OpcionalesField;
@@ -603,7 +636,7 @@ namespace SistemaFacturacionInventario.wsfev1 {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=21)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=23)]
         public SistemaFacturacionInventario.wsfev1.Comprador[] Compradores {
             get {
                 return this.CompradoresField;
@@ -616,7 +649,7 @@ namespace SistemaFacturacionInventario.wsfev1 {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=22)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=24)]
         public SistemaFacturacionInventario.wsfev1.Periodo PeriodoAsoc {
             get {
                 return this.PeriodoAsocField;
@@ -629,7 +662,7 @@ namespace SistemaFacturacionInventario.wsfev1 {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=23)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=25)]
         public SistemaFacturacionInventario.wsfev1.Actividad[] Actividades {
             get {
                 return this.ActividadesField;
@@ -4337,6 +4370,159 @@ namespace SistemaFacturacionInventario.wsfev1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CondicionIvaReceptorResponse", Namespace="http://ar.gov.afip.dif.FEV1/")]
+    [System.SerializableAttribute()]
+    public partial class CondicionIvaReceptorResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private SistemaFacturacionInventario.wsfev1.CondicionIvaReceptor[] ResultGetField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private SistemaFacturacionInventario.wsfev1.Err[] ErrorsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private SistemaFacturacionInventario.wsfev1.Evt[] EventsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public SistemaFacturacionInventario.wsfev1.CondicionIvaReceptor[] ResultGet {
+            get {
+                return this.ResultGetField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ResultGetField, value) != true)) {
+                    this.ResultGetField = value;
+                    this.RaisePropertyChanged("ResultGet");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public SistemaFacturacionInventario.wsfev1.Err[] Errors {
+            get {
+                return this.ErrorsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ErrorsField, value) != true)) {
+                    this.ErrorsField = value;
+                    this.RaisePropertyChanged("Errors");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public SistemaFacturacionInventario.wsfev1.Evt[] Events {
+            get {
+                return this.EventsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EventsField, value) != true)) {
+                    this.EventsField = value;
+                    this.RaisePropertyChanged("Events");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CondicionIvaReceptor", Namespace="http://ar.gov.afip.dif.FEV1/")]
+    [System.SerializableAttribute()]
+    public partial class CondicionIvaReceptor : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Cmp_ClaseField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string Desc {
+            get {
+                return this.DescField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescField, value) != true)) {
+                    this.DescField = value;
+                    this.RaisePropertyChanged("Desc");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string Cmp_Clase {
+            get {
+                return this.Cmp_ClaseField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Cmp_ClaseField, value) != true)) {
+                    this.Cmp_ClaseField = value;
+                    this.RaisePropertyChanged("Cmp_Clase");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DocTipoResponse", Namespace="http://ar.gov.afip.dif.FEV1/")]
     [System.SerializableAttribute()]
     public partial class DocTipoResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -4922,6 +5108,13 @@ namespace SistemaFacturacionInventario.wsfev1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://ar.gov.afip.dif.FEV1/FEParamGetTiposCbte", ReplyAction="*")]
         System.Threading.Tasks.Task<SistemaFacturacionInventario.wsfev1.FEParamGetTiposCbteResponse> FEParamGetTiposCbteAsync(SistemaFacturacionInventario.wsfev1.FEParamGetTiposCbteRequest request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento Auth del espacio de nombres http://ar.gov.afip.dif.FEV1/ no está marcado para aceptar valores nil.
+        [System.ServiceModel.OperationContractAttribute(Action="http://ar.gov.afip.dif.FEV1/FEParamGetCondicionIvaReceptor", ReplyAction="*")]
+        SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorResponse FEParamGetCondicionIvaReceptor(SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://ar.gov.afip.dif.FEV1/FEParamGetCondicionIvaReceptor", ReplyAction="*")]
+        System.Threading.Tasks.Task<SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorResponse> FEParamGetCondicionIvaReceptorAsync(SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento Auth del espacio de nombres http://ar.gov.afip.dif.FEV1/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://ar.gov.afip.dif.FEV1/FEParamGetTiposDoc", ReplyAction="*")]
@@ -5699,12 +5892,16 @@ namespace SistemaFacturacionInventario.wsfev1 {
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
         public string MonId;
         
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string FchCotiz;
+        
         public FEParamGetCotizacionRequestBody() {
         }
         
-        public FEParamGetCotizacionRequestBody(SistemaFacturacionInventario.wsfev1.FEAuthRequest Auth, string MonId) {
+        public FEParamGetCotizacionRequestBody(SistemaFacturacionInventario.wsfev1.FEAuthRequest Auth, string MonId, string FchCotiz) {
             this.Auth = Auth;
             this.MonId = MonId;
+            this.FchCotiz = FchCotiz;
         }
     }
     
@@ -6222,6 +6419,78 @@ namespace SistemaFacturacionInventario.wsfev1 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class FEParamGetCondicionIvaReceptorRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="FEParamGetCondicionIvaReceptor", Namespace="http://ar.gov.afip.dif.FEV1/", Order=0)]
+        public SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorRequestBody Body;
+        
+        public FEParamGetCondicionIvaReceptorRequest() {
+        }
+        
+        public FEParamGetCondicionIvaReceptorRequest(SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://ar.gov.afip.dif.FEV1/")]
+    public partial class FEParamGetCondicionIvaReceptorRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public SistemaFacturacionInventario.wsfev1.FEAuthRequest Auth;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string ClaseCmp;
+        
+        public FEParamGetCondicionIvaReceptorRequestBody() {
+        }
+        
+        public FEParamGetCondicionIvaReceptorRequestBody(SistemaFacturacionInventario.wsfev1.FEAuthRequest Auth, string ClaseCmp) {
+            this.Auth = Auth;
+            this.ClaseCmp = ClaseCmp;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class FEParamGetCondicionIvaReceptorResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="FEParamGetCondicionIvaReceptorResponse", Namespace="http://ar.gov.afip.dif.FEV1/", Order=0)]
+        public SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorResponseBody Body;
+        
+        public FEParamGetCondicionIvaReceptorResponse() {
+        }
+        
+        public FEParamGetCondicionIvaReceptorResponse(SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://ar.gov.afip.dif.FEV1/")]
+    public partial class FEParamGetCondicionIvaReceptorResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public SistemaFacturacionInventario.wsfev1.CondicionIvaReceptorResponse FEParamGetCondicionIvaReceptorResult;
+        
+        public FEParamGetCondicionIvaReceptorResponseBody() {
+        }
+        
+        public FEParamGetCondicionIvaReceptorResponseBody(SistemaFacturacionInventario.wsfev1.CondicionIvaReceptorResponse FEParamGetCondicionIvaReceptorResult) {
+            this.FEParamGetCondicionIvaReceptorResult = FEParamGetCondicionIvaReceptorResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class FEParamGetTiposDocRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="FEParamGetTiposDoc", Namespace="http://ar.gov.afip.dif.FEV1/", Order=0)]
@@ -6728,11 +6997,12 @@ namespace SistemaFacturacionInventario.wsfev1 {
             return base.Channel.FEParamGetCotizacion(request);
         }
         
-        public SistemaFacturacionInventario.wsfev1.FECotizacionResponse FEParamGetCotizacion(SistemaFacturacionInventario.wsfev1.FEAuthRequest Auth, string MonId) {
+        public SistemaFacturacionInventario.wsfev1.FECotizacionResponse FEParamGetCotizacion(SistemaFacturacionInventario.wsfev1.FEAuthRequest Auth, string MonId, string FchCotiz) {
             SistemaFacturacionInventario.wsfev1.FEParamGetCotizacionRequest inValue = new SistemaFacturacionInventario.wsfev1.FEParamGetCotizacionRequest();
             inValue.Body = new SistemaFacturacionInventario.wsfev1.FEParamGetCotizacionRequestBody();
             inValue.Body.Auth = Auth;
             inValue.Body.MonId = MonId;
+            inValue.Body.FchCotiz = FchCotiz;
             SistemaFacturacionInventario.wsfev1.FEParamGetCotizacionResponse retVal = ((SistemaFacturacionInventario.wsfev1.ServiceSoap)(this)).FEParamGetCotizacion(inValue);
             return retVal.Body.FEParamGetCotizacionResult;
         }
@@ -6742,11 +7012,12 @@ namespace SistemaFacturacionInventario.wsfev1 {
             return base.Channel.FEParamGetCotizacionAsync(request);
         }
         
-        public System.Threading.Tasks.Task<SistemaFacturacionInventario.wsfev1.FEParamGetCotizacionResponse> FEParamGetCotizacionAsync(SistemaFacturacionInventario.wsfev1.FEAuthRequest Auth, string MonId) {
+        public System.Threading.Tasks.Task<SistemaFacturacionInventario.wsfev1.FEParamGetCotizacionResponse> FEParamGetCotizacionAsync(SistemaFacturacionInventario.wsfev1.FEAuthRequest Auth, string MonId, string FchCotiz) {
             SistemaFacturacionInventario.wsfev1.FEParamGetCotizacionRequest inValue = new SistemaFacturacionInventario.wsfev1.FEParamGetCotizacionRequest();
             inValue.Body = new SistemaFacturacionInventario.wsfev1.FEParamGetCotizacionRequestBody();
             inValue.Body.Auth = Auth;
             inValue.Body.MonId = MonId;
+            inValue.Body.FchCotiz = FchCotiz;
             return ((SistemaFacturacionInventario.wsfev1.ServiceSoap)(this)).FEParamGetCotizacionAsync(inValue);
         }
         
@@ -6923,6 +7194,33 @@ namespace SistemaFacturacionInventario.wsfev1 {
             inValue.Body = new SistemaFacturacionInventario.wsfev1.FEParamGetTiposCbteRequestBody();
             inValue.Body.Auth = Auth;
             return ((SistemaFacturacionInventario.wsfev1.ServiceSoap)(this)).FEParamGetTiposCbteAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorResponse SistemaFacturacionInventario.wsfev1.ServiceSoap.FEParamGetCondicionIvaReceptor(SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorRequest request) {
+            return base.Channel.FEParamGetCondicionIvaReceptor(request);
+        }
+        
+        public SistemaFacturacionInventario.wsfev1.CondicionIvaReceptorResponse FEParamGetCondicionIvaReceptor(SistemaFacturacionInventario.wsfev1.FEAuthRequest Auth, string ClaseCmp) {
+            SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorRequest inValue = new SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorRequest();
+            inValue.Body = new SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorRequestBody();
+            inValue.Body.Auth = Auth;
+            inValue.Body.ClaseCmp = ClaseCmp;
+            SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorResponse retVal = ((SistemaFacturacionInventario.wsfev1.ServiceSoap)(this)).FEParamGetCondicionIvaReceptor(inValue);
+            return retVal.Body.FEParamGetCondicionIvaReceptorResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorResponse> SistemaFacturacionInventario.wsfev1.ServiceSoap.FEParamGetCondicionIvaReceptorAsync(SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorRequest request) {
+            return base.Channel.FEParamGetCondicionIvaReceptorAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorResponse> FEParamGetCondicionIvaReceptorAsync(SistemaFacturacionInventario.wsfev1.FEAuthRequest Auth, string ClaseCmp) {
+            SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorRequest inValue = new SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorRequest();
+            inValue.Body = new SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorRequestBody();
+            inValue.Body.Auth = Auth;
+            inValue.Body.ClaseCmp = ClaseCmp;
+            return ((SistemaFacturacionInventario.wsfev1.ServiceSoap)(this)).FEParamGetCondicionIvaReceptorAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

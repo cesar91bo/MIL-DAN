@@ -92,7 +92,7 @@ namespace SistemaFacturacionInventario.Rubros
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Está seguro que desea borrar el rubro seleccionada?", "BORRAR RUBRO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Está seguro que desea borrar el categoría seleccionada?", "BORRAR CATEGORÍA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (auxN.BorrarRubro(Convert.ToInt32(idRubroSeleccionada)))
                 {
@@ -104,7 +104,7 @@ namespace SistemaFacturacionInventario.Rubros
                 }
                 else
                 {
-                    MessageBox.Show("No se puede borrar el rubro porque hay productos que forman parte de dicho rubro",
+                    MessageBox.Show("No se puede borrar el categoría porque hay productos que forman parte de dicho categoría",
                         "NO SE PUEDE BORRAR", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }

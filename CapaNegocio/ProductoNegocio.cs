@@ -197,7 +197,7 @@ namespace CapaNegocio
         {
             var productos = from prod in db.VistaProducto
                             select prod;
-            return productos.OrderBy(c => c.DescCorta).ToList();
+            return productos.OrderBy(c => c.IdProducto).ToList();
 
         }
 
@@ -206,7 +206,7 @@ namespace CapaNegocio
             var productos = from prod in db.VistaProducto
                             where prod.FechaBaja == ""
                             select prod;
-            return productos.OrderBy(c => c.DescCorta).ToList();
+            return productos.OrderBy(c => c.IdProducto).ToList();
         }
 
         public bool ActivarProducto(int idProducto)

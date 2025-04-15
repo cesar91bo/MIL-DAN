@@ -39,10 +39,10 @@
             this.chkFechaFactura = new System.Windows.Forms.CheckBox();
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.lblListaFacturas = new System.Windows.Forms.Label();
-            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnDetalle = new System.Windows.Forms.Button();
             this.listViewFactura = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
+            this.btnAnular = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -159,19 +159,20 @@
             this.lblListaFacturas.TabIndex = 6;
             this.lblListaFacturas.Text = "Lista de Facturas";
             // 
-            // btnEditar
+            // btnDetalle
             // 
-            this.btnEditar.Enabled = false;
-            this.btnEditar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
-            this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(425, 477);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(84, 37);
-            this.btnEditar.TabIndex = 29;
-            this.btnEditar.Text = "Detalle";
-            this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnDetalle.Enabled = false;
+            this.btnDetalle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDetalle.Image = ((System.Drawing.Image)(resources.GetObject("btnDetalle.Image")));
+            this.btnDetalle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDetalle.Location = new System.Drawing.Point(425, 477);
+            this.btnDetalle.Name = "btnDetalle";
+            this.btnDetalle.Size = new System.Drawing.Size(84, 37);
+            this.btnDetalle.TabIndex = 29;
+            this.btnDetalle.Text = "Detalle";
+            this.btnDetalle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDetalle.UseVisualStyleBackColor = true;
+            this.btnDetalle.Click += new System.EventHandler(this.btnDetalle_Click);
             // 
             // listViewFactura
             // 
@@ -185,44 +186,47 @@
             this.listViewFactura.TabIndex = 26;
             this.listViewFactura.UseCompatibleStateImageBehavior = false;
             this.listViewFactura.View = System.Windows.Forms.View.Details;
+            this.listViewFactura.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewFactura_ItemSelectionChanged);
             // 
-            // button1
+            // btnImprimir
             // 
-            this.button1.Enabled = false;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(515, 477);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(93, 37);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "Imprimir";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnImprimir.Enabled = false;
+            this.btnImprimir.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.Image = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Image")));
+            this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImprimir.Location = new System.Drawing.Point(515, 477);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(93, 37);
+            this.btnImprimir.TabIndex = 31;
+            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
-            // button2
+            // btnAnular
             // 
-            this.button2.Enabled = false;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(617, 477);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 37);
-            this.button2.TabIndex = 32;
-            this.button2.Text = "Anulación";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnAnular.Enabled = false;
+            this.btnAnular.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnular.Image = ((System.Drawing.Image)(resources.GetObject("btnAnular.Image")));
+            this.btnAnular.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAnular.Location = new System.Drawing.Point(617, 477);
+            this.btnAnular.Name = "btnAnular";
+            this.btnAnular.Size = new System.Drawing.Size(99, 37);
+            this.btnAnular.TabIndex = 32;
+            this.btnAnular.Text = "Anulación";
+            this.btnAnular.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAnular.UseVisualStyleBackColor = true;
             // 
             // frmConsultaFacturas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1164, 526);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
+            this.ClientSize = new System.Drawing.Size(1201, 517);
+            this.Controls.Add(this.btnAnular);
+            this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnEditar);
+            this.Controls.Add(this.btnDetalle);
             this.Controls.Add(this.listViewFactura);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmConsultaFacturas";
@@ -243,12 +247,12 @@
         private System.Windows.Forms.CheckBox chkFechaFactura;
         private System.Windows.Forms.TextBox txtFiltro;
         private System.Windows.Forms.Label lblListaFacturas;
-        private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnDetalle;
         private System.Windows.Forms.ListView listViewFactura;
         private System.Windows.Forms.Label lblHasta;
         private System.Windows.Forms.Label lblDesde;
         private System.Windows.Forms.CheckBox chkClienteFactura;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.Button btnAnular;
     }
 }

@@ -1,5 +1,7 @@
 ﻿using CapaDatos.Modelos;
 using CapaNegocio;
+using SistemaFacturacionInventario.Productos;
+using SistemaFacturacionInventario.Rubros;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +18,7 @@ namespace SistemaFacturacionInventario.Facturacion
     {
         private List<VistaCabFactVenta> vistaCabFactVentas;
         private FacturacionNegocio facturacionNegocio = new FacturacionNegocio();
+        private int selectedFacturaId;
         public frmConsultaFacturas()
         {
             InitializeComponent();
@@ -142,6 +145,51 @@ namespace SistemaFacturacionInventario.Facturacion
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnDetalle_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmFacturacion { IdFact = selectedFacturaId, Accion = "VER" };
+                frm.ShowDialog();
+                if (frm.DialogResult != DialogResult.Cancel) return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void listViewFactura_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            if (listViewFactura.SelectedItems.Count > 0)
+            {
+                var item = listViewFactura.SelectedItems[0];
+                int id = Convert.ToInt32(item.SubItems[0].Text); // Suponiendo que el ID está en la primera columna
+
+                // Guardás el ID para usar después si querés
+                selectedFacturaId = id;
+
+                // Habilitás el botón
+                btnDetalle.Enabled = true;
+                btnImprimir.Enabled = true;
+                btnAnular.Enabled = true;
+            }
+            else
+            {
+                btnDetalle.Enabled = false;
+                btnImprimir.Enabled = false;
+                btnAnular.Enabled = false; 
+            }
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            //var frm = new frmFacturacion(Convert.ToInt32(listViewProductos.SelectedItems[0].Tag));
+            //frm.ShowDialog();
+            //btnEditar.Enabled = false;
+            //Llenarlistview(false);
         }
     }
 }

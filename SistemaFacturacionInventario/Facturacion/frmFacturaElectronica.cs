@@ -177,6 +177,7 @@ namespace SistemaFacturacionInventario.Facturacion
                     if (listcbteasoc.Count > 0) fedetreq.CbtesAsoc = listcbteasoc.ToArray();
 
                     fedetreq.Concepto = Factura.IdConceptoFactura;
+                    fedetreq.CondicionIVAReceptorId = 5;
                     var clienteN = new ClienteNegocio();
                     VistaClientes Cliente = clienteN.ObtenerVCliporNroCli(Factura.IdCliente);
 
@@ -368,6 +369,7 @@ namespace SistemaFacturacionInventario.Facturacion
                         fedetreq.ImpIVA = Math.Round(fedetreq.ImpTotal - fedetreq.ImpNeto, 2);
                         fedetreq.ImpOpEx = 0;
 
+                        fedetreq.CondicionIVAReceptorId = 1;
 
                         var iva = new AlicIva { BaseImp = Math.Round((fedetreq.ImpTotal / (1 + 21 / 100) / 1.21), 2), Id = 5, Importe = fedetreq.ImpIVA };
                         listiva.Add(iva);

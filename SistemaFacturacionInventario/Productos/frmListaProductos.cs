@@ -87,8 +87,8 @@ namespace SistemaFacturacionInventario.Productos
             listViewProductos.Columns.Add("Nombre", 350, HorizontalAlignment.Left);
             listViewProductos.Columns.Add("Lleva Stock", 85, HorizontalAlignment.Left);
             listViewProductos.Columns.Add("Stock", 85, HorizontalAlignment.Left);
-            listViewProductos.Columns.Add("U.Medida", 100, HorizontalAlignment.Left);
-            listViewProductos.Columns.Add("Rubro", 150, HorizontalAlignment.Left);
+            listViewProductos.Columns.Add("Proveedor", 150, HorizontalAlignment.Left);
+            listViewProductos.Columns.Add("Categoría", 150, HorizontalAlignment.Left);
             listViewProductos.Columns.Add("Fecha Baja", 90, HorizontalAlignment.Left);
         }
 
@@ -124,7 +124,7 @@ namespace SistemaFacturacionInventario.Productos
                 item.SubItems.Add(prods.DescCorta);
                 item.SubItems.Add(prods.LlevarStock.ToString());
                 item.SubItems.Add(prods.StockActual.ToString());
-                item.SubItems.Add(prods.UnidadMedida.ToString());
+                item.SubItems.Add(prods.Proveedor.ToString());
                 item.SubItems.Add(prods.Rubro.ToString());
 
                 item.SubItems.Add(prods.FechaBaja.ToString());

@@ -208,7 +208,7 @@
           <Property Name="IdProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NroProducto" Type="int" Nullable="false" />
           <Property Name="CodigoBarra" Type="nvarchar" MaxLength="50" />
-          <Property Name="DescCorta" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DescCorta" Type="nvarchar" MaxLength="500" />
           <Property Name="DescLarga" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="IdRubro" Type="int" Nullable="false" />
           <Property Name="LlevarStock" Type="bit" Nullable="false" />
@@ -581,7 +581,6 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
         <EntityType Name="VistaProducto">
           <Key>
             <PropertyRef Name="IdProducto" />
-            <PropertyRef Name="DescCorta" />
             <PropertyRef Name="DescLarga" />
             <PropertyRef Name="LlevarStock" />
             <PropertyRef Name="FechaBaja" />
@@ -590,9 +589,11 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
             <PropertyRef Name="IdRubro" />
             <PropertyRef Name="IdUnidadMedida" />
             <PropertyRef Name="IdProveedor" />
+            <PropertyRef Name="Proveedor" />
+            <PropertyRef Name="DescCorta" />
           </Key>
           <Property Name="IdProducto" Type="int" Nullable="false" />
-          <Property Name="DescCorta" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DescCorta" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="DescLarga" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="LlevarStock" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="Stock" Type="nvarchar" MaxLength="34" />
@@ -608,6 +609,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no t
           <Property Name="IdRubro" Type="int" Nullable="false" />
           <Property Name="IdUnidadMedida" Type="int" Nullable="false" />
           <Property Name="IdProveedor" Type="int" Nullable="false" />
+          <Property Name="Proveedor" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CodigoProducto" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errores durante la generación:
@@ -1067,6 +1069,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
     [VistaProducto].[IdRubro] AS [IdRubro], 
     [VistaProducto].[IdUnidadMedida] AS [IdUnidadMedida], 
     [VistaProducto].[IdProveedor] AS [IdProveedor], 
+    [VistaProducto].[Proveedor] AS [Proveedor], 
     [VistaProducto].[CodigoProducto] AS [CodigoProducto]
     FROM [dbo].[VistaProducto] AS [VistaProducto]</DefiningQuery>
           </EntitySet>
@@ -1318,7 +1321,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
           <Property Name="IdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NroProducto" Type="Int32" Nullable="false" />
           <Property Name="CodigoBarra" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DescCorta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DescCorta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="DescLarga" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="IdRubro" Type="Int32" Nullable="false" />
           <Property Name="LlevarStock" Type="Boolean" Nullable="false" />
@@ -1414,9 +1417,10 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
             <PropertyRef Name="IdRubro" />
             <PropertyRef Name="IdUnidadMedida" />
             <PropertyRef Name="IdProveedor" />
+            <PropertyRef Name="Proveedor" />
           </Key>
           <Property Name="IdProducto" Type="Int32" Nullable="false" />
-          <Property Name="DescCorta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DescCorta" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="DescLarga" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="LlevarStock" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="Stock" Type="String" MaxLength="34" FixedLength="false" Unicode="true" />
@@ -1433,6 +1437,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
           <Property Name="CodigoProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdUnidadMedida" Type="Int32" Nullable="false" />
           <Property Name="IdProveedor" Type="Int32" Nullable="false" />
+          <Property Name="Proveedor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VistaPreciosVenta">
           <Key>
@@ -2285,6 +2290,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
           <EntitySetMapping Name="VistaProducto">
             <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.VistaProducto">
               <MappingFragment StoreEntitySet="VistaProducto">
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
                 <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
                 <ScalarProperty Name="IdUnidadMedida" ColumnName="IdUnidadMedida" />
                 <ScalarProperty Name="CodigoProducto" ColumnName="CodigoProducto" />

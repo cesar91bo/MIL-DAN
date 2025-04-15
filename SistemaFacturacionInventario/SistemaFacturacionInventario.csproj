@@ -26,7 +26,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationRevision>18</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -303,6 +303,9 @@
     <None Include="Connected Services\wsfev1\SistemaFacturacionInventario.wsfev1.ConceptoTipoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\wsfev1\SistemaFacturacionInventario.wsfev1.CondicionIvaReceptorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\wsfev1\SistemaFacturacionInventario.wsfev1.DocTipoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -367,6 +370,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\wsfev1\SistemaFacturacionInventario.wsfev1.FEParamGetActividadesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\wsfev1\SistemaFacturacionInventario.wsfev1.FEParamGetCondicionIvaReceptorResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\wsfev1\SistemaFacturacionInventario.wsfev1.FEParamGetCotizacionResponse.datasource">

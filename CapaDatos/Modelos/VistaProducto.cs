@@ -32,5 +32,6 @@ namespace CapaDatos.Modelos
         public string CodigoProducto { get; set; }
         public int IdUnidadMedida { get; set; }
         public int IdProveedor { get; set; }
+        public string Proveedor { get; set; }
     }
 }

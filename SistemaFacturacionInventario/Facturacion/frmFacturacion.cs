@@ -48,10 +48,18 @@ namespace SistemaFacturacionInventario.Facturacion
 
                 if (seteos.DiasVtoFact > 0) dtpFechaVto.Value = DateTime.Today.AddDays(Convert.ToInt32(seteos.DiasVtoFact));
 
-                if (Accion.ToUpper() == "MOD")
+                if (Accion.ToUpper() == "VER")
                 {
                     if (IdFact > 0) ConsultarFact(IdFact);
-                    if (Accion.ToUpper() == "MOD") lint = new List<Int64>();
+                    dgrDetalle.Enabled = false;
+                    cmboFormaPago.Enabled = false;
+                    cmbTipoFac.Enabled = false;
+                    txtNroCliente.Enabled = false;
+                    btnBuscar.Enabled = false;
+                    btnListado.Enabled = false;
+                    brnAnonimo.Enabled = false;
+                    cmbConcepto.Enabled = false;
+                    //if (Accion.ToUpper() == "MOD") lint = new List<Int64>();
                 }
 
             }
@@ -86,124 +94,125 @@ namespace SistemaFacturacionInventario.Facturacion
                 {
                     txtNroComp.Text = fv.NCompFact;
                 }
-                FacturasVenta fact = repv.ObtenerFactura(lrem[0]);//agregado
-                foreach (Int32 r in lrem)
+                //FacturasVenta fact = repv.ObtenerFactura(lrem[0]);//agregado
+                //foreach (Int32 r in lrem)
+                //{
+                List<FacturasVentaDetalle> detrem = repv.ObtenerDetalledeFacturaVta(fv.IdFacturaVenta);
+                //FacturasVenta rem = repv.ObtenerFactura(r);
+                txtDto.Text = fv.Descuento.ToString();
+                dgrDetalle.Rows.Add(detrem.Count);
+
+
+                if (fv.Impresa)
                 {
-                    List<FacturasVentaDetalle> detrem = repv.ObtenerDetalledeFacturaVta(r);
-                    FacturasVenta rem = repv.ObtenerFactura(r);
-                    txtDto.Text = rem.Descuento.ToString();
-                    dgrDetalle.Rows.Add(detrem.Count);
+                    lblImpresa.Text = "La factura ya fue impresa";
+                    lblImpresa.Visible = true;
+                    txtNroComp.Text = fv.NCompFact;
+                    txtBV.Text = fv.BVFact;
+                    txtNroComp.Visible = true;
+                    txtBV.Visible = true;
+                }
+                else if (IdTipoDoc != 8)
+                {
+                    lblImpresa.Visible = true;
+                    lblImpresa.Text = "La factura está pendiente de impresión";
+                }
 
+                if (cmbTipoFac.Text == "B")
+                {
+                    lbllblIVA21.Visible = false;
+                    lbllblSubtDto.Visible = false;
+                    lbllblSubTotaldto105.Visible = false;
+                    lbllblSubTotaldto21.Visible = false;
+                    lbllblSubTotal21.Visible = false;
+                    lbllblSubTotal105.Visible = false;
+                    lbllblIVA105.Visible = false;
+                    lbllblIVA.Visible = false;
+                    lblSubtDto105.Visible = false;
+                    lblSubtDto21.Visible = false;
+                    lblSubTotal105.Visible = false;
+                    lblSubTotal21.Visible = false;
+                    lblSubtDto.Visible = false;
+                    lblTotalIva21.Visible = false;
+                    lblTotalIVA.Visible = false;
+                    lblTotalIva105.Visible = false;
+                }
+                else
+                {
+                    lblSubtDto.Text = Math.Round(Convert.ToDecimal(lblSubtDto105.Text) + Convert.ToDecimal(lblSubtDto21.Text), 2, MidpointRounding.AwayFromZero).ToString();
+                    lblTotalIVA.Text = Math.Round(Convert.ToDecimal(lblTotalIva21.Text) + Convert.ToDecimal(lblTotalIva105.Text), 2, MidpointRounding.AwayFromZero).ToString();
+                }
+                if (Accion.ToUpper() == "VER") btnGuardar.Visible = false;
 
-                    if (fv.Impresa)
-                    {
-                        lblImpresa.Text = "La factura ya fue impresa";
-                        lblImpresa.Visible = true;
-                        txtNroComp.Text = fv.NCompFact;
-                        txtBV.Text = fv.BVFact;
-                        txtNroComp.Visible = true;
-                        txtBV.Visible = true;
-                    }
-                    else if (IdTipoDoc != 8)
-                    {
-                        lblImpresa.Visible = true;
-                        lblImpresa.Text = "La factura está pendiente de impresión";
-                    }
+                List<FacturasVentaDetalle> det = repv.ObtenerDetalledeFacturaVta(IdFact);
+                int i = 0;
+                foreach (FacturasVentaDetalle fvd in det)
+                {
 
-                    if (cmbTipoFac.Text == "B")
+                    var cmb = dgrDetalle["Precio", i] as DataGridViewComboBoxCell;
+                    var dt = new DataTable();
+                    if (fvd.IdProducto != null)
                     {
-                        lbllblIVA21.Visible = false;
-                        lbllblSubtDto.Visible = false;
-                        lbllblSubTotaldto105.Visible = false;
-                        lbllblSubTotaldto21.Visible = false;
-                        lbllblSubTotal21.Visible = false;
-                        lbllblSubTotal105.Visible = false;
-                        lbllblIVA105.Visible = false;
-                        lbllblIVA.Visible = false;
-                        lblSubtDto105.Visible = false;
-                        lblSubtDto21.Visible = false;
-                        lblSubTotal105.Visible = false;
-                        lblSubTotal21.Visible = false;
-                        lblSubtDto.Visible = false;
-                        lblTotalIva21.Visible = false;
-                        lblTotalIVA.Visible = false;
-                        lblTotalIva105.Visible = false;
-                    }
-                    else
-                    {
-                        lblSubtDto.Text = Math.Round(Convert.ToDecimal(lblSubtDto105.Text) + Convert.ToDecimal(lblSubtDto21.Text), 2, MidpointRounding.AwayFromZero).ToString();
-                        lblTotalIVA.Text = Math.Round(Convert.ToDecimal(lblTotalIva21.Text) + Convert.ToDecimal(lblTotalIva105.Text), 2, MidpointRounding.AwayFromZero).ToString();
-                    }
-                    if (Accion.ToUpper() == "VER") btnGuardar.Visible = false;
-
-                    List<FacturasVentaDetalle> det = repv.ObtenerDetalledeFacturaVta(IdFact);
-                    int i = 0;
-                    foreach (FacturasVentaDetalle fvd in det)
-                    {
-
-                        var cmb = dgrDetalle["Precio", i] as DataGridViewComboBoxCell;
-                        var dt = new DataTable();
-                        if (fvd.IdProducto != null)
-                        {
-                            var productoNegocio = new ProductoNegocio();
-                            CapaDatos.Modelos.Productos producto = productoNegocio.ObtenerProductoPorId(Convert.ToInt32(fvd.IdProducto));
-                            dgrDetalle.Rows[i].Cells[3].Value = producto.IdProducto.ToString();
-                            dgrDetalle.Rows[i].Cells[4].Value = producto.DescCorta;
+                        var productoNegocio = new ProductoNegocio();
+                        CapaDatos.Modelos.Productos producto = productoNegocio.ObtenerProductoPorId(Convert.ToInt32(fvd.IdProducto));
+                        dgrDetalle.Rows[i].Cells[3].Value = producto.IdProducto.ToString();
+                        dgrDetalle.Rows[i].Cells[4].Value = producto.DescCorta;
+                        dgrDetalle.Rows[i].Cells[5].Value = fvd.Cantidad;
                             dgrDetalle.Rows[i].Cells[6].Value = producto.UnidadesMedida;
 
-                            dt =  productoNegocio.CargarComboPrecios(producto.IdProducto, cmbTipoFac.Text);
+                        dt = productoNegocio.CargarComboPrecios(producto.IdProducto, cmbTipoFac.Text);
 
-                            cmb.DataSource = dt;
-                            cmb.DisplayMember = "Desc";
-                            cmb.ValueMember = "Precio";
-                            dgrDetalle.Rows[i].Cells[12].Value = false;
+                        cmb.DataSource = dt;
+                        cmb.DisplayMember = "Desc";
+                        cmb.ValueMember = "Precio";
+                        dgrDetalle.Rows[i].Cells[12].Value = false;
 
-                            if (Convert.ToBoolean(fvd.PrecioManual))
-                            {
-                                var rw = dt.NewRow();
-                                rw[0] = "Manual: $" + fvd.PrecioUnitario.ToString(CultureInfo.InvariantCulture).Replace(".", ",");
-                                rw[1] = fvd.PrecioUnitario.ToString(CultureInfo.InvariantCulture).Replace(".", ",");
-                                dt.Rows.Add(rw);
-                                cmb.DataSource = dt;
-                                cmb.DisplayMember = "Desc";
-                                cmb.ValueMember = "Precio";
-                            }
-
-                            cmb.Value = fvd.PrecioManual == false ? dt.Rows[0]["Precio"] : dt.Rows[2]["Precio"];
-                        }
-                        else
+                        if (Convert.ToBoolean(fvd.PrecioManual))
                         {
-                            dgrDetalle.Rows[i].Cells[5].Value = fvd.IdProducto;
-                            dgrDetalle.Rows[i].Cells[7].Value = fvd.UMedida;
-                            dt.Columns.Add("Desc");
-                            dt.Columns.Add("Precio");
-                            DataRow rw = dt.NewRow();
-                            rw[0] = "$ " + fvd.PrecioUnitario;
-                            rw[1] = fvd.PrecioUnitario;
+                            var rw = dt.NewRow();
+                            rw[0] = "Manual: $" + fvd.PrecioUnitario.ToString(CultureInfo.InvariantCulture).Replace(".", ",");
+                            rw[1] = fvd.PrecioUnitario.ToString(CultureInfo.InvariantCulture).Replace(".", ",");
                             dt.Rows.Add(rw);
                             cmb.DataSource = dt;
                             cmb.DisplayMember = "Desc";
                             cmb.ValueMember = "Precio";
-                            cmb.Value = dt.Rows[0]["Precio"];
-                            dgrDetalle.Rows[i].Cells[12].Value = true;
-                            artdesc = true;
                         }
 
-                        dgrDetalle.Rows[i].Cells[6].Value = fvd.Cantidad;
-                        dgrDetalle["Total", i].Value = Math.Round(fvd.Cantidad * Convert.ToDecimal(cmb.Value), 2, MidpointRounding.AwayFromZero);
-                        var repax = new AuxiliaresNegocio();
-                        TiposIva ti = repax.ObtenerTipoIVAporId(fvd.IdTipoIva);
-                        dgrDetalle.Rows[i].Cells[8].Value = ti.PorcentajeIVA;
-                        dgrDetalle.Rows[i].Cells[11].Value = false;
-                        dgrDetalle.Rows[i].Cells["IdFactVtaDetalle"].Value = fvd.IdFacturaVentaDetalle;
-                        i += 1;
-                        artdesc = false;
+                        cmb.Value = fvd.PrecioManual == false ? dt.Rows[0]["Precio"] : dt.Rows[2]["Precio"];
+                    }
+                    else
+                    {
+                        dgrDetalle.Rows[i].Cells[5].Value = fvd.IdProducto;
+                        dgrDetalle.Rows[i].Cells[7].Value = fvd.UMedida;
+                        dt.Columns.Add("Desc");
+                        dt.Columns.Add("Precio");
+                        DataRow rw = dt.NewRow();
+                        rw[0] = "$ " + fvd.PrecioUnitario;
+                        rw[1] = fvd.PrecioUnitario;
+                        dt.Rows.Add(rw);
+                        cmb.DataSource = dt;
+                        cmb.DisplayMember = "Desc";
+                        cmb.ValueMember = "Precio";
+                        cmb.Value = dt.Rows[0]["Precio"];
+                        dgrDetalle.Rows[i].Cells[12].Value = true;
+                        artdesc = true;
                     }
 
-                    IdTipoDoc = fv.IdTipoDocumento;
-                    //if (IdTipoDoc == 8) btnImprimir.Visible = true;
-                    CalcularTotales(true);
+                    dgrDetalle.Rows[i].Cells[6].Value = fvd.Cantidad;
+                    dgrDetalle["Total", i].Value = Math.Round(fvd.Cantidad * Convert.ToDecimal(cmb.Value), 2, MidpointRounding.AwayFromZero);
+                    var repax = new AuxiliaresNegocio();
+                    TiposIva ti = repax.ObtenerTipoIVAporId(fvd.IdTipoIva);
+                    dgrDetalle.Rows[i].Cells[7].Value = ti.PorcentajeIVA;
+                    dgrDetalle.Rows[i].Cells[11].Value = false;
+                    dgrDetalle.Rows[i].Cells["IdFactVtaDetalle"].Value = fvd.IdFacturaVentaDetalle;
+                    i += 1;
+                    artdesc = false;
                 }
+
+                IdTipoDoc = fv.IdTipoDocumento;
+                //if (IdTipoDoc == 8) btnImprimir.Visible = true;
+                CalcularTotales(true);
+                //}
             }
             catch (Exception ex) { throw ex; }
         }
@@ -1262,7 +1271,7 @@ namespace SistemaFacturacionInventario.Facturacion
 
         private void GenerarFacturaElectronica()
         {
-            if(IdFact > 0)
+            if (IdFact > 0)
             {
                 var listado = new List<int>();
 
