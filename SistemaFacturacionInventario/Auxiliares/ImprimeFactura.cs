@@ -195,6 +195,16 @@ namespace SistemaFacturacionInventario.Auxiliares
                 e.Graphics.DrawString("=========================================", fuente, Brushes.Black, x, y);
                 y += espacioSeccion;
 
+                //Discriminación IVA
+                string iva = CalculaIVA(fact.Total);
+
+                e.Graphics.DrawString("RÉGIMEN DE TRANSFERENCIA FISCAL AL CONSUMIDOR FINAL LEY 27.743", fuente, Brushes.Black, x, y);
+                y += espacioLinea;
+                e.Graphics.DrawString($"IVA Contenido: $ {iva}", fuente, Brushes.Black, x, y);
+                y += espacioLinea;
+                e.Graphics.DrawString("Imp. Int.: $ 0.00", fuente, Brushes.Black, x, y);
+                y += espacioLinea;
+
                 // Totales
                 e.Graphics.DrawString($"Importe: $ {fact.Total}", fuenteImporte, Brushes.Black, x, y);
                 y += espacioSeccion;
@@ -212,6 +222,10 @@ namespace SistemaFacturacionInventario.Auxiliares
             Console.WriteLine("Ticket impreso.");
         }
 
-
+        private static string CalculaIVA(decimal total)
+        {
+            var iva = total * 0.1736m;
+            return iva.ToString("F2");
+        }
     }
 }

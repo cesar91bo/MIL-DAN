@@ -73,7 +73,7 @@
             this.txtNroProducto.Location = new System.Drawing.Point(117, 14);
             this.txtNroProducto.MaxLength = 6;
             this.txtNroProducto.Name = "txtNroProducto";
-            this.txtNroProducto.Size = new System.Drawing.Size(71, 26);
+            this.txtNroProducto.Size = new System.Drawing.Size(71, 22);
             this.txtNroProducto.TabIndex = 13;
             this.txtNroProducto.TabStop = false;
             this.txtNroProducto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNroProducto_KeyDown);
@@ -86,7 +86,7 @@
             this.lblNroArticulo.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lblNroArticulo.Location = new System.Drawing.Point(11, 19);
             this.lblNroArticulo.Name = "lblNroArticulo";
-            this.lblNroArticulo.Size = new System.Drawing.Size(98, 19);
+            this.lblNroArticulo.Size = new System.Drawing.Size(82, 13);
             this.lblNroArticulo.TabIndex = 14;
             this.lblNroArticulo.Text = "Nro. Producto:";
             // 
@@ -96,7 +96,7 @@
             this.lblPrecioBase.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lblPrecioBase.Location = new System.Drawing.Point(19, 58);
             this.lblPrecioBase.Name = "lblPrecioBase";
-            this.lblPrecioBase.Size = new System.Drawing.Size(89, 19);
+            this.lblPrecioBase.Size = new System.Drawing.Size(74, 13);
             this.lblPrecioBase.TabIndex = 17;
             this.lblPrecioBase.Text = "Precio Costo:";
             // 
@@ -104,9 +104,9 @@
             // 
             this.txtPrecioBase.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.txtPrecioBase.Location = new System.Drawing.Point(117, 55);
-            this.txtPrecioBase.MaxLength = 6;
+            this.txtPrecioBase.MaxLength = 9;
             this.txtPrecioBase.Name = "txtPrecioBase";
-            this.txtPrecioBase.Size = new System.Drawing.Size(71, 26);
+            this.txtPrecioBase.Size = new System.Drawing.Size(71, 22);
             this.txtPrecioBase.TabIndex = 0;
             this.txtPrecioBase.Text = "0";
             this.txtPrecioBase.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -120,7 +120,7 @@
             this.rdbSinIVA.Checked = true;
             this.rdbSinIVA.Location = new System.Drawing.Point(210, 57);
             this.rdbSinIVA.Name = "rdbSinIVA";
-            this.rdbSinIVA.Size = new System.Drawing.Size(73, 23);
+            this.rdbSinIVA.Size = new System.Drawing.Size(60, 17);
             this.rdbSinIVA.TabIndex = 2;
             this.rdbSinIVA.TabStop = true;
             this.rdbSinIVA.Text = "Sin IVA";
@@ -131,7 +131,7 @@
             this.rdbConIVA.AutoSize = true;
             this.rdbConIVA.Location = new System.Drawing.Point(267, 58);
             this.rdbConIVA.Name = "rdbConIVA";
-            this.rdbConIVA.Size = new System.Drawing.Size(80, 23);
+            this.rdbConIVA.Size = new System.Drawing.Size(65, 17);
             this.rdbConIVA.TabIndex = 3;
             this.rdbConIVA.Text = "Con IVA";
             this.rdbConIVA.UseVisualStyleBackColor = true;
@@ -142,7 +142,7 @@
             this.lblFechaPrecio.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lblFechaPrecio.Location = new System.Drawing.Point(297, 19);
             this.lblFechaPrecio.Name = "lblFechaPrecio";
-            this.lblFechaPrecio.Size = new System.Drawing.Size(88, 19);
+            this.lblFechaPrecio.Size = new System.Drawing.Size(74, 13);
             this.lblFechaPrecio.TabIndex = 21;
             this.lblFechaPrecio.Text = "Fecha Precio:";
             // 
@@ -172,7 +172,7 @@
             this.textBox1.Location = new System.Drawing.Point(117, 165);
             this.textBox1.MaxLength = 6;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(71, 26);
+            this.textBox1.Size = new System.Drawing.Size(71, 22);
             this.textBox1.TabIndex = 24;
             this.textBox1.Text = "0";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -196,7 +196,7 @@
             this.lblNombreProd.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.lblNombreProd.Location = new System.Drawing.Point(374, 59);
             this.lblNombreProd.Name = "lblNombreProd";
-            this.lblNombreProd.Size = new System.Drawing.Size(156, 19);
+            this.lblNombreProd.Size = new System.Drawing.Size(120, 13);
             this.lblNombreProd.TabIndex = 22;
             this.lblNombreProd.Text = "Nombre del Producto";
             // 
@@ -226,7 +226,7 @@
             this.cmbIVA.FormattingEnabled = true;
             this.cmbIVA.Location = new System.Drawing.Point(431, 57);
             this.cmbIVA.Name = "cmbIVA";
-            this.cmbIVA.Size = new System.Drawing.Size(43, 27);
+            this.cmbIVA.Size = new System.Drawing.Size(43, 21);
             this.cmbIVA.TabIndex = 6;
             this.cmbIVA.SelectedValueChanged += new System.EventHandler(this.cmbIVA_SelectedValueChanged);
             // 
@@ -236,7 +236,7 @@
             this.lblBonificacion.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lblBonificacion.Location = new System.Drawing.Point(41, 150);
             this.lblBonificacion.Name = "lblBonificacion";
-            this.lblBonificacion.Size = new System.Drawing.Size(99, 19);
+            this.lblBonificacion.Size = new System.Drawing.Size(86, 13);
             this.lblBonificacion.TabIndex = 18;
             this.lblBonificacion.Text = "Bonificación %:";
             // 
@@ -246,7 +246,7 @@
             this.txtBonif.Location = new System.Drawing.Point(133, 147);
             this.txtBonif.MaxLength = 6;
             this.txtBonif.Name = "txtBonif";
-            this.txtBonif.Size = new System.Drawing.Size(43, 26);
+            this.txtBonif.Size = new System.Drawing.Size(43, 22);
             this.txtBonif.TabIndex = 4;
             this.txtBonif.Text = "0.00";
             this.txtBonif.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -260,7 +260,7 @@
             this.lblCostoFinal.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lblCostoFinal.Location = new System.Drawing.Point(59, 183);
             this.lblCostoFinal.Name = "lblCostoFinal";
-            this.lblCostoFinal.Size = new System.Drawing.Size(80, 19);
+            this.lblCostoFinal.Size = new System.Drawing.Size(68, 13);
             this.lblCostoFinal.TabIndex = 25;
             this.lblCostoFinal.Text = "Costo Final:";
             // 
@@ -270,7 +270,7 @@
             this.lblGanancia.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lblGanancia.Location = new System.Drawing.Point(319, 150);
             this.lblGanancia.Name = "lblGanancia";
-            this.lblGanancia.Size = new System.Drawing.Size(146, 19);
+            this.lblGanancia.Size = new System.Drawing.Size(122, 13);
             this.lblGanancia.TabIndex = 26;
             this.lblGanancia.Text = "Margen de Ganacia %:";
             // 
@@ -280,7 +280,7 @@
             this.txtGanancia.Location = new System.Drawing.Point(447, 147);
             this.txtGanancia.MaxLength = 6;
             this.txtGanancia.Name = "txtGanancia";
-            this.txtGanancia.Size = new System.Drawing.Size(43, 26);
+            this.txtGanancia.Size = new System.Drawing.Size(43, 22);
             this.txtGanancia.TabIndex = 5;
             this.txtGanancia.Text = "0.00";
             this.txtGanancia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -294,7 +294,7 @@
             this.lblTipoIVA.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lblTipoIVA.Location = new System.Drawing.Point(390, 183);
             this.lblTipoIVA.Name = "lblTipoIVA";
-            this.lblTipoIVA.Size = new System.Drawing.Size(63, 19);
+            this.lblTipoIVA.Size = new System.Drawing.Size(51, 13);
             this.lblTipoIVA.TabIndex = 28;
             this.lblTipoIVA.Text = "Tipo IVA:";
             // 
@@ -304,7 +304,7 @@
             this.lblBonificacionNro.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.lblBonificacionNro.Location = new System.Drawing.Point(182, 150);
             this.lblBonificacionNro.Name = "lblBonificacionNro";
-            this.lblBonificacionNro.Size = new System.Drawing.Size(37, 19);
+            this.lblBonificacionNro.Size = new System.Drawing.Size(28, 13);
             this.lblBonificacionNro.TabIndex = 29;
             this.lblBonificacionNro.Text = "0.00";
             // 
@@ -314,7 +314,7 @@
             this.lblGananciaNro.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.lblGananciaNro.Location = new System.Drawing.Point(496, 150);
             this.lblGananciaNro.Name = "lblGananciaNro";
-            this.lblGananciaNro.Size = new System.Drawing.Size(37, 19);
+            this.lblGananciaNro.Size = new System.Drawing.Size(28, 13);
             this.lblGananciaNro.TabIndex = 30;
             this.lblGananciaNro.Text = "0.00";
             // 
@@ -324,7 +324,7 @@
             this.lblIVANro.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.lblIVANro.Location = new System.Drawing.Point(496, 183);
             this.lblIVANro.Name = "lblIVANro";
-            this.lblIVANro.Size = new System.Drawing.Size(37, 19);
+            this.lblIVANro.Size = new System.Drawing.Size(28, 13);
             this.lblIVANro.TabIndex = 31;
             this.lblIVANro.Text = "0.00";
             // 
@@ -334,7 +334,7 @@
             this.lblContadoSIVA.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.lblContadoSIVA.Location = new System.Drawing.Point(163, 265);
             this.lblContadoSIVA.Name = "lblContadoSIVA";
-            this.lblContadoSIVA.Size = new System.Drawing.Size(120, 19);
+            this.lblContadoSIVA.Size = new System.Drawing.Size(94, 13);
             this.lblContadoSIVA.TabIndex = 32;
             this.lblContadoSIVA.Text = "Contado Sin IVA:";
             // 
@@ -346,7 +346,7 @@
             this.txtContadoSIVA.Location = new System.Drawing.Point(281, 262);
             this.txtContadoSIVA.MaxLength = 6;
             this.txtContadoSIVA.Name = "txtContadoSIVA";
-            this.txtContadoSIVA.Size = new System.Drawing.Size(71, 26);
+            this.txtContadoSIVA.Size = new System.Drawing.Size(71, 22);
             this.txtContadoSIVA.TabIndex = 33;
             this.txtContadoSIVA.Text = "0";
             this.txtContadoSIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -357,7 +357,7 @@
             this.lblFlete.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lblFlete.Location = new System.Drawing.Point(616, 150);
             this.lblFlete.Name = "lblFlete";
-            this.lblFlete.Size = new System.Drawing.Size(56, 19);
+            this.lblFlete.Size = new System.Drawing.Size(47, 13);
             this.lblFlete.TabIndex = 34;
             this.lblFlete.Text = "Flete %:";
             // 
@@ -367,7 +367,7 @@
             this.txtFlete.Location = new System.Drawing.Point(669, 147);
             this.txtFlete.MaxLength = 6;
             this.txtFlete.Name = "txtFlete";
-            this.txtFlete.Size = new System.Drawing.Size(43, 26);
+            this.txtFlete.Size = new System.Drawing.Size(43, 22);
             this.txtFlete.TabIndex = 7;
             this.txtFlete.Text = "0.00";
             this.txtFlete.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -381,7 +381,7 @@
             this.lblFleteNro.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.lblFleteNro.Location = new System.Drawing.Point(718, 150);
             this.lblFleteNro.Name = "lblFleteNro";
-            this.lblFleteNro.Size = new System.Drawing.Size(37, 19);
+            this.lblFleteNro.Size = new System.Drawing.Size(28, 13);
             this.lblFleteNro.TabIndex = 36;
             this.lblFleteNro.Text = "0.00";
             // 
@@ -391,7 +391,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(392, 265);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 19);
+            this.label1.Size = new System.Drawing.Size(99, 13);
             this.label1.TabIndex = 37;
             this.label1.Text = "Contado Con IVA:";
             // 
@@ -403,7 +403,7 @@
             this.txtContadoConIVA.Location = new System.Drawing.Point(518, 262);
             this.txtContadoConIVA.MaxLength = 6;
             this.txtContadoConIVA.Name = "txtContadoConIVA";
-            this.txtContadoConIVA.Size = new System.Drawing.Size(71, 26);
+            this.txtContadoConIVA.Size = new System.Drawing.Size(71, 22);
             this.txtContadoConIVA.TabIndex = 38;
             this.txtContadoConIVA.Text = "0";
             this.txtContadoConIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -445,7 +445,7 @@
             this.txtCostoFinal.Location = new System.Drawing.Point(133, 179);
             this.txtCostoFinal.MaxLength = 6;
             this.txtCostoFinal.Name = "txtCostoFinal";
-            this.txtCostoFinal.Size = new System.Drawing.Size(71, 26);
+            this.txtCostoFinal.Size = new System.Drawing.Size(71, 22);
             this.txtCostoFinal.TabIndex = 41;
             this.txtCostoFinal.Text = "0";
             this.txtCostoFinal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;

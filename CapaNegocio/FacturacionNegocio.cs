@@ -383,6 +383,12 @@ namespace CapaNegocio
             return det.ToList();
         }
 
+        public FacturasElectronicas ObtenerFacturaElec(int IdFact)
+        {
+            FacturasElectronicas factElec = db.FacturasElectronicas.FirstOrDefault(c => c.IdFacturaVenta == IdFact);
+            return factElec;
+        }
+
         public List<VistaCabFactVenta> ObtenerListaFacturas(string fechadf, string fechahf, string clientefact)
         {
             var facturas = db.VistaCabFactVenta.AsQueryable();

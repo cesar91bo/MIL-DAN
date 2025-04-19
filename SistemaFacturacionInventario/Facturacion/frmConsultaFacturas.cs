@@ -1,5 +1,6 @@
 ﻿using CapaDatos.Modelos;
 using CapaNegocio;
+using SistemaFacturacionInventario.Auxiliares;
 using SistemaFacturacionInventario.Productos;
 using SistemaFacturacionInventario.Rubros;
 using System;
@@ -105,7 +106,7 @@ namespace SistemaFacturacionInventario.Facturacion
                 string fechadf = chkFechaFactura.Checked ? dtpFechaDesdeFact.Value.ToShortDateString() + " 00:00:00" : "";
                 string fechahf = chkFechaFactura.Checked ? dtpFechaHastaFact.Value.ToShortDateString() + " 23:59:59" : "";
                 string clientefact = chkClienteFactura.Checked ? txtFiltro.Text : "";
-                
+
                 return facturacionNegocio.ObtenerListaFacturas(fechadf, fechahf, clientefact);
             }
             catch (Exception ex) { throw ex; }
@@ -139,7 +140,7 @@ namespace SistemaFacturacionInventario.Facturacion
         {
             try
             {
-                LlenarLv(false); 
+                LlenarLv(false);
             }
             catch (Exception ex)
             {
@@ -166,7 +167,7 @@ namespace SistemaFacturacionInventario.Facturacion
             if (listViewFactura.SelectedItems.Count > 0)
             {
                 var item = listViewFactura.SelectedItems[0];
-                int id = Convert.ToInt32(item.SubItems[0].Text); // Suponiendo que el ID está en la primera columna
+                int id = Convert.ToInt32(item.SubItems[0].Text);
 
                 // Guardás el ID para usar después si querés
                 selectedFacturaId = id;
@@ -180,16 +181,34 @@ namespace SistemaFacturacionInventario.Facturacion
             {
                 btnDetalle.Enabled = false;
                 btnImprimir.Enabled = false;
-                btnAnular.Enabled = false; 
+                btnAnular.Enabled = false;
             }
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            //var frm = new frmFacturacion(Convert.ToInt32(listViewProductos.SelectedItems[0].Tag));
-            //frm.ShowDialog();
-            //btnEditar.Enabled = false;
-            //Llenarlistview(false);
+
+            if (selectedFacturaId > 0)
+            {
+                FacturasVenta fact = facturacionNegocio.ObtenerFactura(selectedFacturaId);
+                List<FacturasVentaDetalle> ventaDetalle = facturacionNegocio.ObtenerDetalledeFacturaVta(selectedFacturaId);
+                FacturasElectronicas electronicas = facturacionNegocio.ObtenerFacturaElec(selectedFacturaId);
+
+                if (electronicas != null)
+                {
+                    ImprimeFactura.ImprimeFacturaElec(fact, ventaDetalle);
+                }
+                else
+                {
+                    ImprimeFactura.ImprimeFacturaX(fact, ventaDetalle);
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Debes seleccionar una factura", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
         }
     }
 }
