@@ -20,5 +20,6 @@ namespace CapaDatos.Modelos
         public System.DateTime FechaVtoCAE { get; set; }
         public string NCompFact { get; set; }
         public System.DateTime Fecha { get; set; }
+        public string QrImageBase64 { get; set; }
     }
 }

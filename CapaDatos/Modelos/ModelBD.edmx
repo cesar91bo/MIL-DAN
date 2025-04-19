@@ -93,6 +93,7 @@
           <Property Name="FechaVtoCAE" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="NCompFact" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="Fecha" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="QrImageBase64" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="FacturasVenta">
           <Key>
@@ -2152,6 +2153,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
           <Property Name="FechaVtoCAE" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="NCompFact" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="QrImageBase64" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="LogErrores">
           <Key>
@@ -2720,6 +2722,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
           <EntitySetMapping Name="FacturasElectronicas">
             <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.FacturasElectronicas">
               <MappingFragment StoreEntitySet="FacturasElectronicas">
+                <ScalarProperty Name="QrImageBase64" ColumnName="QrImageBase64" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="NCompFact" ColumnName="NCompFact" />
                 <ScalarProperty Name="FechaVtoCAE" ColumnName="FechaVtoCAE" />

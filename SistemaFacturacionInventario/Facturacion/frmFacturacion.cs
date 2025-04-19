@@ -842,8 +842,11 @@ namespace SistemaFacturacionInventario.Facturacion
                         }
                         else
                         {
-                            if (MessageBox.Show("El Comprobante se ingresó correctamente." + Environment.NewLine + "Imprimir Comprobante?", "ALTA COMPROBANTE", MessageBoxButtons.YesNo,
-                                    MessageBoxIcon.Question) == DialogResult.Yes) GenerarFacturaElectronica();
+                            if (GenerarFacturaElectronica())
+                            {
+                                if (MessageBox.Show("El Comprobante se ingresó correctamente." + Environment.NewLine + "Imprimir Comprobante?", "ALTA COMPROBANTE", MessageBoxButtons.YesNo,
+                                        MessageBoxIcon.Question) == DialogResult.Yes) ImprimirTicket();
+                            }
                         }
                         Limpiar();
                         if (ListPre != null) ListPre.Clear();
@@ -1269,8 +1272,9 @@ namespace SistemaFacturacionInventario.Facturacion
             chkMoverStock.Checked = false;
         }
 
-        private void GenerarFacturaElectronica()
+        private bool GenerarFacturaElectronica()
         {
+            bool resp = false;
             if (IdFact > 0)
             {
                 var listado = new List<int>();
@@ -1281,8 +1285,10 @@ namespace SistemaFacturacionInventario.Facturacion
 
                 frmc.ShowDialog();
 
-                ImprimirTicket();
+                resp = true;
+                //ImprimirTicket();
             }
+            return resp;
         }
 
         private void ImprimirTicket()

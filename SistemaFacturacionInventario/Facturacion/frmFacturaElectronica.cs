@@ -17,6 +17,10 @@ using System.Xml;
 using CapaNegocio;
 using CapaDatos.Modelos;
 using SistemaFacturacionInventario.wsfev1;
+using Newtonsoft.Json;
+using System.Drawing.Imaging;
+using System.IO;
+using QRCoder;
 namespace SistemaFacturacionInventario.Facturacion
 {
     public partial class frmFacturaElectronica : Form
@@ -40,7 +44,7 @@ namespace SistemaFacturacionInventario.Facturacion
         private int IdFacturaVenta;
         private List<ResultadoOperacion> Result = new List<ResultadoOperacion>();
         private string ruta;
-
+        private int TipoCom;
         private readonly AuxiliaresNegocio empresaN = new AuxiliaresNegocio();
 
         private readonly FacturacionNegocio facturacionNegocio = new FacturacionNegocio();
@@ -171,7 +175,7 @@ namespace SistemaFacturacionInventario.Facturacion
                         listcbteasoc.Add(cbte);
                     }
 
-                    fecabreq.PtoVta = Convert.ToInt32(bocaVenta);
+                    fecabreq.PtoVta = Convert.ToInt32(bocaVenta);                   
 
                     var fedetreq = new FECAEDetRequest();
                     if (listcbteasoc.Count > 0) fedetreq.CbtesAsoc = listcbteasoc.ToArray();
@@ -218,6 +222,8 @@ namespace SistemaFacturacionInventario.Facturacion
                     //RECUPERA DE LA AFIP EL ULTIMO COMPROBANTE AUTORIZADO Y
                     //LE SUMA UNO AL NUMERO DEL COMPRONTE QUE SE VA A REGISTRAR EN LA AFIP
                     FERecuperaLastCbteResponse ultimoaut = ws.FECompUltimoAutorizado(auth, Convert.ToInt32(bocaVenta), fecabreq.CbteTipo);
+
+                    TipoCom = fecabreq.CbteTipo;
 
                     if (Factura.IdTipoFactura == 1)
                     {
@@ -441,13 +447,16 @@ namespace SistemaFacturacionInventario.Facturacion
 
                             ventaN.ActualizaNroFact(ListFacturas[i], Convert.ToInt32(Resultado.NCompFact), bocaVenta, 1);
 
+                            string qr = ObtenerQrEnBase64(Resultado.CAE, Resultado.NCompFact, bocaVenta, TipoCom.ToString());
+
                             var FactEl = new FacturasElectronicas
                             {
                                 CAE = Resultado.CAE,
                                 FechaVtoCAE = Convert.ToDateTime(fecha + " 23:59:59"),
                                 IdFacturaVenta = ListFacturas[i],
                                 NCompFact = Resultado.NCompFact,
-                                Fecha = DateTime.Now
+                                Fecha = DateTime.Now,
+                                QrImageBase64 = qr
                             };
 
                             ventaN.NuevaFacturaElectronica(FactEl);
@@ -796,5 +805,57 @@ namespace SistemaFacturacionInventario.Facturacion
                 ptbDB.BackColor = Color.Red;
             }
         }
+
+
+        public static string ObtenerQrEnBase64(string cae, string factura, string ptoVta, string cbteTipo)
+        {
+            // Paso 1: Crear el objeto con los datos que necesita el QR
+            var datosQR = new
+            {
+                ver = 1,
+                fecha = DateTime.Now.ToString("yyyyMMdd"),
+                cuit = "20301234567", // Reemplazalo por el CUIT real de la empresa emisora
+                ptoVta = int.Parse(ptoVta),
+                tipoCmp = int.Parse(cbteTipo),
+                nroCmp = int.Parse(factura),
+                importe = 1000.00, // Reemplazá por el total de la factura si lo tenés
+                moneda = "PES",
+                ctz = 1,
+                tipoDocRec = 80,
+                nroDocRec = 20123456789,
+                tipoCodAut = "E",
+                codAut = long.Parse(cae)
+            };
+
+            // Paso 2: Serializar a JSON
+            string json = JsonConvert.SerializeObject(datosQR);
+
+            // Paso 3: Codificar en Base64
+            string jsonBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(json));
+
+            // Paso 4: Construir la URL (esto es para QR AFIP)
+            string urlQr = $"https://www.afip.gob.ar/fe/qr/?p={jsonBase64}";
+
+            // Paso 5: Generar el QR
+            using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+            {
+                QRCodeData qrCodeData = qrGenerator.CreateQrCode(urlQr, QRCodeGenerator.ECCLevel.Q);
+                using (QRCode qrCode = new QRCode(qrCodeData))
+                {
+                    using (Bitmap qrCodeImage = qrCode.GetGraphic(20))
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            qrCodeImage.Save(ms, ImageFormat.Png);
+                            byte[] imageBytes = ms.ToArray();
+
+                            // Paso 6: Convertir imagen a base64
+                            return Convert.ToBase64String(imageBytes);
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }

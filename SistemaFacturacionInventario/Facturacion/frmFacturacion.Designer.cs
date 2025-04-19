@@ -123,7 +123,7 @@
             this.lblNroCliente.Location = new System.Drawing.Point(71, 24);
             this.lblNroCliente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNroCliente.Name = "lblNroCliente";
-            this.lblNroCliente.Size = new System.Drawing.Size(54, 19);
+            this.lblNroCliente.Size = new System.Drawing.Size(46, 13);
             this.lblNroCliente.TabIndex = 34;
             this.lblNroCliente.Text = "Cliente:";
             // 
@@ -134,7 +134,7 @@
             this.txtNroCliente.Margin = new System.Windows.Forms.Padding(4);
             this.txtNroCliente.MaxLength = 6;
             this.txtNroCliente.Name = "txtNroCliente";
-            this.txtNroCliente.Size = new System.Drawing.Size(68, 26);
+            this.txtNroCliente.Size = new System.Drawing.Size(68, 22);
             this.txtNroCliente.TabIndex = 33;
             // 
             // lblNomreCliente
@@ -154,7 +154,7 @@
             this.lblTipoFact.Location = new System.Drawing.Point(14, 58);
             this.lblTipoFact.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTipoFact.Name = "lblTipoFact";
-            this.lblTipoFact.Size = new System.Drawing.Size(125, 19);
+            this.lblTipoFact.Size = new System.Drawing.Size(103, 13);
             this.lblTipoFact.TabIndex = 39;
             this.lblTipoFact.Text = "Tipo y Nro Factura:";
             // 
@@ -164,7 +164,7 @@
             this.cmbTipoFac.Location = new System.Drawing.Point(125, 55);
             this.cmbTipoFac.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTipoFac.Name = "cmbTipoFac";
-            this.cmbTipoFac.Size = new System.Drawing.Size(68, 27);
+            this.cmbTipoFac.Size = new System.Drawing.Size(68, 21);
             this.cmbTipoFac.TabIndex = 40;
             // 
             // txtBV
@@ -175,7 +175,7 @@
             this.txtBV.Margin = new System.Windows.Forms.Padding(4);
             this.txtBV.MaxLength = 6;
             this.txtBV.Name = "txtBV";
-            this.txtBV.Size = new System.Drawing.Size(39, 26);
+            this.txtBV.Size = new System.Drawing.Size(39, 22);
             this.txtBV.TabIndex = 41;
             // 
             // txtNroComp
@@ -186,7 +186,7 @@
             this.txtNroComp.Margin = new System.Windows.Forms.Padding(4);
             this.txtNroComp.MaxLength = 6;
             this.txtNroComp.Name = "txtNroComp";
-            this.txtNroComp.Size = new System.Drawing.Size(113, 26);
+            this.txtNroComp.Size = new System.Drawing.Size(113, 22);
             this.txtNroComp.TabIndex = 42;
             // 
             // cmboFormaPago
@@ -195,7 +195,7 @@
             this.cmboFormaPago.Location = new System.Drawing.Point(125, 88);
             this.cmboFormaPago.Margin = new System.Windows.Forms.Padding(4);
             this.cmboFormaPago.Name = "cmboFormaPago";
-            this.cmboFormaPago.Size = new System.Drawing.Size(167, 27);
+            this.cmboFormaPago.Size = new System.Drawing.Size(167, 21);
             this.cmboFormaPago.TabIndex = 44;
             // 
             // lblFormaPago
@@ -205,7 +205,7 @@
             this.lblFormaPago.Location = new System.Drawing.Point(30, 91);
             this.lblFormaPago.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFormaPago.Name = "lblFormaPago";
-            this.lblFormaPago.Size = new System.Drawing.Size(105, 19);
+            this.lblFormaPago.Size = new System.Drawing.Size(87, 13);
             this.lblFormaPago.TabIndex = 43;
             this.lblFormaPago.Text = "Forma de Pago:";
             // 
@@ -216,7 +216,7 @@
             this.lblFecha.Location = new System.Drawing.Point(362, 93);
             this.lblFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(47, 19);
+            this.lblFecha.Size = new System.Drawing.Size(40, 13);
             this.lblFecha.TabIndex = 45;
             this.lblFecha.Text = "Fecha:";
             // 
@@ -226,7 +226,7 @@
             this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFecha.Location = new System.Drawing.Point(409, 90);
             this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(97, 26);
+            this.dtpFecha.Size = new System.Drawing.Size(97, 22);
             this.dtpFecha.TabIndex = 46;
             // 
             // dtpFechaVto
@@ -235,7 +235,7 @@
             this.dtpFechaVto.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaVto.Location = new System.Drawing.Point(602, 88);
             this.dtpFechaVto.Name = "dtpFechaVto";
-            this.dtpFechaVto.Size = new System.Drawing.Size(97, 26);
+            this.dtpFechaVto.Size = new System.Drawing.Size(97, 22);
             this.dtpFechaVto.TabIndex = 48;
             // 
             // lblFechaVto
@@ -245,7 +245,7 @@
             this.lblFechaVto.Location = new System.Drawing.Point(531, 93);
             this.lblFechaVto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFechaVto.Name = "lblFechaVto";
-            this.lblFechaVto.Size = new System.Drawing.Size(76, 19);
+            this.lblFechaVto.Size = new System.Drawing.Size(64, 13);
             this.lblFechaVto.TabIndex = 47;
             this.lblFechaVto.Text = "Fecha Vto.:";
             // 
@@ -255,7 +255,7 @@
             this.cmbConcepto.Location = new System.Drawing.Point(822, 90);
             this.cmbConcepto.Margin = new System.Windows.Forms.Padding(4);
             this.cmbConcepto.Name = "cmbConcepto";
-            this.cmbConcepto.Size = new System.Drawing.Size(167, 27);
+            this.cmbConcepto.Size = new System.Drawing.Size(167, 21);
             this.cmbConcepto.TabIndex = 50;
             // 
             // lblConcepto
@@ -265,7 +265,7 @@
             this.lblConcepto.Location = new System.Drawing.Point(754, 93);
             this.lblConcepto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblConcepto.Name = "lblConcepto";
-            this.lblConcepto.Size = new System.Drawing.Size(71, 19);
+            this.lblConcepto.Size = new System.Drawing.Size(60, 13);
             this.lblConcepto.TabIndex = 49;
             this.lblConcepto.Text = "Concepto:";
             // 
@@ -308,7 +308,7 @@
             this.chkMoverStock.Location = new System.Drawing.Point(365, 123);
             this.chkMoverStock.Margin = new System.Windows.Forms.Padding(2);
             this.chkMoverStock.Name = "chkMoverStock";
-            this.chkMoverStock.Size = new System.Drawing.Size(129, 23);
+            this.chkMoverStock.Size = new System.Drawing.Size(106, 17);
             this.chkMoverStock.TabIndex = 94;
             this.chkMoverStock.Text = "No mover Stock";
             this.chkMoverStock.UseVisualStyleBackColor = true;
@@ -321,7 +321,7 @@
             this.txtNroFactNC.Margin = new System.Windows.Forms.Padding(2);
             this.txtNroFactNC.MaxLength = 8;
             this.txtNroFactNC.Name = "txtNroFactNC";
-            this.txtNroFactNC.Size = new System.Drawing.Size(94, 26);
+            this.txtNroFactNC.Size = new System.Drawing.Size(94, 22);
             this.txtNroFactNC.TabIndex = 64;
             this.txtNroFactNC.Visible = false;
             // 
@@ -332,7 +332,7 @@
             this.txtBVNC.Margin = new System.Windows.Forms.Padding(2);
             this.txtBVNC.MaxLength = 4;
             this.txtBVNC.Name = "txtBVNC";
-            this.txtBVNC.Size = new System.Drawing.Size(35, 26);
+            this.txtBVNC.Size = new System.Drawing.Size(35, 22);
             this.txtBVNC.TabIndex = 63;
             this.txtBVNC.Visible = false;
             // 
@@ -342,7 +342,7 @@
             this.lblReferenciaFact.Location = new System.Drawing.Point(9, 153);
             this.lblReferenciaFact.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblReferenciaFact.Name = "lblReferenciaFact";
-            this.lblReferenciaFact.Size = new System.Drawing.Size(180, 19);
+            this.lblReferenciaFact.Size = new System.Drawing.Size(152, 13);
             this.lblReferenciaFact.TabIndex = 65;
             this.lblReferenciaFact.Text = "En Referencia a Factura Nro:";
             this.lblReferenciaFact.Visible = false;
@@ -353,7 +353,7 @@
             this.cmbCondPago.Location = new System.Drawing.Point(125, 120);
             this.cmbCondPago.Margin = new System.Windows.Forms.Padding(4);
             this.cmbCondPago.Name = "cmbCondPago";
-            this.cmbCondPago.Size = new System.Drawing.Size(167, 27);
+            this.cmbCondPago.Size = new System.Drawing.Size(167, 21);
             this.cmbCondPago.TabIndex = 52;
             this.cmbCondPago.Visible = false;
             // 
@@ -364,7 +364,7 @@
             this.lblCondPago.Location = new System.Drawing.Point(9, 123);
             this.lblCondPago.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCondPago.Name = "lblCondPago";
-            this.lblCondPago.Size = new System.Drawing.Size(127, 19);
+            this.lblCondPago.Size = new System.Drawing.Size(108, 13);
             this.lblCondPago.TabIndex = 51;
             this.lblCondPago.Text = "Condición de Pago:";
             this.lblCondPago.Visible = false;
@@ -638,7 +638,7 @@
             this.lblSubtDto0.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubtDto0.Location = new System.Drawing.Point(304, 57);
             this.lblSubtDto0.Name = "lblSubtDto0";
-            this.lblSubtDto0.Size = new System.Drawing.Size(17, 18);
+            this.lblSubtDto0.Size = new System.Drawing.Size(15, 15);
             this.lblSubtDto0.TabIndex = 67;
             this.lblSubtDto0.Text = "0";
             // 
@@ -647,7 +647,7 @@
             this.lbllblSubTotaldto0.AutoSize = true;
             this.lbllblSubTotaldto0.Location = new System.Drawing.Point(160, 58);
             this.lbllblSubTotaldto0.Name = "lbllblSubTotaldto0";
-            this.lbllblSubTotaldto0.Size = new System.Drawing.Size(160, 19);
+            this.lbllblSubTotaldto0.Size = new System.Drawing.Size(130, 13);
             this.lbllblSubTotaldto0.TabIndex = 66;
             this.lbllblSubTotaldto0.Text = "SubTotal c/dto IVA 0%: $";
             // 
@@ -657,7 +657,7 @@
             this.lblSubTotal0.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubTotal0.Location = new System.Drawing.Point(304, 13);
             this.lblSubTotal0.Name = "lblSubTotal0";
-            this.lblSubTotal0.Size = new System.Drawing.Size(17, 18);
+            this.lblSubTotal0.Size = new System.Drawing.Size(15, 15);
             this.lblSubTotal0.TabIndex = 65;
             this.lblSubTotal0.Text = "0";
             // 
@@ -666,7 +666,7 @@
             this.lbllblSubTotal0.AutoSize = true;
             this.lbllblSubTotal0.Location = new System.Drawing.Point(191, 14);
             this.lbllblSubTotal0.Name = "lbllblSubTotal0";
-            this.lbllblSubTotal0.Size = new System.Drawing.Size(124, 19);
+            this.lbllblSubTotal0.Size = new System.Drawing.Size(100, 13);
             this.lbllblSubTotal0.TabIndex = 64;
             this.lbllblSubTotal0.Text = "SubTotal IVA 0%: $";
             // 
@@ -676,7 +676,7 @@
             this.lblTotalIva0.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalIva0.Location = new System.Drawing.Point(304, 78);
             this.lblTotalIva0.Name = "lblTotalIva0";
-            this.lblTotalIva0.Size = new System.Drawing.Size(17, 18);
+            this.lblTotalIva0.Size = new System.Drawing.Size(15, 15);
             this.lblTotalIva0.TabIndex = 63;
             this.lblTotalIva0.Text = "0";
             // 
@@ -685,7 +685,7 @@
             this.lbllblIVA0.AutoSize = true;
             this.lbllblIVA0.Location = new System.Drawing.Point(211, 79);
             this.lbllblIVA0.Name = "lbllblIVA0";
-            this.lbllblIVA0.Size = new System.Drawing.Size(101, 19);
+            this.lbllblIVA0.Size = new System.Drawing.Size(80, 13);
             this.lbllblIVA0.TabIndex = 62;
             this.lbllblIVA0.Text = "Total IVA 0%: $";
             // 
@@ -693,9 +693,9 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(848, 136);
+            this.label13.Location = new System.Drawing.Point(831, 136);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(105, 32);
+            this.label13.Size = new System.Drawing.Size(82, 25);
             this.label13.TabIndex = 42;
             this.label13.Text = "Total: $";
             // 
@@ -703,9 +703,9 @@
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(966, 139);
+            this.lblTotal.Location = new System.Drawing.Point(949, 137);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(30, 31);
+            this.lblTotal.Size = new System.Drawing.Size(25, 25);
             this.lblTotal.TabIndex = 43;
             this.lblTotal.Text = "0";
             // 
@@ -715,7 +715,7 @@
             this.lblTotalIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalIVA.Location = new System.Drawing.Point(960, 79);
             this.lblTotalIVA.Name = "lblTotalIVA";
-            this.lblTotalIVA.Size = new System.Drawing.Size(17, 18);
+            this.lblTotalIVA.Size = new System.Drawing.Size(15, 15);
             this.lblTotalIVA.TabIndex = 55;
             this.lblTotalIVA.Text = "0";
             // 
@@ -724,7 +724,7 @@
             this.lbllblIVA.AutoSize = true;
             this.lbllblIVA.Location = new System.Drawing.Point(892, 81);
             this.lbllblIVA.Name = "lbllblIVA";
-            this.lbllblIVA.Size = new System.Drawing.Size(78, 19);
+            this.lbllblIVA.Size = new System.Drawing.Size(62, 13);
             this.lbllblIVA.TabIndex = 54;
             this.lbllblIVA.Text = "Total IVA: $";
             // 
@@ -734,7 +734,7 @@
             this.lblSubtDto105.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubtDto105.Location = new System.Drawing.Point(770, 57);
             this.lblSubtDto105.Name = "lblSubtDto105";
-            this.lblSubtDto105.Size = new System.Drawing.Size(17, 18);
+            this.lblSubtDto105.Size = new System.Drawing.Size(15, 15);
             this.lblSubtDto105.TabIndex = 53;
             this.lblSubtDto105.Text = "0";
             // 
@@ -744,7 +744,7 @@
             this.lblSubtDto21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubtDto21.Location = new System.Drawing.Point(533, 58);
             this.lblSubtDto21.Name = "lblSubtDto21";
-            this.lblSubtDto21.Size = new System.Drawing.Size(17, 18);
+            this.lblSubtDto21.Size = new System.Drawing.Size(15, 15);
             this.lblSubtDto21.TabIndex = 52;
             this.lblSubtDto21.Text = "0";
             // 
@@ -753,7 +753,7 @@
             this.lbllblSubTotaldto105.AutoSize = true;
             this.lbllblSubTotaldto105.Location = new System.Drawing.Point(612, 58);
             this.lbllblSubTotaldto105.Name = "lbllblSubTotaldto105";
-            this.lbllblSubTotaldto105.Size = new System.Drawing.Size(179, 19);
+            this.lbllblSubTotaldto105.Size = new System.Drawing.Size(145, 13);
             this.lbllblSubTotaldto105.TabIndex = 51;
             this.lbllblSubTotaldto105.Text = "SubTotal c/dto IVA 10,5%: $";
             // 
@@ -762,7 +762,7 @@
             this.lbllblSubTotaldto21.AutoSize = true;
             this.lbllblSubTotaldto21.Location = new System.Drawing.Point(384, 59);
             this.lbllblSubTotaldto21.Name = "lbllblSubTotaldto21";
-            this.lbllblSubTotaldto21.Size = new System.Drawing.Size(168, 19);
+            this.lbllblSubTotaldto21.Size = new System.Drawing.Size(136, 13);
             this.lbllblSubTotaldto21.TabIndex = 50;
             this.lbllblSubTotaldto21.Text = "SubTotal c/dto IVA 21%: $";
             // 
@@ -772,7 +772,7 @@
             this.lblSubTotal105.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubTotal105.Location = new System.Drawing.Point(770, 13);
             this.lblSubTotal105.Name = "lblSubTotal105";
-            this.lblSubTotal105.Size = new System.Drawing.Size(17, 18);
+            this.lblSubTotal105.Size = new System.Drawing.Size(15, 15);
             this.lblSubTotal105.TabIndex = 49;
             this.lblSubTotal105.Text = "0";
             // 
@@ -782,7 +782,7 @@
             this.lblSubTotal21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubTotal21.Location = new System.Drawing.Point(533, 14);
             this.lblSubTotal21.Name = "lblSubTotal21";
-            this.lblSubTotal21.Size = new System.Drawing.Size(17, 18);
+            this.lblSubTotal21.Size = new System.Drawing.Size(15, 15);
             this.lblSubTotal21.TabIndex = 48;
             this.lblSubTotal21.Text = "0";
             // 
@@ -791,7 +791,7 @@
             this.lbllblSubTotal105.AutoSize = true;
             this.lbllblSubTotal105.Location = new System.Drawing.Point(643, 14);
             this.lbllblSubTotal105.Name = "lbllblSubTotal105";
-            this.lbllblSubTotal105.Size = new System.Drawing.Size(143, 19);
+            this.lbllblSubTotal105.Size = new System.Drawing.Size(115, 13);
             this.lbllblSubTotal105.TabIndex = 47;
             this.lbllblSubTotal105.Text = "SubTotal IVA 10,5%: $";
             // 
@@ -800,7 +800,7 @@
             this.lbllblSubTotal21.AutoSize = true;
             this.lbllblSubTotal21.Location = new System.Drawing.Point(415, 15);
             this.lbllblSubTotal21.Name = "lbllblSubTotal21";
-            this.lbllblSubTotal21.Size = new System.Drawing.Size(132, 19);
+            this.lbllblSubTotal21.Size = new System.Drawing.Size(106, 13);
             this.lbllblSubTotal21.TabIndex = 46;
             this.lbllblSubTotal21.Text = "SubTotal IVA 21%: $";
             // 
@@ -810,7 +810,7 @@
             this.lblTotalIva105.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalIva105.Location = new System.Drawing.Point(770, 79);
             this.lblTotalIva105.Name = "lblTotalIva105";
-            this.lblTotalIva105.Size = new System.Drawing.Size(17, 18);
+            this.lblTotalIva105.Size = new System.Drawing.Size(15, 15);
             this.lblTotalIva105.TabIndex = 45;
             this.lblTotalIva105.Text = "0";
             // 
@@ -819,7 +819,7 @@
             this.lbllblIVA105.AutoSize = true;
             this.lbllblIVA105.Location = new System.Drawing.Point(663, 80);
             this.lbllblIVA105.Name = "lbllblIVA105";
-            this.lbllblIVA105.Size = new System.Drawing.Size(120, 19);
+            this.lbllblIVA105.Size = new System.Drawing.Size(95, 13);
             this.lbllblIVA105.TabIndex = 44;
             this.lbllblIVA105.Text = "Total IVA 10,5%: $";
             // 
@@ -829,7 +829,7 @@
             this.lblTotalIva21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalIva21.Location = new System.Drawing.Point(533, 79);
             this.lblTotalIva21.Name = "lblTotalIva21";
-            this.lblTotalIva21.Size = new System.Drawing.Size(17, 18);
+            this.lblTotalIva21.Size = new System.Drawing.Size(15, 15);
             this.lblTotalIva21.TabIndex = 41;
             this.lblTotalIva21.Text = "0";
             // 
@@ -838,7 +838,7 @@
             this.lbllblIVA21.AutoSize = true;
             this.lbllblIVA21.Location = new System.Drawing.Point(435, 80);
             this.lbllblIVA21.Name = "lbllblIVA21";
-            this.lbllblIVA21.Size = new System.Drawing.Size(109, 19);
+            this.lbllblIVA21.Size = new System.Drawing.Size(86, 13);
             this.lbllblIVA21.TabIndex = 14;
             this.lbllblIVA21.Text = "Total IVA 21%: $";
             // 
@@ -848,7 +848,7 @@
             this.lblSubtDto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubtDto.Location = new System.Drawing.Point(960, 59);
             this.lblSubtDto.Name = "lblSubtDto";
-            this.lblSubtDto.Size = new System.Drawing.Size(17, 18);
+            this.lblSubtDto.Size = new System.Drawing.Size(15, 15);
             this.lblSubtDto.TabIndex = 13;
             this.lblSubtDto.Text = "0";
             // 
@@ -857,7 +857,7 @@
             this.lbllblSubtDto.AutoSize = true;
             this.lbllblSubtDto.Location = new System.Drawing.Point(850, 59);
             this.lbllblSubtDto.Name = "lbllblSubtDto";
-            this.lbllblSubtDto.Size = new System.Drawing.Size(129, 19);
+            this.lbllblSubtDto.Size = new System.Drawing.Size(107, 13);
             this.lbllblSubtDto.TabIndex = 12;
             this.lbllblSubtDto.Text = "SubTotal con Dto: $";
             // 
@@ -867,7 +867,7 @@
             this.lblTotalDto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalDto.Location = new System.Drawing.Point(1008, 35);
             this.lblTotalDto.Name = "lblTotalDto";
-            this.lblTotalDto.Size = new System.Drawing.Size(0, 18);
+            this.lblTotalDto.Size = new System.Drawing.Size(0, 15);
             this.lblTotalDto.TabIndex = 11;
             // 
             // txtDto
@@ -875,7 +875,7 @@
             this.txtDto.Location = new System.Drawing.Point(960, 32);
             this.txtDto.MaxLength = 5;
             this.txtDto.Name = "txtDto";
-            this.txtDto.Size = new System.Drawing.Size(36, 26);
+            this.txtDto.Size = new System.Drawing.Size(36, 22);
             this.txtDto.TabIndex = 11;
             this.txtDto.Text = "0";
             this.txtDto.Leave += new System.EventHandler(this.txtDto_Leave);
@@ -885,7 +885,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(881, 36);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(92, 19);
+            this.label9.Size = new System.Drawing.Size(77, 13);
             this.label9.TabIndex = 9;
             this.label9.Text = "Descuento: %";
             // 
@@ -895,7 +895,7 @@
             this.lblSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubTotal.Location = new System.Drawing.Point(960, 13);
             this.lblSubTotal.Name = "lblSubTotal";
-            this.lblSubTotal.Size = new System.Drawing.Size(17, 18);
+            this.lblSubTotal.Size = new System.Drawing.Size(15, 15);
             this.lblSubTotal.TabIndex = 8;
             this.lblSubTotal.Text = "0";
             // 
@@ -904,7 +904,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(892, 15);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(76, 19);
+            this.label8.Size = new System.Drawing.Size(63, 13);
             this.label8.TabIndex = 7;
             this.label8.Text = "SubTotal: $";
             // 
@@ -976,14 +976,14 @@
             this.lblImpresa.AutoSize = true;
             this.lblImpresa.Location = new System.Drawing.Point(215, 644);
             this.lblImpresa.Name = "lblImpresa";
-            this.lblImpresa.Size = new System.Drawing.Size(57, 19);
+            this.lblImpresa.Size = new System.Drawing.Size(47, 13);
             this.lblImpresa.TabIndex = 57;
             this.lblImpresa.Text = "impresa";
             this.lblImpresa.Visible = false;
             // 
             // frmFacturacion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1113, 676);
             this.Controls.Add(this.lblImpresa);

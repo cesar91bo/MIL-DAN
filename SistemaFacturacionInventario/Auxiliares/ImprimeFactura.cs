@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Printing;
 using CapaNegocio;
+using System.IO;
 
 namespace SistemaFacturacionInventario.Auxiliares
 {
@@ -80,7 +81,7 @@ namespace SistemaFacturacionInventario.Auxiliares
                 foreach (var detalle in factDetalle)
                 {
                     string producto = detalle.Producto.Length > 20 ? detalle.IdProducto +"-"+ detalle.Producto.Substring(0, 20) + "..." : detalle.IdProducto + "-" + detalle.Producto.PadRight(20);
-                    string cantidadPrecio = $"x{detalle.Cantidad}  ${detalle.PrecioUnitario,6}";
+                    string cantidadPrecio = $"x{detalle.Cantidad.ToString("0")}  ${detalle.PrecioUnitario,8:0.00}";
 
                     e.Graphics.DrawString(producto, fuente, Brushes.Black, x, y);
                     e.Graphics.DrawString(cantidadPrecio, fuente, Brushes.Black, 150, y);
@@ -138,6 +139,7 @@ namespace SistemaFacturacionInventario.Auxiliares
                 Font fuente = new Font("Arial", 8);
                 Font fuenteNomEmpresa = new Font("Arial", 13, FontStyle.Bold);
                 Font fuenteImporte = new Font("Arial", 10, FontStyle.Bold);
+                Font fuenteRegimen = new Font("Arial", 5, FontStyle.Bold);
 
                 // Obtener el ancho del área de impresión
                 int anchoPagina = e.PageBounds.Width;
@@ -184,7 +186,7 @@ namespace SistemaFacturacionInventario.Auxiliares
                 foreach (var detalle in factDetalle)
                 {
                     string producto = detalle.Producto.Length > 20 ? detalle.IdProducto + "-" + detalle.Producto.Substring(0, 20) + "..." : detalle.IdProducto + "-" + detalle.Producto.PadRight(20);
-                    string cantidadPrecio = $"x{detalle.Cantidad}  ${detalle.PrecioUnitario,6}";
+                    string cantidadPrecio = $"x{detalle.Cantidad.ToString("0")}  ${detalle.PrecioUnitario,8:0.00}";
 
                     e.Graphics.DrawString(producto, fuente, Brushes.Black, x, y);
                     e.Graphics.DrawString(cantidadPrecio, fuente, Brushes.Black, 150, y);
@@ -198,7 +200,7 @@ namespace SistemaFacturacionInventario.Auxiliares
                 //Discriminación IVA
                 string iva = CalculaIVA(fact.Total);
 
-                e.Graphics.DrawString("RÉGIMEN DE TRANSFERENCIA FISCAL AL CONSUMIDOR FINAL LEY 27.743", fuente, Brushes.Black, x, y);
+                e.Graphics.DrawString("RÉGIMEN DE TRANSFERENCIA FISCAL AL CONSUMIDOR FINAL LEY 27.743", fuenteRegimen, Brushes.Black, x, y);
                 y += espacioLinea;
                 e.Graphics.DrawString($"IVA Contenido: $ {iva}", fuente, Brushes.Black, x, y);
                 y += espacioLinea;
@@ -208,6 +210,24 @@ namespace SistemaFacturacionInventario.Auxiliares
                 // Totales
                 e.Graphics.DrawString($"Importe: $ {fact.Total}", fuenteImporte, Brushes.Black, x, y);
                 y += espacioSeccion;
+
+                if (!string.IsNullOrEmpty(factElec.QrImageBase64))
+                {
+                    byte[] qrBytes = Convert.FromBase64String(factElec.QrImageBase64);
+                    using (MemoryStream ms = new MemoryStream(qrBytes))
+                    {
+                        Image qrImage = Image.FromStream(ms);
+
+                        int anchoQr = 170;
+                        int altoQr = 170;
+
+                        // Cálculo para centrar horizontalmente
+                        float xCentradoQr = (anchoPagina - anchoQr) / 2 - 15;
+
+                        e.Graphics.DrawImage(qrImage, xCentradoQr, y, anchoQr, altoQr);
+                        y += altoQr + 10; // Espaciado después del QR
+                    }
+                }
 
                 // Pie de página
                 e.Graphics.DrawString("Gracias por su compra", fuente, Brushes.Black, x, y);
