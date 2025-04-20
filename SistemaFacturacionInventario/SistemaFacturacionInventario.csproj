@@ -26,7 +26,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>21</ApplicationRevision>
+    <ApplicationRevision>25</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -487,6 +487,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\logoArca.png" />
+    <None Include="Resources\logo arca.png" />
     <None Include="Connected Services\wsaa\configuration91.svcinfo" />
     <None Include="Connected Services\wsaa\configuration.svcinfo" />
     <None Include="Connected Services\wsaa\Reference.svcmap">

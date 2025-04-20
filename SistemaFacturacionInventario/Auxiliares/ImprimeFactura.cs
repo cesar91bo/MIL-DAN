@@ -229,6 +229,22 @@ namespace SistemaFacturacionInventario.Auxiliares
                     }
                 }
 
+                //Agregar acá el logo de ARCA
+                // Logo de ARCA desde los recursos
+                Image logoArca = Properties.Resources.logoArca;
+
+                int anchoLogo = 120;
+                int altoLogo = 120;
+
+                // Centrado horizontal
+                float xCentradoLogo = (anchoPagina - anchoLogo) / 2;
+
+                e.Graphics.DrawImage(logoArca, xCentradoLogo, y, anchoLogo, altoLogo);
+                y += altoLogo + 8;
+
+                e.Graphics.DrawString("Comprobante Autorizado", fuenteImporte, Brushes.Black, x, y);
+                y += espacioLinea;
+
                 // Pie de página
                 e.Graphics.DrawString("Gracias por su compra", fuente, Brushes.Black, x, y);
                 y += espacioLinea;
