@@ -210,5 +210,23 @@ namespace SistemaFacturacionInventario.Facturacion
             }
 
         }
+
+        private void btnAnular_Click(object sender, EventArgs e)
+        {
+            if (selectedFacturaId > 0)
+            {
+                var frm = new frmAnularFactura { idFactura = selectedFacturaId };
+                frm.ShowDialog();
+                if (frm.DialogResult == DialogResult.OK)
+                {
+                    LlenarLv(true);
+                    MessageBox.Show("Factura anulada correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debes seleccionar una factura", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
