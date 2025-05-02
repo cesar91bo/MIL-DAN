@@ -256,23 +256,4 @@
   <metadata name="PrecManual.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="brnAnonimo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DAAACwwBP0AiyAAAARVJREFUOE/F078rhlEUwPEPJT8SySKrTcpkkZKkpFgtEoqJpExKwmQhJooM/gKj
-        TQwG+TEo/46u7luP09v7vK+Ub9167vecTufeex7+gUkc4Rxb6IgJjXCFy1x0BNt4xXxMrIdU5DpKtOMR
-        AzFQxj7mosysYyXKMg4wE2VmA0tRlrGIzSgzJ5iIsozUwV6UmVsMR1nGTu6yGqeYirKMfnyiM/hR3KMl
-        +LrYrXL5Z5gNrm668VHYd+V9c8E1zEvhuzLUv6IHx/kBKjThLs9hW8HXJP1SF3jGapXjpS7T3b7jEL0h
-        /oNlPOWRSN3UIr3yAt4wFoOJoTwOrTFQQl8uGsfr+xg3WPvFesB0LDheJbGRNRgL/glfPTYvB9Vi75YA
-        AAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="btnListado.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DAAACwwBP0AiyAAAAGBJREFUOE9jYBjRYBUUF6FLkAv+QzHIUBjoRRLHhx8i6YEDbAYqMjAwhBKBbZH0
-        DCEAc74lugS5AFsYhiPFPj7cj6QHDqhuINW9PPgBtjCkKGFjM5CirAeLMaoVDiMEAAD3/D6DtyzF5QAA
-        AABJRU5ErkJggg==
-</value>
-  </data>
 </root>

@@ -97,10 +97,7 @@
             this.txtBV = new System.Windows.Forms.TextBox();
             this.cmbTipoFac = new System.Windows.Forms.ComboBox();
             this.lblTipoFact = new System.Windows.Forms.Label();
-            this.brnAnonimo = new System.Windows.Forms.Button();
-            this.lblNomreCliente = new System.Windows.Forms.Label();
-            this.btnListado = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
+            this.lblNombreCliente = new System.Windows.Forms.Label();
             this.lblNroCliente = new System.Windows.Forms.Label();
             this.txtNroCliente = new System.Windows.Forms.TextBox();
             this.groupBoxDetalle = new System.Windows.Forms.GroupBox();
@@ -648,10 +645,7 @@
             this.grupBoxCabecera.Controls.Add(this.txtBV);
             this.grupBoxCabecera.Controls.Add(this.cmbTipoFac);
             this.grupBoxCabecera.Controls.Add(this.lblTipoFact);
-            this.grupBoxCabecera.Controls.Add(this.brnAnonimo);
-            this.grupBoxCabecera.Controls.Add(this.lblNomreCliente);
-            this.grupBoxCabecera.Controls.Add(this.btnListado);
-            this.grupBoxCabecera.Controls.Add(this.btnBuscar);
+            this.grupBoxCabecera.Controls.Add(this.lblNombreCliente);
             this.grupBoxCabecera.Controls.Add(this.lblNroCliente);
             this.grupBoxCabecera.Controls.Add(this.txtNroCliente);
             this.grupBoxCabecera.Location = new System.Drawing.Point(15, 8);
@@ -730,6 +724,7 @@
             // 
             // cmbConcepto
             // 
+            this.cmbConcepto.Enabled = false;
             this.cmbConcepto.FormattingEnabled = true;
             this.cmbConcepto.Location = new System.Drawing.Point(822, 90);
             this.cmbConcepto.Margin = new System.Windows.Forms.Padding(4);
@@ -790,6 +785,7 @@
             // 
             // cmboFormaPago
             // 
+            this.cmboFormaPago.Enabled = false;
             this.cmboFormaPago.FormattingEnabled = true;
             this.cmboFormaPago.Location = new System.Drawing.Point(125, 88);
             this.cmboFormaPago.Margin = new System.Windows.Forms.Padding(4);
@@ -832,6 +828,7 @@
             // 
             // cmbTipoFac
             // 
+            this.cmbTipoFac.Enabled = false;
             this.cmbTipoFac.FormattingEnabled = true;
             this.cmbTipoFac.Location = new System.Drawing.Point(125, 55);
             this.cmbTipoFac.Margin = new System.Windows.Forms.Padding(4);
@@ -850,45 +847,14 @@
             this.lblTipoFact.TabIndex = 39;
             this.lblTipoFact.Text = "Tipo y Nro Factura:";
             // 
-            // brnAnonimo
+            // lblNombreCliente
             // 
-            this.brnAnonimo.Image = ((System.Drawing.Image)(resources.GetObject("brnAnonimo.Image")));
-            this.brnAnonimo.Location = new System.Drawing.Point(300, 11);
-            this.brnAnonimo.Margin = new System.Windows.Forms.Padding(4);
-            this.brnAnonimo.Name = "brnAnonimo";
-            this.brnAnonimo.Size = new System.Drawing.Size(35, 35);
-            this.brnAnonimo.TabIndex = 38;
-            this.brnAnonimo.UseVisualStyleBackColor = true;
-            // 
-            // lblNomreCliente
-            // 
-            this.lblNomreCliente.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomreCliente.Location = new System.Drawing.Point(342, 20);
-            this.lblNomreCliente.Name = "lblNomreCliente";
-            this.lblNomreCliente.Size = new System.Drawing.Size(644, 21);
-            this.lblNomreCliente.TabIndex = 37;
-            this.lblNomreCliente.Text = "Nombre Cliente";
-            this.lblNomreCliente.Visible = false;
-            // 
-            // btnListado
-            // 
-            this.btnListado.Image = ((System.Drawing.Image)(resources.GetObject("btnListado.Image")));
-            this.btnListado.Location = new System.Drawing.Point(257, 11);
-            this.btnListado.Margin = new System.Windows.Forms.Padding(4);
-            this.btnListado.Name = "btnListado";
-            this.btnListado.Size = new System.Drawing.Size(35, 35);
-            this.btnListado.TabIndex = 36;
-            this.btnListado.UseVisualStyleBackColor = true;
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Image = global::SistemaFacturacionInventario.Properties.Resources.icons8_buscar_20;
-            this.btnBuscar.Location = new System.Drawing.Point(214, 11);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(35, 35);
-            this.btnBuscar.TabIndex = 35;
-            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.lblNombreCliente.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreCliente.Location = new System.Drawing.Point(225, 19);
+            this.lblNombreCliente.Name = "lblNombreCliente";
+            this.lblNombreCliente.Size = new System.Drawing.Size(644, 21);
+            this.lblNombreCliente.TabIndex = 37;
+            this.lblNombreCliente.Text = "Nombre Cliente";
             // 
             // lblNroCliente
             // 
@@ -903,6 +869,7 @@
             // 
             // txtNroCliente
             // 
+            this.txtNroCliente.Enabled = false;
             this.txtNroCliente.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.txtNroCliente.Location = new System.Drawing.Point(125, 19);
             this.txtNroCliente.Margin = new System.Windows.Forms.Padding(4);
@@ -1013,10 +980,7 @@
         private System.Windows.Forms.TextBox txtBV;
         private System.Windows.Forms.ComboBox cmbTipoFac;
         private System.Windows.Forms.Label lblTipoFact;
-        private System.Windows.Forms.Button brnAnonimo;
-        private System.Windows.Forms.Label lblNomreCliente;
-        private System.Windows.Forms.Button btnListado;
-        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Label lblNombreCliente;
         private System.Windows.Forms.Label lblNroCliente;
         private System.Windows.Forms.TextBox txtNroCliente;
         private System.Windows.Forms.GroupBox groupBoxDetalle;

@@ -216,7 +216,6 @@
             this.btnAnular.Text = "Anulación";
             this.btnAnular.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAnular.UseVisualStyleBackColor = true;
-            this.btnAnular.Visible = false;
             this.btnAnular.Click += new System.EventHandler(this.btnAnular_Click);
             // 
             // frmConsultaFacturas

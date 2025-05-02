@@ -999,6 +999,7 @@ namespace SistemaFacturacionInventario.Facturacion
                 IdConceptoFactura = Convert.ToInt32(cmbConcepto.SelectedValue),
                 NroCompFactReferencia = txtNroFactNC.Text == "" ? null : txtNroFactNC.Text,
                 BVReferencia = txtBVNC.Text == "" ? null : txtBVNC.Text,
+                BVFact = txtBV.Text == "" ? null : txtBV.Text,
                 Cobrador = false,
             };
 
