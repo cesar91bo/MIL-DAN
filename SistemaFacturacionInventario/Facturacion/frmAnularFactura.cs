@@ -348,5 +348,10 @@ namespace SistemaFacturacionInventario.Facturacion
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
+
+        private void btnAnular_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -425,7 +425,6 @@
             this.IdFactVtaDetalle,
             this.PrecManual});
             this.dgrDetalle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgrDetalle.Enabled = false;
             this.dgrDetalle.Location = new System.Drawing.Point(36, 237);
             this.dgrDetalle.MultiSelect = false;
             this.dgrDetalle.Name = "dgrDetalle";

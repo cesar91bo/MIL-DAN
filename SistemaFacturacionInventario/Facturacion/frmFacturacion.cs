@@ -44,6 +44,17 @@ namespace SistemaFacturacionInventario.Facturacion
                 SaldoCtaCte = 0;
                 LlenarCombos();
 
+                txtNroCliente.Text = "1";
+                if(IdCliente == 0)
+                {
+                    IdCliente = 1;
+                    BuscarCliente(IdCliente);
+                }
+                else
+                {
+                    BuscarCliente(IdCliente);
+                }
+
                 Seteos seteos = auxiliaresNegocio.ObtenerSeteos();
 
                 if (seteos.DiasVtoFact > 0) dtpFechaVto.Value = DateTime.Today.AddDays(Convert.ToInt32(seteos.DiasVtoFact));
@@ -521,6 +532,7 @@ namespace SistemaFacturacionInventario.Facturacion
             cmbTipoFac.DataSource = auxiliares.DtTiposFact();
             cmbTipoFac.DisplayMember = "Descripcion";
             cmbTipoFac.ValueMember = "IdTipoFactura";
+            cmbTipoFac.SelectedValue = 2;
             dtpFechaVto.Value = DateTime.Now.AddDays((double)(seteos.DiasVtoFact ?? 15));
         }
 
@@ -935,7 +947,7 @@ namespace SistemaFacturacionInventario.Facturacion
 
                 if (dgrDetalle.RowCount == 1)
                 {
-                    Error.SetError(dgrDetalle, "Debe ingresar al menos una fila en el detalle de la Factura");
+                    MessageBox.Show("Debe ingresar al menos una fila en el detalle de la Factura", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     ok = false;
                 }
                 else Error.SetError(dgrDetalle, "");
