@@ -71,7 +71,7 @@
             this.txtFiltro.Location = new System.Drawing.Point(45, 63);
             this.txtFiltro.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtFiltro.Name = "txtFiltro";
-            this.txtFiltro.Size = new System.Drawing.Size(504, 26);
+            this.txtFiltro.Size = new System.Drawing.Size(504, 22);
             this.txtFiltro.TabIndex = 22;
             this.txtFiltro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFiltro_KeyDown);
             // 
@@ -80,7 +80,7 @@
             this.cmbFiltro.FormattingEnabled = true;
             this.cmbFiltro.Location = new System.Drawing.Point(100, 36);
             this.cmbFiltro.Name = "cmbFiltro";
-            this.cmbFiltro.Size = new System.Drawing.Size(251, 27);
+            this.cmbFiltro.Size = new System.Drawing.Size(251, 21);
             this.cmbFiltro.TabIndex = 8;
             // 
             // lblFiltrar
@@ -90,7 +90,7 @@
             this.lblFiltrar.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lblFiltrar.Location = new System.Drawing.Point(42, 40);
             this.lblFiltrar.Name = "lblFiltrar";
-            this.lblFiltrar.Size = new System.Drawing.Size(71, 19);
+            this.lblFiltrar.Size = new System.Drawing.Size(60, 13);
             this.lblFiltrar.TabIndex = 7;
             this.lblFiltrar.Text = "Filtrar Por:";
             // 
@@ -100,7 +100,7 @@
             this.lblListaPrecios.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblListaPrecios.Location = new System.Drawing.Point(309, 4);
             this.lblListaPrecios.Name = "lblListaPrecios";
-            this.lblListaPrecios.Size = new System.Drawing.Size(159, 28);
+            this.lblListaPrecios.Size = new System.Drawing.Size(127, 21);
             this.lblListaPrecios.TabIndex = 6;
             this.lblListaPrecios.Text = "Lista de Precios";
             // 
@@ -110,7 +110,7 @@
             this.btnEditar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(547, 758);
+            this.btnEditar.Location = new System.Drawing.Point(553, 550);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(97, 37);
             this.btnEditar.TabIndex = 29;
@@ -127,7 +127,7 @@
             this.listViewProductos.Location = new System.Drawing.Point(84, 112);
             this.listViewProductos.MultiSelect = false;
             this.listViewProductos.Name = "listViewProductos";
-            this.listViewProductos.Size = new System.Drawing.Size(1016, 619);
+            this.listViewProductos.Size = new System.Drawing.Size(1016, 411);
             this.listViewProductos.TabIndex = 26;
             this.listViewProductos.UseCompatibleStateImageBehavior = false;
             this.listViewProductos.View = System.Windows.Forms.View.Details;
@@ -139,10 +139,10 @@
             // 
             // frmListaPrecio
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
-            this.ClientSize = new System.Drawing.Size(1226, 823);
+            this.ClientSize = new System.Drawing.Size(1226, 627);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnEditar);

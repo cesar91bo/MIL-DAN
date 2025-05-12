@@ -48,7 +48,10 @@ namespace SistemaFacturacionInventario.Productos
                         btnBaja.Enabled = true;
                         txtNroProducto.Enabled = true;
                     }
-
+                }
+                else
+                {
+                    txtCodigoProd.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -141,7 +144,8 @@ namespace SistemaFacturacionInventario.Productos
                     LlevarStock = chkStock.Checked,
                     StockActual = Convert.ToDouble(txtStockActual.Text.Replace(".", ",")),
                     UltimaActStock = DateTime.Now,
-                    FechaAcceso = DateTime.Now
+                    FechaAcceso = DateTime.Now,
+                    CodigoProducto = txtCodigoProd.Text
                 };
                 if (Accion == "ALTA")
                 {
@@ -222,10 +226,11 @@ namespace SistemaFacturacionInventario.Productos
                     chkStock.Checked = producto.LlevarStock;
                     IdProducto = producto.IdProducto;
                     Accion = "MOD";
+                    txtCodigoProd.Text = producto.CodigoProducto;
                     if (producto.FechaBaja == null) return;
                     lblBaja.Text = "Dado de baja el día " + producto.FechaBaja.Value.ToShortDateString();
                     btnBaja.Enabled = false;
-                    
+
                 }
                 else { MessageBox.Show("No se encontró el producto", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
             }

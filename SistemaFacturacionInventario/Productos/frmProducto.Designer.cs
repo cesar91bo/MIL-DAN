@@ -33,6 +33,8 @@
             this.txtNroProducto = new System.Windows.Forms.TextBox();
             this.lblNroArticulo = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtCodigoProd = new System.Windows.Forms.TextBox();
             this.btnProveedor = new System.Windows.Forms.Button();
             this.cmbProveedor = new System.Windows.Forms.ComboBox();
             this.lblProveedor = new System.Windows.Forms.Label();
@@ -64,17 +66,17 @@
             // 
             // txtDescCorta
             // 
-            this.txtDescCorta.Location = new System.Drawing.Point(152, 66);
+            this.txtDescCorta.Location = new System.Drawing.Point(152, 57);
             this.txtDescCorta.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescCorta.Name = "txtDescCorta";
-            this.txtDescCorta.Size = new System.Drawing.Size(310, 22);
+            this.txtDescCorta.Size = new System.Drawing.Size(687, 22);
             this.txtDescCorta.TabIndex = 2;
             // 
             // txtNroProducto
             // 
             this.txtNroProducto.Enabled = false;
             this.txtNroProducto.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.txtNroProducto.Location = new System.Drawing.Point(152, 36);
+            this.txtNroProducto.Location = new System.Drawing.Point(152, 22);
             this.txtNroProducto.Margin = new System.Windows.Forms.Padding(4);
             this.txtNroProducto.MaxLength = 6;
             this.txtNroProducto.Name = "txtNroProducto";
@@ -87,7 +89,7 @@
             // 
             this.lblNroArticulo.AutoSize = true;
             this.lblNroArticulo.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblNroArticulo.Location = new System.Drawing.Point(28, 42);
+            this.lblNroArticulo.Location = new System.Drawing.Point(28, 28);
             this.lblNroArticulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNroArticulo.Name = "lblNroArticulo";
             this.lblNroArticulo.Size = new System.Drawing.Size(82, 13);
@@ -96,6 +98,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txtCodigoProd);
             this.groupBox1.Controls.Add(this.btnProveedor);
             this.groupBox1.Controls.Add(this.cmbProveedor);
             this.groupBox1.Controls.Add(this.lblProveedor);
@@ -121,18 +125,40 @@
             this.groupBox1.Controls.Add(this.txtNroProducto);
             this.groupBox1.Controls.Add(this.txtDescCorta);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(113, 144);
+            this.groupBox1.Location = new System.Drawing.Point(113, 118);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(895, 309);
+            this.groupBox1.Size = new System.Drawing.Size(895, 377);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.label1.Location = new System.Drawing.Point(540, 25);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 13);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "Código Producto:";
+            // 
+            // txtCodigoProd
+            // 
+            this.txtCodigoProd.Enabled = false;
+            this.txtCodigoProd.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.txtCodigoProd.Location = new System.Drawing.Point(680, 19);
+            this.txtCodigoProd.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCodigoProd.MaxLength = 20;
+            this.txtCodigoProd.Name = "txtCodigoProd";
+            this.txtCodigoProd.Size = new System.Drawing.Size(159, 22);
+            this.txtCodigoProd.TabIndex = 24;
             // 
             // btnProveedor
             // 
             this.btnProveedor.Image = ((System.Drawing.Image)(resources.GetObject("btnProveedor.Image")));
-            this.btnProveedor.Location = new System.Drawing.Point(852, 91);
+            this.btnProveedor.Location = new System.Drawing.Point(392, 265);
             this.btnProveedor.Margin = new System.Windows.Forms.Padding(4);
             this.btnProveedor.Name = "btnProveedor";
             this.btnProveedor.Size = new System.Drawing.Size(35, 35);
@@ -143,7 +169,7 @@
             // cmbProveedor
             // 
             this.cmbProveedor.FormattingEnabled = true;
-            this.cmbProveedor.Location = new System.Drawing.Point(612, 97);
+            this.cmbProveedor.Location = new System.Drawing.Point(152, 271);
             this.cmbProveedor.Margin = new System.Windows.Forms.Padding(4);
             this.cmbProveedor.Name = "cmbProveedor";
             this.cmbProveedor.Size = new System.Drawing.Size(227, 21);
@@ -153,7 +179,7 @@
             // 
             this.lblProveedor.AutoSize = true;
             this.lblProveedor.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblProveedor.Location = new System.Drawing.Point(514, 102);
+            this.lblProveedor.Location = new System.Drawing.Point(54, 276);
             this.lblProveedor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProveedor.Name = "lblProveedor";
             this.lblProveedor.Size = new System.Drawing.Size(62, 13);
@@ -165,7 +191,7 @@
             this.lblErrores.AutoSize = true;
             this.lblErrores.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lblErrores.ForeColor = System.Drawing.Color.Red;
-            this.lblErrores.Location = new System.Drawing.Point(9, 247);
+            this.lblErrores.Location = new System.Drawing.Point(12, 303);
             this.lblErrores.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblErrores.Name = "lblErrores";
             this.lblErrores.Size = new System.Drawing.Size(43, 13);
@@ -176,7 +202,7 @@
             // btnUMedida
             // 
             this.btnUMedida.Image = ((System.Drawing.Image)(resources.GetObject("btnUMedida.Image")));
-            this.btnUMedida.Location = new System.Drawing.Point(852, 55);
+            this.btnUMedida.Location = new System.Drawing.Point(392, 229);
             this.btnUMedida.Margin = new System.Windows.Forms.Padding(4);
             this.btnUMedida.Name = "btnUMedida";
             this.btnUMedida.Size = new System.Drawing.Size(35, 35);
@@ -187,7 +213,7 @@
             // cmbUMedida
             // 
             this.cmbUMedida.FormattingEnabled = true;
-            this.cmbUMedida.Location = new System.Drawing.Point(612, 64);
+            this.cmbUMedida.Location = new System.Drawing.Point(152, 238);
             this.cmbUMedida.Margin = new System.Windows.Forms.Padding(4);
             this.cmbUMedida.Name = "cmbUMedida";
             this.cmbUMedida.Size = new System.Drawing.Size(227, 21);
@@ -197,7 +223,7 @@
             // 
             this.lblStockMinimo.AutoSize = true;
             this.lblStockMinimo.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblStockMinimo.Location = new System.Drawing.Point(496, 196);
+            this.lblStockMinimo.Location = new System.Drawing.Point(638, 268);
             this.lblStockMinimo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStockMinimo.Name = "lblStockMinimo";
             this.lblStockMinimo.Size = new System.Drawing.Size(80, 13);
@@ -208,7 +234,7 @@
             // 
             this.lblUMedida.AutoSize = true;
             this.lblUMedida.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblUMedida.Location = new System.Drawing.Point(470, 69);
+            this.lblUMedida.Location = new System.Drawing.Point(10, 243);
             this.lblUMedida.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUMedida.Name = "lblUMedida";
             this.lblUMedida.Size = new System.Drawing.Size(106, 13);
@@ -219,7 +245,7 @@
             // 
             this.txtStockMin.Enabled = false;
             this.txtStockMin.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.txtStockMin.Location = new System.Drawing.Point(615, 193);
+            this.txtStockMin.Location = new System.Drawing.Point(757, 265);
             this.txtStockMin.Margin = new System.Windows.Forms.Padding(4);
             this.txtStockMin.MaxLength = 6;
             this.txtStockMin.Name = "txtStockMin";
@@ -232,7 +258,7 @@
             // 
             this.lblStockActual.AutoSize = true;
             this.lblStockActual.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblStockActual.Location = new System.Drawing.Point(503, 166);
+            this.lblStockActual.Location = new System.Drawing.Point(645, 238);
             this.lblStockActual.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStockActual.Name = "lblStockActual";
             this.lblStockActual.Size = new System.Drawing.Size(73, 13);
@@ -243,7 +269,7 @@
             // 
             this.txtStockActual.Enabled = false;
             this.txtStockActual.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.txtStockActual.Location = new System.Drawing.Point(615, 157);
+            this.txtStockActual.Location = new System.Drawing.Point(757, 229);
             this.txtStockActual.Margin = new System.Windows.Forms.Padding(4);
             this.txtStockActual.MaxLength = 6;
             this.txtStockActual.Name = "txtStockActual";
@@ -255,7 +281,7 @@
             // chkStock
             // 
             this.chkStock.AutoSize = true;
-            this.chkStock.Location = new System.Drawing.Point(615, 131);
+            this.chkStock.Location = new System.Drawing.Point(757, 203);
             this.chkStock.Margin = new System.Windows.Forms.Padding(4);
             this.chkStock.Name = "chkStock";
             this.chkStock.Size = new System.Drawing.Size(15, 14);
@@ -267,7 +293,7 @@
             // 
             this.lblLlevarStock.AutoSize = true;
             this.lblLlevarStock.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblLlevarStock.Location = new System.Drawing.Point(506, 133);
+            this.lblLlevarStock.Location = new System.Drawing.Point(648, 205);
             this.lblLlevarStock.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLlevarStock.Name = "lblLlevarStock";
             this.lblLlevarStock.Size = new System.Drawing.Size(70, 13);
@@ -277,7 +303,7 @@
             // btnRubro
             // 
             this.btnRubro.Image = ((System.Drawing.Image)(resources.GetObject("btnRubro.Image")));
-            this.btnRubro.Location = new System.Drawing.Point(852, 20);
+            this.btnRubro.Location = new System.Drawing.Point(392, 194);
             this.btnRubro.Margin = new System.Windows.Forms.Padding(4);
             this.btnRubro.Name = "btnRubro";
             this.btnRubro.Size = new System.Drawing.Size(35, 35);
@@ -288,7 +314,7 @@
             // cmbRubro
             // 
             this.cmbRubro.FormattingEnabled = true;
-            this.cmbRubro.Location = new System.Drawing.Point(612, 34);
+            this.cmbRubro.Location = new System.Drawing.Point(152, 208);
             this.cmbRubro.Margin = new System.Windows.Forms.Padding(4);
             this.cmbRubro.Name = "cmbRubro";
             this.cmbRubro.Size = new System.Drawing.Size(227, 21);
@@ -298,7 +324,7 @@
             // 
             this.lblRubro.AutoSize = true;
             this.lblRubro.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblRubro.Location = new System.Drawing.Point(515, 42);
+            this.lblRubro.Location = new System.Drawing.Point(55, 216);
             this.lblRubro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRubro.Name = "lblRubro";
             this.lblRubro.Size = new System.Drawing.Size(60, 13);
@@ -309,38 +335,38 @@
             // 
             this.lblDescLarga.AutoSize = true;
             this.lblDescLarga.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblDescLarga.Location = new System.Drawing.Point(9, 95);
+            this.lblDescLarga.Location = new System.Drawing.Point(40, 99);
             this.lblDescLarga.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescLarga.Name = "lblDescLarga";
-            this.lblDescLarga.Size = new System.Drawing.Size(101, 13);
+            this.lblDescLarga.Size = new System.Drawing.Size(70, 13);
             this.lblDescLarga.TabIndex = 7;
-            this.lblDescLarga.Text = "Descripción Larga:";
+            this.lblDescLarga.Text = "Descripción:";
             // 
             // txtDescLarga
             // 
-            this.txtDescLarga.Location = new System.Drawing.Point(152, 95);
+            this.txtDescLarga.Location = new System.Drawing.Point(152, 96);
             this.txtDescLarga.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescLarga.Multiline = true;
             this.txtDescLarga.Name = "txtDescLarga";
-            this.txtDescLarga.Size = new System.Drawing.Size(310, 138);
+            this.txtDescLarga.Size = new System.Drawing.Size(687, 84);
             this.txtDescLarga.TabIndex = 3;
             // 
             // lblDescCorta
             // 
             this.lblDescCorta.AutoSize = true;
             this.lblDescCorta.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblDescCorta.Location = new System.Drawing.Point(9, 67);
+            this.lblDescCorta.Location = new System.Drawing.Point(59, 60);
             this.lblDescCorta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescCorta.Name = "lblDescCorta";
-            this.lblDescCorta.Size = new System.Drawing.Size(101, 13);
+            this.lblDescCorta.Size = new System.Drawing.Size(51, 13);
             this.lblDescCorta.TabIndex = 5;
-            this.lblDescCorta.Text = "Descripción Corta:";
+            this.lblDescCorta.Text = "Nombre:";
             // 
             // btnVolver
             // 
             this.btnVolver.Enabled = false;
             this.btnVolver.Image = ((System.Drawing.Image)(resources.GetObject("btnVolver.Image")));
-            this.btnVolver.Location = new System.Drawing.Point(284, 28);
+            this.btnVolver.Location = new System.Drawing.Point(284, 14);
             this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(35, 35);
@@ -352,7 +378,7 @@
             // 
             this.btnBuscar.Enabled = false;
             this.btnBuscar.Image = global::SistemaFacturacionInventario.Properties.Resources.icons8_buscar_20;
-            this.btnBuscar.Location = new System.Drawing.Point(241, 28);
+            this.btnBuscar.Location = new System.Drawing.Point(241, 14);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(35, 35);
@@ -483,5 +509,7 @@
         private System.Windows.Forms.Button btnProveedor;
         private System.Windows.Forms.ComboBox cmbProveedor;
         private System.Windows.Forms.Label lblProveedor;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtCodigoProd;
     }
 }
