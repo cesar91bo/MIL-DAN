@@ -425,47 +425,41 @@ namespace CapaNegocio
             return facturas.ToList();
         }
 
-        public bool AnularFactura(int IdFact, DateTime Fecha, short IdEmp)
+        public bool AnularFactura(FacturasVenta facturasVenta)
         {
-            try
+            using (var transaction = db.Database.BeginTransaction())
             {
-                db.Database.Connection.Open();
-                DbTransaction trans = db.Database.Connection.BeginTransaction();
                 try
                 {
-                    FacturasVenta fv = ObtenerFactura(IdFact);
-                    fv.FechaAnulacion = Fecha;
+                    facturasVenta.FechaAnulacion = DateTime.Now;
                     db.SaveChanges();
-                    DataTable dt = ObtenerDetalleFactVenta(IdFact);
+
+                    DataTable dt = ObtenerDetalleFactVenta(facturasVenta.IdFacturaVenta);
+
                     foreach (DataRow rw in dt.Rows)
-                        if (Convert.ToBoolean(rw["DesdeRemito"].ToString()) == false && rw["IdArticulo"].ToString() != "")
+                    {
+                        if (!Convert.ToBoolean(rw["DesdeRemito"]) && !string.IsNullOrEmpty(rw["IdArticulo"].ToString()))
                         {
                             var rep = new ProductoNegocio();
-                            if (rep.SumarStockArt(Convert.ToDouble(rw["Cantidad"].ToString()), Convert.ToInt32(rw["IdProducto"].ToString())) == false)
+
+                            if (!rep.SumarStockArt(Convert.ToDouble(rw["Cantidad"]), Convert.ToInt32(rw["IdArticulo"])))
                             {
-                                rep = null;
                                 throw new Exception("Error en la actualización de Stock");
                             }
-
-                            rep = null;
                         }
+                    }
 
-                    trans.Commit();
+                    transaction.Commit();
+                    return true;
                 }
-                catch (Exception ex)
+                catch
                 {
-                    trans.Rollback();
-                    throw ex;
+                    transaction.Rollback();
+                    throw;
                 }
-                finally
-                {
-                    if (db.Database.Connection.State == ConnectionState.Open) db.Database.Connection.Close();
-                }
-
-                return true;
             }
-            catch (Exception ex) { throw ex; }
         }
+
         private DataTable ObtenerDetalleFactVenta(int id)
         {
             var aux = new AuxiliaresNegocio();

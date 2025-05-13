@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAnularFactura));
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAnular = new System.Windows.Forms.Button();
@@ -80,9 +81,8 @@
             this.PrecManual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grupBoxCabecera = new System.Windows.Forms.GroupBox();
             this.chkMoverStock = new System.Windows.Forms.CheckBox();
-            this.txtNroFactNC = new System.Windows.Forms.TextBox();
-            this.txtBVNC = new System.Windows.Forms.TextBox();
-            this.lblReferenciaFact = new System.Windows.Forms.Label();
+            this.txtNroCAE = new System.Windows.Forms.TextBox();
+            this.lblCAE = new System.Windows.Forms.Label();
             this.cmbCondPago = new System.Windows.Forms.ComboBox();
             this.lblCondPago = new System.Windows.Forms.Label();
             this.cmbConcepto = new System.Windows.Forms.ComboBox();
@@ -101,9 +101,11 @@
             this.lblNroCliente = new System.Windows.Forms.Label();
             this.txtNroCliente = new System.Windows.Forms.TextBox();
             this.groupBoxDetalle = new System.Windows.Forms.GroupBox();
+            this.Error = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrDetalle)).BeginInit();
             this.grupBoxCabecera.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Error)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancelar
@@ -629,9 +631,8 @@
             // grupBoxCabecera
             // 
             this.grupBoxCabecera.Controls.Add(this.chkMoverStock);
-            this.grupBoxCabecera.Controls.Add(this.txtNroFactNC);
-            this.grupBoxCabecera.Controls.Add(this.txtBVNC);
-            this.grupBoxCabecera.Controls.Add(this.lblReferenciaFact);
+            this.grupBoxCabecera.Controls.Add(this.txtNroCAE);
+            this.grupBoxCabecera.Controls.Add(this.lblCAE);
             this.grupBoxCabecera.Controls.Add(this.cmbCondPago);
             this.grupBoxCabecera.Controls.Add(this.lblCondPago);
             this.grupBoxCabecera.Controls.Add(this.cmbConcepto);
@@ -668,38 +669,27 @@
             this.chkMoverStock.UseVisualStyleBackColor = true;
             this.chkMoverStock.Visible = false;
             // 
-            // txtNroFactNC
+            // txtNroCAE
             // 
-            this.txtNroFactNC.Enabled = false;
-            this.txtNroFactNC.Location = new System.Drawing.Point(198, 151);
-            this.txtNroFactNC.Margin = new System.Windows.Forms.Padding(2);
-            this.txtNroFactNC.MaxLength = 8;
-            this.txtNroFactNC.Name = "txtNroFactNC";
-            this.txtNroFactNC.Size = new System.Drawing.Size(94, 22);
-            this.txtNroFactNC.TabIndex = 64;
-            this.txtNroFactNC.Visible = false;
+            this.txtNroCAE.Enabled = false;
+            this.txtNroCAE.Location = new System.Drawing.Point(125, 151);
+            this.txtNroCAE.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNroCAE.MaxLength = 8;
+            this.txtNroCAE.Name = "txtNroCAE";
+            this.txtNroCAE.Size = new System.Drawing.Size(115, 22);
+            this.txtNroCAE.TabIndex = 64;
+            this.txtNroCAE.Visible = false;
             // 
-            // txtBVNC
+            // lblCAE
             // 
-            this.txtBVNC.Enabled = false;
-            this.txtBVNC.Location = new System.Drawing.Point(155, 151);
-            this.txtBVNC.Margin = new System.Windows.Forms.Padding(2);
-            this.txtBVNC.MaxLength = 4;
-            this.txtBVNC.Name = "txtBVNC";
-            this.txtBVNC.Size = new System.Drawing.Size(35, 22);
-            this.txtBVNC.TabIndex = 63;
-            this.txtBVNC.Visible = false;
-            // 
-            // lblReferenciaFact
-            // 
-            this.lblReferenciaFact.AutoSize = true;
-            this.lblReferenciaFact.Location = new System.Drawing.Point(9, 153);
-            this.lblReferenciaFact.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblReferenciaFact.Name = "lblReferenciaFact";
-            this.lblReferenciaFact.Size = new System.Drawing.Size(152, 13);
-            this.lblReferenciaFact.TabIndex = 65;
-            this.lblReferenciaFact.Text = "En Referencia a Factura Nro:";
-            this.lblReferenciaFact.Visible = false;
+            this.lblCAE.AutoSize = true;
+            this.lblCAE.Location = new System.Drawing.Point(62, 154);
+            this.lblCAE.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCAE.Name = "lblCAE";
+            this.lblCAE.Size = new System.Drawing.Size(55, 13);
+            this.lblCAE.TabIndex = 65;
+            this.lblCAE.Text = "Nro. CAE:";
+            this.lblCAE.Visible = false;
             // 
             // cmbCondPago
             // 
@@ -888,6 +878,10 @@
             this.groupBoxDetalle.TabStop = false;
             this.groupBoxDetalle.Text = "Detalle";
             // 
+            // Error
+            // 
+            this.Error.ContainerControl = this;
+            // 
             // frmAnularFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -907,6 +901,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgrDetalle)).EndInit();
             this.grupBoxCabecera.ResumeLayout(false);
             this.grupBoxCabecera.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Error)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -964,9 +959,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecManual;
         private System.Windows.Forms.GroupBox grupBoxCabecera;
         private System.Windows.Forms.CheckBox chkMoverStock;
-        private System.Windows.Forms.TextBox txtNroFactNC;
-        private System.Windows.Forms.TextBox txtBVNC;
-        private System.Windows.Forms.Label lblReferenciaFact;
+        private System.Windows.Forms.TextBox txtNroCAE;
+        private System.Windows.Forms.Label lblCAE;
         private System.Windows.Forms.ComboBox cmbCondPago;
         private System.Windows.Forms.Label lblCondPago;
         private System.Windows.Forms.ComboBox cmbConcepto;
@@ -985,5 +979,6 @@
         private System.Windows.Forms.Label lblNroCliente;
         private System.Windows.Forms.TextBox txtNroCliente;
         private System.Windows.Forms.GroupBox groupBoxDetalle;
+        private System.Windows.Forms.ErrorProvider Error;
     }
 }

@@ -61,6 +61,11 @@
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.VistaLibroIvaVenta" Width="1.5" PointX="0.75" PointY="18.75" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.VistaTotalesDiscriminadosFactB" Width="1.5" PointX="16.75" PointY="18.75" />
         <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Proveedores" Width="1.5" PointX="19.375" PointY="3.75" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.Cajas" Width="1.5" PointX="7.375" PointY="21.25" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.CajasEgresos" Width="1.5" PointX="9.625" PointY="20.125" />
+        <EntityTypeShape EntityType="SistemaGestionPymeBDModel.CajasIngresos" Width="1.5" PointX="9.625" PointY="23.25" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_CajasEgresos_Cajas" />
+        <AssociationConnector Association="SistemaGestionPymeBDModel.FK_CajasIngresos_Cajas" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

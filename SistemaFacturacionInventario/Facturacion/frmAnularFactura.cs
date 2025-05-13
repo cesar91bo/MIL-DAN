@@ -1,5 +1,6 @@
 ﻿using CapaDatos.Modelos;
 using CapaNegocio;
+using SistemaFacturacionInventario.Auxiliares;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,8 +20,11 @@ namespace SistemaFacturacionInventario.Facturacion
         public int idFactura = 0;
         private FacturacionNegocio facturacionNegocio = new FacturacionNegocio();
         private FacturasVenta facturaVenta = new FacturasVenta();
+        private List<FacturasVentaDetalle> facturaVentaDetalle = new List<FacturasVentaDetalle>();
+        private FacturasElectronicas facturasElectronicas = new FacturasElectronicas();
         private ClienteNegocio clienteNegocio = new ClienteNegocio();
         private bool artdesc;
+        private AuxiliaresNegocio auxiliaresNegocio = new AuxiliaresNegocio();
         public frmAnularFactura()
         {
             InitializeComponent();
@@ -35,8 +39,18 @@ namespace SistemaFacturacionInventario.Facturacion
         {
             facturaVenta = facturacionNegocio.ObtenerFactura(idFactura);
 
-            if (facturaVenta != null) 
+
+            if (facturaVenta != null)
             {
+                facturasElectronicas = facturacionNegocio.ObtenerFacturaElec(idFactura);
+                if (facturasElectronicas != null)
+                {
+                    txtNroCAE.Text = facturasElectronicas.CAE.ToString();
+                    txtNroCAE.Enabled = false;
+                    txtNroCAE.Visible = true;
+                    lblCAE.Visible = true;
+                }
+
                 txtNroCliente.Text = facturaVenta.IdCliente.ToString();
                 var cliente = clienteNegocio.ObtenerCliporNroCli(facturaVenta.IdCliente);
                 lblNombreCliente.Text = cliente.Nombre + " " + cliente.Apellido;
@@ -105,7 +119,7 @@ namespace SistemaFacturacionInventario.Facturacion
                 dgrDetalle.Rows.Clear();
                 List<FacturasVentaDetalle> lista = facturacionNegocio.ObtenerDetalledeFacturaVta(facturaVenta.IdFacturaVenta);
                 dgrDetalle.Rows.Add(lista.Count);
-                
+
                 int i = 0;
 
                 foreach (FacturasVentaDetalle fvd in lista)
@@ -189,13 +203,15 @@ namespace SistemaFacturacionInventario.Facturacion
                     artdesc = false;
                 }
 
+                txtBV.Text = facturaVenta.BVFact;
+                txtNroComp.Text = facturaVenta.NCompFact;
 
                 lblTotal.Text = facturaVenta.Total.ToString(CultureInfo.InvariantCulture);
                 lblSubTotal21.Text = facturaVenta.Subtotal21.ToString(CultureInfo.InvariantCulture);
                 lblSubTotal105.Text = facturaVenta.Subtotal105.ToString(CultureInfo.InvariantCulture);
                 lblTotalDto.Text = facturaVenta.TotalDescuento.ToString(CultureInfo.InvariantCulture);
                 lblSubTotal.Text = (Convert.ToDecimal(lblSubTotal21.Text) + Convert.ToDecimal(lblSubTotal105.Text) + Convert.ToDecimal(lblSubTotal0.Text)).ToString(CultureInfo.InvariantCulture);
-                lblSubTotal0.Text = (Convert.ToDecimal(lblSubTotal.Text) - Convert.ToDecimal(lblSubTotal21.Text) - Convert.ToDecimal(lblSubTotal105.Text)).ToString(CultureInfo.InvariantCulture);    
+                lblSubTotal0.Text = (Convert.ToDecimal(lblSubTotal.Text) - Convert.ToDecimal(lblSubTotal21.Text) - Convert.ToDecimal(lblSubTotal105.Text)).ToString(CultureInfo.InvariantCulture);
                 lblSubtDto0.Text = (Convert.ToDecimal(lblSubTotal0.Text) - Convert.ToDecimal(facturaVenta.TotalDescuento)).ToString(CultureInfo.InvariantCulture);
                 lblSubtDto105.Text = (Convert.ToDecimal(lblSubTotal105.Text) - Convert.ToDecimal(facturaVenta.TotalDescuento105)).ToString(CultureInfo.InvariantCulture);
                 lblSubtDto21.Text = (Convert.ToDecimal(lblSubTotal21.Text) - Convert.ToDecimal(facturaVenta.TotalDescuento21)).ToString(CultureInfo.InvariantCulture);
@@ -239,119 +255,60 @@ namespace SistemaFacturacionInventario.Facturacion
             catch (Exception ex) { throw ex; }
         }
 
-        private void CalcularTotales(bool CalcSubT)
-        {
-            try
-            {
-                if (CalcSubT)
-                {
-                    lblSubTotal.Text = "0"; //en cero los subtotales
-                    lblSubTotal105.Text = "0";
-                    lblSubTotal21.Text = "0";
-                    lblSubTotal0.Text = "0";
-                    foreach (DataGridViewRow rw in dgrDetalle.Rows)
-                    {
-                        decimal subt = rw.Cells[9].Value == null ? 0 : Convert.ToDecimal(rw.Cells[9].Value);
-                        if (cmbTipoFac.Text == "A") //Si es "A" se calculan los subtotales correspondientes al IVA del producto y se suman
-                        {
-                            if (Convert.ToDecimal(rw.Cells[7].Value) == 21) //IVA 21%
-                            {
-                                lblSubTotal21.Text = Math.Round(Convert.ToDecimal(lblSubTotal21.Text) + subt, 2, MidpointRounding.AwayFromZero).ToString();
-                            }
-                            else if (Convert.ToDecimal(rw.Cells[7].Value) == 10.5M) //IVA 10,5%
-                            {
-                                lblSubTotal105.Text = Math.Round(Convert.ToDecimal(lblSubTotal105.Text) + subt, 2, MidpointRounding.AwayFromZero).ToString();
-                            }
-                            else //IVA 0%
-                            {
-                                lblSubTotal0.Text = Math.Round(Convert.ToDecimal(lblSubTotal0.Text) + subt, 2, MidpointRounding.AwayFromZero).ToString();
-                            }
-                            lblSubTotal.Text = Math.Round(Convert.ToDecimal(lblSubTotal0.Text) + Convert.ToDecimal(lblSubTotal21.Text) + Convert.ToDecimal(lblSubTotal105.Text), 2,
-                                MidpointRounding.AwayFromZero).ToString();
-                        }
-                        else //Si es B solo subtotal sin IVA
-                        {
-                            if (Convert.ToDecimal(rw.Cells[7].Value) == 21) //IVA 21%
-                            {
-                                lblSubTotal21.Text = Math.Round((Convert.ToDecimal(lblSubTotal21.Text) + subt), 2, MidpointRounding.AwayFromZero).ToString();
-                            }
-                            else if (Convert.ToDecimal(rw.Cells[7].Value) == 10.5M) //IVA 10,5%
-                            {
-                                lblSubTotal105.Text = Math.Round((Convert.ToDecimal(lblSubTotal105.Text) + subt), 2, MidpointRounding.AwayFromZero).ToString();
-                            }
-                            else //IVA 0%
-                            {
-                                lblSubTotal0.Text = Math.Round(Convert.ToDecimal(lblSubTotal0.Text) + subt, 2, MidpointRounding.AwayFromZero).ToString();
-                            }
-                            lblSubTotal.Text = Math.Round(Convert.ToDecimal(lblSubTotal.Text) + subt, 2, MidpointRounding.AwayFromZero).ToString();
-                        }
-                    }
-                }
-
-                if (cmbTipoFac.Text == "A")
-                {
-                    lblTotalDto.Text = (Math.Round(Convert.ToDecimal(lblSubTotal0.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100), 2, MidpointRounding.AwayFromZero) +
-                                        Math.Round(Convert.ToDecimal(lblSubTotal105.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100), 2, MidpointRounding.AwayFromZero) +
-                                        Math.Round(Convert.ToDecimal(lblSubTotal21.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100), 2, MidpointRounding.AwayFromZero)).ToString();
-                    //Esta porción de código es para que cuando el cálculo de abajo de -0.01 se sume 0.01 al campo de TotalDescuento.
-                    //De esta forma se evita el error a la hora de actualizar algunas facturas que usan descuento.
-                    if (Convert.ToDecimal(lblSubTotal.Text.Replace(".", ",")) -
-                        Convert.ToDecimal(lblTotalDto.Text.Replace(".", ",")) -
-                        Convert.ToDecimal(lblSubtDto21.Text.Replace(".", ",")) -
-                        Convert.ToDecimal(lblSubtDto105.Text.Replace(".", ",")) == Convert.ToDecimal(-0.01))
-                    {
-                        lblTotalDto.Text = Convert.ToString(Convert.ToDecimal(lblTotalDto.Text.Replace(".", ",")) - Convert.ToDecimal(0.01), CultureInfo.InvariantCulture);
-                    }
-                    //Fin de la porción de código de validación del campo TotalDescuento.
-                    lblSubtDto0.Text = Math.Round(Convert.ToDecimal(lblSubTotal0.Text) - (Convert.ToDecimal(lblSubTotal0.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100)), 2,
-                        MidpointRounding.AwayFromZero).ToString();
-                    lblSubtDto105.Text = Math.Round(Convert.ToDecimal(lblSubTotal105.Text) - (Convert.ToDecimal(lblSubTotal105.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100)), 2,
-                        MidpointRounding.AwayFromZero).ToString();
-                    lblSubtDto21.Text = Math.Round(Convert.ToDecimal(lblSubTotal21.Text) - (Convert.ToDecimal(lblSubTotal21.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100)), 2,
-                        MidpointRounding.AwayFromZero).ToString();
-                    lblSubtDto.Text = Math.Round(Convert.ToDecimal(lblSubtDto0.Text) + Convert.ToDecimal(lblSubtDto105.Text) + Convert.ToDecimal(lblSubtDto21.Text), 2,
-                        MidpointRounding.AwayFromZero).ToString();
-                    lblTotalIva105.Text = Math.Round(Convert.ToDecimal(lblSubtDto105.Text) * Convert.ToDecimal(0.105), 2, MidpointRounding.AwayFromZero).ToString();
-                    lblTotalIva21.Text = Math.Round(Convert.ToDecimal(lblSubtDto21.Text) * Convert.ToDecimal(0.21), 2, MidpointRounding.AwayFromZero).ToString();
-                    lblTotalIva0.Text = "0";
-                    lblTotalIVA.Text = Math.Round(Convert.ToDecimal(lblTotalIva105.Text) + Convert.ToDecimal(lblTotalIva21.Text), 2, MidpointRounding.AwayFromZero).ToString();
-                    lblTotal.Text = Math.Round(Convert.ToDecimal(lblSubtDto.Text) + Convert.ToDecimal(lblTotalIva105.Text) + Convert.ToDecimal(lblTotalIva21.Text), 2,
-                        MidpointRounding.AwayFromZero).ToString();
-                }
-                else
-                {
-                    lblTotalDto.Text = Math.Round(Convert.ToDecimal(lblSubTotal.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100), 2, MidpointRounding.AwayFromZero).ToString();
-                    //Esta porción de código es para que cuando el cálculo de abajo de -0.01 se sume 0.01 al campo de TotalDescuento.
-                    //De esta forma se evita el error a la hora de actualizar algunas facturas que usan descuento.
-                    if (Convert.ToDecimal(lblSubTotal.Text.Replace(".", ",")) -
-                        Convert.ToDecimal(lblTotalDto.Text.Replace(".", ",")) -
-                        Convert.ToDecimal(lblSubtDto21.Text.Replace(".", ",")) -
-                        Convert.ToDecimal(lblSubtDto105.Text.Replace(".", ",")) == Convert.ToDecimal(-0.01))
-                    {
-                        lblTotalDto.Text = Convert.ToString(Convert.ToDecimal(lblTotalDto.Text.Replace(".", ",")) - Convert.ToDecimal(0.01), CultureInfo.InvariantCulture);
-                    }
-                    //Fin de la porción de código de validación del campo TotalDescuento.
-                    lblSubtDto.Text = Math.Round(Convert.ToDecimal(lblSubTotal.Text) - Convert.ToDecimal(lblTotalDto.Text), 2, MidpointRounding.AwayFromZero).ToString();
-                    lblTotal.Text = Convert.ToString(Math.Round(Decimal.Parse(lblSubTotal.Text) - (Decimal.Parse(lblSubTotal.Text) * (Decimal.Parse(txtDto.Text.Replace(".", ",")) / 100)), 2,
-                        MidpointRounding.AwayFromZero));
-                    lblSubtDto0.Text = Math.Round(Convert.ToDecimal(lblSubTotal0.Text) - (Convert.ToDecimal(lblSubTotal0.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100)), 2,
-                        MidpointRounding.AwayFromZero).ToString();
-                    lblSubtDto105.Text = Math.Round(Convert.ToDecimal(lblSubTotal105.Text) - (Convert.ToDecimal(lblSubTotal105.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100)), 2,
-                        MidpointRounding.AwayFromZero).ToString();
-                    lblSubtDto21.Text = Math.Round(Convert.ToDecimal(lblSubTotal21.Text) - (Convert.ToDecimal(lblSubTotal21.Text) * (Convert.ToDecimal(txtDto.Text.Replace(".", ",")) / 100)), 2,
-                        MidpointRounding.AwayFromZero).ToString();
-                    lblSubtDto.Text = Math.Round(Convert.ToDecimal(lblSubtDto0.Text) + Convert.ToDecimal(lblSubtDto105.Text) + Convert.ToDecimal(lblSubtDto21.Text), 2,
-                        MidpointRounding.AwayFromZero).ToString();
-
-                }
-
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-        }
 
         private void btnAnular_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (!Validaciones()) return;
 
+
+                bool estado = facturacionNegocio.AnularFactura(facturaVenta);
+                if (estado)
+                {
+                    MessageBox.Show("Factura anulada correctamente", "Sistema de Facturación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    facturaVentaDetalle = facturacionNegocio.ObtenerDetalledeFacturaVta(idFactura);
+                    ImprimeFactura.ImprimeAnulacion(facturaVenta, facturaVentaDetalle);
+
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Error al anular la factura", "Sistema de Facturación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private bool Validaciones()
+        {
+            try
+            {
+                var ok = true;
+
+                if (!FuncionesForms.NroEneteroInt32(txtNroCliente.Text))
+                {
+                    Error.SetError(txtNroCliente, "Seleccione un cliente");
+                    ok = false;
+                }
+                else Error.SetError(txtNroCliente, "");
+
+                if (idFactura == 0)
+                {
+                    Error.SetError(txtNroCliente, "No tiene factura para dar de baja");
+                    ok = false;
+                }
+                else Error.SetError(txtNroCliente, "");
+
+
+                return ok;
+            }
+            catch (Exception ex) { throw new Exception($"Error : {ex.Message}", ex); }
         }
     }
 }

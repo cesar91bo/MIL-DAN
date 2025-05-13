@@ -61,6 +61,9 @@ namespace CapaDatos.Modelos
         public virtual DbSet<VistaLibroIvaVenta> VistaLibroIvaVenta { get; set; }
         public virtual DbSet<VistaTotalesDiscriminadosFactB> VistaTotalesDiscriminadosFactB { get; set; }
         public virtual DbSet<Proveedores> Proveedores { get; set; }
+        public virtual DbSet<Cajas> Cajas { get; set; }
+        public virtual DbSet<CajasEgresos> CajasEgresos { get; set; }
+        public virtual DbSet<CajasIngresos> CajasIngresos { get; set; }
     
         public virtual int SP_InsertarLogError(string origen, string metodo, string mensaje, string stackTrace)
         {

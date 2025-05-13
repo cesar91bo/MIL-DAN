@@ -57,6 +57,15 @@
     <Compile Include="Modelos\AutenticacionesWSAA.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\Cajas.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\CajasEgresos.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\CajasIngresos.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\Clientes.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>

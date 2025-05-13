@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-using System.Drawing.Printing;
 using CapaNegocio;
 using System.IO;
 
@@ -257,6 +256,97 @@ namespace SistemaFacturacionInventario.Auxiliares
 
             Console.WriteLine("Ticket impreso.");
         }
+
+        public static void ImprimeAnulacion(FacturasVenta fact, List<FacturasVentaDetalle> factDetalle)
+        {
+            string impresora = @"EPSON TM-T20IIIL Receipt"; // Nombre exacto de la impresora
+
+            AuxiliaresNegocio auxiliaresNegocio = new AuxiliaresNegocio();
+            Empresa empresa = auxiliaresNegocio.ObtenerEmpresa();
+
+            PrintDocument pd = new PrintDocument();
+            pd.PrinterSettings.PrinterName = impresora;
+
+            pd.DefaultPageSettings.PaperSize = new PaperSize("Custom", 315, 1000);
+            pd.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+
+            pd.PrintPage += (sender, e) =>
+            {
+                float x = 0;
+                float y = 10;
+                float espacioLinea = 2 * new Font("Arial", 8).GetHeight(e.Graphics);
+                float espacioLineaNombreEmp = 3 * new Font("Arial", 8).GetHeight(e.Graphics);
+                float espacioSeccion = espacioLinea * 2;
+
+                Font fuente = new Font("Arial", 8);
+                Font fuenteNomEmpresa = new Font("Arial", 13, FontStyle.Bold);
+                Font fuenteImportante = new Font("Arial", 10, FontStyle.Bold);
+
+                int anchoPagina = e.PageBounds.Width;
+                float ajusteManual = 10;
+                SizeF tamañoTexto = e.Graphics.MeasureString(empresa.NFantasia, fuenteNomEmpresa);
+                float xCentrado = (anchoPagina - tamañoTexto.Width) / 2 - ajusteManual;
+
+                // Encabezado
+                e.Graphics.DrawString(empresa.NFantasia, fuenteNomEmpresa, Brushes.Black, xCentrado, y);
+                y += espacioLineaNombreEmp;
+
+                e.Graphics.DrawString("Dirección: " + empresa.Direccion ?? "", fuente, Brushes.Black, x, y);
+                y += espacioLinea;
+
+                e.Graphics.DrawString("Localidad: Pampa del Indio", fuente, Brushes.Black, x, y);
+                y += espacioLinea;
+
+                e.Graphics.DrawString("Provincia: Chaco", fuente, Brushes.Black, x, y);
+                y += espacioLinea;
+
+                e.Graphics.DrawString("CUIT: " + empresa.CUIT, fuente, Brushes.Black, x, y);
+                y += espacioLinea;
+
+                e.Graphics.DrawString($"Fecha de Anulación: {DateTime.Now.ToShortDateString()}", fuente, Brushes.Black, x, y);
+                y += espacioLinea;
+
+                e.Graphics.DrawString($"Hora: {DateTime.Now.ToShortTimeString()}", fuente, Brushes.Black, x, y);
+                y += espacioSeccion;
+
+                // Línea separadora
+                e.Graphics.DrawString("***************************************", fuente, Brushes.Black, x, y);
+                y += fuente.GetHeight(e.Graphics);
+
+                // Mensaje de anulación destacado
+                string mensaje = "*** COMPROBANTE ANULADO ***";
+                SizeF tamañoMensaje = e.Graphics.MeasureString(mensaje, fuenteImportante);
+                float xMensaje = (anchoPagina - tamañoMensaje.Width) / 2;
+                e.Graphics.DrawString(mensaje, fuenteImportante, Brushes.Black, xMensaje, y);
+                y += espacioSeccion;
+
+                // Detalles de compra
+                foreach (var detalle in factDetalle)
+                {
+                    string producto = detalle.Producto.Length > 20 ? detalle.IdProducto + "-" + detalle.Producto.Substring(0, 20) + "..." : detalle.IdProducto + "-" + detalle.Producto.PadRight(20);
+                    string cantidadPrecio = $"x{detalle.Cantidad.ToString("0")}  ${detalle.PrecioUnitario,8:0.00}";
+
+                    e.Graphics.DrawString(producto, fuente, Brushes.Black, x, y);
+                    e.Graphics.DrawString(cantidadPrecio, fuente, Brushes.Black, 150, y);
+
+                    y += fuente.GetHeight(e.Graphics);
+                }
+
+                e.Graphics.DrawString("Documento ANULADO.", fuente, Brushes.Black, x, y);
+                y += espacioSeccion;
+
+                e.Graphics.DrawString("***************************************", fuente, Brushes.Black, x, y);
+                y += espacioLinea;
+
+
+                e.Graphics.DrawString("Este ticket es solo constancia de anulación.", fuente, Brushes.Black, x, y);
+            };
+
+            pd.Print();
+
+            Console.WriteLine("Ticket de anulación impreso.");
+        }
+
 
         private static string CalculaIVA(decimal total)
         {

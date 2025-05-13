@@ -67,6 +67,12 @@ namespace SistemaFacturacionInventario.Facturacion
                         item.SubItems.Add(l.TotalIva105.ToString());
                         item.SubItems.Add(l.TotalIva21.ToString());
                         item.SubItems.Add(l.Total.ToString());
+
+                        if (!string.IsNullOrEmpty(l.FechaAnulacion))
+                        {
+                            item.ForeColor = Color.Red;
+                        }
+
                         listViewFactura.Items.Add(item);
                     }
                 }
@@ -87,6 +93,12 @@ namespace SistemaFacturacionInventario.Facturacion
                     item.SubItems.Add(fact.TotalIva105.ToString());
                     item.SubItems.Add(fact.TotalIva21.ToString());
                     item.SubItems.Add(fact.Total.ToString());
+
+                    if (!string.IsNullOrEmpty(fact.FechaAnulacion))
+                    {
+                        item.ForeColor = Color.Red;
+                    }
+
                     listViewFactura.Items.Add(item);
                     listViewFactura.Focus();
                 }
@@ -202,7 +214,7 @@ namespace SistemaFacturacionInventario.Facturacion
                 {
                     ImprimeFactura.ImprimeFacturaX(fact, ventaDetalle);
                 }
-                
+
             }
             else
             {
@@ -217,11 +229,9 @@ namespace SistemaFacturacionInventario.Facturacion
             {
                 var frm = new frmAnularFactura { idFactura = selectedFacturaId };
                 frm.ShowDialog();
-                if (frm.DialogResult == DialogResult.OK)
-                {
-                    LlenarLv(true);
-                    MessageBox.Show("Factura anulada correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+
+                LlenarLv(true);
+
             }
             else
             {
