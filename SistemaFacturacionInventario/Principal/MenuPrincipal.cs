@@ -1,4 +1,6 @@
-﻿using SistemaFacturacionInventario.Auxiliares;
+﻿using CapaNegocio;
+using SistemaFacturacionInventario.Auxiliares;
+using SistemaFacturacionInventario.Cajas;
 using SistemaFacturacionInventario.Clientes;
 using SistemaFacturacionInventario.Facturacion;
 using SistemaFacturacionInventario.Principal;
@@ -26,6 +28,17 @@ namespace SistemaFacturacionInventario
 
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
+            CajaNegocio cajaNegocio = new CajaNegocio();
+            if (cajaNegocio.ExisteCajaAnteriorSinCerrar())
+            {
+                DialogResult result = MessageBox.Show(this, "Atención: la caja anterior no fue cerrada. ¿Desea cerrar ahora?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    var frmCerrarCaja = new frmCierreCaja();
+                    frmCerrarCaja.ShowDialog();
+                }
+            }
+
             AbrirFormularioHijo(new frmIndex());
             OcultarPanelesSubMenu();
         }

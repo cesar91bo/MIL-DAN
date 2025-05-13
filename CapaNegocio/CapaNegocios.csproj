@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CajaNegocio.cs" />
     <Compile Include="ClienteNegocio.cs" />
     <Compile Include="FacturacionNegocio.cs" />
     <Compile Include="FacturasElectronicasNegocio.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AuxiliaresNegocio.cs" />
     <Compile Include="RemitosNegocio.cs" />
+    <Compile Include="ResultadoOperacion.cs" />
     <Compile Include="VentaNegocio.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -112,6 +112,18 @@
     </Compile>
     <Compile Include="Auxiliares\FuncionesForms.cs" />
     <Compile Include="Auxiliares\ImprimeFactura.cs" />
+    <Compile Include="Cajas\frmAperturaCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cajas\frmAperturaCaja.Designer.cs">
+      <DependentUpon>frmAperturaCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cajas\frmCierreCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cajas\frmCierreCaja.Designer.cs">
+      <DependentUpon>frmCierreCaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Clientes\frmCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +251,9 @@
     </Compile>
     <EmbeddedResource Include="Auxiliares\frmConfiguracion.resx">
       <DependentUpon>frmConfiguracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cajas\frmCierreCaja.resx">
+      <DependentUpon>frmCierreCaja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Clientes\frmCliente.resx">
       <DependentUpon>frmCliente.cs</DependentUpon>
