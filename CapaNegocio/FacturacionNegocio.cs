@@ -410,7 +410,7 @@ namespace CapaNegocio
 
             facturas.OrderBy(x => x.FechaEmision);
 
-            return facturas.ToList();
+            return facturas.OrderByDescending(x=>x.IdFacturaVenta).ToList();
         }
 
         public List<VistaCabFactVenta> ObtenerListCabFactPorCliente(string cliente)

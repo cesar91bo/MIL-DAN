@@ -1022,6 +1022,11 @@ namespace SistemaFacturacionInventario.Facturacion
                             return false;
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show("No se puede continuar sin abrir la caja. Operación cancelada.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
                 }
 
                 return ok;
