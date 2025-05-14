@@ -36,6 +36,7 @@
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.pictureBoxClima = new System.Windows.Forms.PictureBox();
             this.lblDolar = new System.Windows.Forms.Label();
+            this.lblCaja = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClima)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +48,7 @@
             this.lblFecha.AutoSize = true;
             this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFecha.ForeColor = System.Drawing.Color.SlateGray;
-            this.lblFecha.Location = new System.Drawing.Point(296, 250);
+            this.lblFecha.Location = new System.Drawing.Point(288, 362);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(131, 46);
             this.lblFecha.TabIndex = 4;
@@ -61,7 +62,7 @@
             this.lblHora.AutoSize = true;
             this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHora.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblHora.Location = new System.Drawing.Point(384, 146);
+            this.lblHora.Location = new System.Drawing.Point(376, 258);
             this.lblHora.Name = "lblHora";
             this.lblHora.Size = new System.Drawing.Size(212, 91);
             this.lblHora.TabIndex = 3;
@@ -117,11 +118,24 @@
             this.lblDolar.Text = "Dólar hoy:";
             this.lblDolar.Visible = false;
             // 
+            // lblCaja
+            // 
+            this.lblCaja.AutoSize = true;
+            this.lblCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblCaja.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblCaja.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblCaja.Location = new System.Drawing.Point(635, 64);
+            this.lblCaja.Name = "lblCaja";
+            this.lblCaja.Size = new System.Drawing.Size(63, 20);
+            this.lblCaja.TabIndex = 9;
+            this.lblCaja.Text = "lblCaja";
+            // 
             // frmIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(832, 499);
+            this.Controls.Add(this.lblCaja);
             this.Controls.Add(this.lblDolar);
             this.Controls.Add(this.pictureBoxClima);
             this.Controls.Add(this.lblDescripcion);
@@ -147,5 +161,6 @@
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.PictureBox pictureBoxClima;
         private System.Windows.Forms.Label lblDolar;
+        private System.Windows.Forms.Label lblCaja;
     }
 }

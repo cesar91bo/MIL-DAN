@@ -31,11 +31,24 @@ namespace SistemaFacturacionInventario
             CajaNegocio cajaNegocio = new CajaNegocio();
             if (cajaNegocio.ExisteCajaAnteriorSinCerrar())
             {
-                DialogResult result = MessageBox.Show(this, "Atención: la caja anterior no fue cerrada. ¿Desea cerrar ahora?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show(this, "Atención: la caja anterior no fue cerrada. \n¿Desea cerrar ahora?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
                     var frmCerrarCaja = new frmCierreCaja();
                     frmCerrarCaja.ShowDialog();
+                }
+            }
+
+            CapaDatos.Modelos.Cajas cajaActual = cajaNegocio.ObtenerCajaActual();
+            if (cajaActual == null)
+            {
+                DialogResult result = MessageBox.Show(this, "La caja aún no está abierta. \n¿Desea abrirla ahora?", "ABRIR CAJA",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    var frmCaja = new frmAperturaCaja();
+                    frmCaja.ShowDialog();
                 }
             }
 

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using CapaNegocio;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,19 @@ namespace SistemaFacturacionInventario.Principal
         {
             CargarClima();
             CargarTasaCambio();
+
+            CajaNegocio cajaNegocio = new CajaNegocio();
+
+            CapaDatos.Modelos.Cajas cajaActual = cajaNegocio.ObtenerCajaActual();
+            if (cajaActual == null || cajaActual.Estado == "Cerrado")
+            {
+                lblCaja.Text = "Caja No Abierta";
+                lblCaja.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblCaja.Text = "Caja Abierta"; ;
+            }
         }
 
         private async void CargarTasaCambio()

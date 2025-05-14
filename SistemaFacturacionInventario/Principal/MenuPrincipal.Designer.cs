@@ -32,6 +32,7 @@
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlMenuLateral = new System.Windows.Forms.Panel();
+            this.btnCaja = new System.Windows.Forms.Button();
             this.btnReportes = new System.Windows.Forms.Button();
             this.pnlSubMenuClientes = new System.Windows.Forms.Panel();
             this.btnHistorialCompra = new System.Windows.Forms.Button();
@@ -51,7 +52,6 @@
             this.btnInicio = new System.Windows.Forms.Button();
             this.btnConfiguracion = new System.Windows.Forms.Button();
             this.pnlContenedorPrincipal = new System.Windows.Forms.Panel();
-            this.btnCaja = new System.Windows.Forms.Button();
             this.pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlMenuLateral.SuspendLayout();
@@ -100,6 +100,24 @@
             this.pnlMenuLateral.Name = "pnlMenuLateral";
             this.pnlMenuLateral.Size = new System.Drawing.Size(250, 874);
             this.pnlMenuLateral.TabIndex = 0;
+            // 
+            // btnCaja
+            // 
+            this.btnCaja.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCaja.FlatAppearance.BorderSize = 0;
+            this.btnCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCaja.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnCaja.Image = ((System.Drawing.Image)(resources.GetObject("btnCaja.Image")));
+            this.btnCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCaja.Location = new System.Drawing.Point(0, 744);
+            this.btnCaja.Name = "btnCaja";
+            this.btnCaja.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnCaja.Size = new System.Drawing.Size(250, 45);
+            this.btnCaja.TabIndex = 11;
+            this.btnCaja.Text = "Cajas";
+            this.btnCaja.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCaja.UseVisualStyleBackColor = true;
+            this.btnCaja.Click += new System.EventHandler(this.btnCaja_Click);
             // 
             // btnReportes
             // 
@@ -396,24 +414,6 @@
             this.pnlContenedorPrincipal.Name = "pnlContenedorPrincipal";
             this.pnlContenedorPrincipal.Size = new System.Drawing.Size(1266, 874);
             this.pnlContenedorPrincipal.TabIndex = 1;
-            // 
-            // btnCaja
-            // 
-            this.btnCaja.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCaja.FlatAppearance.BorderSize = 0;
-            this.btnCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCaja.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnCaja.Image = ((System.Drawing.Image)(resources.GetObject("btnCaja.Image")));
-            this.btnCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCaja.Location = new System.Drawing.Point(0, 744);
-            this.btnCaja.Name = "btnCaja";
-            this.btnCaja.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnCaja.Size = new System.Drawing.Size(250, 45);
-            this.btnCaja.TabIndex = 11;
-            this.btnCaja.Text = "Cajas";
-            this.btnCaja.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCaja.UseVisualStyleBackColor = true;
-            this.btnCaja.Click += new System.EventHandler(this.btnCaja_Click);
             // 
             // MenuPrincipal
             // 

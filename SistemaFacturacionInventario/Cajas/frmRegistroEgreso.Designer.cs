@@ -29,11 +29,126 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.btnEgreso = new System.Windows.Forms.Button();
+            this.dpkFecha = new System.Windows.Forms.DateTimePicker();
+            this.lblFecha = new System.Windows.Forms.Label();
+            this.txtMotivo = new System.Windows.Forms.TextBox();
+            this.txtMonto = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblAbrir = new System.Windows.Forms.Label();
+            this.error = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.error)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // btnEgreso
+            // 
+            this.btnEgreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEgreso.Location = new System.Drawing.Point(325, 355);
+            this.btnEgreso.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnEgreso.Name = "btnEgreso";
+            this.btnEgreso.Size = new System.Drawing.Size(172, 46);
+            this.btnEgreso.TabIndex = 28;
+            this.btnEgreso.Text = "Guardar";
+            this.btnEgreso.UseVisualStyleBackColor = true;
+            this.btnEgreso.Click += new System.EventHandler(this.btnEgreso_Click);
+            // 
+            // dpkFecha
+            // 
+            this.dpkFecha.Enabled = false;
+            this.dpkFecha.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dpkFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpkFecha.Location = new System.Drawing.Point(323, 267);
+            this.dpkFecha.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dpkFecha.Name = "dpkFecha";
+            this.dpkFecha.Size = new System.Drawing.Size(175, 26);
+            this.dpkFecha.TabIndex = 27;
+            // 
+            // lblFecha
+            // 
+            this.lblFecha.AutoSize = true;
+            this.lblFecha.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFecha.Location = new System.Drawing.Point(223, 275);
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(53, 19);
+            this.lblFecha.TabIndex = 26;
+            this.lblFecha.Text = "Fecha:";
+            // 
+            // txtMotivo
+            // 
+            this.txtMotivo.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMotivo.Location = new System.Drawing.Point(143, 93);
+            this.txtMotivo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtMotivo.MaxLength = 150;
+            this.txtMotivo.Multiline = true;
+            this.txtMotivo.Name = "txtMotivo";
+            this.txtMotivo.Size = new System.Drawing.Size(519, 90);
+            this.txtMotivo.TabIndex = 22;
+            // 
+            // txtMonto
+            // 
+            this.txtMonto.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMonto.Location = new System.Drawing.Point(323, 209);
+            this.txtMonto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtMonto.MaxLength = 12;
+            this.txtMonto.Name = "txtMonto";
+            this.txtMonto.Size = new System.Drawing.Size(175, 26);
+            this.txtMonto.TabIndex = 23;
+            this.txtMonto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonto_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(139, 213);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(122, 19);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "Monto Egreso $:";
+            // 
+            // lblAbrir
+            // 
+            this.lblAbrir.AutoSize = true;
+            this.lblAbrir.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAbrir.Location = new System.Drawing.Point(321, 50);
+            this.lblAbrir.Name = "lblAbrir";
+            this.lblAbrir.Size = new System.Drawing.Size(139, 19);
+            this.lblAbrir.TabIndex = 24;
+            this.lblAbrir.Text = "Montivo de Egreso";
+            // 
+            // error
+            // 
+            this.error.ContainerControl = this;
+            // 
+            // frmRegistroEgreso
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "frmRegistroEgreso";
+            this.Controls.Add(this.btnEgreso);
+            this.Controls.Add(this.dpkFecha);
+            this.Controls.Add(this.lblFecha);
+            this.Controls.Add(this.txtMotivo);
+            this.Controls.Add(this.txtMonto);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblAbrir);
+            this.Name = "frmRegistroEgreso";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Registro Egreso";
+            ((System.ComponentModel.ISupportInitialize)(this.error)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnEgreso;
+        private System.Windows.Forms.DateTimePicker dpkFecha;
+        private System.Windows.Forms.Label lblFecha;
+        private System.Windows.Forms.TextBox txtMotivo;
+        private System.Windows.Forms.TextBox txtMonto;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblAbrir;
+        private System.Windows.Forms.ErrorProvider error;
     }
 }

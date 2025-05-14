@@ -114,7 +114,7 @@ namespace CapaNegocio
             return resultado;
         }
 
-        public ResultadoOperacion EditarMontocaja(decimal montoTotal, decimal vuelto, int IdCaja)
+        public ResultadoOperacion EditarMontoCaja(decimal montoTotal, decimal vuelto, int IdCaja)
         {
             ResultadoOperacion resultado = new ResultadoOperacion();
             try

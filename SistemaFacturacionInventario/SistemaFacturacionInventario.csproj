@@ -285,6 +285,12 @@
     <EmbeddedResource Include="Cajas\frmCierreCaja.resx">
       <DependentUpon>frmCierreCaja.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Cajas\frmRegistroEgreso.resx">
+      <DependentUpon>frmRegistroEgreso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cajas\frmRegistroIngreso.resx">
+      <DependentUpon>frmRegistroIngreso.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Clientes\frmCliente.resx">
       <DependentUpon>frmCliente.cs</DependentUpon>
     </EmbeddedResource>
