@@ -845,25 +845,7 @@ namespace SistemaFacturacionInventario.Facturacion
                     else
                     {
                         IdFact = facturacionNegocio.NuevaFact(fact, det, lrem, false, ListPre, auxiliaresNegocio.ObtenerEmpresa().IdEmpresa);
-                        if (caja != null && fact.IdFormaPago == 1)
-                        {
-                            var respuesta = MessageBox.Show("¿Tuvo que dar vuelto?", "Vuelto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                            decimal vuelto = 0;
-                            if (respuesta == DialogResult.Yes)
-                            {
-                                string input = Interaction.InputBox("Ingrese el monto de vuelto entregado:", "Vuelto", "0.00");
-
-                                if (!decimal.TryParse(input, out vuelto))
-                                {
-                                    MessageBox.Show("Monto de vuelto inválido.");
-                                    return;
-                                }
-                            }
-                            decimal totalVenta = fact.Total;
-                            decimal ingresoCaja = totalVenta;
-                            cajaNegocio.EditarMontoCaja(totalVenta, vuelto, caja.IdCaja);
-                        }
                     }
 
                     if (IdFact > 0)
@@ -896,6 +878,26 @@ namespace SistemaFacturacionInventario.Facturacion
                     if (MessageBox.Show("El Comprobante se actualizó correctamente." + Environment.NewLine + "Imprimir Comprobante?", "EDICIÓN COMPROBANTE", MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.Yes) GenerarFacturaElectronica();
                     Close();
+                }
+
+                if (caja != null && fact.IdFormaPago == 1)
+                {
+                    var respuesta = MessageBox.Show("¿Tuvo que dar vuelto?", "Vuelto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    decimal vuelto = 0;
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        string input = Interaction.InputBox("Ingrese el monto de vuelto entregado:", "Vuelto", "0.00");
+
+                        if (!decimal.TryParse(input, out vuelto))
+                        {
+                            MessageBox.Show("Monto de vuelto inválido.");
+                            return;
+                        }
+                    }
+                    decimal totalVenta = fact.Total;
+                    decimal ingresoCaja = totalVenta;
+                    cajaNegocio.EditarMontoCaja(totalVenta, vuelto, caja.IdCaja);
                 }
             }
             catch (Exception ex)
