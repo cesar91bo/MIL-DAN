@@ -1,6 +1,8 @@
 ﻿using CapaDatos.Modelos;
 using CapaNegocio;
+using Microsoft.VisualBasic;
 using SistemaFacturacionInventario.Auxiliares;
+using SistemaFacturacionInventario.Cajas;
 using SistemaFacturacionInventario.Principal;
 using SistemaFacturacionInventario.Productos;
 using System;
@@ -29,6 +31,8 @@ namespace SistemaFacturacionInventario.Facturacion
         private bool artdesc, Autorizar;
         private List<Int64> lint;
         public Int32 IdCliente;
+        CajaNegocio cajaNegocio = new CajaNegocio();
+        CapaDatos.Modelos.Cajas caja = new CapaDatos.Modelos.Cajas();
 
         private AuxiliaresNegocio auxiliaresNegocio = new AuxiliaresNegocio();
 
@@ -45,7 +49,7 @@ namespace SistemaFacturacionInventario.Facturacion
                 LlenarCombos();
 
                 txtNroCliente.Text = "1";
-                if(IdCliente == 0)
+                if (IdCliente == 0)
                 {
                     IdCliente = 1;
                     BuscarCliente(IdCliente);
@@ -169,7 +173,7 @@ namespace SistemaFacturacionInventario.Facturacion
                         dgrDetalle.Rows[i].Cells[3].Value = producto.IdProducto.ToString();
                         dgrDetalle.Rows[i].Cells[4].Value = producto.DescCorta;
                         dgrDetalle.Rows[i].Cells[5].Value = fvd.Cantidad;
-                            dgrDetalle.Rows[i].Cells[6].Value = producto.UnidadesMedida;
+                        dgrDetalle.Rows[i].Cells[6].Value = producto.UnidadesMedida;
 
                         dt = productoNegocio.CargarComboPrecios(producto.IdProducto, cmbTipoFac.Text);
 
@@ -838,7 +842,29 @@ namespace SistemaFacturacionInventario.Facturacion
                         }
                     }
                     else if (Accion == "REMX") IdFact = facturacionNegocio.NuevaFactx(fact, det, lrem);
-                    else IdFact = facturacionNegocio.NuevaFact(fact, det, lrem, false, ListPre, auxiliaresNegocio.ObtenerEmpresa().IdEmpresa);
+                    else
+                    {
+                        IdFact = facturacionNegocio.NuevaFact(fact, det, lrem, false, ListPre, auxiliaresNegocio.ObtenerEmpresa().IdEmpresa);
+                        if (caja != null && fact.IdFormaPago == 1)
+                        {
+                            var respuesta = MessageBox.Show("¿Tuvo que dar vuelto?", "Vuelto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                            decimal vuelto = 0;
+                            if (respuesta == DialogResult.Yes)
+                            {
+                                string input = Interaction.InputBox("Ingrese el monto de vuelto entregado:", "Vuelto", "0.00");
+
+                                if (!decimal.TryParse(input, out vuelto))
+                                {
+                                    MessageBox.Show("Monto de vuelto inválido.");
+                                    return;
+                                }
+                            }
+                            decimal totalVenta = fact.Total;
+                            decimal ingresoCaja = totalVenta;
+                            cajaNegocio.EditarMontoCaja(totalVenta, vuelto, caja.IdCaja);
+                        }
+                    }
 
                     if (IdFact > 0)
                     {
@@ -976,6 +1002,26 @@ namespace SistemaFacturacionInventario.Facturacion
                     if (txtBVNC.Text != "" && txtNroFactNC.Text != "") return ok;
                     Error.SetError(txtNroFactNC, "Debe ingresar una factura asociada");
                     ok = false;
+                }
+
+                caja = cajaNegocio.ObtenerCajaActual();
+                if (caja == null)
+                {
+                    DialogResult respuesta = MessageBox.Show("No se abrió ninguna caja para el día de hoy. ¿Desea hacerlo ahora?", "Caja no abierta",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        frmAperturaCaja frm = new frmAperturaCaja();
+                        frm.ShowDialog();
+
+                        caja = cajaNegocio.ObtenerCajaActual();
+                        if (caja == null || caja.IdCaja == 0)
+                        {
+                            MessageBox.Show("No se pudo abrir la caja. Operación cancelada.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return false;
+                        }
+                    }
                 }
 
                 return ok;
