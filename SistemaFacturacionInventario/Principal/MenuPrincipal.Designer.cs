@@ -347,7 +347,7 @@
             this.btnNuevaFactura.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.btnNuevaFactura.Size = new System.Drawing.Size(250, 40);
             this.btnNuevaFactura.TabIndex = 0;
-            this.btnNuevaFactura.Text = "Nueva factura";
+            this.btnNuevaFactura.Text = "Factura Electrónica";
             this.btnNuevaFactura.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNuevaFactura.UseVisualStyleBackColor = true;
             this.btnNuevaFactura.Click += new System.EventHandler(this.btnNuevaFactura_Click_1);
@@ -417,7 +417,7 @@
             // 
             // MenuPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1516, 874);
             this.Controls.Add(this.pnlContenedorPrincipal);

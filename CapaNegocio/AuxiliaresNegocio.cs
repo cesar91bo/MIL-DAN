@@ -390,5 +390,32 @@ namespace CapaNegocio
         {
             return db.Empresa.OrderByDescending(s => s.IdEmpresa).FirstOrDefault();
         }
+
+        public bool ActualizarEmpresa(Empresa empresa)
+        {
+            var empresaExistente = db.Empresa.Find(empresa.IdEmpresa);
+            if (empresaExistente != null)
+            {
+                empresaExistente.RazonSocial = empresa.RazonSocial;
+                empresaExistente.NFantasia = empresa.NFantasia;
+                empresaExistente.Direccion = empresa.Direccion;
+                empresaExistente.InicioActividades = empresa.InicioActividades;
+                empresaExistente.CUIT = empresa.CUIT;
+                empresaExistente.Telefono = empresa.Telefono;
+                empresaExistente.Correo = empresa.Correo;
+                empresaExistente.IIBB = empresa.IIBB;
+                empresaExistente.CondicionIva = empresa.CondicionIva;
+                empresaExistente.CodigoPostal = empresa.CodigoPostal;
+                empresaExistente.SubCodigoPostal = empresa.SubCodigoPostal;
+                empresaExistente.RutaCertificado = empresa.RutaCertificado;
+                empresaExistente.SerialCertificado = empresa.SerialCertificado;
+                db.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false; // Empresa no encontrada
+            }
+        }
     }
 }

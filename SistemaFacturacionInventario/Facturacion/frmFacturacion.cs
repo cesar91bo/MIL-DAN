@@ -1334,8 +1334,11 @@ namespace SistemaFacturacionInventario.Facturacion
             txtDto.Text = "0";
             lblTotalIVA.Text = "0";
             dgrDetalle.Rows.Clear();
-            IdCliente = 0;
+            IdCliente = 1;
             chkMoverStock.Checked = false;
+
+            BuscarCliente(IdCliente);
+
         }
 
         private bool GenerarFacturaElectronica()

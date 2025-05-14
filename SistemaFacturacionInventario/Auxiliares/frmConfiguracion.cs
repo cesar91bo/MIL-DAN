@@ -101,30 +101,55 @@ namespace SistemaFacturacionInventario.Auxiliares
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            var empresa = new Empresa
-            {
-                RazonSocial = txtRazonSocial.Text,
-                NFantasia = txtNombreFantasia.Text,
-                Direccion = txtDireccion.Text,
-                InicioActividades = Convert.ToDateTime(dtpIncioAct.Text),
-                CUIT = txtCUIT.Text,
-                Telefono = txtTelefono.Text
-            };
+            var auxiliaresNegocio = new AuxiliaresNegocio();
 
+            var empresa = auxiliaresNegocio.ObtenerEmpresa();
+
+            if (empresa == null)
+            {
+                // Si no existe, creamos una nueva empresa
+                empresa = new Empresa();
+            }
+
+            // En ambos casos, asignamos los datos del formulario
+            empresa.RazonSocial = txtRazonSocial.Text;
+            empresa.NFantasia = txtNombreFantasia.Text;
+            empresa.Direccion = txtDireccion.Text;
+            empresa.InicioActividades = Convert.ToDateTime(dtpIncioAct.Text);
+            empresa.CUIT = txtCUIT.Text;
+            empresa.Telefono = txtTelefono.Text;
+
+            // Seteos
             var seteos = new Seteos
             {
                 PorcentajeGcia = Convert.ToDecimal(txtGncia.Text),
                 DiasVtoFact = Convert.ToByte(txtDiasVto.Text)
             };
 
-            var auxiliaresNegocio = new AuxiliaresNegocio();
-
             if (!auxiliaresNegocio.NuevoSeteos(seteos)) return;
 
-            if (!auxiliaresNegocio.NuevaEmpresa(empresa)) return;
-            MessageBox.Show("Los datos se almacenaron correctamente", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            DialogResult = DialogResult.OK;
+            bool resultado;
+
+            if (empresa.IdEmpresa == 0)
+            {
+                resultado = auxiliaresNegocio.NuevaEmpresa(empresa);
+            }
+            else
+            {
+                resultado = auxiliaresNegocio.ActualizarEmpresa(empresa);
+            }
+
+            if (resultado)
+            {
+                MessageBox.Show("Los datos se almacenaron correctamente", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show("Error al guardar los datos", "Configuración", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
