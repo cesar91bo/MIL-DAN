@@ -51,6 +51,7 @@
             this.btnInicio = new System.Windows.Forms.Button();
             this.btnConfiguracion = new System.Windows.Forms.Button();
             this.pnlContenedorPrincipal = new System.Windows.Forms.Panel();
+            this.btnCaja = new System.Windows.Forms.Button();
             this.pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlMenuLateral.SuspendLayout();
@@ -83,6 +84,7 @@
             // 
             this.pnlMenuLateral.AutoScroll = true;
             this.pnlMenuLateral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.pnlMenuLateral.Controls.Add(this.btnCaja);
             this.pnlMenuLateral.Controls.Add(this.btnReportes);
             this.pnlMenuLateral.Controls.Add(this.pnlSubMenuClientes);
             this.pnlMenuLateral.Controls.Add(this.btnGestionClientes);
@@ -96,7 +98,7 @@
             this.pnlMenuLateral.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenuLateral.Location = new System.Drawing.Point(0, 0);
             this.pnlMenuLateral.Name = "pnlMenuLateral";
-            this.pnlMenuLateral.Size = new System.Drawing.Size(250, 800);
+            this.pnlMenuLateral.Size = new System.Drawing.Size(250, 874);
             this.pnlMenuLateral.TabIndex = 0;
             // 
             // btnReportes
@@ -376,7 +378,7 @@
             this.btnConfiguracion.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnConfiguracion.Image = ((System.Drawing.Image)(resources.GetObject("btnConfiguracion.Image")));
             this.btnConfiguracion.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnConfiguracion.Location = new System.Drawing.Point(0, 755);
+            this.btnConfiguracion.Location = new System.Drawing.Point(0, 829);
             this.btnConfiguracion.Name = "btnConfiguracion";
             this.btnConfiguracion.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnConfiguracion.Size = new System.Drawing.Size(250, 45);
@@ -392,14 +394,32 @@
             this.pnlContenedorPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContenedorPrincipal.Location = new System.Drawing.Point(250, 0);
             this.pnlContenedorPrincipal.Name = "pnlContenedorPrincipal";
-            this.pnlContenedorPrincipal.Size = new System.Drawing.Size(1183, 800);
+            this.pnlContenedorPrincipal.Size = new System.Drawing.Size(1266, 874);
             this.pnlContenedorPrincipal.TabIndex = 1;
+            // 
+            // btnCaja
+            // 
+            this.btnCaja.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCaja.FlatAppearance.BorderSize = 0;
+            this.btnCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCaja.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnCaja.Image = ((System.Drawing.Image)(resources.GetObject("btnCaja.Image")));
+            this.btnCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCaja.Location = new System.Drawing.Point(0, 744);
+            this.btnCaja.Name = "btnCaja";
+            this.btnCaja.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnCaja.Size = new System.Drawing.Size(250, 45);
+            this.btnCaja.TabIndex = 11;
+            this.btnCaja.Text = "Cajas";
+            this.btnCaja.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCaja.UseVisualStyleBackColor = true;
+            this.btnCaja.Click += new System.EventHandler(this.btnCaja_Click);
             // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1433, 800);
+            this.ClientSize = new System.Drawing.Size(1516, 874);
             this.Controls.Add(this.pnlContenedorPrincipal);
             this.Controls.Add(this.pnlMenuLateral);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -443,6 +463,7 @@
         private System.Windows.Forms.Button btnListadoFacturas;
         private System.Windows.Forms.Button btnNuevaFactura;
         private System.Windows.Forms.Button btnFacturacion;
+        private System.Windows.Forms.Button btnCaja;
     }
 }
 

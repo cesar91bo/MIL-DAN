@@ -163,6 +163,7 @@
             this.btnCerrarCaja.TabIndex = 24;
             this.btnCerrarCaja.Text = "Cerrar Caja";
             this.btnCerrarCaja.UseVisualStyleBackColor = true;
+            this.btnCerrarCaja.Click += new System.EventHandler(this.btnCerrarCaja_Click);
             // 
             // dpkFecha
             // 
@@ -194,6 +195,7 @@
             this.txtMontoFinal.Name = "txtMontoFinal";
             this.txtMontoFinal.Size = new System.Drawing.Size(175, 26);
             this.txtMontoFinal.TabIndex = 21;
+            this.txtMontoFinal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMontoFinal_KeyPress);
             // 
             // lblAbrir
             // 

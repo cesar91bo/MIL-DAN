@@ -68,6 +68,9 @@
     <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -76,6 +79,9 @@
     </Reference>
     <Reference Include="FontAwesome.Sharp, Version=6.6.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.6.6.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -118,11 +124,29 @@
     <Compile Include="Cajas\frmAperturaCaja.Designer.cs">
       <DependentUpon>frmAperturaCaja.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cajas\frmCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cajas\frmCaja.Designer.cs">
+      <DependentUpon>frmCaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Cajas\frmCierreCaja.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Cajas\frmCierreCaja.Designer.cs">
       <DependentUpon>frmCierreCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cajas\frmRegistroEgreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cajas\frmRegistroEgreso.Designer.cs">
+      <DependentUpon>frmRegistroEgreso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cajas\frmRegistroIngreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cajas\frmRegistroIngreso.Designer.cs">
+      <DependentUpon>frmRegistroIngreso.cs</DependentUpon>
     </Compile>
     <Compile Include="Clientes\frmCliente.cs">
       <SubType>Form</SubType>
@@ -251,6 +275,12 @@
     </Compile>
     <EmbeddedResource Include="Auxiliares\frmConfiguracion.resx">
       <DependentUpon>frmConfiguracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cajas\frmAperturaCaja.resx">
+      <DependentUpon>frmAperturaCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cajas\frmCaja.resx">
+      <DependentUpon>frmCaja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cajas\frmCierreCaja.resx">
       <DependentUpon>frmCierreCaja.cs</DependentUpon>

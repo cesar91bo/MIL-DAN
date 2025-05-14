@@ -22,36 +22,6 @@ namespace SistemaFacturacionInventario.Cajas
             InitializeComponent();
         }
 
-        private void frmCierreCaja_Load(object sender, EventArgs e)
-        {
-            BuscarCaja();
-
-            List<VistaCabFactVenta> facturasVentas = facturacionNegocio.BuscarFacturasFechaDesdeFechaHasta(caja.FechaApertura, caja.FechaApertura);
-            decimal montoTotalVentas = 0;
-            if (facturasVentas != null && facturasVentas.Any())
-            {
-                montoTotalVentas = facturasVentas.Sum(f => f.Total);
-                txtTotalVenta.Text = montoTotalVentas.ToString("N2");
-            }
-
-            List<CajasEgresos> cajasEgresos = cajaNegocio.ObtenerCajaEgresoPorFecha(caja.FechaApertura);
-            decimal montoEgresos = 0;
-            if (cajasEgresos != null && cajasEgresos.Any())
-            {
-                montoEgresos = cajasEgresos.Sum(m => m.Monto);
-                txtMontoEgresado.Text = montoEgresos.ToString("N2");
-            }
-
-            List<CajasIngresos> cajasIngresos = cajaNegocio.ObtenerCajaIngresoPorFecha(caja.FechaApertura);
-            decimal montoIngreso = 0;
-            if (cajasIngresos != null && cajasIngresos.Any())
-            {
-                montoIngreso = cajasIngresos.Sum(m => m.Monto);
-                txtMontoIngresos.Text = montoIngreso.ToString("N2");
-            }
-
-            txtMontoSistema.Text = (caja.MontoFinal ?? caja.MontoInicial).ToString("N2");
-        }
 
         private void BuscarCaja()
         {
@@ -95,30 +65,6 @@ namespace SistemaFacturacionInventario.Cajas
             }
         }
 
-        private void btnAbrirCaja_Click(object sender, EventArgs e)
-        {
-            if (Validaciones())
-            {
-                if (caja != null)
-                {
-                    caja.MontoFinal = Convert.ToDecimal(txtMontoFinal.Text);
-                    caja.FechaCierre = DateTime.Now;
-                    caja.Estado = "Cerrado";
-                    caja.Observaciones = txtObservaciones.Text;
-                }
-                ResultadoOperacion resultado = cajaNegocio.CerrarCaja(caja);
-
-                if (resultado.EsExitoso)
-                {
-                    MessageBox.Show("Se cerró la caja correctamente.", "Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show(resultado.Mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                this.Close();
-            }
-        }
 
         private bool Validaciones()
         {
@@ -143,6 +89,38 @@ namespace SistemaFacturacionInventario.Cajas
             return true;
         }
 
+
+        private void frmCierreCaja_Load(object sender, EventArgs e)
+        {
+            BuscarCaja();
+
+            List<VistaCabFactVenta> facturasVentas = facturacionNegocio.BuscarFacturasFechaDesdeFechaHasta(caja.FechaApertura, caja.FechaApertura);
+            decimal montoTotalVentas = 0;
+            if (facturasVentas != null && facturasVentas.Any())
+            {
+                montoTotalVentas = facturasVentas.Sum(f => f.Total);
+                txtTotalVenta.Text = montoTotalVentas.ToString("N2");
+            }
+
+            List<CajasEgresos> cajasEgresos = cajaNegocio.ObtenerCajaEgresoPorFecha(caja.FechaApertura);
+            decimal montoEgresos = 0;
+            if (cajasEgresos != null && cajasEgresos.Any())
+            {
+                montoEgresos = cajasEgresos.Sum(m => m.Monto);
+                txtMontoEgresado.Text = montoEgresos.ToString("N2");
+            }
+
+            List<CajasIngresos> cajasIngresos = cajaNegocio.ObtenerCajaIngresoPorFecha(caja.FechaApertura);
+            decimal montoIngreso = 0;
+            if (cajasIngresos != null && cajasIngresos.Any())
+            {
+                montoIngreso = cajasIngresos.Sum(m => m.Monto);
+                txtMontoIngresos.Text = montoIngreso.ToString("N2");
+            }
+
+            txtMontoSistema.Text = (caja.MontoFinal ?? caja.MontoInicial).ToString("N2");
+        }
+
         private void txtMontoFinal_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
@@ -154,6 +132,31 @@ namespace SistemaFacturacionInventario.Cajas
             if (e.KeyChar == '.' && textBox.Text.Contains("."))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void btnCerrarCaja_Click(object sender, EventArgs e)
+        {
+            if (Validaciones())
+            {
+                if (caja != null)
+                {
+                    caja.MontoFinal = Convert.ToDecimal(txtMontoFinal.Text);
+                    caja.FechaCierre = DateTime.Now;
+                    caja.Estado = "Cerrado";
+                    caja.Observaciones = txtObservaciones.Text;
+                }
+                ResultadoOperacion resultado = cajaNegocio.CerrarCaja(caja);
+
+                if (resultado.EsExitoso)
+                {
+                    MessageBox.Show("Se cerró la caja correctamente.", "Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(resultado.Mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                this.Close();
             }
         }
     }

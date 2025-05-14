@@ -187,5 +187,11 @@ namespace SistemaFacturacionInventario
         }
 
         #endregion
+
+        private void btnCaja_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new frmCaja());
+            OcultarPanelesSubMenu();
+        }
     }
 }
