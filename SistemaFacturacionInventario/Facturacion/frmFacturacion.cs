@@ -77,6 +77,14 @@ namespace SistemaFacturacionInventario.Facturacion
                     //if (Accion.ToUpper() == "MOD") lint = new List<Int64>();
                 }
 
+                if (IdTipoDoc == 8)
+                {
+                    txtBV.Visible = false;
+                    txtNroComp.Visible = false;
+                    cmbTipoFac.Visible = false;
+                    lblTipoFact.Visible = false;
+                }
+
             }
             catch (Exception ex)
             {
