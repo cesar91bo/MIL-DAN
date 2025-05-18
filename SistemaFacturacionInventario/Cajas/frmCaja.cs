@@ -40,14 +40,14 @@ namespace SistemaFacturacionInventario.Cajas
         private void CrearColList()
         {
             listCaja.Columns.Add("Id Caja", 70, HorizontalAlignment.Left);
-            listCaja.Columns.Add("Fecha Apertura", 120, HorizontalAlignment.Left);
-            listCaja.Columns.Add("Fecha Cierre", 120, HorizontalAlignment.Left);
-            listCaja.Columns.Add("Monto Inicial", 120, HorizontalAlignment.Left);
-            listCaja.Columns.Add("Monto Final", 120, HorizontalAlignment.Left);
-            listCaja.Columns.Add("Total Ventas", 120, HorizontalAlignment.Left);
-            listCaja.Columns.Add("Total Ingreso", 120, HorizontalAlignment.Left);
-            listCaja.Columns.Add("Total Egresos", 120, HorizontalAlignment.Left);
-            listCaja.Columns.Add("Observaciones", 230, HorizontalAlignment.Left);
+            listCaja.Columns.Add("Fecha Apertura", 110, HorizontalAlignment.Left);
+            listCaja.Columns.Add("Fecha Cierre", 110, HorizontalAlignment.Left);
+            listCaja.Columns.Add("Monto Inicial", 110, HorizontalAlignment.Left);
+            listCaja.Columns.Add("Monto Final", 110, HorizontalAlignment.Left);
+            listCaja.Columns.Add("Total Ventas", 110, HorizontalAlignment.Left);
+            listCaja.Columns.Add("Total Ingreso", 110, HorizontalAlignment.Left);
+            listCaja.Columns.Add("Total Egresos", 110, HorizontalAlignment.Left);
+            listCaja.Columns.Add("Observaciones", 150, HorizontalAlignment.Left);
         }
 
         private void LLenarListaFecha(bool load)
