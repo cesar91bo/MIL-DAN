@@ -417,5 +417,21 @@ namespace CapaNegocio
                 return false; // Empresa no encontrada
             }
         }
+
+        public void ActualizarSeteos(Seteos seteos)
+        {
+            var seteoExistente = db.Seteos.Find(seteos.IdSeteo);
+            if (seteoExistente != null)
+            {
+                seteoExistente.PorcentajeGcia = seteos.PorcentajeGcia;
+                seteoExistente.DiasVtoFact = seteos.DiasVtoFact;
+                seteoExistente.ToleranciaDiferencia = seteos.ToleranciaDiferencia;
+                db.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Seteo no encontrado.");
+            }
+        }
     }
 }

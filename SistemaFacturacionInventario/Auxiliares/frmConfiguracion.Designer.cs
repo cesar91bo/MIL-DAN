@@ -49,6 +49,8 @@
             this.lblTitulo = new System.Windows.Forms.Label();
             this.lblDiasVto = new System.Windows.Forms.Label();
             this.txtDiasVto = new System.Windows.Forms.TextBox();
+            this.txtNroTolerancia = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -274,11 +276,34 @@
             this.txtDiasVto.TabIndex = 25;
             this.txtDiasVto.Text = "0";
             // 
+            // txtNroTolerancia
+            // 
+            this.txtNroTolerancia.Location = new System.Drawing.Point(505, 269);
+            this.txtNroTolerancia.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNroTolerancia.Name = "txtNroTolerancia";
+            this.txtNroTolerancia.Size = new System.Drawing.Size(57, 22);
+            this.txtNroTolerancia.TabIndex = 27;
+            this.txtNroTolerancia.Text = "0";
+            this.txtNroTolerancia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNroTolerancia_KeyPress);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.label2.Location = new System.Drawing.Point(353, 272);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(126, 13);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Tolerancia de Difrencia:";
+            // 
             // frmConfiguracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1123, 558);
+            this.ClientSize = new System.Drawing.Size(1025, 549);
+            this.Controls.Add(this.txtNroTolerancia);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.txtDiasVto);
             this.Controls.Add(this.lblDiasVto);
             this.Controls.Add(this.lblTitulo);
@@ -318,5 +343,7 @@
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblDiasVto;
         private System.Windows.Forms.TextBox txtDiasVto;
+        private System.Windows.Forms.TextBox txtNroTolerancia;
+        private System.Windows.Forms.Label label2;
     }
 }

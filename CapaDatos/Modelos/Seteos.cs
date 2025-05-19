@@ -51,5 +51,6 @@ namespace CapaDatos.Modelos
         public Nullable<decimal> PorcentajeFlete { get; set; }
         public Nullable<decimal> PorcentajeDescarga { get; set; }
         public Nullable<bool> Impuesto { get; set; }
+        public Nullable<decimal> ToleranciaDiferencia { get; set; }
     }
 }

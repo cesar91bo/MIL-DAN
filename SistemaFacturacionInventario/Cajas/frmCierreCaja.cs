@@ -79,13 +79,24 @@ namespace SistemaFacturacionInventario.Cajas
             {
                 caja.MontoFinal = caja.MontoInicial;
             }
+
+            AuxiliaresNegocio auxiliaresNegocio = new AuxiliaresNegocio();
+            Seteos seteos = new Seteos();
+
+            seteos = auxiliaresNegocio.ObtenerSeteos();
+
             decimal montoFinalUsuario = Math.Round(Convert.ToDecimal(txtMontoFinal.Text), 2);
-            if (caja.MontoFinal != montoFinalUsuario && txtObservaciones.Text == "")
+            decimal montoSistema = Math.Round(caja.MontoFinal ?? 0, 2);
+            decimal tolerancia = seteos.ToleranciaDiferencia ?? 0;
+            decimal diferencia = Math.Abs(montoFinalUsuario - montoSistema);
+
+            if (diferencia > tolerancia && string.IsNullOrWhiteSpace(txtObservaciones.Text))
             {
                 error.SetError(txtObservaciones, "Monto final distinto al sistema. Justifique en observaciones.");
                 txtObservaciones.Focus();
                 return false;
             }
+
             return true;
         }
 

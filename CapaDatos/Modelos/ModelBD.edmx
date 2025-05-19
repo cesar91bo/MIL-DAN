@@ -371,6 +371,7 @@
           <Property Name="PorcentajeFlete" Type="decimal" Precision="18" Scale="0" />
           <Property Name="PorcentajeDescarga" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Impuesto" Type="bit" />
+          <Property Name="ToleranciaDiferencia" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="TiposConceptoFactura">
           <Key>
@@ -1793,6 +1794,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
           <Property Name="PorcentajeFlete" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="PorcentajeDescarga" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Impuesto" Type="Boolean" />
+          <Property Name="ToleranciaDiferencia" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Empresa">
           <Key>
@@ -2632,6 +2634,7 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
           <EntitySetMapping Name="Seteos">
             <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.Seteos">
               <MappingFragment StoreEntitySet="Seteos">
+                <ScalarProperty Name="ToleranciaDiferencia" ColumnName="ToleranciaDiferencia" />
                 <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
                 <ScalarProperty Name="PorcentajeDescarga" ColumnName="PorcentajeDescarga" />
                 <ScalarProperty Name="PorcentajeFlete" ColumnName="PorcentajeFlete" />

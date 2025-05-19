@@ -36,6 +36,7 @@ namespace SistemaFacturacionInventario.Auxiliares
             if (seteos != null) 
             { 
                 txtGncia.Text = seteos.PorcentajeGcia.ToString();
+                txtNroTolerancia.Text = (seteos.ToleranciaDiferencia ?? 0).ToString();
             }
 
             empresa = aux.ObtenerEmpresa();
@@ -123,10 +124,21 @@ namespace SistemaFacturacionInventario.Auxiliares
             var seteos = new Seteos
             {
                 PorcentajeGcia = Convert.ToDecimal(txtGncia.Text),
-                DiasVtoFact = Convert.ToByte(txtDiasVto.Text)
+                DiasVtoFact = Convert.ToByte(txtDiasVto.Text),
+                ToleranciaDiferencia = Convert.ToDecimal(txtNroTolerancia.Text)
             };
 
-            if (!auxiliaresNegocio.NuevoSeteos(seteos)) return;
+            var seteosExistente = auxiliaresNegocio.ObtenerSeteos();
+
+            if (seteosExistente != null)
+            {
+                seteos.IdSeteo = seteosExistente.IdSeteo;
+                auxiliaresNegocio.ActualizarSeteos(seteos);
+            }
+            else
+            {
+                if (!auxiliaresNegocio.NuevoSeteos(seteos)) return;
+            }         
 
             bool resultado;
 
@@ -183,6 +195,39 @@ namespace SistemaFacturacionInventario.Auxiliares
             {
                 e.Handled = true;
             }
+        }
+
+        private void txtNroTolerancia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            // Permitir control keys (ej: Backspace)
+            if (char.IsControl(e.KeyChar))
+            {
+                return;
+            }
+
+            // Permitir solo números
+            if (char.IsDigit(e.KeyChar))
+            {
+                return;
+            }
+
+            // Permitir solo un separador decimal (coma o punto)
+            if ((e.KeyChar == ',' || e.KeyChar == '.') &&
+                !textBox.Text.Contains(",") &&
+                !textBox.Text.Contains("."))
+            {
+                // Convertir punto a coma si querés forzar formato regional
+                if (e.KeyChar == '.')
+                {
+                    e.KeyChar = ',';
+                }
+                return;
+            }
+
+            // Cualquier otra tecla se bloquea
+            e.Handled = true;
         }
     }
 }
