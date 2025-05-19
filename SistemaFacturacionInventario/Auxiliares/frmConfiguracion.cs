@@ -214,15 +214,9 @@ namespace SistemaFacturacionInventario.Auxiliares
             }
 
             // Permitir solo un separador decimal (coma o punto)
-            if ((e.KeyChar == ',' || e.KeyChar == '.') &&
-                !textBox.Text.Contains(",") &&
+            if ((e.KeyChar == '.') &&
                 !textBox.Text.Contains("."))
             {
-                // Convertir punto a coma si querés forzar formato regional
-                if (e.KeyChar == '.')
-                {
-                    e.KeyChar = ',';
-                }
                 return;
             }
 
