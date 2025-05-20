@@ -206,5 +206,11 @@ namespace SistemaFacturacionInventario
             AbrirFormularioHijo(new frmCaja());
             OcultarPanelesSubMenu();
         }
+
+        private void btnPrecioLote_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new frmPrecioLote());
+            OcultarPanelesSubMenu();
+        }
     }
 }

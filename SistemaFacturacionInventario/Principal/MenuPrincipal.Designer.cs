@@ -52,6 +52,7 @@
             this.btnInicio = new System.Windows.Forms.Button();
             this.btnConfiguracion = new System.Windows.Forms.Button();
             this.pnlContenedorPrincipal = new System.Windows.Forms.Panel();
+            this.btnPrecioLote = new System.Windows.Forms.Button();
             this.pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlMenuLateral.SuspendLayout();
@@ -109,7 +110,7 @@
             this.btnCaja.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnCaja.Image = ((System.Drawing.Image)(resources.GetObject("btnCaja.Image")));
             this.btnCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCaja.Location = new System.Drawing.Point(0, 744);
+            this.btnCaja.Location = new System.Drawing.Point(0, 783);
             this.btnCaja.Name = "btnCaja";
             this.btnCaja.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnCaja.Size = new System.Drawing.Size(250, 45);
@@ -127,7 +128,7 @@
             this.btnReportes.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnReportes.Image = ((System.Drawing.Image)(resources.GetObject("btnReportes.Image")));
             this.btnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReportes.Location = new System.Drawing.Point(0, 699);
+            this.btnReportes.Location = new System.Drawing.Point(0, 738);
             this.btnReportes.Name = "btnReportes";
             this.btnReportes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnReportes.Size = new System.Drawing.Size(250, 45);
@@ -144,7 +145,7 @@
             this.pnlSubMenuClientes.Controls.Add(this.btnNuevoCliente);
             this.pnlSubMenuClientes.Controls.Add(this.btnListadoClientes);
             this.pnlSubMenuClientes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSubMenuClientes.Location = new System.Drawing.Point(0, 575);
+            this.pnlSubMenuClientes.Location = new System.Drawing.Point(0, 614);
             this.pnlSubMenuClientes.Name = "pnlSubMenuClientes";
             this.pnlSubMenuClientes.Size = new System.Drawing.Size(250, 124);
             this.pnlSubMenuClientes.TabIndex = 8;
@@ -205,7 +206,7 @@
             this.btnGestionClientes.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnGestionClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnGestionClientes.Image")));
             this.btnGestionClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGestionClientes.Location = new System.Drawing.Point(0, 530);
+            this.btnGestionClientes.Location = new System.Drawing.Point(0, 569);
             this.btnGestionClientes.Name = "btnGestionClientes";
             this.btnGestionClientes.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnGestionClientes.Size = new System.Drawing.Size(250, 45);
@@ -218,13 +219,14 @@
             // pnlSubmenuProductos
             // 
             this.pnlSubmenuProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.pnlSubmenuProductos.Controls.Add(this.btnPrecioLote);
             this.pnlSubmenuProductos.Controls.Add(this.btnInventario);
             this.pnlSubmenuProductos.Controls.Add(this.btnNuevoProducto);
             this.pnlSubmenuProductos.Controls.Add(this.btnListadoProductos);
             this.pnlSubmenuProductos.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlSubmenuProductos.Location = new System.Drawing.Point(0, 406);
             this.pnlSubmenuProductos.Name = "pnlSubmenuProductos";
-            this.pnlSubmenuProductos.Size = new System.Drawing.Size(250, 124);
+            this.pnlSubmenuProductos.Size = new System.Drawing.Size(250, 163);
             this.pnlSubmenuProductos.TabIndex = 6;
             // 
             // btnInventario
@@ -415,9 +417,25 @@
             this.pnlContenedorPrincipal.Size = new System.Drawing.Size(1266, 874);
             this.pnlContenedorPrincipal.TabIndex = 1;
             // 
+            // btnPrecioLote
+            // 
+            this.btnPrecioLote.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnPrecioLote.FlatAppearance.BorderSize = 0;
+            this.btnPrecioLote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrecioLote.ForeColor = System.Drawing.Color.LightGray;
+            this.btnPrecioLote.Location = new System.Drawing.Point(0, 120);
+            this.btnPrecioLote.Name = "btnPrecioLote";
+            this.btnPrecioLote.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnPrecioLote.Size = new System.Drawing.Size(250, 40);
+            this.btnPrecioLote.TabIndex = 3;
+            this.btnPrecioLote.Text = "Precios por Lotes";
+            this.btnPrecioLote.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrecioLote.UseVisualStyleBackColor = true;
+            this.btnPrecioLote.Click += new System.EventHandler(this.btnPrecioLote_Click);
+            // 
             // MenuPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1516, 874);
             this.Controls.Add(this.pnlContenedorPrincipal);
@@ -464,6 +482,7 @@
         private System.Windows.Forms.Button btnNuevaFactura;
         private System.Windows.Forms.Button btnFacturacion;
         private System.Windows.Forms.Button btnCaja;
+        private System.Windows.Forms.Button btnPrecioLote;
     }
 }
 

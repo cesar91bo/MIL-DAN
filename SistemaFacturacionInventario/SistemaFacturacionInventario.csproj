@@ -26,7 +26,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>33</ApplicationRevision>
+    <ApplicationRevision>34</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -237,6 +237,12 @@
     <Compile Include="Productos\frmListaProductos.Designer.cs">
       <DependentUpon>frmListaProductos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Productos\frmPrecioLote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\frmPrecioLote.Designer.cs">
+      <DependentUpon>frmPrecioLote.cs</DependentUpon>
+    </Compile>
     <Compile Include="Productos\frmPrecios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -330,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Productos\frmListaProductos.resx">
       <DependentUpon>frmListaProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Productos\frmPrecioLote.resx">
+      <DependentUpon>frmPrecioLote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Productos\frmPrecios.resx">
       <DependentUpon>frmPrecios.cs</DependentUpon>
