@@ -169,6 +169,7 @@
             this.txtPorcCambio.Name = "txtPorcCambio";
             this.txtPorcCambio.Size = new System.Drawing.Size(82, 22);
             this.txtPorcCambio.TabIndex = 36;
+            this.txtPorcCambio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPorcCambio_KeyPress);
             // 
             // radioButton1
             // 
@@ -200,6 +201,7 @@
             this.button1.TabIndex = 39;
             this.button1.Text = "Aplicar Cambios";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox1
             // 

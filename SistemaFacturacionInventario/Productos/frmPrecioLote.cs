@@ -18,6 +18,8 @@ namespace SistemaFacturacionInventario.Productos
         public int IdProducto;
         List<CapaDatos.Modelos.VistaPreciosVenta> precios;
         private bool _actualizandoLista = false;
+        private AuxiliaresNegocio auxiliaresNegocio = new AuxiliaresNegocio();
+        private Seteos seteos = new Seteos();
         public frmPrecioLote()
         {
             InitializeComponent();
@@ -36,15 +38,20 @@ namespace SistemaFacturacionInventario.Productos
             cmbFiltro.DisplayMember = "Descripcion";
             cmbFiltro.ValueMember = "IdBusqueda";
             cmbFiltro.DataSource = dt;
-            cmbFiltro.SelectedValue = "DescCorta"; 
+            cmbFiltro.SelectedValue = "DescCorta";
 
             CrearColListView();
             LlenarlistProducto(true);
 
             listViewProdSelec.CheckBoxes = true;
-            listViewProdSelec.ItemChecked += listViewProdSelec_ItemChecked;
+            listViewProductos.CheckBoxes = true;
 
+            listViewProductos.ItemChecked += listViewProductos_ItemChecked;
+            listViewProdSelec.ItemChecked += listViewProdSelec_ItemChecked; 
 
+            seteos = auxiliaresNegocio.ObtenerSeteo();
+            var porcentajeDiferencia = seteos.PorcentajeDiferencia ?? 0;
+            txtPorcCambio.Text = porcentajeDiferencia.ToString("N2"); // Formato de número con 2 decimales
         }
         private void CrearColListView()
         {
@@ -159,37 +166,6 @@ namespace SistemaFacturacionInventario.Productos
             }
         }
 
-        private void AgregarItemSeleccionado(ListViewItem itemOriginal)
-        {
-            // Evitar duplicados
-            foreach (ListViewItem it in listViewProdSelec.Items)
-            {
-                if (it.Text == itemOriginal.Text)
-                    return;
-            }
-
-            var nuevoItem = new ListViewItem(itemOriginal.Text); // Nro.Producto
-
-            for (int i = 1; i < itemOriginal.SubItems.Count; i++)
-            {
-                nuevoItem.SubItems.Add(itemOriginal.SubItems[i].Text);
-            }
-
-            listViewProdSelec.Items.Add(nuevoItem);
-        }
-
-        private void EliminarItemSeleccionado(string idProducto)
-        {
-            foreach (ListViewItem it in listViewProdSelec.Items)
-            {
-                if (it.Text == idProducto)
-                {
-                    listViewProdSelec.Items.Remove(it);
-                    break;
-                }
-            }
-        }
-
         private void listViewProductos_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (_actualizandoLista) return;
@@ -198,23 +174,36 @@ namespace SistemaFacturacionInventario.Productos
 
             try
             {
-                // Si fue desmarcado, lo quitamos de la lista seleccionada
-                if (!e.Item.Checked)
+                if (e.Item.Checked)
                 {
-                    foreach (ListViewItem item in listViewProdSelec.Items)
+                    // Agrego el item a la segunda grilla solo si no está ya
+                    bool existe = false;
+                    foreach (ListViewItem it in listViewProdSelec.Items)
                     {
-                        if (item.Text == e.Item.Text) // comparar por ID de producto
+                        if (it.Text == e.Item.Text)
                         {
-                            listViewProdSelec.Items.Remove(item);
+                            existe = true;
                             break;
                         }
+                    }
+                    if (!existe)
+                    {
+                        var nuevoItem = (ListViewItem)e.Item.Clone();
+                        nuevoItem.Checked = true; // check por defecto
+                        listViewProdSelec.Items.Add(nuevoItem);
                     }
                 }
                 else
                 {
-                    // Si fue marcado, agregarlo
-                    var nuevoItem = (ListViewItem)e.Item.Clone();
-                    listViewProdSelec.Items.Add(nuevoItem);
+                    // Desmarcó en primera grilla => quito el item de segunda grilla
+                    for (int i = listViewProdSelec.Items.Count - 1; i >= 0; i--)
+                    {
+                        if (listViewProdSelec.Items[i].Text == e.Item.Text)
+                        {
+                            listViewProdSelec.Items.RemoveAt(i);
+                            break;
+                        }
+                    }
                 }
             }
             finally
@@ -225,13 +214,60 @@ namespace SistemaFacturacionInventario.Productos
 
         private void listViewProdSelec_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
+            if (_actualizandoLista) return;
+
             if (!e.Item.Checked)
             {
-                // Usamos BeginInvoke para diferir la eliminación hasta que termine el evento
+                // Cuando el checkbox se desmarca, elimina ese item de la segunda grilla
                 this.BeginInvoke(new Action(() =>
                 {
                     listViewProdSelec.Items.Remove(e.Item);
                 }));
+
+                // Además, sincronizar en la primera grilla para desmarcar el checkbox correspondiente
+                for (int i = 0; i < listViewProductos.Items.Count; i++)
+                {
+                    if (listViewProductos.Items[i].Text == e.Item.Text)
+                    {
+                        _actualizandoLista = true;
+                        listViewProductos.Items[i].Checked = false;
+                        _actualizandoLista = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var difCambio = txtPorcCambio.Text != "" ? Convert.ToDecimal(txtPorcCambio.Text) : 0;
+            if(difCambio != seteos.PorcentajeDiferencia)
+            {
+                seteos.PorcentajeDiferencia = difCambio;
+                auxiliaresNegocio.ActualizarSeteos(seteos);
+            }
+        }
+
+        private void txtPorcCambio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir teclas de control como backspace
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            // Permitir solo dígitos y un único punto decimal
+            TextBox txt = sender as TextBox;
+
+            if (char.IsDigit(e.KeyChar))
+            {
+                return; // permitir dígitos
+            }
+            else if (e.KeyChar == '.' && !txt.Text.Contains('.'))
+            {
+                return; // permitir un solo punto decimal
+            }
+            else
+            {
+                e.Handled = true; // bloquear todo lo demás
             }
         }
     }
