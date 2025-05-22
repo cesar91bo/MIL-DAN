@@ -37,7 +37,7 @@
             this.lblListaPrecios = new System.Windows.Forms.Label();
             this.listViewProductos = new System.Windows.Forms.ListView();
             this.label2 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewProdSelec = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPorcCambio = new System.Windows.Forms.TextBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -60,6 +60,7 @@
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // panel1
             // 
@@ -80,6 +81,7 @@
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(504, 22);
             this.txtFiltro.TabIndex = 22;
+            this.txtFiltro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFiltro_KeyDown);
             // 
             // cmbFiltro
             // 
@@ -112,6 +114,7 @@
             // 
             // listViewProductos
             // 
+            this.listViewProductos.CheckBoxes = true;
             this.listViewProductos.FullRowSelect = true;
             this.listViewProductos.GridLines = true;
             this.listViewProductos.HideSelection = false;
@@ -122,6 +125,7 @@
             this.listViewProductos.TabIndex = 32;
             this.listViewProductos.UseCompatibleStateImageBehavior = false;
             this.listViewProductos.View = System.Windows.Forms.View.Details;
+            this.listViewProductos.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewProductos_ItemChecked);
             // 
             // label2
             // 
@@ -133,18 +137,20 @@
             this.label2.TabIndex = 23;
             this.label2.Text = "Productos Seleccionados";
             // 
-            // listView1
+            // listViewProdSelec
             // 
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(73, 397);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1016, 230);
-            this.listView1.TabIndex = 35;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listViewProdSelec.CheckBoxes = true;
+            this.listViewProdSelec.FullRowSelect = true;
+            this.listViewProdSelec.GridLines = true;
+            this.listViewProdSelec.HideSelection = false;
+            this.listViewProdSelec.Location = new System.Drawing.Point(73, 397);
+            this.listViewProdSelec.MultiSelect = false;
+            this.listViewProdSelec.Name = "listViewProdSelec";
+            this.listViewProdSelec.Size = new System.Drawing.Size(1016, 230);
+            this.listViewProdSelec.TabIndex = 35;
+            this.listViewProdSelec.UseCompatibleStateImageBehavior = false;
+            this.listViewProdSelec.View = System.Windows.Forms.View.Details;
+            this.listViewProdSelec.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewProdSelec_ItemChecked);
             // 
             // label1
             // 
@@ -215,7 +221,7 @@
             this.ClientSize = new System.Drawing.Size(1134, 751);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listViewProdSelec);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.panel1);
@@ -242,7 +248,7 @@
         private System.Windows.Forms.Label lblListaPrecios;
         private System.Windows.Forms.ListView listViewProductos;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewProdSelec;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPorcCambio;
         private System.Windows.Forms.RadioButton radioButton1;
