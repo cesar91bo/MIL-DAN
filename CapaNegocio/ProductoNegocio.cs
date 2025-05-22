@@ -442,5 +442,29 @@ namespace CapaNegocio
             return preciosVenta;
         }
 
+        public List<VistaPreciosVenta> ObtenerListPreciosPorRubro(int idRubro)
+        {
+            PreciosVenta preciosVenta = new PreciosVenta();
+            if (idRubro.ToString() == "")
+            {
+                // Obtener todos los productos con su último precio
+                var ultimosPrecios = db.VistaPreciosVenta
+                    .GroupBy(p => p.IdProducto) // Agrupar por IdProducto
+                    .Select(g => g.OrderByDescending(p => p.FechaPrecio).FirstOrDefault()) // Seleccionar el último precio por fecha
+                    .ToList();
+                return ultimosPrecios;
+            }
+            else
+            {
+                // Obtener el último precio para un producto específico
+                var ultimosPrecios = db.VistaPreciosVenta
+                    .Where(p => p.IdRubro == idRubro) // Filtrar por rubro
+                    .GroupBy(p => p.IdProducto)       // Agrupar por producto
+                    .Select(g => g.OrderByDescending(p => p.FechaPrecio).FirstOrDefault()) // Tomar el más reciente
+                    .ToList();
+
+                return ultimosPrecios;
+            }
+        }
     }
 }

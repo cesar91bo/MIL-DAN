@@ -34,5 +34,7 @@ namespace CapaDatos.Modelos
         public decimal PorcentajeGcia { get; set; }
         public Nullable<decimal> PorcentajeFiado { get; set; }
         public Nullable<decimal> Impuesto { get; set; }
+        public string Descripcion { get; set; }
+        public int IdRubro { get; set; }
     }
 }

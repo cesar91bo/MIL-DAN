@@ -32,18 +32,19 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtFiltro = new System.Windows.Forms.TextBox();
-            this.cmbFiltro = new System.Windows.Forms.ComboBox();
-            this.lblFiltrar = new System.Windows.Forms.Label();
+            this.cmbCategoria = new System.Windows.Forms.ComboBox();
             this.lblListaPrecios = new System.Windows.Forms.Label();
             this.listViewProductos = new System.Windows.Forms.ListView();
             this.label2 = new System.Windows.Forms.Label();
             this.listViewProdSelec = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPorcCambio = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rbAumentar = new System.Windows.Forms.RadioButton();
+            this.rbDisminuir = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkFiltrar = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +54,7 @@
             this.btnBuscar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(740, 69);
+            this.btnBuscar.Location = new System.Drawing.Point(598, 56);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(78, 30);
             this.btnBuscar.TabIndex = 34;
@@ -64,9 +65,11 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.chkFiltrar);
             this.panel1.Controls.Add(this.txtFiltro);
-            this.panel1.Controls.Add(this.cmbFiltro);
-            this.panel1.Controls.Add(this.lblFiltrar);
+            this.panel1.Controls.Add(this.cmbCategoria);
+            this.panel1.Controls.Add(this.btnBuscar);
             this.panel1.Controls.Add(this.lblListaPrecios);
             this.panel1.Location = new System.Drawing.Point(184, 14);
             this.panel1.Name = "panel1";
@@ -76,31 +79,21 @@
             // txtFiltro
             // 
             this.txtFiltro.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFiltro.Location = new System.Drawing.Point(45, 63);
+            this.txtFiltro.Location = new System.Drawing.Point(199, 63);
             this.txtFiltro.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtFiltro.Name = "txtFiltro";
-            this.txtFiltro.Size = new System.Drawing.Size(504, 22);
+            this.txtFiltro.Size = new System.Drawing.Size(392, 22);
             this.txtFiltro.TabIndex = 22;
             this.txtFiltro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFiltro_KeyDown);
             // 
-            // cmbFiltro
+            // cmbCategoria
             // 
-            this.cmbFiltro.FormattingEnabled = true;
-            this.cmbFiltro.Location = new System.Drawing.Point(100, 36);
-            this.cmbFiltro.Name = "cmbFiltro";
-            this.cmbFiltro.Size = new System.Drawing.Size(251, 21);
-            this.cmbFiltro.TabIndex = 8;
-            // 
-            // lblFiltrar
-            // 
-            this.lblFiltrar.AutoSize = true;
-            this.lblFiltrar.Enabled = false;
-            this.lblFiltrar.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lblFiltrar.Location = new System.Drawing.Point(42, 40);
-            this.lblFiltrar.Name = "lblFiltrar";
-            this.lblFiltrar.Size = new System.Drawing.Size(60, 13);
-            this.lblFiltrar.TabIndex = 7;
-            this.lblFiltrar.Text = "Filtrar Por:";
+            this.cmbCategoria.Enabled = false;
+            this.cmbCategoria.FormattingEnabled = true;
+            this.cmbCategoria.Location = new System.Drawing.Point(199, 36);
+            this.cmbCategoria.Name = "cmbCategoria";
+            this.cmbCategoria.Size = new System.Drawing.Size(251, 21);
+            this.cmbCategoria.TabIndex = 8;
             // 
             // lblListaPrecios
             // 
@@ -171,27 +164,27 @@
             this.txtPorcCambio.TabIndex = 36;
             this.txtPorcCambio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPorcCambio_KeyPress);
             // 
-            // radioButton1
+            // rbAumentar
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(259, 24);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(75, 17);
-            this.radioButton1.TabIndex = 37;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Aumentar";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbAumentar.AutoSize = true;
+            this.rbAumentar.Checked = true;
+            this.rbAumentar.Location = new System.Drawing.Point(259, 24);
+            this.rbAumentar.Name = "rbAumentar";
+            this.rbAumentar.Size = new System.Drawing.Size(75, 17);
+            this.rbAumentar.TabIndex = 37;
+            this.rbAumentar.TabStop = true;
+            this.rbAumentar.Text = "Aumentar";
+            this.rbAumentar.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rbDisminuir
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(359, 24);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(74, 17);
-            this.radioButton2.TabIndex = 38;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Disminuir";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbDisminuir.AutoSize = true;
+            this.rbDisminuir.Location = new System.Drawing.Point(359, 24);
+            this.rbDisminuir.Name = "rbDisminuir";
+            this.rbDisminuir.Size = new System.Drawing.Size(74, 17);
+            this.rbDisminuir.TabIndex = 38;
+            this.rbDisminuir.Text = "Disminuir";
+            this.rbDisminuir.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -205,8 +198,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.rbDisminuir);
+            this.groupBox1.Controls.Add(this.rbAumentar);
             this.groupBox1.Controls.Add(this.txtPorcCambio);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(73, 633);
@@ -215,6 +208,26 @@
             this.groupBox1.TabIndex = 40;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modificación de precios";
+            // 
+            // chkFiltrar
+            // 
+            this.chkFiltrar.AutoSize = true;
+            this.chkFiltrar.Location = new System.Drawing.Point(45, 38);
+            this.chkFiltrar.Name = "chkFiltrar";
+            this.chkFiltrar.Size = new System.Drawing.Size(129, 17);
+            this.chkFiltrar.TabIndex = 23;
+            this.chkFiltrar.Text = "Filtrar Por Categoría";
+            this.chkFiltrar.UseVisualStyleBackColor = true;
+            this.chkFiltrar.CheckedChanged += new System.EventHandler(this.chkFiltrar_CheckedChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(123, 66);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Nombre:";
             // 
             // frmPrecioLote
             // 
@@ -225,7 +238,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listViewProdSelec);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.listViewProductos);
             this.Name = "frmPrecioLote";
@@ -245,17 +257,18 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtFiltro;
-        private System.Windows.Forms.ComboBox cmbFiltro;
-        private System.Windows.Forms.Label lblFiltrar;
+        private System.Windows.Forms.ComboBox cmbCategoria;
         private System.Windows.Forms.Label lblListaPrecios;
         private System.Windows.Forms.ListView listViewProductos;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListView listViewProdSelec;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPorcCambio;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rbAumentar;
+        private System.Windows.Forms.RadioButton rbDisminuir;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox chkFiltrar;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -27,18 +27,7 @@ namespace SistemaFacturacionInventario.Productos
 
         private void frmPrecioLote_Load(object sender, EventArgs e)
         {
-            var dt = new DataTable();
-            dt.Columns.Add("IdBusqueda");
-            dt.Columns.Add("Descripcion");
-
-            dt.Rows.Add("DescCorta", "Descripción Corta");
-            dt.Rows.Add("IdProducto", "Nº Producto");
-            dt.Rows.Add("IdRubro", "Categoría");
-
-            cmbFiltro.DisplayMember = "Descripcion";
-            cmbFiltro.ValueMember = "IdBusqueda";
-            cmbFiltro.DataSource = dt;
-            cmbFiltro.SelectedValue = "DescCorta";
+            LlenarComboCategoria();
 
             CrearColListView();
             LlenarlistProducto(true);
@@ -52,6 +41,19 @@ namespace SistemaFacturacionInventario.Productos
             seteos = auxiliaresNegocio.ObtenerSeteo();
             var porcentajeDiferencia = seteos.PorcentajeDiferencia ?? 0;
             txtPorcCambio.Text = porcentajeDiferencia.ToString("N2"); // Formato de número con 2 decimales
+        }
+
+        private void LlenarComboCategoria()
+        {
+            try
+            {
+                var rep = new AuxiliaresNegocio();
+                cmbCategoria.DisplayMember = "Descripcion";
+                cmbCategoria.ValueMember = "IdRubro";
+                cmbCategoria.DataSource = rep.ObtenerRubros();
+
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
         private void CrearColListView()
         {
@@ -116,30 +118,46 @@ namespace SistemaFacturacionInventario.Productos
             try
             {
                 var productoNegocio = new ProductoNegocio();
-                switch (cmbFiltro.SelectedValue.ToString().ToUpper())
+
+                if (chkFiltrar.Checked)
                 {
-                    case "IDPRODUCTO":
-                        if (!FuncionesForms.NroEneteroInt32(txtFiltro.Text))
-                        {
-                            MessageBox.Show("Ingrese texto de búsqueda válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            return null;
-                        }
-                        return productoNegocio.ObtenerListPreciosPorNro(Convert.ToInt32(txtFiltro.Text));
-
-                    case "DESCCORTA":
-                        //TituloEx = "Listado de Artículos filtrado por Desc.Corta";
-                        return (txtFiltro.Text != "") ? productoNegocio.ObtenerListPreciosPorDesc(txtFiltro.Text) : productoNegocio.ObtenerUltPrecioVenta();
-
-
-                    default:
+                    // Validar que haya una categoría seleccionada
+                    if (cmbCategoria.SelectedValue == null)
+                    {
+                        MessageBox.Show("Debe seleccionar una categoría.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return null;
+                    }
+
+                    int idRubro;
+                    if (int.TryParse(cmbCategoria.SelectedValue.ToString(), out idRubro))
+                    {
+                        return productoNegocio.ObtenerListPreciosPorRubro(idRubro);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Categoría inválida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return null;
+                    }
+                }
+                else
+                {
+                    // Buscar por texto libre si no está el filtro activado
+                    if (string.IsNullOrWhiteSpace(txtFiltro.Text))
+                    {
+                        MessageBox.Show("Ingrese texto de búsqueda.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return null;
+                    }
+
+                    return productoNegocio.ObtenerListPreciosPorDesc(txtFiltro.Text.Trim());
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                MessageBox.Show("Error al buscar precios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
+
 
         private void txtFiltro_KeyDown(object sender, KeyEventArgs e)
         {
@@ -269,6 +287,11 @@ namespace SistemaFacturacionInventario.Productos
             {
                 e.Handled = true; // bloquear todo lo demás
             }
+        }
+
+        private void chkFiltrar_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbCategoria.Enabled = chkFiltrar.Checked;
         }
     }
 }

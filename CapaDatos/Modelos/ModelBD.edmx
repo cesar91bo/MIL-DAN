@@ -584,20 +584,22 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaPreciosVenta' 
         <EntityType Name="VistaPreciosVenta">
           <Key>
             <PropertyRef Name="IdProducto" />
-            <PropertyRef Name="DescCorta" />
             <PropertyRef Name="FechaPrecio" />
-            <PropertyRef Name="Iva" />
             <PropertyRef Name="PrecioContado" />
             <PropertyRef Name="PrecioFiado" />
             <PropertyRef Name="PrecioContadoIva" />
             <PropertyRef Name="PrecioFiadoIva" />
             <PropertyRef Name="PrecioBase" />
             <PropertyRef Name="PorcentajeGcia" />
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="IdRubro" />
+            <PropertyRef Name="DescCorta" />
+            <PropertyRef Name="Iva" />
           </Key>
           <Property Name="IdProducto" Type="int" Nullable="false" />
-          <Property Name="DescCorta" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DescCorta" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="FechaPrecio" Type="datetime" Nullable="false" />
-          <Property Name="Iva" Type="numeric" Precision="2" Scale="2" Nullable="false" />
+          <Property Name="Iva" Type="numeric" Precision="4" Scale="2" Nullable="false" />
           <Property Name="PrecioContado" Type="numeric" Precision="18" Scale="4" Nullable="false" />
           <Property Name="PrecioFiado" Type="numeric" Precision="18" Scale="4" Nullable="false" />
           <Property Name="PrecioEspecial" Type="numeric" Precision="18" Scale="4" />
@@ -614,6 +616,8 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaPreciosVenta' 
           <Property Name="PorcentajeGcia" Type="numeric" Precision="6" Scale="2" Nullable="false" />
           <Property Name="PorcentajeFiado" Type="numeric" Precision="6" Scale="2" />
           <Property Name="Impuesto" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="IdRubro" Type="int" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaProducto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -1113,7 +1117,9 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
     [VistaPreciosVenta].[PorcentajeDescarga] AS [PorcentajeDescarga], 
     [VistaPreciosVenta].[PorcentajeGcia] AS [PorcentajeGcia], 
     [VistaPreciosVenta].[PorcentajeFiado] AS [PorcentajeFiado], 
-    [VistaPreciosVenta].[Impuesto] AS [Impuesto]
+    [VistaPreciosVenta].[Impuesto] AS [Impuesto], 
+    [VistaPreciosVenta].[Descripcion] AS [Descripcion], 
+    [VistaPreciosVenta].[IdRubro] AS [IdRubro]
     FROM [dbo].[VistaPreciosVenta] AS [VistaPreciosVenta]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VistaProducto" EntityType="Self.VistaProducto" store:Type="Views" store:Schema="dbo">
@@ -1536,11 +1542,13 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
             <PropertyRef Name="PrecioFiadoIva" />
             <PropertyRef Name="PrecioBase" />
             <PropertyRef Name="PorcentajeGcia" />
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="IdRubro" />
           </Key>
           <Property Name="IdProducto" Type="Int32" Nullable="false" />
-          <Property Name="DescCorta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DescCorta" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="FechaPrecio" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Iva" Type="Decimal" Nullable="false" Precision="2" Scale="2" />
+          <Property Name="Iva" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
           <Property Name="PrecioContado" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
           <Property Name="PrecioFiado" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
           <Property Name="PrecioEspecial" Type="Decimal" Precision="18" Scale="4" />
@@ -1557,6 +1565,8 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
           <Property Name="PorcentajeGcia" Type="Decimal" Nullable="false" Precision="6" Scale="2" />
           <Property Name="PorcentajeFiado" Type="Decimal" Precision="6" Scale="2" />
           <Property Name="Impuesto" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IdRubro" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="PreciosVenta">
           <Key>
@@ -2467,6 +2477,8 @@ advertencia 6002: La tabla o vista 'SistemaGestionPymeBD.dbo.VistaTotalesDiscrim
           <EntitySetMapping Name="VistaPreciosVenta">
             <EntityTypeMapping TypeName="SistemaGestionPymeBDModel.VistaPreciosVenta">
               <MappingFragment StoreEntitySet="VistaPreciosVenta">
+                <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
                 <ScalarProperty Name="PorcentajeFiado" ColumnName="PorcentajeFiado" />
                 <ScalarProperty Name="PorcentajeGcia" ColumnName="PorcentajeGcia" />
