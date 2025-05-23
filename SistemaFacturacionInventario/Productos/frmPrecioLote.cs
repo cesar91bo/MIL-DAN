@@ -1,4 +1,5 @@
-﻿using CapaDatos.Modelos;
+﻿using CapaDatos;
+using CapaDatos.Modelos;
 using CapaNegocio;
 using SistemaFacturacionInventario.Auxiliares;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +21,7 @@ namespace SistemaFacturacionInventario.Productos
         List<CapaDatos.Modelos.VistaPreciosVenta> precios;
         private bool _actualizandoLista = false;
         private AuxiliaresNegocio auxiliaresNegocio = new AuxiliaresNegocio();
+        ProductoNegocio productoNegocio = new ProductoNegocio();
         private Seteos seteos = new Seteos();
         public frmPrecioLote()
         {
@@ -82,7 +85,7 @@ namespace SistemaFacturacionInventario.Productos
 
             if (siload)
             {
-                var productoNegocio = new ProductoNegocio();
+                //var productoNegocio = new ProductoNegocio();
                 precios = productoNegocio.ObtenerUltPrecioVenta();
             }
             else
@@ -208,6 +211,14 @@ namespace SistemaFacturacionInventario.Productos
                     {
                         var nuevoItem = (ListViewItem)e.Item.Clone();
                         nuevoItem.Checked = true; // check por defecto
+
+                        // Intentamos leer el porcentaje y aplicar el cálculo
+                        if (decimal.TryParse(txtPorcCambio.Text, out decimal porcCambio))
+                        {
+                            bool aumentar = rbAumentar.Checked;
+                            RecalcularValoresItem(nuevoItem, porcCambio, aumentar);
+                        }
+
                         listViewProdSelec.Items.Add(nuevoItem);
                     }
                 }
@@ -229,6 +240,30 @@ namespace SistemaFacturacionInventario.Productos
                 _actualizandoLista = false;
             }
         }
+
+        private void RecalcularValoresItem(ListViewItem item, decimal porcCambio, bool aumentar)
+        {
+            decimal iva = 21m; // O toma esta variable desde donde la tengas definida
+
+            if (decimal.TryParse(item.SubItems[5].Text, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal precioBase) &&
+                decimal.TryParse(item.SubItems[6].Text, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal porcentajeGanancia))
+            {
+                decimal factor = aumentar ? (1 + porcCambio / 100m) : (1 - porcCambio / 100m);
+                decimal nuevoPrecioBase = Math.Round(precioBase * factor, 2);
+                item.SubItems[5].Text = nuevoPrecioBase.ToString("N2");
+
+                decimal precioContado = Math.Round(nuevoPrecioBase * (1 + porcentajeGanancia / 100m), 2);
+                item.SubItems[3].Text = precioContado.ToString("N2");
+
+                decimal precioContadoIva = Math.Round(precioContado * (1 + iva / 100m), 2);
+                item.SubItems[2].Text = precioContadoIva.ToString("N2");
+
+                item.SubItems[4].Text = DateTime.Now.ToString("dd/MM/yyyy");
+            }
+        }
+
+
+
 
         private void listViewProdSelec_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
@@ -258,12 +293,43 @@ namespace SistemaFacturacionInventario.Productos
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (listViewProdSelec.Items.Count == 0)
+            {
+                MessageBox.Show("No hay productos seleccionados para guardar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir para no continuar con la lógica
+            }
             var difCambio = txtPorcCambio.Text != "" ? Convert.ToDecimal(txtPorcCambio.Text) : 0;
             if(difCambio != seteos.PorcentajeDiferencia)
             {
                 seteos.PorcentajeDiferencia = difCambio;
                 auxiliaresNegocio.ActualizarSeteos(seteos);
             }
+
+            List<PrecioActualizadoDto> listaActualizada = new List<PrecioActualizadoDto>();
+
+            foreach (ListViewItem item in listViewProdSelec.Items)
+            {
+                listaActualizada.Add(new PrecioActualizadoDto
+                {
+                    IdProducto = int.Parse(item.SubItems[0].Text),
+                    PrecioContadoIva = decimal.Parse(item.SubItems[2].Text),
+                    PrecioContado = decimal.Parse(item.SubItems[3].Text),
+                    FechaPrecio = DateTime.ParseExact(item.SubItems[4].Text, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    PrecioBase = decimal.Parse(item.SubItems[5].Text),
+                    PorcentajeGanancia = decimal.Parse(item.SubItems[6].Text)
+                });
+            }
+
+            productoNegocio.ActualizarPrecios(listaActualizada);
+
+            MessageBox.Show("Precios actualizados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            LlenarlistProducto(true);
+            listViewProdSelec.Items.Clear();
+            cmbCategoria.SelectedIndex = -1; // Limpiar selección del combo
+            chkFiltrar.Checked = false; // Desmarcar el checkbox
+            txtFiltro.Clear();
+           
         }
 
         private void txtPorcCambio_KeyPress(object sender, KeyPressEventArgs e)

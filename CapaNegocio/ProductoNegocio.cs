@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Security.Cryptography;
+using CapaDatos;
 
 namespace CapaNegocio
 {
@@ -466,5 +467,55 @@ namespace CapaNegocio
                 return ultimosPrecios;
             }
         }
+
+        public void ActualizarPrecios(List<PrecioActualizadoDto> preciosActualizados)
+        {
+            foreach (var dto in preciosActualizados)
+            {
+                var ultimoPrecio = db.PreciosVenta
+                    .Where(p => p.IdProducto == dto.IdProducto)
+                    .OrderByDescending(p => p.FechaPrecios)
+                    .FirstOrDefault();
+
+                if (ultimoPrecio != null)
+                {
+                    var nuevoPrecio = new PreciosVenta
+                    {
+                        IdProducto = dto.IdProducto,
+                        FechaPrecios = DateTime.Now,
+                        PrecioBase = dto.PrecioBase,
+                        PrecioContado = dto.PrecioContado,
+                        PrecioContadoIva = dto.PrecioContadoIva,
+                        PorcentajeGcia = dto.PorcentajeGanancia,
+                        UsrAcceso = Environment.UserName,
+                        FechaAcceso = DateTime.Now,
+
+                        // Copiamos el resto si son importantes para mantener consistencia
+                        PrecioFiado = ultimoPrecio.PrecioFiado,
+                        PrecioEspecial = ultimoPrecio.PrecioEspecial,
+                        PrecioFiadoIva = ultimoPrecio.PrecioFiadoIva,
+                        PrecioEspecialIva = ultimoPrecio.PrecioEspecialIva,
+                        Bonificacion1 = ultimoPrecio.Bonificacion1,
+                        Bonificacion2 = ultimoPrecio.Bonificacion2,
+                        Bonificacion3 = ultimoPrecio.Bonificacion3,
+                        Bonificacion4 = ultimoPrecio.Bonificacion4,
+                        Iva = ultimoPrecio.Iva,
+                        CostoBruto = ultimoPrecio.CostoBruto,
+                        PorcentajeFlete = ultimoPrecio.PorcentajeFlete,
+                        CostoFlete = ultimoPrecio.CostoFlete,
+                        PorcentajeDescarga = ultimoPrecio.PorcentajeDescarga,
+                        CostoDescarga = ultimoPrecio.CostoDescarga,
+                        CostoTotal = ultimoPrecio.CostoTotal,
+                        PorcentajeFiado = ultimoPrecio.PorcentajeFiado,
+                        Impuesto = ultimoPrecio.Impuesto
+                    };
+
+                    db.PreciosVenta.Add(nuevoPrecio);
+                }
+            }
+
+            db.SaveChanges();
+        }
+
     }
 }

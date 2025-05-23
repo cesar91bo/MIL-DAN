@@ -182,6 +182,7 @@
     <Compile Include="Modelos\VistaTotalesDiscriminadosFactB.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="PrecioActualizadoDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
