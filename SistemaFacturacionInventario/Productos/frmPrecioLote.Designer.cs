@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrecioLote));
             this.btnBuscar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.chkFiltrar = new System.Windows.Forms.CheckBox();
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.cmbCategoria = new System.Windows.Forms.ComboBox();
             this.lblListaPrecios = new System.Windows.Forms.Label();
@@ -43,8 +45,6 @@
             this.rbDisminuir = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkFiltrar = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -75,6 +75,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(806, 100);
             this.panel1.TabIndex = 33;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(123, 66);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Nombre:";
+            // 
+            // chkFiltrar
+            // 
+            this.chkFiltrar.AutoSize = true;
+            this.chkFiltrar.Location = new System.Drawing.Point(45, 38);
+            this.chkFiltrar.Name = "chkFiltrar";
+            this.chkFiltrar.Size = new System.Drawing.Size(129, 17);
+            this.chkFiltrar.TabIndex = 23;
+            this.chkFiltrar.Text = "Filtrar Por Categoría";
+            this.chkFiltrar.UseVisualStyleBackColor = true;
+            this.chkFiltrar.CheckedChanged += new System.EventHandler(this.chkFiltrar_CheckedChanged);
             // 
             // txtFiltro
             // 
@@ -114,7 +134,7 @@
             this.listViewProductos.Location = new System.Drawing.Point(73, 114);
             this.listViewProductos.MultiSelect = false;
             this.listViewProductos.Name = "listViewProductos";
-            this.listViewProductos.Size = new System.Drawing.Size(1016, 230);
+            this.listViewProductos.Size = new System.Drawing.Size(1016, 194);
             this.listViewProductos.TabIndex = 32;
             this.listViewProductos.UseCompatibleStateImageBehavior = false;
             this.listViewProductos.View = System.Windows.Forms.View.Details;
@@ -124,7 +144,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(467, 362);
+            this.label2.Location = new System.Drawing.Point(467, 314);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(200, 21);
             this.label2.TabIndex = 23;
@@ -136,10 +156,10 @@
             this.listViewProdSelec.FullRowSelect = true;
             this.listViewProdSelec.GridLines = true;
             this.listViewProdSelec.HideSelection = false;
-            this.listViewProdSelec.Location = new System.Drawing.Point(73, 397);
+            this.listViewProdSelec.Location = new System.Drawing.Point(73, 338);
             this.listViewProdSelec.MultiSelect = false;
             this.listViewProdSelec.Name = "listViewProdSelec";
-            this.listViewProdSelec.Size = new System.Drawing.Size(1016, 230);
+            this.listViewProdSelec.Size = new System.Drawing.Size(1016, 192);
             this.listViewProdSelec.TabIndex = 35;
             this.listViewProdSelec.UseCompatibleStateImageBehavior = false;
             this.listViewProdSelec.View = System.Windows.Forms.View.Details;
@@ -188,7 +208,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(497, 703);
+            this.button1.Location = new System.Drawing.Point(497, 611);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(128, 36);
             this.button1.TabIndex = 39;
@@ -202,38 +222,18 @@
             this.groupBox1.Controls.Add(this.rbAumentar);
             this.groupBox1.Controls.Add(this.txtPorcCambio);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(73, 633);
+            this.groupBox1.Location = new System.Drawing.Point(73, 541);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(520, 64);
             this.groupBox1.TabIndex = 40;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modificación de precios";
             // 
-            // chkFiltrar
-            // 
-            this.chkFiltrar.AutoSize = true;
-            this.chkFiltrar.Location = new System.Drawing.Point(45, 38);
-            this.chkFiltrar.Name = "chkFiltrar";
-            this.chkFiltrar.Size = new System.Drawing.Size(129, 17);
-            this.chkFiltrar.TabIndex = 23;
-            this.chkFiltrar.Text = "Filtrar Por Categoría";
-            this.chkFiltrar.UseVisualStyleBackColor = true;
-            this.chkFiltrar.CheckedChanged += new System.EventHandler(this.chkFiltrar_CheckedChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(123, 66);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 13);
-            this.label3.TabIndex = 24;
-            this.label3.Text = "Nombre:";
-            // 
             // frmPrecioLote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 751);
+            this.ClientSize = new System.Drawing.Size(1134, 652);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listViewProdSelec);

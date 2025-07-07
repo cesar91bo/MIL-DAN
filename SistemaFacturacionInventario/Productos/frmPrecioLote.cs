@@ -326,7 +326,7 @@ namespace SistemaFacturacionInventario.Productos
 
             LlenarlistProducto(true);
             listViewProdSelec.Items.Clear();
-            cmbCategoria.SelectedIndex = -1; // Limpiar selección del combo
+            cmbCategoria.SelectedIndex =  1; // Limpiar selección del combo
             chkFiltrar.Checked = false; // Desmarcar el checkbox
             txtFiltro.Clear();
            
